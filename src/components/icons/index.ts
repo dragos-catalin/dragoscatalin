@@ -1,0 +1,13 @@
+export { default as ReactIcon } from './ReactIcon';
+export { default as NextIcon } from './NextIcon';
+export { default as TypeScriptIcon } from './TypeScriptIcon';
+export { default as TailwindIcon } from './TailwindIcon';
+export { default as NodeIcon } from './NodeIcon';
+export { default as PostgreSQLIcon } from './PostgreSQLIcon';
+export { default as PythonIcon } from './PythonIcon';
+export { default as TensorFlowIcon } from './TensorFlowIcon';
+export { default as AIIcon } from './AIIcon';
+export { default as GitHubIcon } from './GitHubIcon';
+export { default as InstagramIcon } from './InstagramIcon';
+export { default as TikTokIcon } from './TikTokIcon';
+export { default as DiscordIcon } from './DiscordIcon';
