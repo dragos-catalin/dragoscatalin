@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth, signInAnonymously, Auth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -17,11 +17,16 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// Helper function to ensure user is authenticated anonymously
-export const ensureAnonymousAuth = async (): Promise<void> => {
-    if (!auth.currentUser) {
-        await signInAnonymously(auth);
-    }
+// Google Sign In
+export const signInWithGoogle = async (): Promise<User> => {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    return result.user;
+};
+
+// Sign Out
+export const signOutUser = async (): Promise<void> => {
+    await signOut(auth);
 };
 
 export { app, db, auth };

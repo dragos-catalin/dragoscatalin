@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { hasNewMessages } from "@/lib/contactNotifications";
-import { ensureAnonymousAuth } from "@/lib/firebase";
 
 export default function NotificationBadge() {
     const [showNotification, setShowNotification] = useState(false);
@@ -12,7 +11,6 @@ export default function NotificationBadge() {
     useEffect(() => {
         const checkForNewMessages = async () => {
             try {
-                await ensureAnonymousAuth();
                 const hasNew = await hasNewMessages();
                 setShowNotification(hasNew);
             } catch (error) {
