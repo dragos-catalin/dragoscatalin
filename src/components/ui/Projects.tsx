@@ -63,6 +63,25 @@ const projects: Project[] = [
         demoUrl: "https://editai.ro",
         githubUrl: "#",
     },
+    {
+        id: "3",
+        title: "MancAI.ro",
+        description: "Food tracking application with AI image analysis for automatic nutritional information and calorie counting.",
+        fullDescription: "MancAI.ro is a smart food tracking platform that uses advanced AI image recognition to analyze food photos and provide instant nutritional information. Users can simply take a picture of their meal to automatically log calories, macros, and nutritional data.",
+        technologies: ["Next.js", "TypeScript", "AI/ML", "Python", "TensorFlow"],
+        features: [
+            "AI-powered food recognition from photos",
+            "Automatic calorie and macro calculation",
+            "Personalized nutrition goals and tracking",
+            "Meal history and analytics dashboard",
+            "Recipe suggestions based on dietary preferences",
+            "Integration with fitness apps and wearables"
+        ],
+        challenges: "Training accurate AI models to recognize diverse food types and portions required building a comprehensive dataset and implementing efficient image processing pipelines for real-time analysis.",
+        results: "Achieving 92% accuracy in food recognition and helping users track over 100,000 meals with automated nutritional analysis.",
+        demoUrl: "https://mancai.ro",
+        githubUrl: "#",
+    },
 ];
 
 export default function Projects() {
