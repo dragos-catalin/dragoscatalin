@@ -43,7 +43,7 @@ export default function SignatureOptions({
         }
         onSignatureComplete("typed", typedName.trim());
         break;
-      
+
       case "drawn":
         if (!drawnSignature) {
           alert("Te rog desenează semnătura ta");
@@ -51,7 +51,7 @@ export default function SignatureOptions({
         }
         onSignatureComplete("drawn", drawnSignature);
         break;
-      
+
       case "uploaded":
         if (!uploadedPdfUrl) {
           alert("Te rog încarcă contractul semnat");
@@ -64,7 +64,7 @@ export default function SignatureOptions({
 
   const isValid = () => {
     if (!agreedToTerms) return false;
-    
+
     switch (activeTab) {
       case "typed":
         return typedName.trim().length > 0;
@@ -85,33 +85,30 @@ export default function SignatureOptions({
           <button
             type="button"
             onClick={() => setActiveTab("typed")}
-            className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${
-              activeTab === "typed"
+            className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${activeTab === "typed"
                 ? "border-blue-500 text-blue-400"
                 : "border-transparent text-neutral-400 hover:text-neutral-200"
-            }`}
+              }`}
           >
             Tastează Numele
           </button>
           <button
             type="button"
             onClick={() => setActiveTab("drawn")}
-            className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${
-              activeTab === "drawn"
+            className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${activeTab === "drawn"
                 ? "border-blue-500 text-blue-400"
                 : "border-transparent text-neutral-400 hover:text-neutral-200"
-            }`}
+              }`}
           >
             Desenează Semnătura
           </button>
           <button
             type="button"
             onClick={() => setActiveTab("uploaded")}
-            className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${
-              activeTab === "uploaded"
+            className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${activeTab === "uploaded"
                 ? "border-blue-500 text-blue-400"
                 : "border-transparent text-neutral-400 hover:text-neutral-200"
-            }`}
+              }`}
           >
             Încarcă PDF Semnat
           </button>
@@ -180,8 +177,8 @@ export default function SignatureOptions({
             className="mt-1 w-4 h-4 rounded border-neutral-700 text-blue-600 focus:ring-blue-500 focus:ring-offset-0 bg-neutral-900"
           />
           <span className="text-sm text-neutral-300 group-hover:text-neutral-100">
-            Sunt de acord să semnez acest contract electronic. Înțeleg că semnătura mea electronică are 
-            aceeași valoare juridică ca și o semnătură olografă și că accept termenii și condițiile 
+            Sunt de acord să semnez acest contract electronic. Înțeleg că semnătura mea electronică are
+            aceeași valoare juridică ca și o semnătură olografă și că accept termenii și condițiile
             din acest contract.
           </span>
         </label>

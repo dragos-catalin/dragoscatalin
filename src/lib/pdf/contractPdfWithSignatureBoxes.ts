@@ -41,7 +41,7 @@ async function generatePDFFromHTML(contractHtml: string): Promise<Uint8Array> {
   tempDiv.style.fontFamily = 'Arial, sans-serif';
   tempDiv.style.fontSize = '12pt';
   tempDiv.style.lineHeight = '1.6';
-  
+
   document.body.appendChild(tempDiv);
 
   try {
@@ -63,7 +63,7 @@ async function generatePDFFromHTML(contractHtml: string): Promise<Uint8Array> {
     const imgData = canvas.toDataURL('image/png');
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
-    
+
     // Calculate image dimensions to fit page
     const imgWidth = pdfWidth;
     const imgHeight = (canvas.height * pdfWidth) / canvas.width;
@@ -103,20 +103,20 @@ export async function generateContractPDFWithSignatureBoxes(
   if (!contractData.contractHtml) {
     throw new Error('Contract HTML is required');
   }
-  
+
   const basePdfBytes = await generatePDFFromHTML(contractData.contractHtml);
-  
+
   // Step 2: Load PDF with pdf-lib to add signature page
   const pdfDoc = await PDFDocument.load(basePdfBytes);
-  
+
   // Add new page for signatures
   const signaturePage = pdfDoc.addPage([595, 842]); // A4 size
   const { width, height } = signaturePage.getSize();
-  
+
   // Load fonts
   const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
   const timesRomanBold = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
-  
+
   let currentY = height - 50;
 
   // Title for signature page
@@ -245,10 +245,10 @@ export async function checkPDFHasSignature(pdfBytes: Uint8Array): Promise<boolea
   try {
     const pdfDoc = await PDFDocument.load(pdfBytes);
     const form = pdfDoc.getForm();
-    
+
     // Check if form exists and has any fields
     if (!form) return false;
-    
+
     // Try to get signature fields
     const fields = form.getFields();
     const hasSignature = fields.some(field => {
@@ -256,7 +256,7 @@ export async function checkPDFHasSignature(pdfBytes: Uint8Array): Promise<boolea
       const fieldType = field.constructor.name;
       return fieldType.includes('Signature') || fieldType.includes('PDFSignature');
     });
-    
+
     return hasSignature;
   } catch (error) {
     console.error('Error checking PDF signature:', error);

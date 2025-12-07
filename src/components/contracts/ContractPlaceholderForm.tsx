@@ -5,8 +5,8 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { 
-  extractPlaceholders, 
+import {
+  extractPlaceholders,
   groupPlaceholdersByCategory,
   getCategoryDisplayName,
   getPlaceholderLabel,
@@ -38,23 +38,23 @@ export default function ContractPlaceholderForm({
 
   // Extract and group placeholders (memoized to prevent infinite loops)
   const allPlaceholders = useMemo(() => extractPlaceholders(templateContent), [templateContent]);
-  
+
   // Parse field placeholders (richtext, textarea, input, etc.)
   const fieldPlaceholders = useMemo(() => parseFieldPlaceholders(templateContent, 'ro'), [templateContent]);
-  
+
   // Filter out field placeholder names from standard placeholders to avoid duplicates
   const placeholders = useMemo(() => {
     const fieldNames = new Set(fieldPlaceholders.map(f => f.name));
     return allPlaceholders.filter(p => !fieldNames.has(p));
   }, [allPlaceholders, fieldPlaceholders]);
-  
+
   const groupedPlaceholders = useMemo(() => groupPlaceholdersByCategory(placeholders), [placeholders]);
 
   // Auto-fill values when component mounts or dependencies change
   useEffect(() => {
     const loadAutoFillValues = async () => {
       const autoFilledValues: Record<string, string> = { ...placeholderValues };
-      
+
       // Auto-fill client data if client is selected
       if (selectedClient) {
         const clientMappings: Record<string, keyof Client> = {
@@ -67,14 +67,14 @@ export default function ContractPlaceholderForm({
           clientAs: 'representativeRole',
           clientAddress: 'address'
         };
-        
+
         Object.entries(clientMappings).forEach(([placeholder, clientField]) => {
           if (placeholders.includes(placeholder) && selectedClient[clientField]) {
             autoFilledValues[placeholder] = String(selectedClient[clientField]);
           }
         });
       }
-      
+
       // Auto-fill system placeholders
       placeholders.forEach(placeholder => {
         const systemValue = getSystemPlaceholderValue(placeholder);
@@ -82,7 +82,7 @@ export default function ContractPlaceholderForm({
           autoFilledValues[placeholder] = systemValue;
         }
       });
-      
+
       // Auto-fill personal placeholders from user profile
       const personalValues = await getPersonalPlaceholderValues();
       Object.entries(personalValues).forEach(([placeholder, value]) => {
@@ -90,7 +90,7 @@ export default function ContractPlaceholderForm({
           autoFilledValues[placeholder] = value;
         }
       });
-      
+
       setPlaceholderValues(autoFilledValues);
       onChange(autoFilledValues);
     };
@@ -100,7 +100,7 @@ export default function ContractPlaceholderForm({
 
   // Validate required fields
   useEffect(() => {
-    const missing = placeholders.filter(p => 
+    const missing = placeholders.filter(p =>
       isPlaceholderRequired(p) && !placeholderValues[p]?.trim()
     );
     setMissingRequired(missing);
@@ -161,11 +161,9 @@ export default function ContractPlaceholderForm({
                       onChange={(e) => handleChange(placeholder, e.target.value)}
                       placeholder={example || `Ex: ${label}`}
                       disabled={isSystemField}
-                      className={`w-full bg-neutral-900 border rounded-lg px-3 py-2 text-neutral-100 placeholder:text-neutral-600 focus:outline-none focus:border-neutral-600 ${
-                        isSystemField ? 'opacity-60 cursor-not-allowed' : 'border-neutral-700'
-                      } ${
-                        required && !value ? 'border-yellow-500/50' : ''
-                      }`}
+                      className={`w-full bg-neutral-900 border rounded-lg px-3 py-2 text-neutral-100 placeholder:text-neutral-600 focus:outline-none focus:border-neutral-600 ${isSystemField ? 'opacity-60 cursor-not-allowed' : 'border-neutral-700'
+                        } ${required && !value ? 'border-yellow-500/50' : ''
+                        }`}
                     />
                     {example && !isSystemField && (
                       <p className="text-xs text-neutral-500">Ex: {example}</p>
@@ -216,9 +214,8 @@ export default function ContractPlaceholderForm({
                       onChange={(e) => handleChange(field.name, e.target.value)}
                       rows={4}
                       placeholder={`Introdu ${label.toLowerCase()}...`}
-                      className={`w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-100 placeholder:text-neutral-600 focus:outline-none focus:border-neutral-600 ${
-                        field.required && !value ? 'border-yellow-500/50' : ''
-                      }`}
+                      className={`w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-100 placeholder:text-neutral-600 focus:outline-none focus:border-neutral-600 ${field.required && !value ? 'border-yellow-500/50' : ''
+                        }`}
                     />
                   </div>
                 );
@@ -232,9 +229,8 @@ export default function ContractPlaceholderForm({
                     <select
                       value={value}
                       onChange={(e) => handleChange(field.name, e.target.value)}
-                      className={`w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-100 focus:outline-none focus:border-neutral-600 ${
-                        field.required && !value ? 'border-yellow-500/50' : ''
-                      }`}
+                      className={`w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-100 focus:outline-none focus:border-neutral-600 ${field.required && !value ? 'border-yellow-500/50' : ''
+                        }`}
                     >
                       <option value="">-- Selectează --</option>
                       {field.options?.map((opt) => (
@@ -258,9 +254,8 @@ export default function ContractPlaceholderForm({
                       value={value}
                       onChange={(e) => handleChange(field.name, e.target.value)}
                       placeholder={`Introdu ${label.toLowerCase()}...`}
-                      className={`w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-100 placeholder:text-neutral-600 focus:outline-none focus:border-neutral-600 ${
-                        field.required && !value ? 'border-yellow-500/50' : ''
-                      }`}
+                      className={`w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-100 placeholder:text-neutral-600 focus:outline-none focus:border-neutral-600 ${field.required && !value ? 'border-yellow-500/50' : ''
+                        }`}
                     />
                   </div>
                 );

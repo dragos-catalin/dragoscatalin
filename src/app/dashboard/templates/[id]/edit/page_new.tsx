@@ -74,8 +74,8 @@ export default function EditTemplatePage() {
   };
 
   return (
-    <TemplateForm 
-      mode="edit" 
+    <TemplateForm
+      mode="edit"
       initialData={initialData}
       onSubmit={handleSubmit}
       loading={loading}

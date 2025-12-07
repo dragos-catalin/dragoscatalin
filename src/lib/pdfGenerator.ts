@@ -24,7 +24,7 @@ export async function generateContractPDF(
   tempDiv.style.fontFamily = "Arial, sans-serif";
   tempDiv.style.fontSize = "12pt";
   tempDiv.style.lineHeight = "1.6";
-  
+
   document.body.appendChild(tempDiv);
 
   try {
@@ -46,7 +46,7 @@ export async function generateContractPDF(
     const imgData = canvas.toDataURL("image/png");
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
-    
+
     // Calculate image dimensions to fit page
     const imgWidth = pdfWidth;
     const imgHeight = (canvas.height * pdfWidth) / canvas.width;
@@ -114,18 +114,18 @@ export function addSignatureToContract(
       <h3 style="font-size: 14pt; font-weight: bold; margin-bottom: 20px;">Semnături</h3>
       <div style="margin-bottom: 30px;">
         <p style="margin: 5px 0;"><strong>${signerName}</strong></p>
-        ${signatureType === "drawn" 
-          ? `<img src="${signatureValue}" style="max-width: 300px; height: auto; border-bottom: 1px solid #000; padding-bottom: 5px;" alt="Signature" />`
-          : `<p style="font-family: 'Brush Script MT', cursive; font-size: 24pt; margin: 10px 0; border-bottom: 1px solid #000; padding-bottom: 5px; display: inline-block; min-width: 300px;">${signatureValue}</p>`
-        }
+        ${signatureType === "drawn"
+      ? `<img src="${signatureValue}" style="max-width: 300px; height: auto; border-bottom: 1px solid #000; padding-bottom: 5px;" alt="Signature" />`
+      : `<p style="font-family: 'Brush Script MT', cursive; font-size: 24pt; margin: 10px 0; border-bottom: 1px solid #000; padding-bottom: 5px; display: inline-block; min-width: 300px;">${signatureValue}</p>`
+    }
         <p style="margin: 5px 0; font-size: 10pt; color: #666;">
-          Semnat electronic pe: ${signatureDate.toLocaleDateString("ro-RO", { 
-            day: "2-digit", 
-            month: "long", 
-            year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit"
-          })}
+          Semnat electronic pe: ${signatureDate.toLocaleDateString("ro-RO", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    })}
         </p>
       </div>
     </div>

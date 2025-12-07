@@ -60,7 +60,7 @@ export default function SignatureCanvas({
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!isDrawing) return;
-      
+
       const canvas = canvasRef.current;
       if (!canvas) return;
 
@@ -112,7 +112,7 @@ export default function SignatureCanvas({
     if (!ctx) return;
 
     const rect = canvas.getBoundingClientRect();
-    const x = "touches" in e 
+    const x = "touches" in e
       ? e.touches[0].clientX - rect.left
       : e.clientX - rect.left;
     const y = "touches" in e
@@ -164,7 +164,7 @@ export default function SignatureCanvas({
     // Clear and reset to white background
     ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
+
     setIsEmpty(true);
     onSignatureChange(null);
   };

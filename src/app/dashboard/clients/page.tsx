@@ -15,7 +15,7 @@ type TabType = "clients" | "submissions";
 
 export default function ClientsPage() {
   const [activeTab, setActiveTab] = useState<TabType>("clients");
-  
+
   // Clients tab state
   const [clients, setClients] = useState<Client[]>([]);
   const [clientsLoading, setClientsLoading] = useState(true);
@@ -71,7 +71,7 @@ export default function ClientsPage() {
     const unsub = onSnapshot(q, async (snap) => {
       const items: FormResponse[] = [];
       const linkIds = new Set<string>();
-      
+
       snap.forEach((doc) => {
         const data = doc.data();
         items.push({
@@ -91,7 +91,7 @@ export default function ClientsPage() {
           linkIds.add(data.linkId);
         }
       });
-      
+
       // Load link mappings for all submissions
       const mappings: Record<string, ClientLink> = {};
       for (const linkId of linkIds) {
@@ -115,7 +115,7 @@ export default function ClientsPage() {
           console.error("Error loading link mapping:", err);
         }
       }
-      
+
       setLinkMappings(mappings);
       setSubmissions(items);
       setSubmissionsLoading(false);
@@ -132,7 +132,7 @@ export default function ClientsPage() {
       where("clientId", "==", client.id)
     );
     const linksSnap = await getDocs(linksQuery);
-    
+
     const linkCount = linksSnap.size;
     const confirmMessage = linkCount > 0
       ? `Acest client are ${linkCount} link-uri asociate. Acestea vor fi dezalocate. Sigur vrei să ștergi clientul "${client.name}"?`
@@ -196,7 +196,7 @@ export default function ClientsPage() {
   const handleDownloadContractPDF = async (submission: FormResponse) => {
     try {
       const link = linkMappings[submission.linkId];
-      
+
       // If PDF URL exists, download the stored PDF directly
       if (submission.pdfUrl) {
         const anchor = document.createElement('a');
@@ -209,15 +209,15 @@ export default function ClientsPage() {
         toast.success("PDF descărcat cu succes!");
         return;
       }
-      
+
       // Fallback: Generate PDF if no stored version exists (for old submissions)
       if (!submission.contractHtml) {
         toast.error("Nu există contract disponibil pentru descărcare.");
         return;
       }
-      
+
       let htmlForPdf = submission.contractHtml;
-      
+
       // Add admin signature if available
       const adminSignature = link?.contractData?.adminSignature;
       if (adminSignature && adminSignature.signatureData) {
@@ -235,7 +235,7 @@ export default function ClientsPage() {
         });
         htmlForPdf = `${htmlForPdf}${clientSignatureHtml}`;
       }
-      
+
       const pdf = await generateContractPDF(htmlForPdf, link?.name || "contract");
       downloadPDF(pdf, `${link?.name || "contract"}.pdf`);
       toast.success("PDF descărcat cu succes!");
@@ -255,7 +255,7 @@ export default function ClientsPage() {
     });
 
     let signatureContent = '';
-    
+
     if (adminSignature.type === "simple") {
       if (adminSignature.signatureMethod === "typed") {
         signatureContent = `<p style="font-size: 32px; font-family: 'Brush Script MT', cursive; color: #000; margin: 0;">${adminSignature.signatureData}</p>`;
@@ -298,7 +298,7 @@ export default function ClientsPage() {
     });
 
     let signatureContent = '';
-    
+
     if (signature.method === "typed") {
       signatureContent = `<p style="font-size: 32px; font-family: 'Brush Script MT', cursive; color: #000; margin: 0;">${signature.value}</p>`;
     } else if (signature.method === "drawn") {
@@ -325,20 +325,20 @@ export default function ClientsPage() {
   };
   const getClientName = (submission: FormResponse): string => {
     const link = linkMappings[submission.linkId];
-    
+
     // For contract signatures, use the link's clientName
     if (submission.type === "contract-signature" && link?.clientName) {
       return link.clientName;
     }
-    
+
     const answers = submission.answers;
-    
+
     // Safety check for undefined answers
     if (!answers || typeof answers !== 'object') {
       // Fallback to link's clientName if available
       return link?.clientName || "Client necunoscut";
     }
-    
+
     // First try to use field mapping if available
     if (link?.clientFieldMapping) {
       const mapping = link.clientFieldMapping;
@@ -348,33 +348,33 @@ export default function ClientsPage() {
         return String(answers[nameFormField]);
       }
     }
-    
+
     // Fallback to common field names
     const nameFields = ['clientName', 'name', 'nume', 'companyName', 'businessName'];
     for (const field of nameFields) {
       if (answers[field]) return String(answers[field]);
     }
-    
+
     // Final fallback to link's clientName
     return link?.clientName || "Client necunoscut";
   };
 
   const getClientEmail = (submission: FormResponse): string | null => {
     const link = linkMappings[submission.linkId];
-    
+
     // For contract signatures, use the link's clientEmail
     if (submission.type === "contract-signature" && link?.clientEmail) {
       return link.clientEmail;
     }
-    
+
     const answers = submission.answers;
-    
+
     // Safety check for undefined answers
     if (!answers || typeof answers !== 'object') {
       // Fallback to link's clientEmail if available
       return link?.clientEmail || null;
     }
-    
+
     // First try to use field mapping if available
     if (link?.clientFieldMapping) {
       const mapping = link.clientFieldMapping;
@@ -384,13 +384,13 @@ export default function ClientsPage() {
         return String(answers[emailFormField]);
       }
     }
-    
+
     // Fallback to common field names
     const emailFields = ['clientEmail', 'email', 'contactEmail'];
     for (const field of emailFields) {
       if (answers[field]) return String(answers[field]);
     }
-    
+
     // Final fallback to link's clientEmail
     return link?.clientEmail || null;
   };
@@ -440,21 +440,19 @@ export default function ClientsPage() {
         <div className="flex gap-6">
           <button
             onClick={() => setActiveTab("clients")}
-            className={`pb-3 px-1 text-sm font-medium border-b-2 transition-colors ${
-              activeTab === "clients"
+            className={`pb-3 px-1 text-sm font-medium border-b-2 transition-colors ${activeTab === "clients"
                 ? "border-white text-white"
                 : "border-transparent text-neutral-400 hover:text-neutral-200"
-            }`}
+              }`}
           >
             Clienți ({clients.length})
           </button>
           <button
             onClick={() => setActiveTab("submissions")}
-            className={`pb-3 px-1 text-sm font-medium border-b-2 transition-colors ${
-              activeTab === "submissions"
+            className={`pb-3 px-1 text-sm font-medium border-b-2 transition-colors ${activeTab === "submissions"
                 ? "border-white text-white"
                 : "border-transparent text-neutral-400 hover:text-neutral-200"
-            }`}
+              }`}
           >
             Submisii ({submissions.length})
           </button>
@@ -652,8 +650,8 @@ export default function ClientsPage() {
                           </div>
 
                           <div className="text-xs text-neutral-600">
-                            {submission.answers && typeof submission.answers === 'object' 
-                              ? Object.keys(submission.answers).length 
+                            {submission.answers && typeof submission.answers === 'object'
+                              ? Object.keys(submission.answers).length
                               : 0} câmpuri completate
                           </div>
                         </div>
@@ -751,9 +749,9 @@ export default function ClientsPage() {
                 <div className="text-xs text-neutral-500">Tip submisie</div>
                 <div className="text-sm text-neutral-200">
                   {selectedSubmission.type === "contract-signature" ? "Semnătură contract" :
-                   selectedSubmission.type === "project-intake" ? "Intake proiect" :
-                   selectedSubmission.type === "discovery" ? "Discovery" :
-                   selectedSubmission.type === "contract-data" ? "Date contract" : selectedSubmission.type}
+                    selectedSubmission.type === "project-intake" ? "Intake proiect" :
+                      selectedSubmission.type === "discovery" ? "Discovery" :
+                        selectedSubmission.type === "contract-data" ? "Date contract" : selectedSubmission.type}
                 </div>
               </div>
 
@@ -766,11 +764,11 @@ export default function ClientsPage() {
                       <div className="text-xs text-neutral-500 mb-1">Metodă semnătură</div>
                       <div className="text-sm text-neutral-200">
                         {selectedSubmission.clientSignature.method === "typed" ? "Scris la tastatură" :
-                         selectedSubmission.clientSignature.method === "drawn" ? "Desenat" :
-                         selectedSubmission.clientSignature.method === "uploaded" ? "PDF încărcat" : selectedSubmission.clientSignature.method}
+                          selectedSubmission.clientSignature.method === "drawn" ? "Desenat" :
+                            selectedSubmission.clientSignature.method === "uploaded" ? "PDF încărcat" : selectedSubmission.clientSignature.method}
                       </div>
                     </div>
-                    
+
                     <div className="border border-neutral-800 rounded-lg p-3">
                       <div className="text-xs text-neutral-500 mb-1">Data semnării</div>
                       <div className="text-sm text-neutral-200">
@@ -796,9 +794,9 @@ export default function ClientsPage() {
                     {selectedSubmission.clientSignature.method === "drawn" && selectedSubmission.clientSignature.value && (
                       <div className="border border-neutral-800 rounded-lg p-3">
                         <div className="text-xs text-neutral-500 mb-2">Semnătură desenată</div>
-                        <img 
-                          src={selectedSubmission.clientSignature.value} 
-                          alt="Signature" 
+                        <img
+                          src={selectedSubmission.clientSignature.value}
+                          alt="Signature"
                           className="max-h-32 w-auto bg-white p-2 rounded"
                         />
                       </div>

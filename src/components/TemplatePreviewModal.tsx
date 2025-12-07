@@ -23,16 +23,16 @@ export default function TemplatePreviewModal({
   if (!isOpen) return null;
 
   const parsedFields = parseFieldPlaceholders(templateContent, templateLanguage);
-  
+
   // For preview, replace placeholders with sample data
   const sampleData = getSampleData();
-  
+
   // First replace regular placeholders with sample data
   let previewIntroText = replacePlaceholders(templateContent, sampleData);
-  
+
   // Then remove field placeholder syntax ({{type:fieldName*}})
   previewIntroText = previewIntroText.replace(/\{\{(input|email|tel|textarea|number|date|select|checkbox|radio):[^}]+\}\}/g, '');
-  
+
   // Clean up extra whitespace
   previewIntroText = previewIntroText.replace(/\n{3,}/g, '\n\n').trim();
 
@@ -58,7 +58,7 @@ export default function TemplatePreviewModal({
             {/* Preview banner */}
             <div className="mb-6 bg-blue-500/10 border border-blue-500/30 rounded-lg px-4 py-3 text-sm text-blue-300">
               👁️ <strong>{templateLanguage === "en" ? "Preview Mode" : "Mod previzualizare"}</strong> -{" "}
-              {templateLanguage === "en" 
+              {templateLanguage === "en"
                 ? "This is how your template will appear to users when they open the form link."
                 : "Așa va arăta template-ul tău pentru utilizatori când deschid linkul de formular."}
             </div>

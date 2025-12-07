@@ -76,7 +76,7 @@ export const TEMPLATE_PLACEHOLDERS: TemplatePlaceholder[] = [
   { token: "{{clientRC}}", label: "Client RC (Trade Register)", category: "client", example: "J40/1234/2024" },
   { token: "{{clientAs}}", label: "Representative Role", category: "client", example: "Administrator" },
   { token: "{{clientAddress}}", label: "Client Address", category: "client", example: "Str. Exemplu nr. 1" },
-  
+
   // Project Details
   { token: "{{projectName}}", label: "Project Name", category: "project", example: "Website Redesign" },
   { token: "{{projectDescription}}", label: "Project Description", category: "project", example: "Complete website overhaul with modern design" },
@@ -84,14 +84,14 @@ export const TEMPLATE_PLACEHOLDERS: TemplatePlaceholder[] = [
   { token: "{{projectTimeline}}", label: "Project Timeline", category: "project", example: "2 months" },
   { token: "{{projectStartDate}}", label: "Start Date", category: "project", example: "01.01.2025" },
   { token: "{{projectEndDate}}", label: "End Date", category: "project", example: "28.02.2025" },
-  
+
   // Contract/Financial
   { token: "{{contractDate}}", label: "Contract Date", category: "contract", example: "15.12.2024" },
   { token: "{{totalAmount}}", label: "Total Amount", category: "contract", example: "5000 EUR" },
   { token: "{{currency}}", label: "Currency", category: "contract", example: "EUR" },
   { token: "{{paymentTerms}}", label: "Payment Terms", category: "contract", example: "50% upfront, 50% on delivery" },
   { token: "{{invoiceNumber}}", label: "Invoice Number", category: "contract", example: "INV-2024-001" },
-  
+
   // Personal Information
   { token: "{{myName}}", label: "Your Name", category: "personal", example: "Dragos Catalin" },
   { token: "{{myselfAs}}", label: "Your Role/Capacity", category: "personal", example: "Administrator" },
@@ -102,11 +102,11 @@ export const TEMPLATE_PLACEHOLDERS: TemplatePlaceholder[] = [
   { token: "{{myEmail}}", label: "Your Email", category: "personal", example: "contact@dragoscatalin.ro" },
   { token: "{{myPhone}}", label: "Your Phone", category: "personal", example: "+40 xxx xxx xxx" },
   { token: "{{myWebsite}}", label: "Your Website", category: "personal", example: "dragoscatalin.ro" },
-  
+
   // System
   { token: "{{todayDate}}", label: "Today's Date", category: "system", example: new Date().toLocaleDateString("ro-RO") },
   { token: "{{currentYear}}", label: "Current Year", category: "system", example: new Date().getFullYear().toString() },
-  
+
   // Form Fields (for form-type templates - these render as actual input fields)
   { token: "{{input:fieldName*}}", label: "Text Input (required)", category: "field", example: "{{input:clientName*}}", description: "* marks required field" },
   { token: "{{input:fieldName}}", label: "Text Input (optional)", category: "field", example: "{{input:companyWebsite}}" },
@@ -126,25 +126,25 @@ export function replacePlaceholders(
   data: Record<string, string>
 ): string {
   let result = template;
-  
+
   // Replace all placeholders with provided data
   Object.entries(data).forEach(([key, value]) => {
     const placeholder = `{{${key}}}`;
     result = result.split(placeholder).join(value);
   });
-  
+
   return result;
 }
 
 // Helper to get sample data for preview
 export function getSampleData(): Record<string, string> {
   const sampleData: Record<string, string> = {};
-  
+
   TEMPLATE_PLACEHOLDERS.forEach((placeholder) => {
     const key = placeholder.token.replace(/[{}]/g, "");
     sampleData[key] = placeholder.example;
   });
-  
+
   return sampleData;
 }
 
@@ -167,7 +167,7 @@ export function parseFieldPlaceholders(content: string, language: TemplateLangua
   while ((match = fieldRegex.exec(content)) !== null) {
     const fieldType = match[1] as FieldType;
     const fieldConfig = match[2];
-    
+
     // Parse field name and check if required
     let fieldName = fieldConfig;
     let required = false;
@@ -180,7 +180,7 @@ export function parseFieldPlaceholders(content: string, language: TemplateLangua
       fieldName = name.trim();
       required = fieldName.endsWith("*");
       fieldName = fieldName.replace("*", "");
-      
+
       options = optionsStr.split(",").map((opt) => ({
         value: opt.trim(),
         label: { en: opt.trim(), ro: opt.trim() },
@@ -238,7 +238,7 @@ export function parseFieldPlaceholders(content: string, language: TemplateLangua
 export function parseTemplateForRendering(content: string, language: TemplateLanguage = "ro"): Array<{ type: "text" | "field"; content?: string; field?: FormField }> {
   const segments: Array<{ type: "text" | "field"; content?: string; field?: FormField }> = [];
   const fieldRegex = /\{\{(input|email|tel|textarea|richtext|number|date|select|checkbox):([^}]+)\}\}/g;
-  
+
   let lastIndex = 0;
   let match;
   let order = 0;
@@ -254,7 +254,7 @@ export function parseTemplateForRendering(content: string, language: TemplateLan
 
     const fieldType = match[1] as FieldType;
     const fieldConfig = match[2];
-    
+
     let fieldName = fieldConfig;
     let required = false;
     let options: FormFieldOption[] | undefined;
@@ -265,7 +265,7 @@ export function parseTemplateForRendering(content: string, language: TemplateLan
       fieldName = name.trim();
       required = fieldName.endsWith("*");
       fieldName = fieldName.replace("*", "");
-      
+
       options = optionsStr.split(",").map((opt) => ({
         value: opt.trim(),
         label: { en: opt.trim(), ro: opt.trim() },

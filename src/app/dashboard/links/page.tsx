@@ -19,7 +19,7 @@ export default function LinksPage() {
     const q = query(collection(db, "clientLinks"), orderBy("createdAt", "desc"));
 
     const unsub = onSnapshot(q, (snap) => {
-      const items: ClientLink[]= [];
+      const items: ClientLink[] = [];
       snap.forEach((doc) => {
         const data = doc.data();
         items.push({
@@ -61,7 +61,7 @@ export default function LinksPage() {
 
   const handleDuplicate = async (link: ClientLink) => {
     const user = auth.currentUser;
-    
+
     try {
       const now = Date.now();
       const expiresAt = link.expiresInDays && link.expiresInDays > 0
@@ -231,7 +231,7 @@ export default function LinksPage() {
                       )}
 
                       <div className="space-y-1 mb-2">
-                        <div 
+                        <div
                           onClick={() => copyToClipboard(productionUrl)}
                           className="text-xs text-neutral-500 font-mono bg-neutral-900/50 px-2 py-1 rounded truncate cursor-pointer hover:bg-neutral-800 transition-colors"
                           title="Click pentru a copia"
@@ -241,7 +241,7 @@ export default function LinksPage() {
                           {copySuccess === productionUrl && <span className="ml-2 text-green-400">✓ Copiat</span>}
                         </div>
                         {isDevelopment && (
-                          <div 
+                          <div
                             onClick={() => copyToClipboard(devUrl)}
                             className="text-xs text-neutral-500 font-mono bg-neutral-900/50 px-2 py-1 rounded truncate cursor-pointer hover:bg-neutral-800 transition-colors"
                             title="Click pentru a copia"

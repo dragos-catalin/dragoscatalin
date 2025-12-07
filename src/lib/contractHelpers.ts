@@ -15,7 +15,7 @@ import { db, auth } from "@/lib/firebase";
  */
 export function extractPlaceholders(templateContent: string): string[] {
   const placeholders = new Set<string>();
-  
+
   // Match simple placeholders: {{placeholder}}
   const simpleRegex = /\{\{([^}:]+)\}\}/g;
   const simpleMatches = Array.from(templateContent.matchAll(simpleRegex));
@@ -26,22 +26,22 @@ export function extractPlaceholders(templateContent: string): string[] {
       placeholders.add(placeholder);
     }
   });
-  
+
   // Match field-type placeholders: {{type:fieldName}} or {{type:fieldName*}}
   const fieldRegex = /\{\{(input|email|tel|textarea|number|date|select|checkbox):([^}*]+)\*?\}\}/g;
   const fieldMatches = Array.from(templateContent.matchAll(fieldRegex));
   fieldMatches.forEach(m => {
     const fieldType = m[1];
     let fieldName = m[2].trim();
-    
+
     // Handle select and checkbox special syntax
     if ((fieldType === 'select' || fieldType === 'checkbox') && fieldName.includes('|')) {
       fieldName = fieldName.split('|')[0].trim();
     }
-    
+
     placeholders.add(fieldName);
   });
-  
+
   return Array.from(placeholders).sort();
 }
 
@@ -50,19 +50,19 @@ export function extractPlaceholders(templateContent: string): string[] {
  */
 export function categorizePlaceholder(placeholder: string): PlaceholderCategory {
   const lower = placeholder.toLowerCase();
-  
+
   if (lower.startsWith('client')) return 'client';
   if (lower.startsWith('project')) return 'project';
   if (lower.startsWith('my')) return 'personal';
   if (lower === 'todaydate' || lower === 'currentyear') return 'system';
   if (
-    lower.startsWith('contract') || 
-    lower.includes('amount') || 
+    lower.startsWith('contract') ||
+    lower.includes('amount') ||
     lower.includes('payment') ||
     lower === 'currency' ||
     lower === 'invoice'
   ) return 'contract';
-  
+
   return 'other';
 }
 
@@ -71,14 +71,14 @@ export function categorizePlaceholder(placeholder: string): PlaceholderCategory 
  */
 export function getPlaceholderLabel(placeholder: string): string {
   // Try to find in TEMPLATE_PLACEHOLDERS
-  const found = TEMPLATE_PLACEHOLDERS.find(p => 
+  const found = TEMPLATE_PLACEHOLDERS.find(p =>
     p.token === `{{${placeholder}}}`
   );
-  
+
   if (found) {
     return found.label;
   }
-  
+
   // Generate label from camelCase/PascalCase
   return placeholder
     .replace(/([A-Z])/g, ' $1') // Add space before capitals
@@ -90,10 +90,10 @@ export function getPlaceholderLabel(placeholder: string): string {
  * Get example value for a placeholder
  */
 export function getPlaceholderExample(placeholder: string): string {
-  const found = TEMPLATE_PLACEHOLDERS.find(p => 
+  const found = TEMPLATE_PLACEHOLDERS.find(p =>
     p.token === `{{${placeholder}}}`
   );
-  
+
   return found?.example || '';
 }
 
@@ -102,7 +102,7 @@ export function getPlaceholderExample(placeholder: string): string {
  */
 export function isPlaceholderRequired(placeholder: string): boolean {
   const category = categorizePlaceholder(placeholder);
-  
+
   // Client and contract placeholders are typically required
   if (category === 'client' || category === 'contract') {
     // Exception: some client fields may be optional
@@ -112,7 +112,7 @@ export function isPlaceholderRequired(placeholder: string): boolean {
     }
     return true;
   }
-  
+
   return false;
 }
 
@@ -148,7 +148,7 @@ export async function getPersonalPlaceholderValues(): Promise<Record<string, str
     if (!docSnap.exists()) return {};
 
     const profile = docSnap.data() as UserProfile;
-    
+
     return {
       myName: profile.name || '',
       myselfAs: profile.role || '',
@@ -174,30 +174,30 @@ export function replacePlaceholdersInContract(
   values: Record<string, string>
 ): string {
   let result = templateContent;
-  
+
   // Replace each placeholder
   Object.entries(values).forEach(([key, value]) => {
     // Replace simple placeholder: {{key}}
     const simplePlaceholder = `{{${key}}}`;
     result = result.split(simplePlaceholder).join(value);
-    
+
     // Replace field-type placeholders: {{type:key}} or {{type:key*}}
     const fieldTypes = ['input', 'email', 'tel', 'textarea', 'number', 'date', 'select', 'checkbox'];
     fieldTypes.forEach(type => {
       // Pattern without asterisk
       const fieldPlaceholder = `{{${type}:${key}}}`;
       result = result.split(fieldPlaceholder).join(value);
-      
+
       // Pattern with asterisk (required field marker)
       const fieldPlaceholderRequired = `{{${type}:${key}*}}`;
       result = result.split(fieldPlaceholderRequired).join(value);
-      
+
       // Handle select/checkbox with options (e.g., {{select:budget|opt1,opt2}})
       const optionsRegex = new RegExp(`\\{\\{${type}:${key}\\*?\\|[^}]+\\}\\}`, 'g');
       result = result.replace(optionsRegex, value);
     });
   });
-  
+
   return result;
 }
 
@@ -209,13 +209,13 @@ export async function generateContractHash(content: string): Promise<string> {
     // Server-side fallback
     return Buffer.from(content).toString('base64').substring(0, 32);
   }
-  
+
   const encoder = new TextEncoder();
   const data = encoder.encode(content);
   const hashBuffer = await crypto.subtle.digest('SHA-256', data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-  
+
   return hashHex;
 }
 
@@ -231,12 +231,12 @@ export function groupPlaceholdersByCategory(placeholders: string[]): Record<Plac
     system: [],
     other: []
   };
-  
+
   placeholders.forEach(placeholder => {
     const category = categorizePlaceholder(placeholder);
     groups[category].push(placeholder);
   });
-  
+
   return groups;
 }
 
@@ -252,6 +252,6 @@ export function getCategoryDisplayName(category: PlaceholderCategory): string {
     system: 'Sistem (Auto-completat)',
     other: 'Alte Date'
   };
-  
+
   return names[category];
 }

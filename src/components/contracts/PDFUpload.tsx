@@ -105,7 +105,7 @@ export default function PDFUpload({
         <h4 className="text-sm font-medium text-neutral-200">
           Pasul 2: Încarcă contractul semnat
         </h4>
-        
+
         {!uploadedFileUrl ? (
           <>
             <input

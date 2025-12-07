@@ -11,10 +11,10 @@ import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import type { InitialConfigType } from "@lexical/react/LexicalComposer";
-import { 
-  $getRoot, 
-  $createParagraphNode, 
-  $createTextNode, 
+import {
+  $getRoot,
+  $createParagraphNode,
+  $createTextNode,
   $getSelection,
   $isRangeSelection,
   EditorState,
@@ -68,19 +68,19 @@ function InitialContentPlugin({ content, lastLoadedContentRef }: { content: stri
 
     editor.update(() => {
       const root = $getRoot();
-      
+
       // Check if content is HTML
       const isHTML = content.includes('<p') || content.includes('<h') || content.includes('<strong') || content.includes('<em');
-      
+
       if (isHTML) {
         // Parse HTML content
         const parser = new DOMParser();
         const dom = parser.parseFromString(content, 'text/html');
         const nodes = $generateNodesFromDOM(editor, dom);
-        
+
         root.clear();
         root.select();
-        
+
         // Insert parsed nodes
         const selection = $getSelection();
         if ($isRangeSelection(selection)) {
@@ -337,7 +337,7 @@ function OnChangeHTMLPlugin({ onChange, currentValue, lastLoadedContentRef }: { 
   const handleChange = (editorState: EditorState) => {
     editorState.read(() => {
       const htmlContent = $generateHtmlFromNodes(editor, null);
-      
+
       // Only update if content actually changed to avoid infinite loops
       if (htmlContent !== currentValue) {
         // Update ref to track what we're emitting
@@ -354,7 +354,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
   function RichTextEditor({ value, onChange, placeholder = "Start typing..." }, ref) {
     // Track the last loaded content to prevent cursor jumping
     const lastLoadedContentRef = useRef<string>('');
-    
+
     // Initialize ref with current value on mount
     useEffect(() => {
       if (!lastLoadedContentRef.current && value) {

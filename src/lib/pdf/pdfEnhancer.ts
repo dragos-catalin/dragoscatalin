@@ -37,7 +37,7 @@ export async function addSignatureFieldToPDF(
 
   // Create a signature form field
   const form = pdfDoc.getForm();
-  
+
   // Add signature field
   const signatureField = form.createTextField(options.fieldName);
   signatureField.addToPage(lastPage, {

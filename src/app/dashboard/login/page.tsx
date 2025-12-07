@@ -29,7 +29,7 @@ export default function DashboardLoginPage() {
 
     try {
       const user = await signInWithGoogle();
-      
+
       if (user.email !== ALLOWED_EMAIL) {
         setError("Acces interzis. Acest dashboard este privat.");
         await auth.signOut();

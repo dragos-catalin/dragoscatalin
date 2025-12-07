@@ -25,7 +25,7 @@ export interface ClientLink {
   status: LinkStatus;
   completedAt?: number;
   accessPassword?: string; // Password to access completed/signed contract
-  
+
   // Contract-specific fields
   contractData?: ContractLinkData;
 }

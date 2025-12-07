@@ -29,11 +29,11 @@ interface TemplateFormProps {
   loading?: boolean;
 }
 
-export default function TemplateForm({ 
-  initialData, 
-  onSubmit, 
+export default function TemplateForm({
+  initialData,
+  onSubmit,
   mode,
-  loading = false 
+  loading = false
 }: TemplateFormProps) {
   const editorRef = useRef<RichTextEditorRef>(null);
   const [formData, setFormData] = useState<TemplateFormData>({
@@ -111,7 +111,7 @@ export default function TemplateForm({
             {mode === "create" ? "Creează Template Nou" : "Editează Template"}
           </h1>
           <p className="text-sm text-neutral-400 mt-1">
-            {mode === "create" 
+            {mode === "create"
               ? "Creează un template reutilizabil pentru contracte sau email-uri"
               : "Modifică template-ul existent"}
           </p>
@@ -252,12 +252,12 @@ export default function TemplateForm({
                 ref={editorRef}
                 value={formData.content}
                 onChange={(content) => setFormData({ ...formData, content })}
-                placeholder={formData.type === "form" 
+                placeholder={formData.type === "form"
                   ? "Scrie conținutul formularului aici...\n\nExemplu:\nBună! Te rog completează următoarele informații:\n\nNume: {{input:clientName*}}\nEmail: {{email:contactEmail*}}\nDescriere proiect: {{textarea:projectDescription*}}\n\nMultumesc!"
                   : "Scrie conținutul template-ului aici...\n\nFolosește placeholder-uri precum {{clientName}}, {{projectDescription}}, etc."}
               />
               <p className="text-xs text-neutral-500">
-                {formData.type === "form" 
+                {formData.type === "form"
                   ? "Folosește placeholder-uri de tip CÂMP pentru a insera input-uri de completat (vezi panoul din dreapta)."
                   : "Folosește placeholder-uri din panoul din dreapta pentru a insera date dinamice."}
               </p>

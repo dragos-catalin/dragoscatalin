@@ -19,7 +19,7 @@ export default function ContractPreview({
 }: ContractPreviewProps) {
   // Replace all placeholders with values
   const filledContent = replacePlaceholdersInContract(templateContent, placeholderValues);
-  
+
   // Remove any remaining unreplaced placeholders for preview
   const cleanContent = filledContent.replace(/\{\{[^}]+\}\}/g, '<span class="text-yellow-400 bg-yellow-400/10 px-1 rounded">[Lipsă]</span>');
 
@@ -33,8 +33,8 @@ export default function ContractPreview({
           Aceasta este o previzualizare a contractului completat
         </span>
       </div>
-      
-      <div 
+
+      <div
         className="prose prose-invert max-w-none text-neutral-300 prose-headings:text-neutral-100 prose-p:text-neutral-300 prose-strong:text-neutral-100 prose-ul:text-neutral-300 prose-ol:text-neutral-300"
         dangerouslySetInnerHTML={{ __html: cleanContent }}
       />

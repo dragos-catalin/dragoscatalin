@@ -54,7 +54,7 @@ export default function ClientForm({
       {/* Basic Information */}
       <div className="space-y-4">
         <h3 className="text-sm font-medium text-neutral-200">Informații de bază</h3>
-        
+
         <div className="grid md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="block text-sm text-neutral-400">
@@ -124,7 +124,7 @@ export default function ClientForm({
       {/* Address Information */}
       <div className="space-y-4 pt-4 border-t border-neutral-800">
         <h3 className="text-sm font-medium text-neutral-200">Adresă</h3>
-        
+
         <div className="space-y-2">
           <label className="block text-sm text-neutral-400">Adresă</label>
           <input
@@ -175,7 +175,7 @@ export default function ClientForm({
       {/* Notes */}
       <div className="space-y-4 pt-4 border-t border-neutral-800">
         <h3 className="text-sm font-medium text-neutral-200">Notițe</h3>
-        
+
         <div className="space-y-2">
           <label className="block text-sm text-neutral-400">Notițe adiționale</label>
           <textarea

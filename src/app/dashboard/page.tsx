@@ -76,7 +76,7 @@ export default function DashboardPage() {
       {/* Recent Links */}
       <section className="space-y-4">
         <h2 className="text-lg font-medium">Link-uri recente</h2>
-        
+
         {loading ? (
           <div className="text-sm text-neutral-500">Se încarcă...</div>
         ) : recentLinks.length === 0 ? (

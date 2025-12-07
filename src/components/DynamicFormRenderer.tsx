@@ -69,7 +69,7 @@ export default function DynamicFormRenderer({
       // Length validation
       if (field.validation?.minLength && value && typeof value === "string") {
         if (value.length < field.validation.minLength) {
-          newErrors[field.name] = language === "en" 
+          newErrors[field.name] = language === "en"
             ? `Minimum ${field.validation.minLength} characters required`
             : `Minim ${field.validation.minLength} caractere necesare`;
         }
@@ -295,10 +295,10 @@ export default function DynamicFormRenderer({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {introText && (
-        <div 
+        <div
           className="prose prose-invert max-w-none text-neutral-300 prose-headings:text-neutral-100 prose-p:text-neutral-300 prose-strong:text-neutral-100 prose-ul:text-neutral-300 prose-ol:text-neutral-300"
-          dangerouslySetInnerHTML={{ 
-            __html: introText.replace(/\{\{[^}]+\}\}/g, '').trim() 
+          dangerouslySetInnerHTML={{
+            __html: introText.replace(/\{\{[^}]+\}\}/g, '').trim()
           }}
         />
       )}
@@ -315,8 +315,8 @@ export default function DynamicFormRenderer({
             ? "Submitting..."
             : "Se trimite..."
           : language === "en"
-          ? "Submit"
-          : "Trimite"}
+            ? "Submit"
+            : "Trimite"}
       </button>
     </form>
   );

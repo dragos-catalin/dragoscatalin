@@ -64,7 +64,7 @@ export default function PublicFormPage() {
           contractData: data.contractData,
           accessPassword: data.accessPassword,
         };
-        
+
         console.log("=== LINK DATA LOADED ===");
         console.log("Link ID:", snap.id);
         console.log("Link Type:", linkData.type);
@@ -79,7 +79,7 @@ export default function PublicFormPage() {
             console.log("Placeholder values:", linkData.contractData.contractData);
           }
         }
-        
+
         setLink(linkData);
 
         // Load template if templateId exists
@@ -133,14 +133,14 @@ export default function PublicFormPage() {
 
       // Handle client creation/update based on field mapping
       let createdClientId: string | null = null;
-      
+
       if (link?.clientFieldMapping && Object.keys(link.clientFieldMapping).length > 0) {
         const mapping = link.clientFieldMapping;
-        
+
         // Check if required fields (name and email) are mapped
         const hasNameMapping = Object.values(mapping).includes("name");
         const hasEmailMapping = Object.values(mapping).includes("email");
-        
+
         if (hasNameMapping && hasEmailMapping) {
           // Extract client data from form based on mapping
           const clientData: Record<string, any> = {
@@ -148,14 +148,14 @@ export default function PublicFormPage() {
             updatedAt: now,
             createdBy: "form-submission",
           };
-          
+
           // Map form fields to client fields
           Object.entries(mapping).forEach(([formField, clientField]) => {
             if (formData[formField] !== undefined && formData[formField] !== null) {
               clientData[clientField] = formData[formField];
             }
           });
-          
+
           // Only proceed if we have name and email
           if (clientData.name && clientData.email) {
             try {
@@ -173,7 +173,7 @@ export default function PublicFormPage() {
                   where("email", "==", clientData.email)
                 );
                 const existingClients = await getDocs(clientQuery);
-                
+
                 if (!existingClients.empty) {
                   // Update existing client
                   const existingClient = existingClients.docs[0];
@@ -201,10 +201,10 @@ export default function PublicFormPage() {
         status: "completed",
         completedAt: now,
       };
-      
+
       if (createdClientId && !link?.clientId) {
         updateData.clientId = createdClientId;
-        
+
         // Get client data to denormalize
         try {
           const clientSnap = await getDoc(doc(db, "clients", createdClientId));
@@ -217,7 +217,7 @@ export default function PublicFormPage() {
           console.error("Error fetching client data:", err);
         }
       }
-      
+
       await updateDoc(doc(db, "clientLinks", id), updateData);
 
       // Reload to show completion message
@@ -305,7 +305,7 @@ export default function PublicFormPage() {
   if (link.templateId && template) {
     // Parse fields from template content
     const parsedFields = parseFieldPlaceholders(template.content, template.language);
-    
+
     return (
       <div className="min-h-screen bg-neutral-950 py-12 px-4">
         <div className="max-w-3xl mx-auto">
@@ -318,7 +318,7 @@ export default function PublicFormPage() {
                 <p className="text-sm text-neutral-400">{template.description}</p>
               )}
             </div>
-            
+
             <DynamicFormRenderer
               fields={parsedFields}
               language={template.language}
@@ -410,7 +410,7 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
     console.log("Has link.contractData.contractHtml:", !!link.contractData?.contractHtml);
     console.log("Has template:", !!template);
     console.log("Has placeholder data:", !!link.contractData?.contractData);
-    
+
     // Try to use pre-generated HTML first
     if (link.contractData?.contractHtml) {
       console.log("✓ Using pre-generated contract HTML");
@@ -446,11 +446,11 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
     setIsSubmitting(true);
     try {
       const signatureDate = new Date();
-      
+
       // Generate access password
       const accessPassword = generateAccessPassword();
       setGeneratedPassword(accessPassword);
-      
+
       // Save signature to state for PDF generation
       setClientSignature({
         method,
@@ -492,12 +492,12 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
         submittedAt: Date.now(),
         status: "signed",
       };
-      
+
       // Only add contractHash if it exists
       if (link.contractData?.contractHash) {
         formResponseData.contractHash = link.contractData.contractHash;
       }
-      
+
       const formResponseRef = await addDoc(collection(db, "formResponses"), formResponseData);
 
       // Build client signature object for contractData
@@ -519,13 +519,13 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
       try {
         // Build complete HTML with both signatures
         let completeHtml = contractHtml;
-        
+
         // Add admin signature
         const adminSignature = link.contractData?.adminSignature;
         if (adminSignature && adminSignature.signatureData) {
           completeHtml += generateAdminSignatureHtml(adminSignature);
         }
-        
+
         // Add client signature
         completeHtml += generateClientSignatureHtml({
           method,
@@ -533,15 +533,15 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
           signerName: link.clientName || "Client",
           signedAt: signatureDate
         });
-        
+
         // Generate PDF
         const pdfBlob = await generateContractPDF(completeHtml, link.name || "contract");
-        
+
         // Upload to Firebase Storage with metadata
         const timestamp = Date.now();
         const fileName = `contracts/${linkId}/signed_contract_${timestamp}.pdf`;
         const pdfStorageRef = storageRef(storage, fileName);
-        
+
         // Add metadata to ensure contentType is set
         const metadata = {
           contentType: 'application/pdf',
@@ -551,17 +551,17 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
             'signerName': link.clientName || 'Client'
           }
         };
-        
+
         await uploadBytes(pdfStorageRef, pdfBlob, metadata);
-        
+
         // Get download URL
         pdfUrl = await getDownloadURL(pdfStorageRef);
-        
+
         // Update formResponse with PDF URL
         await updateDoc(doc(db, "formResponses", formResponseRef.id), {
           pdfUrl: pdfUrl,
         });
-        
+
         console.log("PDF generated and uploaded successfully:", pdfUrl);
       } catch (pdfError) {
         console.error("Error generating/uploading PDF:", pdfError);
@@ -611,7 +611,7 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
     // For now, just show success message
     setResendSuccess(true);
     setEmailError("");
-    
+
     // Hide success message after 5 seconds
     setTimeout(() => {
       setResendSuccess(false);
@@ -637,7 +637,7 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
     });
 
     let signatureContent = '';
-    
+
     if (adminSignature.type === "simple") {
       if (adminSignature.signatureMethod === "typed") {
         signatureContent = `<p style="font-size: 32px; font-family: 'Brush Script MT', cursive; color: #000; margin: 0;">${adminSignature.signatureData}</p>`;
@@ -680,7 +680,7 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
     });
 
     let signatureContent = '';
-    
+
     if (signature.method === "typed") {
       signatureContent = `<p style="font-size: 32px; font-family: 'Brush Script MT', cursive; color: #000; margin: 0;">${signature.value}</p>`;
     } else if (signature.method === "drawn") {
@@ -709,7 +709,7 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
   const handleDownloadPDF = async () => {
     try {
       let htmlForPdf = contractHtml;
-      
+
       // Add admin signature to HTML if it exists
       const adminSignature = link.contractData?.adminSignature;
       if (adminSignature && adminSignature.signatureData) {
@@ -724,15 +724,15 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
         signerName: link.clientName || "Client",
         signedAt: new Date(link.contractData.clientSignature.signedAt || 0)
       } : null);
-      
+
       if (clientSig) {
         const clientSignatureHtml = generateClientSignatureHtml(clientSig);
         htmlForPdf = `${htmlForPdf}${clientSignatureHtml}`;
       }
-      
+
       // Generate PDF from enhanced HTML
       const pdf = await generateContractPDF(htmlForPdf, link.name || "contract");
-      
+
       // Download the PDF
       downloadPDF(pdf, `${link.name || "contract"}.pdf`);
     } catch (error) {
@@ -853,7 +853,7 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
           <h1 className="text-2xl font-semibold text-neutral-100">
             Contract Semnat cu Succes!
           </h1>
-          
+
           {generatedPassword && (
             <div className="bg-yellow-900/20 border-2 border-yellow-600/50 rounded-lg p-6 space-y-4">
               <div className="flex items-center justify-center gap-2 text-yellow-400">
@@ -862,7 +862,7 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
                 </svg>
                 <p className="font-semibold">Parolă de Acces Generată</p>
               </div>
-              
+
               <div className="bg-neutral-900 border border-yellow-600/30 rounded-lg p-4">
                 <p className="text-xs text-neutral-400 mb-2">Parola ta de acces:</p>
                 <div className="flex items-center justify-center gap-3">
@@ -968,10 +968,10 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
               )}
             </div>
 
-            <div 
+            <div
               className="prose prose-invert max-w-none text-neutral-300 prose-headings:text-neutral-100 prose-p:text-neutral-300 prose-strong:text-neutral-100 prose-ul:text-neutral-300 prose-ol:text-neutral-300"
-              dangerouslySetInnerHTML={{ 
-                __html: contractHtml || "Se încarcă contractul..." 
+              dangerouslySetInnerHTML={{
+                __html: contractHtml || "Se încarcă contractul..."
               }}
             />
 
@@ -988,9 +988,9 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
                         </p>
                       )}
                       {link.contractData.adminSignature.type === "simple" && link.contractData.adminSignature.signatureMethod === "drawn" && link.contractData.adminSignature.signatureData && (
-                        <img 
-                          src={link.contractData.adminSignature.signatureData} 
-                          alt="Admin Signature" 
+                        <img
+                          src={link.contractData.adminSignature.signatureData}
+                          alt="Admin Signature"
                           className="max-h-32 w-auto"
                         />
                       )}
@@ -1029,9 +1029,9 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
                         </p>
                       )}
                       {link.contractData.clientSignature.method === "drawn" && link.contractData.clientSignature.value && (
-                        <img 
-                          src={link.contractData.clientSignature.value} 
-                          alt="Client Signature" 
+                        <img
+                          src={link.contractData.clientSignature.value}
+                          alt="Client Signature"
                           className="max-h-32 w-auto"
                         />
                       )}
@@ -1076,10 +1076,10 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
             )}
           </div>
 
-          <div 
+          <div
             className="prose prose-invert max-w-none text-neutral-300 prose-headings:text-neutral-100 prose-p:text-neutral-300 prose-strong:text-neutral-100 prose-ul:text-neutral-300 prose-ol:text-neutral-300"
-            dangerouslySetInnerHTML={{ 
-              __html: contractHtml || "Se încarcă contractul..." 
+            dangerouslySetInnerHTML={{
+              __html: contractHtml || "Se încarcă contractul..."
             }}
           />
 
@@ -1096,9 +1096,9 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
                       </p>
                     )}
                     {link.contractData.adminSignature.type === "simple" && link.contractData.adminSignature.signatureMethod === "drawn" && link.contractData.adminSignature.signatureData && (
-                      <img 
-                        src={link.contractData.adminSignature.signatureData} 
-                        alt="Admin Signature" 
+                      <img
+                        src={link.contractData.adminSignature.signatureData}
+                        alt="Admin Signature"
                         className="max-h-32 w-auto"
                       />
                     )}
@@ -1113,9 +1113,9 @@ function ContractSigningPage({ linkId, link, template }: { linkId: string; link:
                   </div>
                   <div className="mt-2 text-xs text-neutral-500">
                     <p>De: {link.contractData.adminSignature.signedBy}</p>
-                    <p>Data: {new Date(link.contractData.adminSignature.signedAt).toLocaleDateString('ro-RO', { 
-                      year: 'numeric', 
-                      month: 'long', 
+                    <p>Data: {new Date(link.contractData.adminSignature.signedAt).toLocaleDateString('ro-RO', {
+                      year: 'numeric',
+                      month: 'long',
                       day: 'numeric',
                       hour: '2-digit',
                       minute: '2-digit'

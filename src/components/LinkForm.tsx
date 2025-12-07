@@ -80,7 +80,7 @@ export default function LinkForm({
   const [isUploadingPdf, setIsUploadingPdf] = useState(false);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [savedLinkId, setSavedLinkId] = useState<string | undefined>(linkId); // Track if link is saved
-  
+
   // Quick signature states
   const [signatureMode, setSignatureMode] = useState<"quick" | "certificate">("quick");
   const [quickSignMethod, setQuickSignMethod] = useState<"typed" | "drawn">("typed");
@@ -119,11 +119,11 @@ export default function LinkForm({
   useEffect(() => {
     if (initialData?.contractData?.adminSignature) {
       const adminSig = initialData.contractData.adminSignature;
-      
+
       if (adminSig.type === "simple") {
         // Quick signature
         setSignatureMode("quick");
-        
+
         if (adminSig.signatureMethod === "typed" && adminSig.signatureData) {
           setQuickSignMethod("typed");
           setTypedSignature(adminSig.signatureData);
@@ -207,7 +207,7 @@ export default function LinkForm({
       const template = templates.find(t => t.id === formData.templateId);
       if (template) {
         setSelectedTemplate(template);
-        
+
         // Only parse fields for form templates
         if (template.type === "form") {
           const fields = parseFieldPlaceholders(template.content, template.language);
@@ -245,7 +245,7 @@ export default function LinkForm({
 
       const linkData = linkDoc.data();
       const savedContractData = linkData.contractData as ContractLinkData;
-      
+
       if (!savedContractData || !savedContractData.contractData) {
         toast.error("Nu există date de contract salvate.");
         return;
@@ -341,7 +341,7 @@ export default function LinkForm({
         selectedTemplate.content,
         contractPlaceholderValues
       );
-      
+
       const contractHash = await generateContractHash(contractHtml);
 
       const contractData: ContractLinkData = {
@@ -354,10 +354,10 @@ export default function LinkForm({
       // Include admin signature based on mode
       if (signatureMode === "quick") {
         // Quick signature (typed or drawn)
-        const hasQuickSignature = quickSignMethod === "typed" 
+        const hasQuickSignature = quickSignMethod === "typed"
           ? typedSignature.trim().length > 0
           : drawnSignature !== null;
-          
+
         if (hasQuickSignature) {
           contractData.adminSignature = {
             type: "simple",
@@ -449,37 +449,37 @@ export default function LinkForm({
   // Auto-suggest field mappings based on common patterns
   const autoMapField = (formFieldName: string): string => {
     const lowerName = formFieldName.toLowerCase();
-    
+
     // Name patterns
     if (lowerName.includes("nume") || lowerName.includes("name")) return "name";
-    
+
     // Email patterns
     if (lowerName.includes("email") || lowerName.includes("e-mail")) return "email";
-    
+
     // Phone patterns
     if (lowerName.includes("telefon") || lowerName.includes("phone") || lowerName.includes("tel")) return "phone";
-    
+
     // Company patterns
     if (lowerName.includes("compan") || lowerName.includes("firm") || lowerName.includes("business")) return "company";
-    
+
     // CUI patterns
     if (lowerName.includes("cui") || lowerName.includes("fiscal") || lowerName.includes("tax")) return "CUI";
-    
+
     // Address patterns
     if (lowerName.includes("adres") || lowerName.includes("address") || lowerName.includes("strada")) return "address";
-    
+
     // City patterns
     if (lowerName.includes("oras") || lowerName.includes("city") || lowerName.includes("localitate")) return "city";
-    
+
     // County patterns
     if (lowerName.includes("judet") || lowerName.includes("county")) return "county";
-    
+
     // Postal code patterns
     if (lowerName.includes("postal") || lowerName.includes("cod postal") || lowerName.includes("zip")) return "postalCode";
-    
+
     // Notes patterns
     if (lowerName.includes("note") || lowerName.includes("observat") || lowerName.includes("mentiune")) return "notes";
-    
+
     return "";
   };
 
@@ -621,10 +621,10 @@ export default function LinkForm({
               <select
                 value={formData.templateId}
                 onChange={(e) => {
-                  setFormData({ 
-                    ...formData, 
-                    templateId: e.target.value, 
-                    preFillData: {}, 
+                  setFormData({
+                    ...formData,
+                    templateId: e.target.value,
+                    preFillData: {},
                     clientFieldMapping: {},
                     contractData: undefined
                   });
@@ -755,16 +755,15 @@ export default function LinkForm({
                   <label className="block text-xs font-medium text-neutral-300 mb-2">
                     Metodă de Semnare
                   </label>
-                  
+
                   <div className="grid grid-cols-2 gap-3">
                     <button
                       type="button"
                       onClick={() => setSignatureMode("quick")}
-                      className={`p-4 rounded-lg border-2 transition-all ${
-                        signatureMode === "quick"
+                      className={`p-4 rounded-lg border-2 transition-all ${signatureMode === "quick"
                           ? "border-blue-500 bg-blue-500/10"
                           : "border-neutral-700 hover:border-neutral-600"
-                      }`}
+                        }`}
                     >
                       <div className="text-center space-y-1">
                         <div className="text-2xl">✍️</div>
@@ -772,15 +771,14 @@ export default function LinkForm({
                         <div className="text-xs text-neutral-500">Scrie sau desenează</div>
                       </div>
                     </button>
-                    
+
                     <button
                       type="button"
                       onClick={() => setSignatureMode("certificate")}
-                      className={`p-4 rounded-lg border-2 transition-all ${
-                        signatureMode === "certificate"
+                      className={`p-4 rounded-lg border-2 transition-all ${signatureMode === "certificate"
                           ? "border-blue-500 bg-blue-500/10"
                           : "border-neutral-700 hover:border-neutral-600"
-                      }`}
+                        }`}
                     >
                       <div className="text-center space-y-1">
                         <div className="text-2xl">🔐</div>
@@ -799,22 +797,20 @@ export default function LinkForm({
                       <button
                         type="button"
                         onClick={() => setQuickSignMethod("typed")}
-                        className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${
-                          quickSignMethod === "typed"
+                        className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${quickSignMethod === "typed"
                             ? "border-blue-500 text-blue-400"
                             : "border-transparent text-neutral-400 hover:text-neutral-200"
-                        }`}
+                          }`}
                       >
                         Scrie Numele
                       </button>
                       <button
                         type="button"
                         onClick={() => setQuickSignMethod("drawn")}
-                        className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${
-                          quickSignMethod === "drawn"
+                        className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${quickSignMethod === "drawn"
                             ? "border-blue-500 text-blue-400"
                             : "border-transparent text-neutral-400 hover:text-neutral-200"
-                        }`}
+                          }`}
                       >
                         Desenează Semnătura
                       </button>
@@ -857,17 +853,17 @@ export default function LinkForm({
                     )}
 
                     {/* Quick Sign Status */}
-                    {((quickSignMethod === "typed" && typedSignature) || 
+                    {((quickSignMethod === "typed" && typedSignature) ||
                       (quickSignMethod === "drawn" && drawnSignature)) && (
-                      <div className="bg-green-900/20 border border-green-700 rounded-lg p-3">
-                        <div className="flex items-center gap-2 text-green-400 text-sm">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <span>Semnătură adăugată - se va salva când salvezi contractul</span>
+                        <div className="bg-green-900/20 border border-green-700 rounded-lg p-3">
+                          <div className="flex items-center gap-2 text-green-400 text-sm">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Semnătură adăugată - se va salva când salvezi contractul</span>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
                   </div>
                 )}
 
@@ -879,7 +875,7 @@ export default function LinkForm({
                         <strong>📝 Atenție:</strong> Salvează link-ul mai întâi pentru a descărca PDF-ul cu datele contractului.
                       </div>
                     )}
-                    
+
                     <button
                       type="button"
                       onClick={handleDownloadPdfForSigning}
@@ -891,7 +887,7 @@ export default function LinkForm({
                       </svg>
                       <span>{isDownloadingPdf ? 'Se generează PDF...' : savedLinkId ? 'Descarcă PDF pentru semnare' : 'Salvează mai întâi link-ul'}</span>
                     </button>
-                    
+
                     <div className="relative">
                       <input
                         type="file"
@@ -927,7 +923,7 @@ export default function LinkForm({
                     </div>
                   </div>
                 )}
-                
+
                 {/* Certificate Signature Status */}
                 {signatureMode === "certificate" && adminSignedPdfUrl && (
                   <div className="bg-green-900/20 border border-green-700 rounded-lg p-4 space-y-2 border-t border-neutral-800 pt-4">
@@ -951,7 +947,7 @@ export default function LinkForm({
                 )}
 
                 <p className="text-xs text-neutral-600 italic">
-                  💡 Ambele tipuri de semnături sunt valide legal. Semnarea rapidă este mai convenabilă, 
+                  💡 Ambele tipuri de semnături sunt valide legal. Semnarea rapidă este mai convenabilă,
                   în timp ce certificatul digital oferă o validare tehnică suplimentară.
                 </p>
               </div>
@@ -966,7 +962,7 @@ export default function LinkForm({
                   Mapare câmpuri client
                 </h3>
                 <p className="text-xs text-neutral-500">
-                  Mapează câmpurile formularului la câmpurile din baza de date client. 
+                  Mapează câmpurile formularului la câmpurile din baza de date client.
                   La submiterea formularului, un client va fi creat/actualizat automat.
                 </p>
               </div>
@@ -1007,13 +1003,13 @@ export default function LinkForm({
                 {(() => {
                   const hasNameMapping = Object.values(formData.clientFieldMapping || {}).includes("name");
                   const hasEmailMapping = Object.values(formData.clientFieldMapping || {}).includes("email");
-                  
+
                   // Get all form field names from parsed template
                   const availableFormFields = new Set(parsedFields.map(f => f.name.toLowerCase()));
-                  
+
                   // Check which client fields are missing placeholders in template
-                  const missingPlaceholders: Array<{field: string, label: string, suggestion: string}> = [];
-                  
+                  const missingPlaceholders: Array<{ field: string, label: string, suggestion: string }> = [];
+
                   const clientFieldsToCheck = [
                     { key: "name", label: "Nume", suggestions: ["nume", "name", "nume_complet"] },
                     { key: "email", label: "Email", suggestions: ["email", "e-mail", "adresa_email"] },
@@ -1026,13 +1022,13 @@ export default function LinkForm({
                     { key: "postalCode", label: "Cod poștal", suggestions: ["cod_postal", "postal_code", "zip"] },
                     { key: "notes", label: "Note", suggestions: ["note", "notes", "observatii"] }
                   ];
-                  
+
                   clientFieldsToCheck.forEach(({ key, label, suggestions }) => {
                     // Check if any suggestion exists in template
-                    const hasMatchingField = suggestions.some(suggestion => 
+                    const hasMatchingField = suggestions.some(suggestion =>
                       availableFormFields.has(suggestion.toLowerCase())
                     );
-                    
+
                     if (!hasMatchingField) {
                       missingPlaceholders.push({
                         field: key,
@@ -1041,10 +1037,10 @@ export default function LinkForm({
                       });
                     }
                   });
-                  
+
                   const requiredMissing = missingPlaceholders.filter(f => f.field === "name" || f.field === "email");
                   const optionalMissing = missingPlaceholders.filter(f => f.field !== "name" && f.field !== "email");
-                  
+
                   if (!hasNameMapping || !hasEmailMapping || missingPlaceholders.length > 0) {
                     return (
                       <div className="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg space-y-3">
@@ -1053,7 +1049,7 @@ export default function LinkForm({
                             ⚠️ Pentru a crea automat clienți, trebuie să mapezi câmpurile <strong>Nume</strong> și <strong>Email</strong>.
                           </p>
                         )}
-                        
+
                         {requiredMissing.length > 0 && (
                           <div className="text-xs text-red-300/90">
                             <div className="font-medium mb-1.5 text-red-400">⛔ Placeholder-uri obligatorii lipsă din template:</div>
@@ -1066,7 +1062,7 @@ export default function LinkForm({
                             </ul>
                           </div>
                         )}
-                        
+
                         {optionalMissing.length > 0 && (
                           <div className="text-xs text-yellow-300/80">
                             <div className="font-medium mb-1.5">💡 Placeholder-uri opționale recomandate:</div>
@@ -1079,7 +1075,7 @@ export default function LinkForm({
                             </ul>
                           </div>
                         )}
-                        
+
                         <p className="text-xs text-yellow-400/90 pt-1 border-t border-yellow-500/20">
                           📝 Editează template-ul pentru a adăuga placeholder-urile lipsă și apoi reîncarcă pagina.
                         </p>

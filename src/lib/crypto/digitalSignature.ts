@@ -55,14 +55,14 @@ export async function getSigningCertificateFromSmartCard(language: string = 'en'
 
     // Get certificate from smart card - this shows the native selection dialog!
     const result = await webeid.getSigningCertificate({ lang: language });
-    
+
     // Parse certificate to extract info
     const certDer = forge.util.decode64(result.certificate);
     const certAsn1 = forge.asn1.fromDer(certDer);
     const certificate = forge.pki.certificateFromAsn1(certAsn1);
-    
+
     const info = extractCertificateInfo(certificate);
-    
+
     return {
       certificate: result.certificate,
       certificateInfo: info,
@@ -70,7 +70,7 @@ export async function getSigningCertificateFromSmartCard(language: string = 'en'
     };
   } catch (error: any) {
     console.error('Error getting certificate from smart card:', error);
-    
+
     // Handle specific Web eID errors
     if (error.code === 'ERR_WEBEID_USER_CANCELLED') {
       throw new Error('Ați anulat selecția certificatului');
@@ -79,7 +79,7 @@ export async function getSigningCertificateFromSmartCard(language: string = 'en'
     } else if (error.code === 'ERR_WEBEID_NATIVE_UNAVAILABLE') {
       throw new Error('Aplicația Web eID nu este instalată. Descărcați de la https://web-eid.eu/');
     }
-    
+
     return null;
   }
 }
@@ -163,14 +163,14 @@ export async function signWithSmartCard(
     };
   } catch (error: any) {
     console.error('Error signing with smart card:', error);
-    
+
     // Handle specific Web eID errors
     if (error.code === 'ERR_WEBEID_USER_CANCELLED') {
       throw new Error('Ați anulat semnarea');
     } else if (error.code === 'ERR_WEBEID_USER_TIMEOUT') {
       throw new Error('Timp expirat pentru introducerea PIN-ului');
     }
-    
+
     return null;
   }
 }
