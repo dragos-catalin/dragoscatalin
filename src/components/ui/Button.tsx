@@ -23,26 +23,26 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref
     ) => {
         const baseStyles =
-            "inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+            "inline-flex items-center justify-center rounded-xl font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50";
 
         const variants = {
             primary:
-                "bg-foreground text-background hover:bg-foreground/90 focus-visible:ring-foreground",
+                "bg-foreground text-background hover:bg-foreground/90",
             secondary:
-                "bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 focus-visible:ring-gray-400",
+                "bg-surface-raised text-foreground hover:bg-surface-raised/80 border border-border",
             outline:
-                "border-2 border-foreground bg-transparent hover:bg-foreground/10 focus-visible:ring-foreground",
+                "border border-border bg-transparent hover:bg-surface-raised text-foreground",
             ghost:
-                "hover:bg-foreground/10 focus-visible:ring-foreground",
-            link: "text-foreground underline-offset-4 hover:underline focus-visible:ring-foreground",
+                "hover:bg-surface-raised text-foreground",
+            link: "text-accent underline-offset-4 hover:underline",
             danger:
-                "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-600",
+                "bg-red-600 text-white hover:bg-red-700",
         };
 
         const sizes = {
-            sm: "h-8 px-3 text-sm",
-            md: "h-10 px-4 text-base",
-            lg: "h-12 px-6 text-lg",
+            sm: "h-8 px-3 text-xs",
+            md: "h-10 px-4 text-sm",
+            lg: "h-12 px-6 text-sm",
         };
 
         return (

@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Dragos Catalin - Portfolio",
-    description: "Portfolio of Dragos Catalin - A passionate developer building beautiful and functional web experiences.",
+    title: "Dragos Catalin — Full-Stack Developer",
+    description: "Building beautiful, functional web experiences with modern technologies. Full-stack developer specializing in React, Next.js, and AI-powered solutions.",
 };
 
 export default function RootLayout({
@@ -39,7 +39,7 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={`${geistSans.variable} ${geistMono.variable} font-[family-name:var(--font-geist-sans)] antialiased noise-overlay`}
             >
                 <ThemeProvider>{children}</ThemeProvider>
             </body>

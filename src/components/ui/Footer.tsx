@@ -18,71 +18,62 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="relative border-t border-white/20 dark:border-gray-700/20 overflow-hidden">
-            {/* Gradient accent */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-600 dark:bg-blue-500" />
-
-            <Container className="py-12 relative z-10">
+        <footer className="relative border-t border-border overflow-hidden">
+            <Container className="py-16 relative z-10">
                 <motion.div
-                    className="grid grid-cols-1 gap-8 md:grid-cols-3"
+                    className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
                     initial="hidden"
                     whileInView="visible"
                     viewport={viewportConfig}
                     variants={fadeInUp}
                 >
-                    {/* Brand Section */}
-                    <div className="space-y-4">
-                        <h3 className="text-xl font-black text-blue-600 dark:text-blue-400">Dragos Catalin</h3>
-                        <Text size="sm" variant="muted" className="leading-relaxed">
-                            Building beautiful and functional web experiences with modern technologies.
+                    {/* Brand */}
+                    <div className="space-y-3">
+                        <h3 className="text-lg font-semibold tracking-tight text-foreground">
+                            Dragos<span className="text-accent">.</span>
+                        </h3>
+                        <Text size="sm" className="text-muted max-w-xs">
+                            Building beautiful and functional web experiences.
                         </Text>
                     </div>
 
-                    {/* Quick Links */}
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-bold text-foreground">Quick Links</h3>
-                        <nav className="flex flex-col space-y-2">
-                            {footerLinks.map((link) => (
-                                <a
-                                    key={link.href}
-                                    href={link.href}
-                                    className="text-sm text-gray-600 hover:text-foreground dark:text-gray-400 dark:hover:text-foreground transition-colors"
-                                >
-                                    {link.label}
-                                </a>
-                            ))}
-                        </nav>
-                    </div>
+                    {/* Navigation */}
+                    <nav className="flex items-center gap-6">
+                        {footerLinks.map((link) => (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                className="text-sm text-muted hover:text-foreground transition-colors duration-200"
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                    </nav>
 
                     {/* Social Links */}
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-bold text-foreground">Connect</h3>
-                        <div className="flex gap-4">
-                            {socialLinks.map((social) => (
-                                <motion.a
-                                    key={social.name}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-2 rounded-full bg-blue-500/10 hover:bg-blue-500/20 dark:bg-gray-700/50 dark:hover:bg-gray-600/50 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl"
-                                    aria-label={social.name}
-                                    whileHover={{ scale: 1.1, rotate: 5 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    {social.icon === "github" && <GitHubIcon />}
-                                    {social.icon === "instagram" && <InstagramIcon />}
-                                    {social.icon === "tiktok" && <TikTokIcon />}
-                                    {social.icon === "discord" && <DiscordIcon />}
-                                </motion.a>
-                            ))}
-                        </div>
+                    <div className="flex items-center gap-2">
+                        {socialLinks.map((social) => (
+                            <a
+                                key={social.name}
+                                href={social.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-surface-raised transition-all duration-200"
+                                aria-label={social.name}
+                            >
+                                {social.icon === "github" && <GitHubIcon className="w-4 h-4" />}
+                                {social.icon === "instagram" && <InstagramIcon className="w-4 h-4" />}
+                                {social.icon === "tiktok" && <TikTokIcon className="w-4 h-4" />}
+                                {social.icon === "discord" && <DiscordIcon className="w-4 h-4" />}
+                            </a>
+                        ))}
                     </div>
                 </motion.div>
 
-                {/* Bottom Bar */}
-                <div className="mt-8 border-t border-gray-200 pt-8 dark:border-gray-700">
-                    <Text size="sm" variant="muted" className="text-center">
-                        © {currentYear} Dragos Catalin. All rights reserved.
+                {/* Bottom */}
+                <div className="mt-10 pt-6 border-t border-border">
+                    <Text size="xs" className="text-muted-foreground text-center">
+                        &copy; {currentYear} Dragos Catalin. All rights reserved.
                     </Text>
                 </div>
             </Container>

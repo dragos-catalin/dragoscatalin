@@ -63,7 +63,7 @@ export default function Modal({ isOpen, onClose, children, className, size = "lg
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
                         <motion.div
                             className={cn(
-                                "relative w-full bg-white dark:bg-gray-900 rounded-2xl shadow-2xl",
+                                "relative w-full bg-background rounded-2xl shadow-2xl border border-border",
                                 sizeClasses[size],
                                 className
                             )}
@@ -76,11 +76,11 @@ export default function Modal({ isOpen, onClose, children, className, size = "lg
                             {/* Close Button */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                className="absolute top-4 right-4 z-10 p-2 rounded-xl bg-surface-raised hover:bg-surface-raised/80 text-muted hover:text-foreground transition-all duration-200"
                                 aria-label="Close modal"
                             >
                                 <svg
-                                    className="w-5 h-5 text-gray-600 dark:text-gray-400"
+                                    className="w-4 h-4"
                                     fill="none"
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
@@ -104,7 +104,7 @@ export default function Modal({ isOpen, onClose, children, className, size = "lg
 
 export function ModalHeader({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <div className={cn("px-6 py-5 border-b border-gray-200 dark:border-gray-800", className)}>
+        <div className={cn("px-6 py-5 border-b border-border", className)}>
             {children}
         </div>
     );
@@ -120,7 +120,7 @@ export function ModalBody({ children, className }: { children: React.ReactNode; 
 
 export function ModalFooter({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <div className={cn("px-6 py-4 border-t border-gray-200 dark:border-gray-800 flex items-center justify-end gap-3", className)}>
+        <div className={cn("px-6 py-4 border-t border-border flex items-center justify-end gap-3", className)}>
             {children}
         </div>
     );

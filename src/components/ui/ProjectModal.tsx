@@ -6,6 +6,7 @@ import Modal, { ModalHeader, ModalBody, ModalFooter } from "./Modal";
 import { Heading, Text } from "./Typography";
 import Badge from "./Badge";
 import Button from "./Button";
+import WebsitePreview from "./WebsitePreview";
 
 interface Project {
     id: string;
@@ -33,24 +34,29 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
     return (
         <Modal isOpen={isOpen} onClose={onClose} size="xl">
             <ModalHeader>
-                <Heading as="h2" className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 dark:from-blue-400 dark:via-blue-300 dark:to-blue-200 bg-clip-text text-transparent pr-8">
-                    {project.title}
-                </Heading>
+                <div className="flex items-center gap-3">
+                    <span className="text-xs font-mono text-muted-foreground">
+                        {project.id.padStart(2, "0")}
+                    </span>
+                    <Heading as="h2" className="text-2xl font-bold tracking-tight text-foreground pr-8">
+                        {project.title}
+                    </Heading>
+                </div>
             </ModalHeader>
 
             <ModalBody className="space-y-6 max-h-[70vh] overflow-y-auto">
-                {/* Project Image */}
-                {project.image && (
+                {/* Website Preview */}
+                {project.demoUrl && (
                     <motion.div
-                        className="w-full h-64 bg-gradient-to-br from-blue-100 to-gray-100 dark:from-gray-800/50 dark:to-gray-900/50 rounded-xl overflow-hidden"
+                        className="w-full rounded-xl overflow-hidden border border-border"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
                     >
-                        <img
-                            src={project.image}
+                        <WebsitePreview
+                            url={project.demoUrl}
                             alt={project.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-64 sm:h-80"
                         />
                     </motion.div>
                 )}
@@ -61,10 +67,10 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                 >
-                    <Text size="sm" variant="muted" className="mb-3 font-semibold uppercase tracking-wider">
-                        Technologies Used
+                    <Text size="xs" className="mb-3 font-medium uppercase tracking-[0.15em] text-muted-foreground">
+                        Technologies
                     </Text>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                         {project.technologies.map((tech) => (
                             <Badge key={tech} variant="info" size="md">
                                 {tech}
@@ -79,10 +85,10 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                 >
-                    <Text size="sm" variant="muted" className="mb-3 font-semibold uppercase tracking-wider">
+                    <Text size="xs" className="mb-3 font-medium uppercase tracking-[0.15em] text-muted-foreground">
                         Overview
                     </Text>
-                    <Text size="base" className="leading-relaxed">
+                    <Text size="sm" className="leading-relaxed text-foreground">
                         {project.fullDescription || project.description}
                     </Text>
                 </motion.div>
@@ -94,14 +100,14 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
                     >
-                        <Text size="sm" variant="muted" className="mb-3 font-semibold uppercase tracking-wider">
+                        <Text size="xs" className="mb-3 font-medium uppercase tracking-[0.15em] text-muted-foreground">
                             Key Features
                         </Text>
                         <ul className="space-y-2">
                             {project.features.map((feature, index) => (
                                 <li key={index} className="flex items-start gap-3">
-                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 flex-shrink-0" />
-                                    <Text size="base">{feature}</Text>
+                                    <span className="mt-2 w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                                    <Text size="sm" className="text-foreground">{feature}</Text>
                                 </li>
                             ))}
                         </ul>
@@ -115,10 +121,10 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
                     >
-                        <Text size="sm" variant="muted" className="mb-3 font-semibold uppercase tracking-wider">
-                            Challenges & Solutions
+                        <Text size="xs" className="mb-3 font-medium uppercase tracking-[0.15em] text-muted-foreground">
+                            Challenges
                         </Text>
-                        <Text size="base" className="leading-relaxed">
+                        <Text size="sm" className="leading-relaxed text-foreground">
                             {project.challenges}
                         </Text>
                     </motion.div>
@@ -131,10 +137,10 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.6 }}
                     >
-                        <Text size="sm" variant="muted" className="mb-3 font-semibold uppercase tracking-wider">
-                            Results & Impact
+                        <Text size="xs" className="mb-3 font-medium uppercase tracking-[0.15em] text-muted-foreground">
+                            Results
                         </Text>
-                        <Text size="base" className="leading-relaxed">
+                        <Text size="sm" className="leading-relaxed text-foreground">
                             {project.results}
                         </Text>
                     </motion.div>
@@ -143,21 +149,23 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
             <ModalFooter>
                 {project.demoUrl && (
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                        <Button
-                            variant="primary"
-                            size="md"
-                            className="bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/30 dark:shadow-blue-500/20"
-                            onClick={() => window.open(project.demoUrl, '_blank')}
-                        >
-                            Visit Site
-                        </Button>
-                    </motion.div>
+                    <Button
+                        variant="primary"
+                        size="md"
+                        className="rounded-xl bg-foreground text-background"
+                        onClick={() => window.open(project.demoUrl, '_blank')}
+                    >
+                        Visit Site
+                        <svg className="ml-2 w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                    </Button>
                 )}
                 <Button
-                    variant="outline"
+                    variant="ghost"
                     size="md"
                     onClick={onClose}
+                    className="text-muted hover:text-foreground"
                 >
                     Close
                 </Button>

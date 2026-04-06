@@ -1,29 +1,152 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-light: var(--accent-light);
+    --color-accent-dark: var(--accent-dark);
+    --color-surface: var(--surface);
+    --color-surface-raised: var(--surface-raised);
+    --color-border: var(--border);
+    --color-border-subtle: var(--border-subtle);
+    --color-glow: var(--glow);
+}
 
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #fafaf9;
+    --foreground: #1c1917;
+    --muted: #78716c;
+    --muted-foreground: #a8a29e;
+    --accent: #7c3aed;
+    --accent-light: #a78bfa;
+    --accent-dark: #6d28d9;
+    --surface: #ffffff;
+    --surface-raised: #f5f5f4;
+    --border: #e7e5e4;
+    --border-subtle: #d6d3d1;
+    --glow: rgba(124, 58, 237, 0.15);
 }
 
 .dark {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0c0a09;
+    --foreground: #fafaf9;
+    --muted: #a8a29e;
+    --muted-foreground: #78716c;
+    --accent: #a78bfa;
+    --accent-light: #c4b5fd;
+    --accent-dark: #8b5cf6;
+    --surface: #1c1917;
+    --surface-raised: #292524;
+    --border: #292524;
+    --border-subtle: #44403c;
+    --glow: rgba(167, 139, 250, 0.1);
 }
 
 body {
     color: var(--foreground);
     background: var(--background);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-@layer utilities {
-    .text-balance {
-        text-wrap: balance;
+/* Noise texture overlay */
+.noise-overlay::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+}
+
+/* Selection */
+::selection {
+    background: var(--accent);
+    color: white;
+}
+
+@layer components {
+    .gradient-text {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500;
+    }
+
+    .dark .gradient-text {
+        @apply from-violet-400 via-purple-300 to-fuchsia-400;
+    }
+
+    .glass {
+        @apply bg-white/60 backdrop-blur-xl border border-white/20 shadow-xl;
+    }
+
+    .dark .glass {
+        @apply bg-stone-900/60 border-stone-700/30;
+    }
+
+    .glass-subtle {
+        @apply bg-white/40 backdrop-blur-md border border-white/10;
+    }
+
+    .dark .glass-subtle {
+        @apply bg-stone-900/40 border-stone-800/20;
+    }
+
+    .glow {
+        box-shadow: 0 0 60px var(--glow), 0 0 120px var(--glow);
+    }
+
+    .glow-sm {
+        box-shadow: 0 0 30px var(--glow);
+    }
+
+    /* Animated gradient border */
+    .gradient-border {
+        position: relative;
+    }
+
+    .gradient-border::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(135deg, var(--accent), transparent 40%, transparent 60%, var(--accent-light));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .gradient-border:hover::before {
+        opacity: 1;
     }
 }

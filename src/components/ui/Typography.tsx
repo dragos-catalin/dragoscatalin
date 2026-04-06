@@ -49,8 +49,8 @@ const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
 
         const variants = {
             default: "text-foreground",
-            muted: "text-gray-500 dark:text-gray-400",
-            subtle: "text-gray-600 dark:text-gray-300",
+            muted: "text-muted",
+            subtle: "text-muted-foreground",
         };
 
         return (

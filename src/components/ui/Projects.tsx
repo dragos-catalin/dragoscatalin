@@ -8,6 +8,7 @@ import Badge from "./Badge";
 import Container from "./Container";
 import Button from "./Button";
 import ProjectModal from "./ProjectModal";
+import WebsitePreview from "./WebsitePreview";
 import { fadeInUp, staggerContainer, staggerItem, viewportConfig } from "@/lib/animations";
 
 interface Project {
@@ -46,6 +47,25 @@ const projects: Project[] = [
     },
     {
         id: "2",
+        title: "Datuvia.ro",
+        description: "Business management platform for clients, contracts, invoicing, and debt recovery with ANAF integration and digital signatures.",
+        fullDescription: "Datuvia.ro is a comprehensive business management platform built for Romanian companies. It centralizes client management, digital contracts with electronic signatures, automated invoicing with FGO sync, and a full debt recovery module with legal case tracking. The platform supports multi-company setups, role-based access, and real-time notifications.",
+        technologies: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
+        features: [
+            "Complete client management with ANAF verification",
+            "Digital contracts with electronic signature support",
+            "Automated invoicing with FGO synchronization",
+            "Debt recovery module with legal case timeline",
+            "Multi-company support with separate configurations",
+            "Role-based access control for managers, accountants, and lawyers"
+        ],
+        challenges: "Building a multi-tenant architecture supporting multiple companies per account while integrating with ANAF APIs for real-time fiscal data verification and ensuring GDPR compliance across all modules.",
+        results: "Serving 300+ active companies with over 12,000 digitally signed contracts and 99.9% platform uptime.",
+        demoUrl: "https://datuvia.ro",
+        githubUrl: "#",
+    },
+    {
+        id: "3",
         title: "EditAI.ro",
         description: "Advanced AI-powered media editing platform with automated tools for photo, video, and audio enhancement.",
         fullDescription: "EditAI.ro is a cutting-edge platform that uses artificial intelligence to simplify and enhance media editing workflows. The platform provides powerful tools for photo enhancement, video editing, audio processing, and automated content generation.",
@@ -64,7 +84,7 @@ const projects: Project[] = [
         githubUrl: "#",
     },
     {
-        id: "3",
+        id: "4",
         title: "MancAI.ro",
         description: "Food tracking application with AI image analysis for automatic nutritional information and calorie counting.",
         fullDescription: "MancAI.ro is a smart food tracking platform that uses advanced AI image recognition to analyze food photos and provide instant nutritional information. Users can simply take a picture of their meal to automatically log calories, macros, and nutritional data.",
@@ -99,20 +119,27 @@ export default function Projects() {
     };
 
     return (
-        <section id="projects" className="relative py-20 overflow-hidden">
+        <section id="projects" className="relative py-32 overflow-hidden">
+            {/* Section divider */}
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
             <Container className="relative z-10">
-                <div className="space-y-12">
+                <div className="space-y-16">
                     {/* Section Header */}
                     <motion.div
-                        className="text-center space-y-4"
+                        className="space-y-4"
                         initial="hidden"
                         whileInView="visible"
                         viewport={viewportConfig}
                         variants={fadeInUp}
                     >
-                        <Heading as="h2" className="text-5xl sm:text-6xl font-black bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 dark:from-blue-400 dark:via-blue-300 dark:to-blue-200 bg-clip-text text-transparent">Projects</Heading>
-                        <Text size="lg" variant="muted" className="max-w-2xl mx-auto text-lg">
+                        <Text size="xs" className="text-accent uppercase tracking-[0.2em] font-medium">
+                            Selected work
+                        </Text>
+                        <Heading as="h2" className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+                            Projects
+                        </Heading>
+                        <Text size="base" className="text-muted max-w-lg">
                             A selection of projects showcasing my skills in web development,
                             design, and problem-solving.
                         </Text>
@@ -120,57 +147,71 @@ export default function Projects() {
 
                     {/* Projects Grid */}
                     <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6"
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="visible"
                         viewport={viewportConfig}
                     >
-                        {projects.map((project, index) => (
+                        {projects.map((project) => (
                             <motion.div
                                 key={project.id}
                                 variants={staggerItem}
-                                whileHover={{ y: -12, scale: 1.02, transition: { duration: 0.3 } }}
                                 onClick={() => handleProjectClick(project)}
-                                className="cursor-pointer"
+                                className="cursor-pointer group"
                             >
-                                <Card className="flex flex-col h-full backdrop-blur-xl bg-white/60 dark:bg-gray-800/60 border-white/20 dark:border-gray-700/20 shadow-xl hover:shadow-2xl hover:shadow-blue-500/20 dark:hover:shadow-blue-500/10 transition-all duration-300">
-                                    <CardHeader>
-                                        <CardTitle>{project.title}</CardTitle>
-                                        <CardDescription>{project.description}</CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="flex-grow">
-                                        <div className="space-y-4">
-                                            <div>
-                                                <Text size="sm" variant="muted" className="mb-2 font-semibold">
-                                                    Technologies:
-                                                </Text>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {project.technologies.map((tech) => (
-                                                        <Badge key={tech} variant="info" size="sm">
-                                                            {tech}
-                                                        </Badge>
-                                                    ))}
-                                                </div>
+                                <div className="relative flex flex-col h-full rounded-2xl border border-border bg-surface/50 hover:bg-surface-raised/80 overflow-hidden transition-all duration-300 hover:border-accent/20 hover:shadow-lg hover:shadow-accent/5 gradient-border">
+                                    {/* Website Preview */}
+                                    {project.demoUrl && (
+                                        <WebsitePreview
+                                            url={project.demoUrl}
+                                            alt={project.title}
+                                            className="w-full h-48 border-b border-border"
+                                        />
+                                    )}
+
+                                    <div className="p-6">
+                                        {/* Project number */}
+                                        <span className="absolute top-6 right-6 text-xs font-mono text-muted-foreground z-10">
+                                            {project.id.padStart(2, "0")}
+                                        </span>
+
+                                        <div className="flex flex-col h-full">
+                                            <h3 className="text-xl font-semibold tracking-tight text-foreground mb-2 group-hover:text-accent transition-colors duration-200">
+                                                {project.title}
+                                            </h3>
+                                            <p className="text-sm text-muted leading-relaxed mb-6 flex-grow">
+                                                {project.description}
+                                            </p>
+
+                                            {/* Technologies */}
+                                            <div className="flex flex-wrap gap-1.5 mb-5">
+                                                {project.technologies.map((tech) => (
+                                                    <span
+                                                        key={tech}
+                                                        className="px-2.5 py-1 rounded-md text-xs font-medium bg-surface-raised text-muted border border-border"
+                                                    >
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
+
+                                            {/* Action */}
+                                            <div className="flex items-center gap-2 text-sm font-medium text-muted group-hover:text-accent transition-colors duration-200">
+                                                <span>View project</span>
+                                                <svg
+                                                    className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    strokeWidth={1.5}
+                                                    stroke="currentColor"
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                                                </svg>
                                             </div>
                                         </div>
-                                    </CardContent>
-                                    <CardFooter className="gap-3">
-                                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                            <Button
-                                                variant="primary"
-                                                size="sm"
-                                                className="bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/30 dark:shadow-blue-500/20"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    handleProjectClick(project);
-                                                }}
-                                            >
-                                                View Details
-                                            </Button>
-                                        </motion.div>
-                                    </CardFooter>
-                                </Card>
+                                    </div>
+                                </div>
                             </motion.div>
                         ))}
                     </motion.div>
