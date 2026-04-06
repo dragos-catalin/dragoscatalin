@@ -6,7 +6,7 @@ import { Heading, Text } from "./Typography";
 import Button from "./Button";
 import Container from "./Container";
 import { staggerContainer, staggerItem } from "@/lib/animations";
-import { ReactIcon, NextIcon, TypeScriptIcon, TailwindIcon, NodeIcon, PostgreSQLIcon, PythonIcon, TensorFlowIcon, AIIcon } from "@/components/icons";
+import { ReactIcon, NextIcon, TypeScriptIcon, TailwindIcon, NodeIcon, PostgreSQLIcon, PythonIcon, TensorFlowIcon, AIIcon, DockerIcon, AWSIcon, AzureIcon, GCPIcon, FirebaseIcon, GitIcon, PrismaIcon, RedisIcon, GraphQLIcon, KubernetesIcon, MongoDBIcon, LinuxIcon, VercelIcon, StripeIcon, DrizzleIcon, TerraformIcon, NginxIcon } from "@/components/icons";
 
 const techStack = [
     { name: "React", icon: <ReactIcon className="w-4 h-4" /> },
@@ -14,8 +14,25 @@ const techStack = [
     { name: "TypeScript", icon: <TypeScriptIcon className="w-4 h-4" /> },
     { name: "Tailwind", icon: <TailwindIcon className="w-4 h-4" /> },
     { name: "Node.js", icon: <NodeIcon className="w-4 h-4" /> },
-    { name: "PostgreSQL", icon: <PostgreSQLIcon className="w-4 h-4" /> },
     { name: "Python", icon: <PythonIcon className="w-4 h-4" /> },
+    { name: "PostgreSQL", icon: <PostgreSQLIcon className="w-4 h-4" /> },
+    { name: "MongoDB", icon: <MongoDBIcon className="w-4 h-4" /> },
+    { name: "Redis", icon: <RedisIcon className="w-4 h-4" /> },
+    { name: "Prisma", icon: <PrismaIcon className="w-4 h-4" /> },
+    { name: "Drizzle", icon: <DrizzleIcon className="w-4 h-4" /> },
+    { name: "GraphQL", icon: <GraphQLIcon className="w-4 h-4" /> },
+    { name: "Docker", icon: <DockerIcon className="w-4 h-4" /> },
+    { name: "Kubernetes", icon: <KubernetesIcon className="w-4 h-4" /> },
+    { name: "AWS", icon: <AWSIcon className="w-4 h-4" /> },
+    { name: "Azure", icon: <AzureIcon className="w-4 h-4" /> },
+    { name: "Google Cloud", icon: <GCPIcon className="w-4 h-4" /> },
+    { name: "Firebase", icon: <FirebaseIcon className="w-4 h-4" /> },
+    { name: "Vercel", icon: <VercelIcon className="w-4 h-4" /> },
+    { name: "Terraform", icon: <TerraformIcon className="w-4 h-4" /> },
+    { name: "Nginx", icon: <NginxIcon className="w-4 h-4" /> },
+    { name: "Linux", icon: <LinuxIcon className="w-4 h-4" /> },
+    { name: "Git", icon: <GitIcon className="w-4 h-4" /> },
+    { name: "Stripe", icon: <StripeIcon className="w-4 h-4" /> },
     { name: "TensorFlow", icon: <TensorFlowIcon className="w-4 h-4" /> },
     { name: "AI/ML", icon: <AIIcon className="w-4 h-4" /> },
 ];
@@ -106,7 +123,7 @@ export default function Hero() {
 
                     {/* Tech Stack - minimal pill style */}
                     <motion.div
-                        className="w-full max-w-2xl"
+                        className="w-full max-w-3xl"
                         variants={staggerItem}
                     >
                         <Text size="xs" className="text-muted-foreground uppercase tracking-[0.2em] font-medium mb-4">
