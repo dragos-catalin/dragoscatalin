@@ -33,91 +33,83 @@ function layoutChips(labels: string[]): { label: string; x: number; w: number }[
     return out;
 }
 
-function pattern(family: Family, rnd: () => number): ReactNode {
+/**
+ * Each family is ONE `<pattern>` tile the renderer repeats — 1–3 elements per
+ * cover instead of hundreds. 18 covers on the home page used to add 321 KB of
+ * HTML (Lighthouse mobile, 2026-09-15); now ~1 KB each.
+ */
+function pattern(family: Family, rnd: () => number, id: string): ReactNode {
     const stroke = "var(--fg)";
+    const pid = `${id}-p`;
+    const fill = <rect width={W} height={H} fill={`url(#${pid})`} />;
     switch (family) {
         case "dots": {
             const step = 28 + Math.floor(rnd() * 20);
-            const r = 1.5 + rnd() * 1.5;
-            const nodes: ReactNode[] = [];
-            for (let y = step / 2; y < H; y += step)
-                for (let x = step / 2; x < W; x += step)
-                    nodes.push(
-                        <circle key={`${x}-${y}`} cx={x} cy={y} r={round(r)} fill={stroke} />,
-                    );
-            return <g opacity={0.08}>{nodes}</g>;
+            const r = round(1.5 + rnd() * 1.5);
+            return (
+                <g opacity={0.08}>
+                    <pattern id={pid} width={step} height={step} patternUnits="userSpaceOnUse">
+                        <circle cx={step / 2} cy={step / 2} r={r} fill={stroke} />
+                    </pattern>
+                    {fill}
+                </g>
+            );
         }
         case "hatch": {
             const gap = 18 + Math.floor(rnd() * 14);
-            const dir = rnd() < 0.5 ? 1 : -1;
-            const nodes: ReactNode[] = [];
-            for (let i = -H; i < W + H; i += gap)
-                nodes.push(
-                    <line
-                        key={i}
-                        x1={i}
-                        y1={dir > 0 ? 0 : H}
-                        x2={i + dir * H}
-                        y2={dir > 0 ? H : 0}
-                        stroke={stroke}
-                        strokeWidth={1.2}
-                    />,
-                );
-            return <g opacity={0.07}>{nodes}</g>;
+            const angle = rnd() < 0.5 ? 45 : -45;
+            return (
+                <g opacity={0.07}>
+                    <pattern
+                        id={pid}
+                        width={gap}
+                        height={gap}
+                        patternUnits="userSpaceOnUse"
+                        patternTransform={`rotate(${angle})`}
+                    >
+                        <line x1={0} y1={0} x2={0} y2={gap} stroke={stroke} strokeWidth={1.2} />
+                    </pattern>
+                    {fill}
+                </g>
+            );
         }
         case "rings": {
+            // Concentric rings can't tile; draw 6 rings around a seeded centre.
             const cx = round(W * (0.55 + rnd() * 0.35));
             const cy = round(H * (0.15 + rnd() * 0.4));
-            const gap = 22 + Math.floor(rnd() * 16);
-            const nodes: ReactNode[] = [];
-            for (let r = gap; r < W; r += gap)
-                nodes.push(
-                    <circle
-                        key={r}
-                        cx={cx}
-                        cy={cy}
-                        r={r}
-                        fill="none"
-                        stroke={stroke}
-                        strokeWidth={1.4}
-                    />,
-                );
-            return <g opacity={0.08}>{nodes}</g>;
+            const gap = 60 + Math.floor(rnd() * 40);
+            return (
+                <g opacity={0.08} fill="none" stroke={stroke} strokeWidth={1.4}>
+                    {[1, 2, 3, 4, 5, 6].map((i) => (
+                        <circle key={i} cx={cx} cy={cy} r={gap * i} />
+                    ))}
+                </g>
+            );
         }
         case "cubes": {
             const s = 30 + Math.floor(rnd() * 14);
-            const h = s * 0.866;
-            const nodes: ReactNode[] = [];
-            let row = 0;
-            for (let y = -h; y < H + h; y += h * 1.5, row++) {
-                const off = row % 2 ? s * 0.75 : 0;
-                for (let x = -s; x < W + s; x += s * 1.5) {
-                    const px = round(x + off);
-                    const py = round(y);
-                    const hex = [
-                        [px, py - h],
-                        [px + s * 0.75, py - h / 2],
-                        [px + s * 0.75, py + h / 2],
-                        [px, py + h],
-                        [px - s * 0.75, py + h / 2],
-                        [px - s * 0.75, py - h / 2],
-                    ]
-                        .map(([a, b]) => `${round(a ?? 0)},${round(b ?? 0)}`)
-                        .join(" ");
-                    nodes.push(
-                        <g key={`${px}-${py}`}>
-                            <polygon points={hex} fill="none" stroke={stroke} strokeWidth={1.1} />
-                            <path
-                                d={`M${px},${py} L${px},${round(py + h)} M${px},${py} L${round(px + s * 0.75)},${round(py - h / 2)} M${px},${py} L${round(px - s * 0.75)},${round(py - h / 2)}`}
-                                stroke={stroke}
-                                strokeWidth={1.1}
-                                fill="none"
-                            />
-                        </g>,
-                    );
-                }
-            }
-            return <g opacity={0.09}>{nodes}</g>;
+            const h = round(s * 0.866);
+            const w = round(s * 1.5);
+            // One isometric cube per tile; the tile is offset by half a row via
+            // a second copy so the hex lattice stays continuous.
+            const cube = (px: number, py: number) => {
+                const a = round(s * 0.75);
+                const b = round(h / 2);
+                return `M${px},${py - h} L${px + a},${py - b} L${px + a},${py + b} L${px},${py + h} L${px - a},${py + b} L${px - a},${py - b} Z M${px},${py} L${px},${py + h} M${px},${py} L${px + a},${py - b} M${px},${py} L${px - a},${py - b}`;
+            };
+            return (
+                <g opacity={0.09}>
+                    <pattern id={pid} width={w} height={h * 3} patternUnits="userSpaceOnUse">
+                        <path
+                            d={`${cube(round(w / 2), h)} ${cube(0, round(h * 2.5))} ${cube(w, round(h * 2.5))}`}
+                            fill="none"
+                            stroke={stroke}
+                            strokeWidth={1.1}
+                        />
+                    </pattern>
+                    {fill}
+                </g>
+            );
         }
     }
 }
@@ -198,7 +190,7 @@ export function CoverArt({
             <rect width={W} height={H} fill="var(--surface)" />
             <rect width={W} height={H} fill={`url(#${id}-base)`} opacity={0.92} />
             <rect width={W} height={H} fill={`url(#${id}-glow)`} />
-            {pattern(family, rnd)}
+            {pattern(family, rnd, id)}
             <text
                 x={W - 40 + 10}
                 y={H / 2 + fontSize * 0.36 + 10}

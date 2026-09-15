@@ -1,4 +1,4 @@
-import { ViewTransition } from "react";
+import { Suspense, ViewTransition } from "react";
 import { GitFork, Star, Tag } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Badge, Section, type BadgeVariant } from "@/components/ui";
@@ -33,18 +33,45 @@ function sumStats(project: Project, stats: Record<string, RepoStats>) {
     return any ? { stars, forks, releases } : null;
 }
 
+/** Streams in after the card shell: the GitHub round-trip never blocks LCP. */
+async function FeaturedStats({ project, locale }: { project: Project; locale: "en" | "ro" }) {
+    const tp = await getTranslations("projects");
+    const stats = await fetchRepoStats(project.repos ?? []);
+    const s = sumStats(project, stats);
+    if (!s) return null;
+    return (
+        <dl className="mt-auto flex flex-wrap gap-5 pt-2 font-mono text-xs text-fg-subtle">
+            <div className="flex items-center gap-1.5">
+                <Star className="size-3.5" aria-hidden="true" />
+                <dt className="sr-only">{tp("stars", { count: s.stars })}</dt>
+                <dd>{s.stars.toLocaleString(locale)}</dd>
+            </div>
+            <div className="flex items-center gap-1.5">
+                <GitFork className="size-3.5" aria-hidden="true" />
+                <dt className="sr-only">{tp("forks", { count: s.forks })}</dt>
+                <dd>{s.forks.toLocaleString(locale)}</dd>
+            </div>
+            {s.releases > 0 ? (
+                <div className="flex items-center gap-1.5">
+                    <Tag className="size-3.5" aria-hidden="true" />
+                    <dt className="sr-only">{tp("latestRelease")}</dt>
+                    <dd>{tp("releases", { count: s.releases })}</dd>
+                </div>
+            ) : null}
+        </dl>
+    );
+}
+
 export async function Featured() {
     const locale = (await getLocale()) as "en" | "ro";
     const t = await getTranslations("featured");
     const tp = await getTranslations("projects");
-    const stats = await fetchRepoStats(featuredProjects.flatMap((p) => p.repos ?? []));
 
     return (
         <Section id="featured" eyebrow={t("eyebrow")} title={t("title")}>
             <div className="grid gap-6 lg:grid-cols-2">
                 {featuredProjects.slice(0, 2).map((p) => {
                     const hue = p.hue ?? 300;
-                    const s = sumStats(p, stats);
                     return (
                         <Link
                             key={p.slug}
@@ -85,31 +112,11 @@ export async function Featured() {
                                         </li>
                                     ))}
                                 </ul>
-                                {s ? (
-                                    <dl className="mt-auto flex flex-wrap gap-5 pt-2 font-mono text-xs text-fg-subtle">
-                                        <div className="flex items-center gap-1.5">
-                                            <Star className="size-3.5" aria-hidden="true" />
-                                            <dt className="sr-only">
-                                                {tp("stars", { count: s.stars })}
-                                            </dt>
-                                            <dd>{s.stars.toLocaleString(locale)}</dd>
-                                        </div>
-                                        <div className="flex items-center gap-1.5">
-                                            <GitFork className="size-3.5" aria-hidden="true" />
-                                            <dt className="sr-only">
-                                                {tp("forks", { count: s.forks })}
-                                            </dt>
-                                            <dd>{s.forks.toLocaleString(locale)}</dd>
-                                        </div>
-                                        {s.releases > 0 ? (
-                                            <div className="flex items-center gap-1.5">
-                                                <Tag className="size-3.5" aria-hidden="true" />
-                                                <dt className="sr-only">{tp("latestRelease")}</dt>
-                                                <dd>{tp("releases", { count: s.releases })}</dd>
-                                            </div>
-                                        ) : null}
-                                    </dl>
-                                ) : null}
+                                <Suspense
+                                    fallback={<div className="mt-auto h-4" aria-hidden="true" />}
+                                >
+                                    <FeaturedStats project={p} locale={locale} />
+                                </Suspense>
                             </div>
                         </Link>
                     );

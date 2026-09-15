@@ -1,8 +1,9 @@
+import { Suspense } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ButtonLink, Section } from "@/components/ui";
 import { projects } from "@/data/projects";
-import type { ProjectStatus } from "@/data/types";
+import type { Project, ProjectStatus, RepoStats } from "@/data/types";
 import { fetchRepoStats } from "@/lib/github";
 
 const SHOWN: ReadonlySet<ProjectStatus> = new Set<ProjectStatus>([
@@ -14,11 +15,44 @@ const SHOWN: ReadonlySet<ProjectStatus> = new Set<ProjectStatus>([
     "case-study",
 ]);
 
+function shownProjects(): Project[] {
+    return projects.filter((p) => !p.featured && SHOWN.has(p.status)).slice(0, 9);
+}
+
+function Grid({
+    shown,
+    stats,
+    locale,
+}: {
+    shown: Project[];
+    stats: Record<string, RepoStats>;
+    locale: string;
+}) {
+    return (
+        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
+            {shown.map((p, i) => {
+                const first = p.repos?.[0];
+                const s = first ? stats[`${first.owner}/${first.name}`] : undefined;
+                return (
+                    <li key={p.slug} className="flex">
+                        <ProjectCard project={p} stats={s} locale={locale} index={i} />
+                    </li>
+                );
+            })}
+        </ul>
+    );
+}
+
+/** Streams in with live GitHub numbers; the static grid below is the LCP-safe fallback. */
+async function GridWithStats({ shown, locale }: { shown: Project[]; locale: string }) {
+    const stats = await fetchRepoStats(shown.flatMap((p) => p.repos ?? []));
+    return <Grid shown={shown} stats={stats} locale={locale} />;
+}
+
 export async function ProjectsGrid() {
     const locale = await getLocale();
     const t = await getTranslations("projects");
-    const shown = projects.filter((p) => !p.featured && SHOWN.has(p.status)).slice(0, 9);
-    const stats = await fetchRepoStats(shown.flatMap((p) => p.repos ?? []));
+    const shown = shownProjects();
 
     return (
         <Section
@@ -32,17 +66,9 @@ export async function ProjectsGrid() {
                 </ButtonLink>
             }
         >
-            <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-                {shown.map((p, i) => {
-                    const first = p.repos?.[0];
-                    const s = first ? stats[`${first.owner}/${first.name}`] : undefined;
-                    return (
-                        <li key={p.slug} className="flex">
-                            <ProjectCard project={p} stats={s} locale={locale} index={i} />
-                        </li>
-                    );
-                })}
-            </ul>
+            <Suspense fallback={<Grid shown={shown} stats={{}} locale={locale} />}>
+                <GridWithStats shown={shown} locale={locale} />
+            </Suspense>
         </Section>
     );
 }

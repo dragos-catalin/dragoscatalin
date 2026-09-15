@@ -4,7 +4,7 @@
  *   SKIP_HOOKS=1  → skip everything
  *   FAST_COMMIT=1 → structural checks only (tracker, messages, version/CHANGELOG gate)
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import { acquireLock, releaseLock } from "./lib/commit-lock.mjs";
 import { fail, printTimings, run } from "./lib/run.mjs";
 
@@ -98,6 +98,27 @@ phase("check-tracker", () =>
 phase("check-messages", () =>
     msgChanged ? run("node", ["scripts/check-messages.mjs"]).status === 0 : true,
 );
+
+phase("check-shots-manifest", () =>
+    has(/^public\/shots\//) ? run("node", ["scripts/check-shots-manifest.mjs"]).status === 0 : true,
+);
+
+// Lighthouse 2026-09-15: a 1.3 MB logo.png in the header cost ~1.5 s of LCP.
+// Any staged binary under public/ or src/app/ above the budget fails unless allowlisted.
+const ASSET_BUDGET_KB = 300;
+const ASSET_ALLOW = new Set(["public/logo.png" /* press-kit master, not in the hot path */]);
+phase("asset size gate", () => {
+    const heavy = staged
+        .filter((f) => /^(public|src\/app)\/.*\.(png|jpe?g|webp|avif|gif|svg|ico|woff2?)$/i.test(f))
+        .filter((f) => !ASSET_ALLOW.has(f) && !f.startsWith("public/shots/"))
+        .map((f) => ({ f, kb: Math.round(statSync(f).size / 1024) }))
+        .filter((x) => x.kb > ASSET_BUDGET_KB);
+    if (heavy.length === 0) return true;
+    console.error(`\n✖ asset size gate (> ${ASSET_BUDGET_KB} KB)`);
+    for (const h of heavy)
+        console.error(`   → ${h.f}  ${h.kb} KB — run: node scripts/optimize-assets.mjs`);
+    return false;
+});
 
 if (fast) {
     printTimings(phases);

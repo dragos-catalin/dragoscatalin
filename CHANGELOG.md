@@ -6,6 +6,51 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.3.0] - 2026-09-15
+
+Performance pass measured with Lighthouse against a production build (desktop
+and mobile presets). Desktop: **100 / 100 / 100 / 100 on all 5 audited routes**
+(was 88–100 / 96 / 96 / 92). Mobile: A / BP / SEO 100 everywhere, perf 91–100
+(was 79–93), TBT 250 → ≤40 ms, `/projects` LCP 3.8 → 3.3 s, `/about` 3.2 → 1.9 s.
+
+### Fixed
+
+- LCP: the hero headline was hidden by a motion `initial="hidden"` until
+  hydration (1.7 s render delay). Hero and header entrances are now pure CSS.
+- LCP: `/projects` and the home grid rendered a skeleton while awaiting GitHub;
+  the registry-driven grid now renders in the initial HTML and live stats
+  stream into it. Featured cards and package rows stream their stats the same way.
+- Bundle: **zod (100 KB gz) was in every page's client bundle** through a
+  `clientEnv` import and the shots manifest reader. Client env moved to
+  `env.client.ts` (no zod); manifest schema moved to `shots.schema.ts`
+  (server/tests only). ESLint now forbids `zod` / `@/lib/env` in components.
+  First-load JS 374 → 281 kB gz; budget tightened to 300 kB.
+- Bundle: `motion/react` (44 KB gz, 89 % unused) was global for the header
+  sheet and theme popover; both use CSS keyframes now. Motion loads only on
+  `/projects`.
+- HTML: `CoverArt` drew hundreds of SVG elements per cover (321 KB on the home
+  page); each pattern is now one `<pattern>` tile. Home HTML 1016 → 569 KB.
+- Assets: the 1.3 MB `logo.png` was loaded in the header on every page; now
+  `logo-64.webp` (1.2 KB) with generated icons (`pnpm assets:optimize`) and a
+  real `favicon.ico` (the implicit request used to 500). Pre-commit fails any
+  staged asset over 300 KB.
+- Contrast: dark `--fg-subtle` raised to AA (3.92 → ≥ 4.5 : 1); one 10 px label
+  bumped to 11 px. Card titles are `h2` (heading order).
+- Canonical: was pointing at the production host during local audits; Vercel
+  Analytics / Speed Insights only mount on Vercel (no 404 console errors).
+- CLS on project pages from the mono font swap: metric-compatible fallback.
+- Fonts: mono face no longer preloaded (only small labels use it).
+
+### Changed
+
+- `experimental.inlineCss: true` — the 13 KB Tailwind sheet is inlined,
+  removing a render-blocking round trip.
+- Lighthouse CI is now a hard gate: 5 routes × 3 runs, A/BP/SEO = 100, perf
+  ≥ 98 (median), LCP ≤ 1.2 s, CLS ≤ 0.05, TBT ≤ 100 ms, no console errors.
+- Ultra-wide: `3xl` breakpoint (2200 px) → 5-column grids, wider container and
+  17–18 px root font; touch devices get native-app ergonomics (no tap
+  highlight, no overscroll, no double-tap zoom, hidden scrollbars).
+
 ## [2.2.0] - 2026-09-15
 
 ### Added

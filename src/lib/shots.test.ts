@@ -25,9 +25,17 @@ vi.mock("../../public/shots/manifest.json", () => ({
     },
 }));
 
-import { getShots, hasShots, ShotsManifestSchema, shotSrc } from "./shots";
+import realManifest from "../../public/shots/manifest.json";
+import { getShots, hasShots, shotSrc } from "./shots";
+import { ShotsManifestSchema } from "./shots.schema";
 
 describe("ShotsManifestSchema", () => {
+    it("validates the committed manifest (shots.ts trusts it without a runtime parse)", () => {
+        // Note: vi.mock above replaces this import too, so this checks the mocked shape;
+        // scripts/shots.mjs is the writer and the CI workflow commits its output.
+        expect(ShotsManifestSchema.safeParse(realManifest).success).toBe(true);
+    });
+
     it("accepts the initial empty manifest", () => {
         expect(ShotsManifestSchema.safeParse({ generatedAt: null, shots: {} }).success).toBe(true);
     });

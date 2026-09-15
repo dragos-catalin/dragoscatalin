@@ -77,9 +77,9 @@ export function ProjectCard({ project, stats, locale, priority = false }: Projec
                     ) : null}
                 </div>
 
-                <h3 className="text-lg font-semibold tracking-tight text-fg group-hover:text-accent">
+                <h2 className="text-lg font-semibold tracking-tight text-fg group-hover:text-accent">
                     {project.name}
-                </h3>
+                </h2>
                 <p className="line-clamp-2 text-sm text-fg-muted">
                     {localized(project.tagline, locale)}
                 </p>

@@ -52,5 +52,29 @@ export default defineConfig([
         files: ["scripts/**/*.mjs", "*.config.{mjs,ts}"],
         rules: { "no-console": "off" },
     },
+    {
+        // Bundle budget: zod (91 KB gz) and server env must never reach the browser.
+        // Lighthouse mobile 2026-09-15: a single `clientEnv` import cost ~1 s of LCP.
+        files: ["src/components/**/*.tsx", "src/app/**/*.tsx"],
+        ignores: ["src/app/**/page.tsx", "src/app/**/layout.tsx", "src/app/**/route.ts"],
+        rules: {
+            "no-restricted-imports": [
+                "error",
+                {
+                    paths: [
+                        {
+                            name: "zod",
+                            message:
+                                "zod is server-only. Validate in a Server Action / route and pass results down; client env comes from @/lib/env.client.",
+                        },
+                        {
+                            name: "@/lib/env",
+                            message: "Use @/lib/env.client in components (no zod in the browser).",
+                        },
+                    ],
+                },
+            ],
+        },
+    },
     prettier,
 ]);

@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
     reactCompiler: true,
     cacheComponents: true,
     typedRoutes: true,
+    experimental: {
+        // Tailwind CSS is ~13 KB; inlining removes a render-blocking round trip
+        // (Lighthouse mobile 2026-09-15: 154 ms). Portfolio = mostly first visits.
+        inlineCss: true,
+    },
     images: {
         remotePatterns: [
             { protocol: "https", hostname: "avatars.githubusercontent.com" },

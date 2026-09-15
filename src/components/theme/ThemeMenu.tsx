@@ -2,7 +2,6 @@
 
 import { useEffect, useId, useRef, useState, type ComponentType, type SVGProps } from "react";
 import { useTranslations } from "next-intl";
-import { AnimatePresence, motion } from "motion/react";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { ACCENTS, MODES, SURFACES, type Accent, type Mode, type Surface } from "@/lib/theme";
@@ -148,91 +147,83 @@ export function ThemeMenu({ className }: { className?: string }) {
                 <TriggerIcon className="size-[18px]" aria-hidden />
             </button>
 
-            <AnimatePresence>
-                {open ? (
-                    <motion.div
-                        key="theme-panel"
-                        ref={panelRef}
-                        id={id}
-                        role="dialog"
-                        aria-label={t("label")}
-                        initial={{ opacity: 0, scale: 0.96, y: -4 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.96, y: -4 }}
-                        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                        style={{ transformOrigin: "top right" }}
-                        className="surface absolute top-full right-0 z-50 mt-2 w-72 rounded-card p-4 shadow-card"
-                    >
-                        <div className="flex flex-col gap-4">
-                            <fieldset className="flex flex-col gap-2">
-                                <legend className="mb-2 font-mono text-[11px] tracking-[0.16em] text-fg-subtle uppercase">
-                                    {t("mode")}
-                                </legend>
-                                <Segmented<Mode>
-                                    label={t("mode")}
-                                    value={theme.mode}
-                                    options={MODES}
-                                    onChange={theme.setMode}
-                                    render={(m) => {
-                                        const Icon = MODE_ICON[m];
-                                        return (
-                                            <>
-                                                <Icon className="size-3.5" aria-hidden />
-                                                <span>{t(m)}</span>
-                                            </>
-                                        );
-                                    }}
-                                />
-                            </fieldset>
+            {open ? (
+                <div
+                    ref={panelRef}
+                    id={id}
+                    role="dialog"
+                    aria-label={t("label")}
+                    className="pop-in surface absolute top-full right-0 z-50 mt-2 w-72 origin-top-right rounded-card p-4 shadow-elev-3"
+                >
+                    <div className="flex flex-col gap-4">
+                        <fieldset className="flex flex-col gap-2">
+                            <legend className="mb-2 font-mono text-[11px] tracking-[0.16em] text-fg-subtle uppercase">
+                                {t("mode")}
+                            </legend>
+                            <Segmented<Mode>
+                                label={t("mode")}
+                                value={theme.mode}
+                                options={MODES}
+                                onChange={theme.setMode}
+                                render={(m) => {
+                                    const Icon = MODE_ICON[m];
+                                    return (
+                                        <>
+                                            <Icon className="size-3.5" aria-hidden />
+                                            <span>{t(m)}</span>
+                                        </>
+                                    );
+                                }}
+                            />
+                        </fieldset>
 
-                            <div>
-                                <p className="mb-2 font-mono text-[11px] tracking-[0.16em] text-fg-subtle uppercase">
-                                    {t("accent")}
-                                </p>
-                                <div
-                                    role="group"
-                                    aria-label={t("accent")}
-                                    className="grid grid-cols-6 gap-2"
-                                >
-                                    {ACCENTS.map((a) => {
-                                        const active = a === theme.accent;
-                                        return (
-                                            <button
-                                                key={a}
-                                                type="button"
-                                                aria-pressed={active}
-                                                aria-label={t(`accents.${a}`)}
-                                                title={t(`accents.${a}`)}
-                                                onClick={() => theme.setAccent(a)}
-                                                className={cn(
-                                                    "flex aspect-square min-h-9 items-center justify-center rounded-full ring-offset-2 ring-offset-surface transition-transform hover:scale-110",
-                                                    active ? "ring-2 ring-fg" : "ring-1 ring-line",
-                                                )}
-                                                style={{
-                                                    background: `oklch(0.7 0.18 ${ACCENT_HUE[a]})`,
-                                                }}
-                                            />
-                                        );
-                                    })}
-                                </div>
+                        <div>
+                            <p className="mb-2 font-mono text-[11px] tracking-[0.16em] text-fg-subtle uppercase">
+                                {t("accent")}
+                            </p>
+                            <div
+                                role="group"
+                                aria-label={t("accent")}
+                                className="grid grid-cols-6 gap-2"
+                            >
+                                {ACCENTS.map((a) => {
+                                    const active = a === theme.accent;
+                                    return (
+                                        <button
+                                            key={a}
+                                            type="button"
+                                            aria-pressed={active}
+                                            aria-label={t(`accents.${a}`)}
+                                            title={t(`accents.${a}`)}
+                                            onClick={() => theme.setAccent(a)}
+                                            className={cn(
+                                                "flex aspect-square min-h-9 items-center justify-center rounded-full ring-offset-2 ring-offset-surface transition-transform hover:scale-110",
+                                                active ? "ring-2 ring-fg" : "ring-1 ring-line",
+                                            )}
+                                            style={{
+                                                background: `oklch(0.7 0.18 ${ACCENT_HUE[a]})`,
+                                            }}
+                                        />
+                                    );
+                                })}
                             </div>
-
-                            <fieldset>
-                                <legend className="mb-2 font-mono text-[11px] tracking-[0.16em] text-fg-subtle uppercase">
-                                    {t("surface")}
-                                </legend>
-                                <Segmented<Surface>
-                                    label={t("surface")}
-                                    value={theme.surface}
-                                    options={SURFACES}
-                                    onChange={theme.setSurface}
-                                    render={(s) => <span>{t(s)}</span>}
-                                />
-                            </fieldset>
                         </div>
-                    </motion.div>
-                ) : null}
-            </AnimatePresence>
+
+                        <fieldset>
+                            <legend className="mb-2 font-mono text-[11px] tracking-[0.16em] text-fg-subtle uppercase">
+                                {t("surface")}
+                            </legend>
+                            <Segmented<Surface>
+                                label={t("surface")}
+                                value={theme.surface}
+                                options={SURFACES}
+                                onChange={theme.setSurface}
+                                render={(s) => <span>{t(s)}</span>}
+                            />
+                        </fieldset>
+                    </div>
+                </div>
+            ) : null}
         </div>
     );
 }

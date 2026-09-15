@@ -81,6 +81,26 @@ See `tracker.csv` for the live list. Summary by area:
 - **H — Quality**: husky, vitest, playwright, size-limit, ci-local, Actions, Renovate, Lighthouse.
 - **I — Agent config**: instructions, skills, memory, hooks.
 - **J — Publicity**: press kit, outlets, articles, Wikidata.
+- **P — Performance**: Lighthouse 100×4 desktop, client bundle diet (no zod /
+  motion globally), HTML + asset diet, LHCI gate, mobile CWV.
+
+### 2026-09-15 — v2.2.0 → v2.3.0 design system + performance
+
+- **Design (owner round 3)**: orange default accent (7 accents), elevation
+  system `shadow-elev-1/2/3`, floating pill header, `CoverArt` deterministic
+  SVG covers, `DeviceShowcase` + weekly screenshot pipeline (`pnpm shots`,
+  Actions PR into `public/shots/`), ultra-wide `3xl` grids, touch ergonomics.
+- **Performance (measured, prod build)**: desktop 100/100/100/100 on all 5
+  routes (from 88–100 / 96 / 96 / 92). Root causes, in order of impact: motion
+  `initial="hidden"` on the LCP headline (1.7 s), skeleton-behind-GitHub on
+  grids (0.9 s), zod in the client bundle via `clientEnv` (100 KB gz), CoverArt
+  emitting hundreds of SVG nodes (321 KB HTML), 1.3 MB logo in the header,
+  `--fg-subtle` at 3.92:1. Mobile: A/BP/SEO 100, perf 91–100, TBT 250 → 40 ms.
+  Gates added so none can return: ESLint `no-restricted-imports` (zod/env in
+  components), pre-commit asset-size gate, size-limit 300 kB, LHCI hard
+  thresholds, `pnpm lh` local sweep.
+- **Wrong hypothesis recorded**: `preload: false` on the sans font made mobile
+  FCP _worse_ (1057 → 1360 ms); reverted. Mono `preload: false` helped.
 
 ## Session log
 

@@ -60,13 +60,15 @@ export function ProjectList({ items, locale, stackOptions }: ProjectListProps) {
                     {t("filters.results", { count: 0 })}
                 </p>
             ) : (
-                <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+                <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
                     <AnimatePresence mode="popLayout" initial={false}>
                         {visible.map(({ project, stats }, i) => (
                             <motion.li
                                 key={project.slug}
                                 layout
-                                initial={{ opacity: 0, scale: 0.96 }}
+                                // `initial={false}`: never start hidden — the first cards are the
+                                // page's LCP and must paint before hydration completes.
+                                initial={false}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.96 }}
                                 transition={{ ...baseTransition, duration: 0.35 }}
@@ -77,7 +79,6 @@ export function ProjectList({ items, locale, stackOptions }: ProjectListProps) {
                                     stats={stats}
                                     locale={locale}
                                     index={i}
-                                    priority={i < 4}
                                 />
                             </motion.li>
                         ))}

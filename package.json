@@ -1,6 +1,6 @@
 {
   "name": "dragoscatalin",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -23,6 +23,8 @@
     "size": "size-limit",
     "tracker:check": "node scripts/check-tracker.mjs",
     "shots": "node scripts/shots.mjs",
+    "assets:optimize": "node scripts/optimize-assets.mjs",
+    "lh": "node scripts/lighthouse-local.mjs",
     "ci:local": "node scripts/ci-local.mjs",
     "prepare": "husky"
   },

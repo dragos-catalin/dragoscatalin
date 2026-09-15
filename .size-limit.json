@@ -2,7 +2,7 @@
   {
     "name": "home first-load JS",
     "path": [".next/static/chunks/*.js"],
-    "limit": "400 KB",
+    "limit": "300 KB",
     "gzip": true
   }
 ]

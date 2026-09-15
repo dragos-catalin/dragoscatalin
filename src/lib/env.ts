@@ -1,6 +1,10 @@
 import { z } from "zod";
+import { clientEnv as rawClientEnv } from "./env.client";
 
-/** Server-side env, all optional: integrations must no-op cleanly when absent. */
+/**
+ * Server-side env, all optional: integrations must no-op cleanly when absent.
+ * Client components must import `@/lib/env.client` instead (no zod in the browser).
+ */
 const serverSchema = z.object({
     GITHUB_TOKEN: z.string().min(1).optional(),
     RESEND_API_KEY: z.string().min(1).optional(),
@@ -25,8 +29,4 @@ export const serverEnv = serverSchema.parse({
     SENTRY_DSN: process.env.SENTRY_DSN,
 });
 
-export const clientEnv = clientSchema.parse({
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
-    NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
-    NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
-});
+export const clientEnv = clientSchema.parse(rawClientEnv);

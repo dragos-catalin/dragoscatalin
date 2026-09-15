@@ -23,28 +23,28 @@ export async function Hero() {
                 className="hero-grid pointer-events-none absolute inset-0 -z-10"
             />
 
-            <div className="container-x relative z-10 px-6 py-24 lg:py-28">
+            <div className="container-x relative z-10 py-24 lg:py-28">
                 <HeroReveal className="mx-auto flex max-w-4xl flex-col items-center text-center">
-                    <HeroItem className="mb-10">
+                    <HeroItem index={0} className="mb-10">
                         <Badge variant="success" dot className="tracking-wide uppercase">
                             {t("available")}
                         </Badge>
                     </HeroItem>
 
-                    <HeroItem className="mb-6">
+                    <HeroItem index={1} lcp className="mb-6">
                         <h1 className="text-5xl leading-[0.95] font-extrabold tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl">
                             <span className="block text-fg">{t("titleLine1")}</span>
                             <span className="gradient-text block">{t("titleLine2")}</span>
                         </h1>
                     </HeroItem>
 
-                    <HeroItem className="mb-10">
+                    <HeroItem index={2} className="mb-10">
                         <p className="mx-auto max-w-xl text-base leading-relaxed text-pretty text-fg-muted sm:text-lg">
                             {t("subtitle")}
                         </p>
                     </HeroItem>
 
-                    <HeroItem className="mb-20 flex flex-col gap-3 sm:flex-row">
+                    <HeroItem index={3} className="mb-20 flex flex-col gap-3 sm:flex-row">
                         <ButtonLink
                             href="/projects"
                             variant="primary"
@@ -64,7 +64,7 @@ export async function Hero() {
                         </ButtonLink>
                     </HeroItem>
 
-                    <HeroItem className="w-full">
+                    <HeroItem index={4} className="w-full">
                         <TechStack label={t("techLabel")} />
                     </HeroItem>
                 </HeroReveal>

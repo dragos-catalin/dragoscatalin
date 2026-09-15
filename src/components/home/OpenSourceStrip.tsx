@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ArrowUpRight, Download } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Badge, ButtonLink, Section } from "@/components/ui";
@@ -18,11 +19,31 @@ function fallbackUrl(p: PackageRef) {
     }
 }
 
+/** Streams in behind the static list so the registry round-trip never blocks paint. */
+async function PackageLive({ pkg, locale }: { pkg: PackageRef; locale: string }) {
+    const t = await getTranslations("openSource");
+    const stats = await fetchPackageStats([pkg]);
+    const s = stats[`${pkg.registry}:${pkg.name}`];
+    if (!s) return null;
+    return (
+        <>
+            {s.weeklyDownloads != null ? (
+                <span className="inline-flex items-center gap-1 font-mono text-xs text-fg-muted">
+                    <Download className="size-3.5" aria-hidden="true" />
+                    {t("weekly", { count: s.weeklyDownloads.toLocaleString(locale) })}
+                </span>
+            ) : null}
+            {s.version ? (
+                <Badge variant="outline">{t("version", { version: s.version })}</Badge>
+            ) : null}
+        </>
+    );
+}
+
 export async function OpenSourceStrip() {
     const locale = await getLocale();
     const t = await getTranslations("openSource");
     const tc = await getTranslations("common");
-    const stats = await fetchPackageStats(allPackages);
 
     return (
         <Section
@@ -42,14 +63,13 @@ export async function OpenSourceStrip() {
             >
                 {allPackages.map((p) => {
                     const key = `${p.registry}:${p.name}`;
-                    const s = stats[key];
-                    const url = s?.url ?? fallbackUrl(p);
+                    const url = fallbackUrl(p);
                     return (
                         <li
                             key={key}
                             className="flex flex-wrap items-center gap-x-4 gap-y-2 px-5 py-3 transition-colors hover:bg-surface-raised"
                         >
-                            <span className="font-mono text-[10px] tracking-[0.16em] text-fg-subtle uppercase">
+                            <span className="font-mono text-[11px] tracking-[0.16em] text-fg-subtle uppercase">
                                 {p.registry}
                             </span>
                             <a
@@ -66,19 +86,9 @@ export async function OpenSourceStrip() {
                                 <span className="sr-only">{tc("external")}</span>
                             </a>
                             <span className="ml-auto flex items-center gap-3">
-                                {s?.weeklyDownloads != null ? (
-                                    <span className="inline-flex items-center gap-1 font-mono text-xs text-fg-muted">
-                                        <Download className="size-3.5" aria-hidden="true" />
-                                        {t("weekly", {
-                                            count: s.weeklyDownloads.toLocaleString(locale),
-                                        })}
-                                    </span>
-                                ) : null}
-                                {s?.version ? (
-                                    <Badge variant="outline">
-                                        {t("version", { version: s.version })}
-                                    </Badge>
-                                ) : null}
+                                <Suspense fallback={null}>
+                                    <PackageLive pkg={p} locale={locale} />
+                                </Suspense>
                             </span>
                         </li>
                     );

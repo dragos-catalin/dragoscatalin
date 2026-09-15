@@ -52,7 +52,7 @@ async function buildFeed(): Promise<string> {
         link: site.url,
         language: "en",
         image: site.avatar,
-        favicon: `${site.url}/favicon.ico`,
+        favicon: `${site.url}/icon-192.png`,
         copyright: `© ${new Date().getFullYear()} ${site.fullName}`,
         updated: items[0]?.date ?? new Date(),
         feedLinks: { rss: `${site.url}/feed.xml` },

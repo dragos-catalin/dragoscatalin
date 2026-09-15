@@ -56,7 +56,6 @@ export default async function AboutPage({ params }: { params: Params }) {
                             alt={t("avatarAlt")}
                             width={160}
                             height={160}
-                            priority
                             className="size-40 rounded-full object-cover"
                         />
                     </div>

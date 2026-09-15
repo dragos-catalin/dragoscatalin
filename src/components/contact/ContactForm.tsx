@@ -7,7 +7,7 @@ import { Turnstile } from "@marsidev/react-turnstile";
 import { contactAction, type ContactState } from "@/app/actions/contact";
 import { Button } from "@/components/ui";
 import { useTheme } from "@/components/theme/ThemeProvider";
-import { clientEnv } from "@/lib/env";
+import { clientEnv } from "@/lib/env.client";
 import { site } from "@/lib/site";
 
 const initial: ContactState = { ok: false };

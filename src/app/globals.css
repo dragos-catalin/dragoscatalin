@@ -54,6 +54,12 @@
     --container-max: 88rem;
 }
 
+/* Breakpoints must live in a non-inline @theme to generate variants. */
+@theme {
+    /* Extra breakpoint for >21:9 monitors (2200px+). */
+    --breakpoint-3xl: 137.5rem;
+}
+
 /* --- Accent hue per data-accent (OKLCH). counter = hue + 140deg ----------- */
 :root {
     --accent-h: 50;
@@ -136,7 +142,8 @@
     --surface-raised: oklch(0.21 0.028 272);
     --fg: oklch(0.95 0.015 80);
     --fg-muted: oklch(0.72 0.02 272);
-    --fg-subtle: oklch(0.55 0.02 272);
+    /* ≥ 4.5:1 on --bg / --surface / --surface-raised (WCAG AA small text). */
+    --fg-subtle: oklch(0.62 0.02 272);
     --line: oklch(0.26 0.02 272);
     --line-strong: oklch(0.34 0.02 272);
 
@@ -210,6 +217,43 @@ body {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
     border-radius: 4px;
+}
+
+/* --- Native-app feel on touch devices ------------------------------------- */
+@media (hover: none) and (pointer: coarse) {
+    html {
+        -webkit-tap-highlight-color: transparent;
+        overscroll-behavior-y: none;
+    }
+
+    body {
+        touch-action: manipulation; /* no double-tap zoom delay */
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* --- Ultra-wide (>21:9) — content stays readable, background fills -------- */
+@media (min-width: 2200px) {
+    :root {
+        --container-max: 104rem;
+    }
+
+    html {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 3000px) {
+    :root {
+        --container-max: 120rem;
+    }
+
+    html {
+        font-size: 18px;
+    }
 }
 
 /* --- Components ------------------------------------------------------------ */
@@ -326,7 +370,47 @@ body {
         opacity: 0.05;
     }
 
+    /* Hero entrance: items rise with a CSS stagger. The headline (index 1) gets
+       NO opacity animation so the LCP element paints in the first frame. */
+    .hero-item {
+        animation: hero-item-in 0.6s var(--ease-out-expo) both;
+        animation-delay: calc(var(--i, 0) * 110ms);
+    }
+
+    .hero-item[data-lcp] {
+        animation-name: hero-item-rise; /* transform only, stays visible */
+    }
+
+    @keyframes hero-item-in {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+    }
+
+    @keyframes hero-item-rise {
+        from {
+            transform: translateY(12px);
+        }
+    }
+
     /* Pills fade in with a per-item CSS delay — no JS timers, no layout thrash. */
+    /* Overlay entrances (CSS-only; replaced motion/react in the global bundle). */
+    .sheet-in {
+        animation: fade-in 0.2s var(--ease-out-expo) both;
+    }
+
+    .pop-in {
+        animation: pop-in 0.18s var(--ease-out-expo) both;
+    }
+
+    @keyframes pop-in {
+        from {
+            opacity: 0;
+            transform: translateY(-4px) scale(0.96);
+        }
+    }
+
     .hero-pill {
         opacity: 0;
         transform: translateY(8px);
@@ -414,6 +498,12 @@ body {
     }
 
     @media (prefers-reduced-motion: reduce) {
+        .hero-item,
+        .sheet-in,
+        .pop-in {
+            animation: none;
+        }
+
         .hero-pill {
             animation: none;
             opacity: 1;

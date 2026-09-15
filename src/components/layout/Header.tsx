@@ -3,7 +3,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { ThemeMenu } from "@/components/theme/ThemeMenu";
@@ -79,12 +78,11 @@ export function Header() {
                     aria-label={site.name}
                 >
                     <Image
-                        src="/logo.png"
+                        src="/logo-64.webp"
                         alt=""
                         width={32}
                         height={32}
                         className="size-8 rounded-lg"
-                        priority
                     />
                     <span className="text-lg font-bold tracking-tight text-fg">
                         Dragos<span className="text-accent">.</span>
@@ -140,59 +138,46 @@ export function Header() {
                 </div>
             </div>
 
-            <AnimatePresence mode="wait">
-                {open ? (
-                    <motion.div
-                        key="mobile-sheet"
-                        id={sheetId}
-                        role="dialog"
-                        aria-modal="true"
-                        aria-label={t("menu")}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed inset-0 top-[calc(5.25rem+env(safe-area-inset-top))] z-40 flex flex-col rounded-t-card bg-bg md:hidden"
-                    >
-                        <nav
-                            aria-label={t("menu")}
-                            className="container-x flex flex-1 flex-col py-6"
-                        >
-                            <ul className="flex flex-col gap-1">
-                                {NAV.map((item, i) => {
-                                    const active = isActive(pathname, item.href);
-                                    return (
-                                        <motion.li
-                                            key={item.key}
-                                            initial={{ opacity: 0, y: 12 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{
-                                                delay: 0.04 * i,
-                                                duration: 0.3,
-                                                ease: [0.16, 1, 0.3, 1],
-                                            }}
+            {/* CSS-only entrance (see .sheet-in / .hero-item in globals.css): motion/react was
+                44 KB gz in EVERY page's bundle just for this sheet (Lighthouse mobile 2026-09-15). */}
+            {open ? (
+                <div
+                    id={sheetId}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={t("menu")}
+                    className="sheet-in fixed inset-0 top-[calc(5.25rem+env(safe-area-inset-top))] z-40 flex flex-col rounded-t-card bg-bg md:hidden"
+                >
+                    <nav aria-label={t("menu")} className="container-x flex flex-1 flex-col py-6">
+                        <ul className="flex flex-col gap-1">
+                            {NAV.map((item, i) => {
+                                const active = isActive(pathname, item.href);
+                                return (
+                                    <li
+                                        key={item.key}
+                                        className="hero-item"
+                                        style={{ "--i": i } as React.CSSProperties}
+                                    >
+                                        <Link
+                                            href={item.href}
+                                            aria-current={active ? "page" : undefined}
+                                            onClick={() => setOpen(false)}
+                                            className={cn(
+                                                "flex min-h-14 items-center rounded-card px-4 text-2xl font-bold tracking-tight transition-colors",
+                                                active
+                                                    ? "bg-accent-soft text-accent"
+                                                    : "text-fg hover:bg-surface-raised",
+                                            )}
                                         >
-                                            <Link
-                                                href={item.href}
-                                                aria-current={active ? "page" : undefined}
-                                                onClick={() => setOpen(false)}
-                                                className={cn(
-                                                    "flex min-h-14 items-center rounded-card px-4 text-2xl font-bold tracking-tight transition-colors",
-                                                    active
-                                                        ? "bg-accent-soft text-accent"
-                                                        : "text-fg hover:bg-surface-raised",
-                                                )}
-                                            >
-                                                {t(item.key)}
-                                            </Link>
-                                        </motion.li>
-                                    );
-                                })}
-                            </ul>
-                        </nav>
-                    </motion.div>
-                ) : null}
-            </AnimatePresence>
+                                            {t(item.key)}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </nav>
+                </div>
+            ) : null}
         </header>
     );
 }

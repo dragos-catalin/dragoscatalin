@@ -24,16 +24,19 @@ Node ≥ 22.22, pnpm ≥ 10 (`packageManager` pnpm@12). **Always pnpm.**
 
 ## Commands
 
-| Command                       | What                                                                 |
-| ----------------------------- | -------------------------------------------------------------------- |
-| `pnpm dev`                    | Next dev on **port 24789** (VS Code task "Start Dev Server")         |
-| `pnpm lint` / `pnpm lint:fix` | `eslint .` (flat config)                                             |
-| `pnpm typecheck`              | `tsc --noEmit` (tsc = TS 7.0.2)                                      |
-| `pnpm test`                   | Vitest (registry, utils, i18n)                                       |
-| `pnpm test:e2e`               | Playwright smoke + axe                                               |
-| `pnpm size`                   | size-limit budget on first-load JS                                   |
-| `pnpm tracker:check`          | `scripts/check-tracker.mjs` — CSV field count + evidence paths exist |
-| `pnpm ci:local`               | `scripts/ci-local.mjs` — whole pipeline in WSL/Docker                |
+| Command                       | What                                                                   |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| `pnpm dev`                    | Next dev on **port 24789** (VS Code task "Start Dev Server")           |
+| `pnpm lint` / `pnpm lint:fix` | `eslint .` (flat config)                                               |
+| `pnpm typecheck`              | `tsc --noEmit` (tsc = TS 7.0.2)                                        |
+| `pnpm test`                   | Vitest (registry, utils, i18n)                                         |
+| `pnpm test:e2e`               | Playwright smoke + axe                                                 |
+| `pnpm size`                   | size-limit budget on first-load JS                                     |
+| `pnpm tracker:check`          | `scripts/check-tracker.mjs` — CSV field count + evidence paths exist   |
+| `pnpm ci:local`               | `scripts/ci-local.mjs` — whole pipeline in WSL/Docker                  |
+| `pnpm lh`                     | Local Lighthouse sweep vs a running prod server (`-- --preset mobile`) |
+| `pnpm shots`                  | Playwright screenshots of live projects into `public/shots/`           |
+| `pnpm assets:optimize`        | Regenerate logo/icon variants from `public/logo.png` (sharp)           |
 
 ## Hard rules
 
@@ -83,6 +86,22 @@ data-accent data-surface>` (`src/lib/theme.ts`: MODES/ACCENTS/SURFACES).
   indicators.
 - (i) `ViewTransition` is a stable named export from `react` in 19.3 (not `unstable_`).
 - OG images (`src/lib/og.tsx`) must use hex colours — satori has no oklch.
+
+## Performance contract (verified 2026-09-15)
+
+- Lighthouse desktop **100/100/100/100** on `/`, `/projects`, `/projects/[slug]`,
+  `/about`, `/open-source`; CI gate in `lighthouserc.json` (perf ≥ 98 median,
+  LCP ≤ 1.2 s, CLS ≤ 0.05, TBT ≤ 100 ms, no console errors).
+- **No zod or `@/lib/env` in client components** (ESLint error). Client env
+  comes from `@/lib/env.client`; shots schema lives in `shots.schema.ts`.
+- **No `motion/react` in globally-mounted components** (header, theme, layout):
+  use CSS keyframes (`.hero-item`, `.sheet-in`, `.pop-in`). Motion is allowed
+  in route-local components only.
+- Anything awaiting network (GitHub, npm) renders behind `<Suspense>` with the
+  registry-driven markup as the fallback — never a skeleton for LCP content.
+- Staged assets > 300 KB fail pre-commit (`public/logo.png` allowlisted for
+  the press kit). First-load JS budget 300 kB gz (`.size-limit.json`).
+- Only the true LCP image gets `priority`; the mono font is not preloaded.
 
 ## Verification (non-negotiable)
 

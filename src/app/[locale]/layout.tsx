@@ -21,12 +21,23 @@ const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin", "latin-ext"],
     display: "swap",
+    // Keep preload: measured 2026-09-15, `preload: false` here made mobile FCP
+    // worse (1057 → 1360 ms) because the swap happens later. Mono is not preloaded.
 });
 const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
     subsets: ["latin"],
     display: "swap",
+    // Only small labels use mono; preloading it delayed mobile LCP (Lighthouse 2026-09-15).
+    preload: false,
+    // Metric-compatible fallback: without it the late swap shifted the stats
+    // panel (CLS 0.047 on /projects/[slug], Lighthouse mobile 2026-09-15).
+    adjustFontFallback: true,
+    fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 });
+
+// The Vercel scripts 404 (and log console errors) off-Vercel; only mount them where they work.
+const ON_VERCEL = Boolean(process.env.VERCEL);
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
@@ -58,7 +69,8 @@ export async function generateMetadata({
         },
         twitter: { card: "summary_large_image", title: t("title"), description: t("description") },
         robots: { index: true, follow: true },
-        icons: { icon: "/favicon.ico" },
+        // src/app/icon.png is picked up automatically; apple icon from /public.
+        icons: { apple: "/apple-icon.png" },
     };
 }
 
@@ -113,8 +125,12 @@ export default async function LocaleLayout({
                 </NextIntlClientProvider>
                 <PersonJsonLd />
                 <WebSiteJsonLd locale={locale} />
-                <Analytics />
-                <SpeedInsights />
+                {ON_VERCEL ? (
+                    <>
+                        <Analytics />
+                        <SpeedInsights />
+                    </>
+                ) : null}
             </body>
         </html>
     );
