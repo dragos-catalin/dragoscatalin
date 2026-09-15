@@ -21,6 +21,12 @@ test.describe("home", () => {
         expect(await hero.locator(".hero-pill").count()).toBeGreaterThanOrEqual(10);
         expect(await page.locator("canvas").count()).toBe(0);
 
+        // Fixed floating header: <main> must carry the offset so the h1 is never under it.
+        // (2026-09-15: exporting the class from a "use client" file rendered a function body.)
+        const headerBox = await page.locator("header").boundingBox();
+        const h1Box = await h1.boundingBox();
+        expect(headerBox && h1Box && h1Box.y >= headerBox.y + headerBox.height).toBe(true);
+
         const nav = page.getByRole("navigation").first();
         const links = nav.getByRole("link");
         expect(await links.count()).toBeGreaterThanOrEqual(4);

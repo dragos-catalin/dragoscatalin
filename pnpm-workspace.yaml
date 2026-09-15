@@ -1,8 +1,10 @@
 allowBuilds:
-  "@parcel/watcher": set this to true or false
-  "@sentry/cli": set this to true or false
-  "@swc/core": set this to true or false
-  unrs-resolver: set this to true or false
+  # Reviewed 2026-09-15. Native binaries needed at build time:
+  "@swc/core": true # Next.js compiler
+  unrs-resolver: true # eslint-import-resolver-typescript
+  "@sentry/cli": true # source-map upload when SENTRY_DSN is set
+  # Optional dev-only file watcher; Next.js has its own. No postinstall needed.
+  "@parcel/watcher": false
 minimumReleaseAgeExclude:
   - "@vitest/mocker@5.0.1"
   - "@vitest/spy@5.0.1"

@@ -21,4 +21,4 @@ Portfolio-only site. Read, in order:
 
 Path-scoped rules: [`.github/instructions/`](.github/instructions/)
 (`theme-tokens`, `i18n`, `seo-aeo`). Recipes: [`.github/skills/`](.github/skills/)
-— `add-project`, `theme-surface`, `release`.
+— `add-project`, `theme-surface`, `release`, `perf-audit`, `shots`.

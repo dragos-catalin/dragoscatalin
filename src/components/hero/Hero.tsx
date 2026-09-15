@@ -10,7 +10,7 @@ export async function Hero() {
     return (
         <section
             id="home"
-            className="relative isolate flex min-h-[100dvh] items-center justify-center overflow-hidden"
+            className="relative isolate flex min-h-[calc(100dvh-6rem)] items-center justify-center overflow-hidden md:min-h-[calc(100dvh-7rem)]"
         >
             {/* Ambient glow — static, GPU-cheap */}
             <div

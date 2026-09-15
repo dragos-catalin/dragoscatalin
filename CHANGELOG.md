@@ -6,6 +6,22 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.3.1] - 2026-09-15
+
+### Fixed
+
+- `<main>` lost its top padding under the fixed pill header: the offset class
+  was exported from the `"use client"` Header module, so the server rendered a
+  client-reference function body into `className`. Moved to
+  `header-offset.ts`; hero height now subtracts the offset; E2E asserts the h1
+  clears the header.
+
+### Added
+
+- Skills `perf-audit` (measure → read LCP breakdown → known causes → gate) and
+  `shots` (screenshot pipeline ops); theme-tokens instructions cover elevation,
+  the no-continuous-animation rule, CSS-first motion and ultra-wide.
+
 ## [2.3.0] - 2026-09-15
 
 Performance pass measured with Lighthouse against a production build (desktop

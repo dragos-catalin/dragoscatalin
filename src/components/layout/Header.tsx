@@ -19,7 +19,6 @@ const NAV = [
 ] as const;
 
 /** Top padding the page content needs so it does not hide under the fixed floating header. */
-export const HEADER_OFFSET_CLASS = "pt-24 md:pt-28";
 
 function isActive(pathname: string, href: string) {
     if (href === "/") return pathname === "/";
