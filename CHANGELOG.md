@@ -6,6 +6,21 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-09-15
+
+### Added
+
+- Registry round 2 after a full `E:\gh` scan, Vercel/DNS probe and owner
+  interview: 15 projects added (Titi, Dashy, Caelia, AFTI, Vitals, VS Remote
+  Chat, Circus, Tasks2, bancai, JucAI, Invitații, MancAI, EditAI, DEXAI,
+  aBridge); Nexus enriched with verified stack and surfaces. 36 projects total,
+  all derived surfaces (detail pages, sitemap, `llms.txt`, `/api/projects`,
+  OG images) follow automatically.
+
+### Removed
+
+- memorai-mcp and glass-mcp from the registry (owner decision).
+
 ### Changed
 
 - Design: reverted the experimental WebGL2 "constellation" hero and the

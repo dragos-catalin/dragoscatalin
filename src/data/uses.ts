@@ -202,8 +202,8 @@ export const usesSections: UsesSection[] = [
             {
                 name: "MCP servers",
                 note: {
-                    en: "memorai (memory), glass (Windows control), axiom (reasoning) — all on npm.",
-                    ro: "memorai (memorie), glass (control Windows), axiom (raționament) — toate pe npm.",
+                    en: "axiom (reasoning) on npm, plus the codai MCP memory server and Windows computer-use.",
+                    ro: "axiom (raționament) pe npm, plus serverul MCP de memorie codai și computer-use pe Windows.",
                 },
                 url: "https://www.npmjs.com/org/codai",
             },

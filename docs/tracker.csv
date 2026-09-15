@@ -11,6 +11,7 @@ B3,foundation,OKLCH tokens,"@theme inline tokens; semantic names",high,done,"src
 B4,foundation,Motion presets,"motion/react presets, reduced-motion aware",medium,done,"src/lib/motion.ts",
 B5,foundation,Responsive shell,"container queries, >21:9 max-width, mobile native feel, safe-area",high,done,"src/app/globals.css;src/components/layout/Header.tsx;src/components/layout/Footer.tsx",
 C1,data,Project registry,"src/data/projects.ts typed registry with statuses from interview",high,done,"src/data/projects.ts;src/data/types.ts",
+C4,data,Registry round 2,"E:\gh scan + Vercel/DNS probe + owner interview: +15 projects (titi dashy caelia afti vitals vsrchat circus tasks2 bancai jucai invitatii mancai editai dexai abridge), -2 (memorai glass), nexus enriched; visibility via gh repo view",high,done,"src/data/projects.ts;docs/TRACKER.md",36 projects
 C2,data,GitHub data layer,"GraphQL fetch in use cache cacheLife days; env-gated token; fallback static",high,done,"src/lib/github.ts",
 C3,data,Registry tests,"vitest: unique slugs, required fields, link policy for private",medium,done,"src/data/projects.test.ts;src/data/press.test.ts",40 tests pass
 D1,design,Hero (restored v1 look),"Centred headline + gradient line 2 + tech pills; static glow/grid; CSS-only stagger; WebGL constellation built then REJECTED by owner 2026-09-15 (visual regression + perf) and deleted",high,done,"src/components/hero/Hero.tsx;src/components/hero/TechStack.tsx;src/components/hero/HeroReveal.tsx;src/app/globals.css","Owner: no continuously animated objects anywhere"

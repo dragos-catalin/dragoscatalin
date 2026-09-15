@@ -28,28 +28,44 @@ Status values: `todo` · `doing` · `done` · `blocked` · `cancelled`.
 
 ## Project statuses (interview 2026-09-15)
 
-| Project                                                                        | Status on site                                                        | Link policy                             |
-| ------------------------------------------------------------------------------ | --------------------------------------------------------------------- | --------------------------------------- |
-| codai                                                                          | Flagship, live (codai.ro) — all surfaces                              | codai.ro + codai-ro/* repos             |
-| brivio                                                                         | Flagship, "Launching Q4 2026"                                         | brivio.ro, brivio-releases, SDK mirrors |
-| Datuvia (evocrm)                                                               | Large case study; client discontinued; Brivio is the bigger successor | none                                    |
-| metu                                                                           | Active alpha, in development                                          | github                                  |
-| money                                                                          | Private R&D, paper trading                                            | none                                    |
-| mmo / MuzicAI                                                                  | Live OSS, maintenance                                                 | muzicai.ro + github                     |
-| StudiAI                                                                        | Live, maintained                                                      | studiai.ro                              |
-| notai                                                                          | Live OSS, occasional updates                                          | notai.ro + github                       |
-| vmui                                                                           | Active OSS personal tool                                              | github                                  |
-| HIDE                                                                           | Active research, "experimental, unaudited"                            | github + npm                            |
-| gta-nexus                                                                      | Active private case study                                             | none                                    |
-| GangGPT                                                                        | Archived OSS                                                          | github                                  |
-| TikSee                                                                         | Active side project, in development                                   | github                                  |
-| notalone                                                                       | Research                                                              | github                                  |
-| workspace-ai                                                                   | OSS tooling                                                           | github                                  |
-| circuit-tracks-mwrty                                                           | Hobby / hardware                                                      | none (private)                          |
-| npm libs (memorai-mcp, glass-mcp, axiom-mcp, firewand, btpay, stripe-firebase) | Open-source libraries                                                 | npm + github                            |
-| metric-time                                                                    | Fun                                                                   | GH pages                                |
-| vsrchat, resolve-action, pgp, editai, mancai                                   | Omitted                                                               | —                                       |
-| Other 2025 repos                                                               | Collapsed "Archive" timeline                                          | github where public                     |
+| Project                                                     | Status on site                                                        | Link policy                             |
+| ----------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------- |
+| codai                                                       | Flagship, live (codai.ro) — all surfaces                              | codai.ro + codai-ro/* repos             |
+| brivio                                                      | Flagship, "Launching Q4 2026"                                         | brivio.ro, brivio-releases, SDK mirrors |
+| Datuvia (evocrm)                                            | Large case study; client discontinued; Brivio is the bigger successor | none                                    |
+| metu                                                        | Active alpha, in development                                          | github                                  |
+| money                                                       | Private R&D, paper trading                                            | none                                    |
+| mmo / MuzicAI                                               | Live OSS, maintenance                                                 | muzicai.ro + github                     |
+| StudiAI                                                     | Live, maintained                                                      | studiai.ro                              |
+| notai                                                       | Live OSS, occasional updates                                          | notai.ro + github                       |
+| vmui                                                        | Active OSS personal tool                                              | github                                  |
+| HIDE                                                        | Active research, "experimental, unaudited"                            | github + npm                            |
+| gta-nexus                                                   | Active private case study                                             | none                                    |
+| GangGPT                                                     | Archived OSS                                                          | github                                  |
+| TikSee                                                      | Active side project, in development                                   | github                                  |
+| notalone                                                    | Research                                                              | github                                  |
+| workspace-ai                                                | OSS tooling                                                           | github                                  |
+| circuit-tracks-mwrty                                        | Hobby / hardware                                                      | none (private)                          |
+| npm libs (axiom-mcp, firewand, btpay, stripe-firebase)      | Open-source libraries (memorai-mcp, glass-mcp removed 2026-09-15)     | npm + github                            |
+| metric-time                                                 | Fun                                                                   | GH pages                                |
+| resolve-action, pgp, devbox, cursuri-studiai, selfie-screen | Omitted                                                               | —                                       |
+| Other 2025 repos                                            | Collapsed "Archive" timeline                                          | github where public                     |
+
+### Round 2 (interview 2026-09-15, after `E:\gh` scan + Vercel/DNS probe)
+
+Owner reviewed every repo with commits in 2025–2026. **Added (15)**: titi
+(launching, titi-xi.vercel.app), dashy (active), caelia (launching), afti
+(active client), vitals/remi (active), vsrchat (maintenance, public, VS
+Marketplace), circus (hobby, sibling of circuit-tracks), tasks2 (maintenance,
+public, Marketplace), bancai (case-study → Brivio successor), jucai
+(archived), invitatii (case-study), mancai / editai / dexai (2025 case
+studies — custom domains lapsed and Vercel aliases return 402, so no
+`website`), abridge (research, public). **Removed (2)**: memorai, glass.
+**Kept**: everything else, incl. datuvia, axiom, stripe-firebase, workspace-ai.
+gta-nexus confirmed == existing `nexus` (enriched, still private). Link policy
+enforced by `gh repo view --json visibility`: only PUBLIC repos get `repos`
+(vsrchat, vscode-tasks2, dexai, abridge); all others `visibility: "private"`.
+Registry now 36 projects; `src/data/projects.test.ts` 11/11.
 
 ## Work items
 
