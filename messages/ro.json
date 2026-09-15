@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "title": "Dragos Catalin — Developer full-stack & builder",
+    "description": "Proiectez și livrez produse AI-native cap-coadă: Next.js, Rust/Tauri, PostgreSQL, GCP. codai, Brivio, StudiAI, MuzicAI și 20+ repo-uri open source.",
+    "keywords": "Dragos Catalin,developer full-stack,Next.js,Rust,Tauri,gateway AI,codai,Brivio,România,open source"
+  },
+  "nav": {
+    "home": "Acasă",
+    "projects": "Proiecte",
+    "openSource": "Open source",
+    "about": "Despre",
+    "now": "Acum",
+    "uses": "Unelte",
+    "press": "Presă",
+    "contact": "Contact",
+    "menu": "Meniu",
+    "closeMenu": "Închide meniul",
+    "skipToContent": "Sari la conținut"
+  },
+  "theme": {
+    "label": "Aspect",
+    "mode": "Mod",
+    "system": "Sistem",
+    "light": "Luminos",
+    "dark": "Întunecat",
+    "accent": "Accent",
+    "surface": "Suprafață",
+    "solid": "Solid",
+    "glass": "Sticlă",
+    "contrast": "Contrast ridicat",
+    "accents": {
+      "violet": "Violet",
+      "indigo": "Indigo",
+      "cyan": "Cyan",
+      "emerald": "Smarald",
+      "amber": "Ambră",
+      "rose": "Roz"
+    }
+  },
+  "locale": {
+    "label": "Limbă",
+    "en": "English",
+    "ro": "Română"
+  },
+  "hero": {
+    "eyebrow": "Developer full-stack · România",
+    "title": "Construiesc lucruri pentru web.",
+    "titleLine1": "Construiesc lucruri",
+    "titleLine2": "pentru web.",
+    "subtitle": "Developer full-stack care creează aplicații web moderne, gateway-uri AI, aplicații desktop și SDK-uri — cu cod curat, design atent și soluții bazate pe AI.",
+    "ctaProjects": "Vezi proiectele",
+    "ctaContact": "Hai să vorbim",
+    "available": "Disponibil pentru proiecte",
+    "techLabel": "Tehnologii cu care lucrez",
+    "scroll": "Derulează"
+  },
+  "now": {
+    "title": "Acum",
+    "eyebrow": "Trimestrul acesta",
+    "focus": "Lansez Brivio, consolidez gateway-ul codai, livrez codai desktop 0.3 și țin MuzicAI și notai în formă.",
+    "lastActive": "Ultima activitate",
+    "contributions": "{count} contribuții în ultimul an",
+    "seeAll": "Status complet",
+    "shipping": "Livrez acum",
+    "activity": "Activitate",
+    "releases": "Versiuni recente",
+    "noReleases": "Datele despre versiuni nu sunt disponibile momentan.",
+    "noActivity": "Datele de activitate nu sunt disponibile momentan.",
+    "updated": "Pagină generată {date}",
+    "heatmapLabel": "Harta contribuțiilor GitHub din ultimul an",
+    "heatmapDay": "{count, plural, =0 {Nicio contribuție} one {# contribuție} other {# contribuții}} pe {date}"
+  },
+  "featured": {
+    "eyebrow": "Flagship",
+    "title": "Două platforme, multe suprafețe",
+    "explore": "Explorează {name}"
+  },
+  "projects": {
+    "eyebrow": "Lucrări",
+    "title": "Proiecte",
+    "subtitle": "Produse, platforme, biblioteci și cercetare — {count} intrări și mai vin.",
+    "viewAll": "Toate proiectele",
+    "filters": {
+      "all": "Toate",
+      "status": "Status",
+      "category": "Categorie",
+      "stack": "Stack",
+      "search": "Caută proiecte",
+      "clear": "Șterge filtrele",
+      "results": "{count, plural, =0 {Niciun proiect} one {# proiect} few {# proiecte} other {# de proiecte}}"
+    },
+    "status": {
+      "live": "Live",
+      "launching": "Se lansează",
+      "active": "În dezvoltare",
+      "research": "Cercetare",
+      "maintenance": "Întreținut",
+      "case-study": "Studiu de caz",
+      "archived": "Arhivat"
+    },
+    "category": {
+      "product": "Produs",
+      "platform": "Platformă",
+      "tool": "Unealtă",
+      "library": "Bibliotecă",
+      "research": "Cercetare",
+      "hobby": "Hobby",
+      "client": "Proiect client"
+    },
+    "private": "Privat",
+    "visitSite": "Vizitează site-ul",
+    "viewRepo": "Repository",
+    "stars": "{count} stele",
+    "forks": "{count} fork-uri",
+    "releases": "{count, plural, one {# versiune} few {# versiuni} other {# de versiuni}}",
+    "latestRelease": "Ultima versiune",
+    "lastPush": "Ultimul commit",
+    "surfaces": "Suprafețe",
+    "stack": "Stack",
+    "related": "Legate",
+    "relation": {
+      "successor": "Succedat de",
+      "predecessor": "Precedat de",
+      "part-of": "Parte din",
+      "sibling": "Legat"
+    },
+    "story": {
+      "problem": "Problema",
+      "approach": "Abordarea",
+      "outcome": "Rezultatul"
+    },
+    "years": "{from}–{to}",
+    "yearsNow": "{from}–prezent",
+    "back": "Toate proiectele",
+    "notFound": "Proiectul nu a fost găsit",
+    "forks": "{count} fork-uri",
+    "license": "Licență",
+    "packages": "Pachete",
+    "more": "+{count}",
+    "noStats": "Statisticile live nu sunt disponibile",
+    "privateNote": "Proiect privat — codul sursă nu este public."
+  },
+  "openSource": {
+    "eyebrow": "Open source",
+    "title": "Cod pe care îl poți folosi azi",
+    "subtitle": "Biblioteci pe npm și PyPI, servere MCP, aplicații desktop cu versiuni semnate.",
+    "packages": "Pachete",
+    "repos": "Repository-uri",
+    "weekly": "{count}/săpt.",
+    "version": "v{version}",
+    "owner": "Proiect",
+    "registry": "Registru",
+    "package": "Pachet",
+    "downloads": "Descărcări",
+    "latest": "Ultima",
+    "stars": "Stele",
+    "forks": "Fork-uri",
+    "license": "Licență",
+    "noStats": "Statisticile live nu sunt disponibile",
+    "languagesLabel": "Repartiția limbajelor",
+    "viewAll": "Tot open source-ul"
+  },
+  "timeline": {
+    "eyebrow": "Cronologie",
+    "title": "Zece ani de livrat"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Hai să construim ceva",
+    "subtitle": "O idee de produs, un parteneriat tehnic sau o problemă grea — spune-mi despre ea.",
+    "copy": "Răspund la fiecare mesaj serios, de obicei într-o zi. Preferi async? Emailul e cel mai bun; pentru întrebări rapide mă găsești pe Discord.",
+    "name": "Nume",
+    "email": "Email",
+    "message": "Mesaj",
+    "send": "Trimite mesajul",
+    "sending": "Se trimite…",
+    "success": "Mulțumesc — răspund curând.",
+    "error": "Ceva n-a mers. Încearcă din nou sau scrie-mi direct pe email.",
+    "disabled": "Formularul e offline momentan — scrie-mi la {email}.",
+    "validation": {
+      "name": "Te rog introdu numele.",
+      "email": "Te rog introdu un email valid.",
+      "message": "Spune-mi puțin mai mult (cel puțin 20 de caractere)."
+    }
+  },
+  "about": {
+    "title": "Despre",
+    "eyebrow": "Cine",
+    "intro": "Sunt Dragos, developer full-stack din România. Construiesc produse cap-coadă — de la schema bazei de date și infrastructura cloud până la interfețe cu shadere — și construiesc fluxurile de agenți care mă ajută să livrez mai repede.",
+    "values": {
+      "title": "Cum lucrez",
+      "items": [
+        {
+          "title": "Verific, nu presupun",
+          "body": "Nimic nu e gata până nu rulează comanda de verificare și văd rezultatul. Praguri preînregistrate în cercetare, vectori de test înghețați în criptografie, Sharpe deflatat în trading."
+        },
+        {
+          "title": "Banii trebuie să se închidă",
+          "body": "Registre în partidă dublă, note contabile imutabile și jurnale de audit înlănțuite criptografic — într-un ERP și într-o economie de joc deopotrivă."
+        },
+        {
+          "title": "Fiecare suprafață",
+          "body": "Web, desktop, mobil, extensie, MCP, SDK. O funcționalitate nu e terminată până n-o are fiecare consumator."
+        },
+        {
+          "title": "Mereu ultima versiune stabilă",
+          "body": "Next.js 16, React 19, TypeScript 7, Tailwind 4, Rust/Tauri 2. Upgrade devreme, upgrade în felii."
+        },
+        {
+          "title": "Agent-native",
+          "body": "Reguli, skill-uri, hook-uri și memorie pentru agenții AI cu care lucrez, ca să decidă împreună cu mine — nu în locul meu."
+        },
+        {
+          "title": "România întâi, pregătit pentru UE",
+          "body": "e-Factura, ANAF, SAF-T, RON și cursuri BNR. Totul bilingv."
+        }
+      ]
+    },
+    "stack": {
+      "title": "Stack",
+      "body": "Next.js · React · TypeScript · Node · Hono · Rust · Tauri · Kotlin · Python · PostgreSQL · Drizzle · SQLite · GCP · Vercel · Terraform · Pulumi · Stripe · Playwright · Vitest"
+    },
+    "stats": {
+      "title": "În cifre",
+      "projects": "Proiecte",
+      "repos": "Repo-uri publice",
+      "packages": "Pachete publicate",
+      "years": "Ani pe GitHub"
+    },
+    "avatarAlt": "Portretul lui Dragos Catalin",
+    "cta": "Salută"
+  },
+  "uses": {
+    "title": "Unelte",
+    "eyebrow": "Tools",
+    "intro": "Hardware-ul, software-ul și serviciile din spatele muncii.",
+    "sections": {
+      "hardware": "Hardware",
+      "dev": "Dezvoltare",
+      "infra": "Infrastructură",
+      "ai": "AI"
+    }
+  },
+  "press": {
+    "title": "Kit de presă",
+    "eyebrow": "Presă",
+    "intro": "Biografii, descrieri de produse, logo-uri și date pentru jurnaliști, podcasteri și editori. Tot ce e aici poate fi citat.",
+    "bioShort": "Bio scurt",
+    "bioLong": "Bio lung",
+    "facts": "Date rapide",
+    "products": "Produse",
+    "assets": "Resurse",
+    "download": "Descarcă",
+    "contactPress": "Contact presă",
+    "copy": "Copiază",
+    "copied": "Copiat",
+    "copyFailed": "Copierea a eșuat",
+    "logo": "Logo",
+    "avatar": "Portret"
+  },
+  "footer": {
+    "rights": "© {year} Dragos Catalin Vladulescu",
+    "built": "Construit cu Next.js {next}, React {react} și un shader WebGL.",
+    "version": "v{version}",
+    "source": "Sursă",
+    "feed": "RSS",
+    "llms": "llms.txt"
+  },
+  "common": {
+    "loading": "Se încarcă",
+    "new": "Nou",
+    "learnMore": "Află mai mult",
+    "external": "(se deschide în tab nou)"
+  },
+  "notFound": {
+    "title": "Pagina nu există",
+    "body": "Pagina căutată nu există sau s-a mutat.",
+    "home": "Înapoi acasă"
+  }
+}

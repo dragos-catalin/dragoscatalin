@@ -1,45 +1,71 @@
-import React from "react";
+import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-    variant?: "default" | "success" | "warning" | "error" | "info";
-    size?: "sm" | "md" | "lg";
-    children: React.ReactNode;
+/** `muted` is an alias of `neutral`. */
+export type BadgeVariant =
+    "neutral" | "muted" | "accent" | "success" | "warning" | "danger" | "outline";
+
+const variants: Record<BadgeVariant, string> = {
+    neutral: "bg-surface-raised text-fg-muted border-line",
+    muted: "bg-surface-raised text-fg-muted border-line",
+    accent: "bg-accent-soft text-accent border-transparent",
+    success: "bg-success/12 text-success border-transparent",
+    warning: "bg-warning/14 text-warning border-transparent",
+    danger: "bg-danger/12 text-danger border-transparent",
+    outline: "bg-transparent text-fg-muted border-line-strong",
+};
+
+const dotColor: Record<BadgeVariant, string> = {
+    neutral: "bg-fg-subtle",
+    muted: "bg-fg-subtle",
+    accent: "bg-accent",
+    success: "bg-success",
+    warning: "bg-warning",
+    danger: "bg-danger",
+    outline: "bg-fg-muted",
+};
+
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
+    variant?: BadgeVariant;
+    /** Show a status dot. `"live"` pulses (disabled under prefers-reduced-motion). */
+    dot?: boolean | "live";
 }
 
-const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
-    ({ className, variant = "default", size = "md", children, ...props }, ref) => {
-        const variants = {
-            default: "bg-surface-raised text-muted border border-border",
-            success: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20",
-            warning: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20",
-            error: "bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20",
-            info: "bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-500/20",
-        };
-
-        const sizes = {
-            sm: "px-2 py-0.5 text-xs",
-            md: "px-2.5 py-0.5 text-xs",
-            lg: "px-3 py-1 text-sm",
-        };
-
-        return (
-            <span
-                ref={ref}
-                className={cn(
-                    "inline-flex items-center rounded-full font-medium",
-                    variants[variant],
-                    sizes[size],
-                    className
-                )}
-                {...props}
-            >
-                {children}
-            </span>
-        );
-    }
-);
-
-Badge.displayName = "Badge";
-
-export default Badge;
+export function Badge({
+    variant = "neutral",
+    dot = false,
+    className,
+    children,
+    ...rest
+}: BadgeProps) {
+    return (
+        <span
+            className={cn(
+                "inline-flex items-center gap-1.5 rounded-pill border px-2.5 py-0.5 text-xs font-medium leading-5 whitespace-nowrap",
+                variants[variant],
+                className,
+            )}
+            {...rest}
+        >
+            {dot ? (
+                <span className="relative flex size-2" aria-hidden>
+                    {dot === "live" ? (
+                        <span
+                            className={cn(
+                                "absolute inline-flex size-full rounded-full opacity-75 motion-safe:animate-ping",
+                                dotColor[variant],
+                            )}
+                        />
+                    ) : null}
+                    <span
+                        className={cn(
+                            "relative inline-flex size-2 rounded-full",
+                            dotColor[variant],
+                        )}
+                    />
+                </span>
+            ) : null}
+            {children}
+        </span>
+    );
+}

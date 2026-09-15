@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function InstagramIcon({ className = "h-6 w-6" }: { className?: string }) {
     return (
         <svg className={className} fill="currentColor" viewBox="0 0 24 24">

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    "group:allNonMajor",
+    "schedule:weekly",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "lockFileMaintenance": { "enabled": true, "schedule": ["before 6am on monday"] },
+  "postUpdateOptions": ["pnpmDedupe"],
+  "rangeStrategy": "pin",
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "description": "TypeScript is consumed via npm aliases; keep both alias targets moving together",
+      "matchPackageNames": ["typescript", "@typescript/typescript6"],
+      "groupName": "typescript"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    }
+  ]
+}

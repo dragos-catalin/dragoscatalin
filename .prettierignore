@@ -1,0 +1,10 @@
+.next
+out
+coverage
+node_modules
+pnpm-lock.yaml
+.copilot-tmp
+playwright-report
+test-results
+.vitest
+docs/tracker.csv

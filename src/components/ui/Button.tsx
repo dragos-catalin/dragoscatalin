@@ -1,94 +1,59 @@
-import React from "react";
+import type { ButtonHTMLAttributes, ComponentProps, ReactNode } from "react";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
-export interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "primary" | "secondary" | "outline" | "ghost" | "link" | "danger";
-    size?: "sm" | "md" | "lg";
-    isLoading?: boolean;
-    children: React.ReactNode;
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "link";
+export type ButtonSize = "sm" | "md" | "lg";
+
+const base =
+    "inline-flex items-center justify-center gap-2 rounded-pill font-medium whitespace-nowrap transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out-expo select-none disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]";
+
+const variants: Record<ButtonVariant, string> = {
+    primary: "bg-accent text-accent-fg shadow-glow-sm hover:bg-accent-strong",
+    secondary: "surface text-fg hover:border-line-strong hover:bg-surface-raised",
+    ghost: "text-fg-muted hover:bg-accent-soft hover:text-fg",
+    link: "text-accent underline-offset-4 hover:underline rounded-none px-0",
+};
+
+const sizes: Record<ButtonSize, string> = {
+    sm: "min-h-9 px-3.5 text-sm",
+    md: "min-h-11 px-5 text-sm",
+    lg: "min-h-13 px-7 text-base",
+};
+
+export function buttonClasses(
+    variant: ButtonVariant = "primary",
+    size: ButtonSize = "md",
+    className?: string,
+) {
+    return cn(base, variants[variant], variant === "link" ? "min-h-0" : sizes[size], className);
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    (
-        {
-            className,
-            variant = "primary",
-            size = "md",
-            isLoading = false,
-            disabled,
-            children,
-            ...props
-        },
-        ref
-    ) => {
-        const baseStyles =
-            "inline-flex items-center justify-center rounded-xl font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50";
+interface StyleProps {
+    variant?: ButtonVariant;
+    size?: ButtonSize;
+    children?: ReactNode;
+}
 
-        const variants = {
-            primary:
-                "bg-foreground text-background hover:bg-foreground/90",
-            secondary:
-                "bg-surface-raised text-foreground hover:bg-surface-raised/80 border border-border",
-            outline:
-                "border border-border bg-transparent hover:bg-surface-raised text-foreground",
-            ghost:
-                "hover:bg-surface-raised text-foreground",
-            link: "text-accent underline-offset-4 hover:underline",
-            danger:
-                "bg-red-600 text-white hover:bg-red-700",
-        };
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & StyleProps;
 
-        const sizes = {
-            sm: "h-8 px-3 text-xs",
-            md: "h-10 px-4 text-sm",
-            lg: "h-12 px-6 text-sm",
-        };
+export function Button({
+    variant = "primary",
+    size = "md",
+    className,
+    type = "button",
+    ...rest
+}: ButtonProps) {
+    return <button type={type} className={buttonClasses(variant, size, className)} {...rest} />;
+}
 
-        return (
-            <button
-                className={cn(
-                    baseStyles,
-                    variants[variant],
-                    sizes[size],
-                    className
-                )}
-                disabled={disabled || isLoading}
-                ref={ref}
-                {...props}
-            >
-                {isLoading ? (
-                    <>
-                        <svg
-                            className="mr-2 h-4 w-4 animate-spin"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                        >
-                            <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                            />
-                            <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                            />
-                        </svg>
-                        Loading...
-                    </>
-                ) : (
-                    children
-                )}
-            </button>
-        );
-    }
-);
+export type ButtonLinkProps = ComponentProps<typeof Link> & StyleProps;
 
-Button.displayName = "Button";
-
-export default Button;
+export function ButtonLink({
+    variant = "primary",
+    size = "md",
+    className,
+    ...rest
+}: ButtonLinkProps) {
+    return <Link className={buttonClasses(variant, size, className)} {...rest} />;
+}

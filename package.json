@@ -1,44 +1,86 @@
 {
-    "name": "dragoscatalin",
-    "version": "1.0.0",
-    "private": true,
-    "scripts": {
-        "dev": "next dev --port 24789",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint"
-    },
-    "dependencies": {
-        "@lexical/html": "^0.42.0",
-        "@lexical/link": "^0.42.0",
-        "@lexical/list": "^0.42.0",
-        "@lexical/react": "^0.42.0",
-        "@lexical/rich-text": "^0.42.0",
-        "@types/node-forge": "^1.3.14",
-        "@web-eid/web-eid-library": "^2.0.2",
-        "clsx": "^2.1.1",
-        "firebase": "^12.11.0",
-        "framer-motion": "^12.38.0",
-        "html2canvas": "^1.4.1",
-        "jspdf": "^4.2.1",
-        "lexical": "^0.42.0",
-        "next": "^16.2.2",
-        "node-forge": "^1.4.0",
-        "pdf-lib": "^1.17.1",
-        "react": "^19.2.4",
-        "react-dom": "^19.2.4",
-        "react-hot-toast": "^2.6.0",
-        "tailwind-merge": "^3.5.0"
-    },
-    "devDependencies": {
-        "@tailwindcss/postcss": "^4.2.2",
-        "@types/node": "^25.5.2",
-        "@types/react": "^19.2.14",
-        "@types/react-dom": "^19.2.3",
-        "eslint": "^9",
-        "eslint-config-next": "^16.2.2",
-        "postcss": "^8.5.8",
-        "tailwindcss": "^4.2.2",
-        "typescript": "^5.9.3"
-    }
+  "name": "dragoscatalin",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.1",
+    "pnpm": ">=10"
+  },
+  "packageManager": "pnpm@12.3.4",
+  "scripts": {
+    "dev": "next dev --port 24789",
+    "build": "next build",
+    "start": "next start --port 24789",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "size": "size-limit",
+    "tracker:check": "node scripts/check-tracker.mjs",
+    "ci:local": "node scripts/ci-local.mjs",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@marsidev/react-turnstile": "1.6.1",
+    "@sentry/nextjs": "10.74.0",
+    "@vercel/analytics": "2.0.1",
+    "@vercel/speed-insights": "2.0.0",
+    "clsx": "2.1.1",
+    "feed": "6.0.0",
+    "lucide-react": "1.46.0",
+    "motion": "13.3.0",
+    "next": "16.3.5",
+    "next-intl": "4.14.5",
+    "nuqs": "2.10.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "resend": "6.28.0",
+    "schema-dts": "2.0.0",
+    "tailwind-merge": "3.7.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@next/playwright": "16.3.5",
+    "@playwright/test": "1.63.0",
+    "@size-limit/file": "13.1.1",
+    "@tailwindcss/postcss": "4.3.3",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@types/node": "26.5.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "@vitejs/plugin-react": "6.1.1",
+    "@vitest/coverage-v8": "5.0.1",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "10.10.0",
+    "eslint-config-next": "16.3.5",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "husky": "9.1.7",
+    "jsdom": "30.0.1",
+    "lint-staged": "17.5.1",
+    "postcss": "8.5.28",
+    "prettier": "3.9.6",
+    "size-limit": "13.1.1",
+    "tailwindcss": "4.3.3",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "vite": "8.3.0",
+    "vitest": "5.0.1"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,mjs,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
 }

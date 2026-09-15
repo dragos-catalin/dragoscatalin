@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "title": "Dragos Catalin — Full-stack developer & builder",
+    "description": "I design and ship AI-native products end to end: Next.js, Rust/Tauri, PostgreSQL, GCP. codai, Brivio, StudiAI, MuzicAI and 20+ open-source repos.",
+    "keywords": "Dragos Catalin,full-stack developer,Next.js,Rust,Tauri,AI gateway,codai,Brivio,Romania,open source"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "openSource": "Open source",
+    "about": "About",
+    "now": "Now",
+    "uses": "Uses",
+    "press": "Press",
+    "contact": "Contact",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to content"
+  },
+  "theme": {
+    "label": "Appearance",
+    "mode": "Mode",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark",
+    "accent": "Accent",
+    "surface": "Surface",
+    "solid": "Solid",
+    "glass": "Glass",
+    "contrast": "High contrast",
+    "accents": {
+      "violet": "Violet",
+      "indigo": "Indigo",
+      "cyan": "Cyan",
+      "emerald": "Emerald",
+      "amber": "Amber",
+      "rose": "Rose"
+    }
+  },
+  "locale": {
+    "label": "Language",
+    "en": "English",
+    "ro": "Română"
+  },
+  "hero": {
+    "eyebrow": "Full-stack developer · Romania",
+    "title": "I build things for the web.",
+    "titleLine1": "I build things",
+    "titleLine2": "for the web.",
+    "subtitle": "Full-stack developer crafting modern web applications, AI gateways, desktop apps and SDKs — with clean code, thoughtful design and AI-powered solutions.",
+    "ctaProjects": "View my work",
+    "ctaContact": "Get in touch",
+    "available": "Available for work",
+    "techLabel": "Technologies I work with",
+    "scroll": "Scroll"
+  },
+  "now": {
+    "title": "Now",
+    "eyebrow": "This quarter",
+    "focus": "Launching Brivio, hardening the codai gateway, shipping codai desktop 0.3 and keeping MuzicAI and notai healthy.",
+    "lastActive": "Last activity",
+    "contributions": "{count} contributions in the last year",
+    "seeAll": "Full status",
+    "shipping": "Currently shipping",
+    "activity": "Activity",
+    "releases": "Recent releases",
+    "noReleases": "Release data is unavailable right now.",
+    "noActivity": "Activity data is unavailable right now.",
+    "updated": "Page built {date}",
+    "heatmapLabel": "GitHub contribution heatmap for the last year",
+    "heatmapDay": "{count, plural, =0 {No contributions} one {# contribution} other {# contributions}} on {date}"
+  },
+  "featured": {
+    "eyebrow": "Flagships",
+    "title": "Two platforms, many surfaces",
+    "explore": "Explore {name}"
+  },
+  "projects": {
+    "eyebrow": "Work",
+    "title": "Projects",
+    "subtitle": "Products, platforms, libraries and research — {count} entries and counting.",
+    "viewAll": "All projects",
+    "filters": {
+      "all": "All",
+      "status": "Status",
+      "category": "Category",
+      "stack": "Stack",
+      "search": "Search projects",
+      "clear": "Clear filters",
+      "results": "{count, plural, =0 {No projects} one {# project} other {# projects}}"
+    },
+    "status": {
+      "live": "Live",
+      "launching": "Launching",
+      "active": "In development",
+      "research": "Research",
+      "maintenance": "Maintained",
+      "case-study": "Case study",
+      "archived": "Archived"
+    },
+    "category": {
+      "product": "Product",
+      "platform": "Platform",
+      "tool": "Tool",
+      "library": "Library",
+      "research": "Research",
+      "hobby": "Hobby",
+      "client": "Client work"
+    },
+    "private": "Private",
+    "visitSite": "Visit site",
+    "viewRepo": "Repository",
+    "stars": "{count} stars",
+    "forks": "{count} forks",
+    "releases": "{count, plural, one {# release} other {# releases}}",
+    "latestRelease": "Latest release",
+    "lastPush": "Last commit",
+    "surfaces": "Surfaces",
+    "stack": "Stack",
+    "related": "Related",
+    "relation": {
+      "successor": "Succeeded by",
+      "predecessor": "Preceded by",
+      "part-of": "Part of",
+      "sibling": "Related"
+    },
+    "story": {
+      "problem": "Problem",
+      "approach": "Approach",
+      "outcome": "Outcome"
+    },
+    "years": "{from}–{to}",
+    "yearsNow": "{from}–now",
+    "back": "All projects",
+    "notFound": "Project not found",
+    "forks": "{count} forks",
+    "license": "License",
+    "packages": "Packages",
+    "more": "+{count}",
+    "noStats": "Live stats unavailable",
+    "privateNote": "Private engagement — source not public."
+  },
+  "openSource": {
+    "eyebrow": "Open source",
+    "title": "Code you can use today",
+    "subtitle": "Libraries on npm and PyPI, MCP servers, desktop apps with signed releases.",
+    "packages": "Packages",
+    "repos": "Repositories",
+    "weekly": "{count}/week",
+    "version": "v{version}",
+    "viewAll": "All open source",
+    "owner": "Project",
+    "registry": "Registry",
+    "package": "Package",
+    "downloads": "Downloads",
+    "latest": "Latest",
+    "stars": "Stars",
+    "forks": "Forks",
+    "license": "License",
+    "noStats": "Live stats unavailable",
+    "languagesLabel": "Language breakdown"
+  },
+  "timeline": {
+    "eyebrow": "Timeline",
+    "title": "Ten years of shipping"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's build something",
+    "subtitle": "Product idea, technical partnership, or a hard problem — tell me about it.",
+    "copy": "I reply to every serious message, usually within a day. Prefer async? Email works best; for quick questions find me on Discord.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Thanks — I'll reply soon.",
+    "error": "Something went wrong. Try again or email me directly.",
+    "disabled": "The form is offline right now — email me at {email}.",
+    "validation": {
+      "name": "Please enter your name.",
+      "email": "Please enter a valid email.",
+      "message": "Tell me a bit more (at least 20 characters)."
+    }
+  },
+  "about": {
+    "title": "About",
+    "eyebrow": "Who",
+    "intro": "I'm Dragos, a full-stack developer from Romania. I build products end to end — from database schema and cloud infrastructure to shader-driven UIs — and I build the agent workflows that help me ship faster.",
+    "values": {
+      "title": "How I work",
+      "items": [
+        {
+          "title": "Verify, don't assume",
+          "body": "Nothing is done until the verifying command ran and I saw the output. Preregistered thresholds in research, frozen test vectors in crypto, deflated Sharpe in trading."
+        },
+        {
+          "title": "Money must balance",
+          "body": "Double-entry ledgers, immutable journal entries and hash-chained audit logs — in an ERP and in a game economy alike."
+        },
+        {
+          "title": "Every surface",
+          "body": "Web, desktop, mobile, extension, MCP, SDK. A feature isn't finished until every consumer has it."
+        },
+        {
+          "title": "Latest stable, always",
+          "body": "Next.js 16, React 19, TypeScript 7, Tailwind 4, Rust/Tauri 2. Upgrade early, upgrade in slices."
+        },
+        {
+          "title": "Agent-native",
+          "body": "Rules, skills, hooks and memory for the AI agents I work with, so they decide with me — not for me."
+        },
+        {
+          "title": "Romania first, EU ready",
+          "body": "e-Factura, ANAF, SAF-T, RON and BNR rates. Everything bilingual."
+        }
+      ]
+    },
+    "stack": {
+      "title": "Stack",
+      "body": "Next.js · React · TypeScript · Node · Hono · Rust · Tauri · Kotlin · Python · PostgreSQL · Drizzle · SQLite · GCP · Vercel · Terraform · Pulumi · Stripe · Playwright · Vitest"
+    },
+    "stats": {
+      "title": "In numbers",
+      "projects": "Projects",
+      "repos": "Public repositories",
+      "packages": "Published packages",
+      "years": "Years on GitHub"
+    },
+    "avatarAlt": "Portrait of Dragos Catalin",
+    "cta": "Say hello"
+  },
+  "uses": {
+    "title": "Uses",
+    "eyebrow": "Tools",
+    "intro": "The hardware, software and services behind the work.",
+    "sections": {
+      "hardware": "Hardware",
+      "dev": "Development",
+      "infra": "Infrastructure",
+      "ai": "AI"
+    }
+  },
+  "press": {
+    "title": "Press kit",
+    "eyebrow": "Press",
+    "intro": "Bios, product one-liners, logos and facts for journalists, podcasters and editors. Everything here may be quoted.",
+    "bioShort": "Short bio",
+    "bioLong": "Long bio",
+    "facts": "Quick facts",
+    "products": "Products",
+    "assets": "Assets",
+    "download": "Download",
+    "contactPress": "Press contact",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyFailed": "Copy failed",
+    "logo": "Logo",
+    "avatar": "Portrait"
+  },
+  "footer": {
+    "rights": "© {year} Dragos Catalin Vladulescu",
+    "built": "Built with Next.js {next}, React {react} and a WebGL shader.",
+    "version": "v{version}",
+    "source": "Source",
+    "feed": "RSS",
+    "llms": "llms.txt"
+  },
+  "common": {
+    "loading": "Loading",
+    "new": "New",
+    "learnMore": "Learn more",
+    "external": "(opens in a new tab)"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you're looking for doesn't exist or moved.",
+    "home": "Back home"
+  }
+}

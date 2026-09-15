@@ -8,6 +8,11 @@
 
 # testing
 /coverage
+/.vitest
+/playwright-report
+/test-results
+.size-limit-cache
+/.lighthouseci
 
 # next.js
 /.next/
@@ -35,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .pnpm-cache
+
+# agent scratch
+.copilot-tmp/
