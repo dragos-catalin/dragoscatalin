@@ -8,7 +8,7 @@ applyTo: "src/**/*.{tsx,css}"
 Source of truth: `src/app/globals.css` (`@theme inline`) and `docs/DESIGN.md`.
 Theme state is stamped on `<html>` pre-paint by `THEME_INIT_SCRIPT`
 (`src/lib/theme.ts`): `data-mode="dark|light"`,
-`data-accent="violet|indigo|cyan|emerald|amber|rose"`,
+`data-accent="orange|violet|indigo|cyan|emerald|amber|rose"` (default orange),
 `data-surface="solid|glass|contrast"`.
 
 ## Token vocabulary (use as Tailwind utilities: `bg-*`, `text-*`, `border-*`)

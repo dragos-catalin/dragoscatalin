@@ -99,3 +99,39 @@ gh variable delete CI_RUNNER
   production build. Re-measure with `pnpm size` after `pnpm build`.
 - Vitest coverage thresholds: statements 60 %, lines 60 % on `src/lib`,
   `src/data`, `src/i18n`.
+
+## Screenshots
+
+`.github/workflows/shots.yml` runs `scripts/shots.mjs` every Monday 05:00 UTC
+(and on `workflow_dispatch` with `only` / `force` inputs). Playwright captures
+every non-archived project that has a `website` (or an http(s) `surfaces[].url`)
+from `https://dragoscatalin.ro/api/projects`, at `desktop` 1440×900, `tablet`
+1024×1366, `mobile` 390×844 × `dark`/`light`, plus a `full-dark.jpg` full page
+capped at 4000 px. JPEG quality 82, no extra dependencies. Output goes to
+`public/shots/<slug>/<viewport>-<scheme>.jpg` and `public/shots/manifest.json`,
+which `src/lib/shots.ts` reads (Zod-validated) via `getShots` / `shotSrc` /
+`hasShots`. The workflow opens a PR on `chore/shots-refresh` with only
+`public/shots/**` staged.
+
+Local: `pnpm shots --dry-run --base http://localhost:24789` lists targets;
+`pnpm shots --only brivio --force` captures one project.
+
+### Authenticated internal pages — `shots.config.json`
+
+Optional file at repo root (JSON, so no comments):
+
+```json
+{
+  "brivio": {
+    "pages": [{ "name": "dashboard", "path": "/dashboard" }],
+    "storageStateSecret": "SHOTS_STATE_BRIVIO"
+  }
+}
+```
+
+- `pages[].name` → file prefix, `pages[].path` → resolved against the project URL;
+  captured as `<slug>/<name>-<viewport>-<scheme>.jpg`.
+- `storageStateSecret` names an env var holding a Playwright `storageState` JSON
+  (from `context.storageState()`); when present it is written to a temp file and
+  used for that project's contexts. GitHub cannot glob secrets, so each one must
+  be listed explicitly under `env:` in `shots.yml` (see the commented example).

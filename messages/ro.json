@@ -29,6 +29,7 @@
     "glass": "Sticlă",
     "contrast": "Contrast ridicat",
     "accents": {
+      "orange": "Portocaliu",
       "violet": "Violet",
       "indigo": "Indigo",
       "cyan": "Cyan",
@@ -109,6 +110,16 @@
     },
     "private": "Privat",
     "visitSite": "Vizitează site-ul",
+    "showcase": {
+      "title": "Pe orice ecran",
+      "device": "Dispozitiv",
+      "devices": { "desktop": "Desktop", "tablet": "Tabletă", "mobile": "Telefon" },
+      "schemes": { "dark": "întunecat", "light": "luminos" },
+      "showLight": "Arată modul luminos",
+      "showDark": "Arată modul întunecat",
+      "alt": "{name} pe {device}, mod {scheme}",
+      "captured": "Captură realizată la {date}"
+    },
     "viewRepo": "Repository",
     "stars": "{count} stele",
     "forks": "{count} fork-uri",

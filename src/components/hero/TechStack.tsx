@@ -71,7 +71,7 @@ export function TechStack({ label }: { label: string }) {
                     <li
                         key={tech.name}
                         style={{ "--i": i } as React.CSSProperties}
-                        className="hero-pill flex cursor-default items-center gap-1.5 rounded-pill border border-line bg-surface/80 px-3 py-1.5 text-xs font-medium text-fg-muted transition-[color,border-color,background-color,transform] duration-200 hover:border-accent/30 hover:bg-accent-soft hover:text-fg motion-safe:hover:-translate-y-0.5"
+                        className="hero-pill flex cursor-default items-center gap-1.5 rounded-pill border border-line bg-surface/80 px-3 py-1.5 text-xs font-medium text-fg-muted shadow-elev-1 transition-[color,border-color,background-color,box-shadow,transform] duration-200 hover:border-accent/30 hover:bg-accent-soft hover:text-fg hover:shadow-elev-2 motion-safe:hover:-translate-y-0.5"
                     >
                         {tech.icon}
                         {tech.name}

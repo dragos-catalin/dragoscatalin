@@ -35,6 +35,15 @@
     --shadow-glow: 0 0 40px var(--accent-glow), 0 0 120px var(--accent-glow);
     --shadow-glow-sm: 0 0 24px var(--accent-glow);
     --shadow-card: 0 1px 0 0 var(--line), 0 12px 40px -12px oklch(0 0 0 / 0.35);
+    /* Elevation system (owner: "3D" shadows on header/buttons/cards/chips).
+         Two stacked shadows (ambient + key) + a 1px inner highlight. */
+    --shadow-elev-1:
+        var(--elev-inset), 0 1px 2px var(--elev-key), 0 2px 8px -2px var(--elev-ambient);
+    --shadow-elev-2:
+        var(--elev-inset), 0 2px 6px var(--elev-key), 0 12px 28px -8px var(--elev-ambient);
+    --shadow-elev-3:
+        var(--elev-inset), 0 4px 12px var(--elev-key), 0 24px 56px -12px var(--elev-ambient),
+        0 0 0 1px var(--accent-ring);
 
     --radius-card: 1.25rem;
     --radius-pill: 999px;
@@ -47,8 +56,13 @@
 
 /* --- Accent hue per data-accent (OKLCH). counter = hue + 140deg ----------- */
 :root {
-    --accent-h: 300;
-    --accent-c: 0.19;
+    --accent-h: 50;
+    --accent-c: 0.18;
+}
+
+[data-accent="orange"] {
+    --accent-h: 50;
+    --accent-c: 0.18;
 }
 
 [data-accent="violet"] {
@@ -106,6 +120,11 @@
     --success: oklch(0.47 0.14 155);
     --warning: oklch(0.72 0.16 75);
     --danger: oklch(0.58 0.2 25);
+
+    --elev-key: oklch(0.2 0.02 272 / 0.1);
+    --elev-ambient: oklch(0.2 0.02 272 / 0.16);
+    --elev-inset: inset 0 1px 0 0 oklch(1 0 0 / 0.7);
+    --accent-ring: oklch(0.55 var(--accent-c) var(--accent-h) / 0.18);
 }
 
 /* --- Dark mode ------------------------------------------------------------- */
@@ -131,6 +150,11 @@
     --success: oklch(0.75 0.15 155);
     --warning: oklch(0.8 0.15 75);
     --danger: oklch(0.7 0.18 25);
+
+    --elev-key: oklch(0 0 0 / 0.45);
+    --elev-ambient: oklch(0 0 0 / 0.6);
+    --elev-inset: inset 0 1px 0 0 oklch(1 0 0 / 0.07);
+    --accent-ring: oklch(0.74 var(--accent-c) var(--accent-h) / 0.22);
 }
 
 /* --- Surface modes --------------------------------------------------------- */
@@ -319,6 +343,35 @@ body {
 
     .hero-scroll-dot {
         animation: hero-scroll 2s ease-in-out infinite;
+    }
+
+    /* Device frames for the screenshot showcase — pure CSS, no images. */
+    .device-frame {
+        border: 1px solid var(--line-strong);
+    }
+
+    .device-desktop {
+        border-radius: 0.75rem;
+        border-top-width: 1.5rem;
+        border-top-color: var(--surface-raised);
+    }
+
+    .device-tablet {
+        border-radius: 1.5rem;
+        border-width: 0.75rem;
+        border-color: var(--surface-raised);
+    }
+
+    .device-mobile {
+        border-radius: 2rem;
+        border-width: 0.6rem;
+        border-color: var(--surface-raised);
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
     }
 
     @keyframes hero-scroll {

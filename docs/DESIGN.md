@@ -21,7 +21,8 @@ Art direction contract. Every visual change is scored against this by the
 - **PALETTE (OKLCH)** — dark base `oklch(0.13 0.02 272)`, surface
   `oklch(0.17 0.025 272)`, text ivory `oklch(0.95 0.015 80)`. Light base
   `oklch(0.985 0.005 80)`, text `oklch(0.18 0.02 272)`. Accent = user-chosen
-  (default violet `oklch(0.72 0.19 300)`); cool counter = accent hue +140°.
+  (default **orange** `oklch(0.72 0.18 50)`, owner decision 2026-09-15); cool
+  counter = accent hue +140° (→ teal for orange).
 - **LIGHTING** — a single soft accent glow behind the headline; page-wide
   static mesh (`.page-mesh`: one diagonal accent→counter gradient + one radial
   glow at the top). Nothing moves.
@@ -45,7 +46,7 @@ Art direction contract. Every visual change is scored against this by the
 ## Theme system
 
 - `data-mode="dark|light"` on `<html>` (system resolved client-side pre-paint).
-- `data-accent="violet|indigo|cyan|emerald|amber|rose"`.
+- `data-accent="orange|violet|indigo|cyan|emerald|amber|rose"` (default orange).
 - `data-surface="solid|glass|contrast"` — glass adds backdrop blur +
   translucency to surfaces; contrast raises borders/text to AAA.
 - Tokens live in `src/app/globals.css` under `@theme inline`; components use

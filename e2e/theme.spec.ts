@@ -5,9 +5,19 @@ test.describe("theme", () => {
         await page.goto("/");
         const html = page.locator("html");
 
-        await page.locator("button[aria-haspopup='dialog']").first().click();
         const dialog = page.getByRole("dialog");
-        await expect(dialog).toBeVisible();
+        const trigger = page.locator("button[aria-haspopup='dialog']").first();
+        // Clicks before hydration are dropped by React; retry until the dialog is open.
+        await expect
+            .poll(
+                async () => {
+                    if (await dialog.isVisible()) return true;
+                    await trigger.click();
+                    return dialog.isVisible();
+                },
+                { timeout: 20_000 },
+            )
+            .toBe(true);
 
         await dialog.getByRole("radio", { name: "Light" }).click();
         await expect(html).toHaveAttribute("data-mode", "light");

@@ -1,29 +1,26 @@
 "use client";
 
-import { startTransition } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Languages } from "lucide-react";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
+/**
+ * Real anchor (progressive enhancement): works before hydration as a plain
+ * link and as a soft navigation after. `replace` keeps history clean.
+ */
 export function LocaleSwitcher({ className }: { className?: string }) {
     const t = useTranslations("locale");
     const locale = useLocale() as Locale;
-    const router = useRouter();
     const pathname = usePathname();
     const next: Locale = locale === "en" ? "ro" : "en";
 
-    const toggle = () => {
-        startTransition(() => {
-            router.replace(pathname, { locale: next });
-        });
-    };
-
     return (
-        <button
-            type="button"
-            onClick={toggle}
+        <Link
+            href={pathname}
+            locale={next}
+            replace
             aria-label={`${t("label")}: ${t(locale)} → ${t(next)}`}
             title={t(next)}
             className={cn(
@@ -33,6 +30,6 @@ export function LocaleSwitcher({ className }: { className?: string }) {
         >
             <Languages className="size-4" aria-hidden />
             <span>{locale}</span>
-        </button>
+        </Link>
     );
 }

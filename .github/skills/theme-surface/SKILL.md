@@ -35,7 +35,7 @@ Playwright snippet (put in `e2e/theme-matrix.spec.ts`):
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const ACCENTS = ["violet", "indigo", "cyan", "emerald", "amber", "rose"];
+const ACCENTS = ["orange", "violet", "indigo", "cyan", "emerald", "amber", "rose"];
 const MODES = ["dark", "light"];
 const SURFACES = ["solid", "glass", "contrast"];
 

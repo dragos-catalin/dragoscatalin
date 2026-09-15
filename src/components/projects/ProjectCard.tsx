@@ -6,6 +6,8 @@ import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui";
 import type { Project, RepoStats } from "@/data/types";
 import { coverGradient, coverTransitionName } from "./cover";
+import { CoverArt } from "./CoverArt";
+import { shotSrc } from "@/lib/shots";
 import { statusVariant } from "./status";
 
 export interface ProjectCardProps {
@@ -26,6 +28,8 @@ export function ProjectCard({ project, stats, locale, priority = false }: Projec
     const t = useTranslations("projects");
     const chips = project.stack.slice(0, MAX_CHIPS);
     const extra = project.stack.length - chips.length;
+    const shot = shotSrc(project.slug, "desktop-dark");
+    const coverSrc = project.cover ?? shot;
     const years = project.years.to
         ? t("years", { from: project.years.from, to: project.years.to })
         : t("yearsNow", { from: project.years.from });
@@ -33,29 +37,33 @@ export function ProjectCard({ project, stats, locale, priority = false }: Projec
     return (
         <Link
             href={`/projects/${project.slug}`}
-            className="group rounded-card surface gradient-border flex h-full flex-col overflow-hidden transition-transform duration-300 focus-visible:outline motion-safe:hover:-translate-y-1"
+            className="group rounded-card surface gradient-border flex h-full flex-col overflow-hidden shadow-elev-2 transition-[transform,box-shadow] duration-300 hover:shadow-elev-3 focus-visible:outline motion-safe:hover:-translate-y-1"
         >
             <ViewTransition name={coverTransitionName(project.slug)}>
                 <div
                     className="relative aspect-[16/10] overflow-hidden"
                     style={{ background: coverGradient(project.hue) }}
                 >
-                    {project.cover ? (
+                    {coverSrc ? (
                         <Image
-                            src={project.cover}
+                            src={coverSrc}
                             alt=""
                             fill
                             priority={priority}
                             sizes="(min-width: 1536px) 25vw, (min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
                             className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
                         />
+                    ) : (
+                        <CoverArt project={project} className="absolute inset-0 size-full" />
+                    )}
+                    {coverSrc ? (
+                        <span
+                            aria-hidden
+                            className="pointer-events-none absolute -right-2 bottom-1 select-none font-mono text-[clamp(2.5rem,8vw,4rem)] font-bold leading-none tracking-tight text-fg opacity-[0.08]"
+                        >
+                            {project.name}
+                        </span>
                     ) : null}
-                    <span
-                        aria-hidden
-                        className="pointer-events-none absolute -right-2 bottom-1 select-none font-mono text-[clamp(2.5rem,8vw,4rem)] font-bold leading-none tracking-tight text-fg opacity-[0.08]"
-                    >
-                        {project.name}
-                    </span>
                 </div>
             </ViewTransition>
 

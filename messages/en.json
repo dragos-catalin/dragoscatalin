@@ -29,6 +29,7 @@
     "glass": "Glass",
     "contrast": "High contrast",
     "accents": {
+      "orange": "Orange",
       "violet": "Violet",
       "indigo": "Indigo",
       "cyan": "Cyan",
@@ -109,6 +110,16 @@
     },
     "private": "Private",
     "visitSite": "Visit site",
+    "showcase": {
+      "title": "On every screen",
+      "device": "Device",
+      "devices": { "desktop": "Desktop", "tablet": "Tablet", "mobile": "Phone" },
+      "schemes": { "dark": "dark", "light": "light" },
+      "showLight": "Show light mode",
+      "showDark": "Show dark mode",
+      "alt": "{name} on {device}, {scheme} mode",
+      "captured": "Screenshot captured {date}"
+    },
     "viewRepo": "Repository",
     "stars": "{count} stars",
     "forks": "{count} forks",

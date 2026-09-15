@@ -1,5 +1,5 @@
 export const MODES = ["system", "light", "dark"] as const;
-export const ACCENTS = ["violet", "indigo", "cyan", "emerald", "amber", "rose"] as const;
+export const ACCENTS = ["orange", "violet", "indigo", "cyan", "emerald", "amber", "rose"] as const;
 export const SURFACES = ["solid", "glass", "contrast"] as const;
 
 export type Mode = (typeof MODES)[number];
@@ -13,7 +13,7 @@ export interface ThemePrefs {
     surface: Surface;
 }
 
-export const DEFAULT_THEME: ThemePrefs = { mode: "system", accent: "violet", surface: "solid" };
+export const DEFAULT_THEME: ThemePrefs = { mode: "system", accent: "orange", surface: "solid" };
 
 export const THEME_COOKIE = "dc-theme";
 export const THEME_STORAGE_KEY = "dc-theme";

@@ -7,7 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import { Header } from "@/components/layout/Header";
+import { HEADER_OFFSET_CLASS, Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { PersonJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
@@ -104,7 +104,7 @@ export default async function LocaleLayout({
                         <NuqsAdapter>
                             <SkipLink />
                             <Header />
-                            <main id="main" className="relative">
+                            <main id="main" className={`relative ${HEADER_OFFSET_CLASS}`}>
                                 {children}
                             </main>
                             <Footer />

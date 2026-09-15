@@ -6,8 +6,8 @@ export const OG = {
     bg: "#12111c",
     fg: "#f5f2ea",
     muted: "#a9a5b8",
-    accent: "#a78bfa",
-    counter: "#67d3c9",
+    accent: "#f5a25a",
+    counter: "#5fc4b8",
     line: "rgba(245,242,234,0.12)",
 } as const;
 

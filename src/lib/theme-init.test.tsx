@@ -21,7 +21,7 @@ describe("THEME_INIT_SCRIPT", () => {
         expect(run).not.toThrow();
         const h = document.documentElement;
         expect(h.getAttribute("data-mode")).toBe("dark");
-        expect(h.getAttribute("data-accent")).toBe("violet");
+        expect(h.getAttribute("data-accent")).toBe("orange");
         expect(h.getAttribute("data-surface")).toBe("solid");
         expect(h.style.colorScheme).toBe("dark");
     });

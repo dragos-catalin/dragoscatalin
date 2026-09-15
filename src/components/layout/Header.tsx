@@ -19,6 +19,9 @@ const NAV = [
     { key: "now", href: "/now" },
 ] as const;
 
+/** Top padding the page content needs so it does not hide under the fixed floating header. */
+export const HEADER_OFFSET_CLASS = "pt-24 md:pt-28";
+
 function isActive(pathname: string, href: string) {
     if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(`${href}/`);
@@ -60,14 +63,14 @@ export function Header() {
     return (
         <header
             className={cn(
-                "surface sticky top-0 z-50 border-x-0 border-t-0 pt-[env(safe-area-inset-top)] transition-[padding,box-shadow] duration-300 ease-out-expo",
-                compact ? "shadow-card" : "border-b-transparent",
+                "surface fixed top-[calc(0.75rem+env(safe-area-inset-top))] left-3 right-3 z-50 rounded-pill border border-line transition-[box-shadow,padding] duration-300 ease-out-expo md:left-1/2 md:right-auto md:w-fit md:max-w-[calc(100%-24px)] md:-translate-x-1/2",
+                compact ? "shadow-elev-1" : "shadow-elev-2 hover:shadow-elev-3",
             )}
         >
             <div
                 className={cn(
-                    "container-x flex items-center justify-between gap-4 transition-[height] duration-300 ease-out-expo",
-                    compact ? "h-14" : "h-[4.5rem]",
+                    "flex items-center justify-between gap-4 transition-[height,padding] duration-300 ease-out-expo md:gap-6",
+                    compact ? "h-[3.25rem] px-3 md:px-4" : "h-[4.5rem] px-4 md:px-6",
                 )}
             >
                 <Link
@@ -149,7 +152,7 @@ export function Header() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed inset-0 top-[calc(3.5rem+env(safe-area-inset-top))] z-40 flex flex-col bg-bg md:hidden"
+                        className="fixed inset-0 top-[calc(5.25rem+env(safe-area-inset-top))] z-40 flex flex-col rounded-t-card bg-bg md:hidden"
                     >
                         <nav
                             aria-label={t("menu")}

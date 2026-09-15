@@ -10,6 +10,9 @@ import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { RepoStatsPanel } from "@/components/projects/RepoStatsPanel";
 import { coverGradient, coverTransitionName } from "@/components/projects/cover";
+import { CoverArt } from "@/components/projects/CoverArt";
+import { DeviceShowcase } from "@/components/projects/DeviceShowcase";
+import { getShots, shotSrc } from "@/lib/shots";
 import { statusVariant } from "@/components/projects/status";
 import { getProject, projects } from "@/data/projects";
 import type { LocalizedText, PackageRef, Project } from "@/data/types";
@@ -90,6 +93,8 @@ export default async function ProjectPage({ params }: { params: Params }) {
         .filter((r): r is typeof r & { project: Project } => r.project !== undefined);
 
     const pageUrl = localeUrl(locale, `/projects/${slug}`);
+    const shots = getShots(project.slug);
+    const heroSrc = project.cover ?? shotSrc(project.slug, "desktop-dark");
     const software: WithContext<SoftwareApplication> = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -143,22 +148,26 @@ export default async function ProjectPage({ params }: { params: Params }) {
                         className="rounded-card relative aspect-[16/10] overflow-hidden shadow-card lg:order-2"
                         style={{ background: coverGradient(project.hue) }}
                     >
-                        {project.cover ? (
+                        {heroSrc ? (
                             <Image
-                                src={project.cover}
+                                src={heroSrc}
                                 alt=""
                                 fill
                                 priority
                                 sizes="(min-width: 1024px) 40vw, 100vw"
                                 className="object-cover"
                             />
+                        ) : (
+                            <CoverArt project={project} className="absolute inset-0 size-full" />
+                        )}
+                        {heroSrc ? (
+                            <span
+                                aria-hidden
+                                className="pointer-events-none absolute -right-3 bottom-2 select-none font-mono text-[clamp(3rem,10vw,7rem)] font-bold leading-none tracking-tight text-fg opacity-[0.08]"
+                            >
+                                {project.name}
+                            </span>
                         ) : null}
-                        <span
-                            aria-hidden
-                            className="pointer-events-none absolute -right-3 bottom-2 select-none font-mono text-[clamp(3rem,10vw,7rem)] font-bold leading-none tracking-tight text-fg opacity-[0.08]"
-                        >
-                            {project.name}
-                        </span>
                     </div>
                 </ViewTransition>
 
@@ -219,6 +228,14 @@ export default async function ProjectPage({ params }: { params: Params }) {
                             <p key={i}>{p}</p>
                         ))}
                     </div>
+
+                    {shots ? (
+                        <DeviceShowcase
+                            files={shots.files}
+                            name={project.name}
+                            capturedAt={shots.capturedAt}
+                        />
+                    ) : null}
 
                     {project.story ? (
                         <section

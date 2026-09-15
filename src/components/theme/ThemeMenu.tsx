@@ -9,6 +9,7 @@ import { ACCENTS, MODES, SURFACES, type Accent, type Mode, type Surface } from "
 import { cn } from "@/lib/utils";
 
 const ACCENT_HUE: Record<Accent, number> = {
+    orange: 50,
     violet: 300,
     indigo: 275,
     cyan: 215,

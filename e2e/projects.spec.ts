@@ -6,7 +6,8 @@ test.describe("projects", () => {
     test("lists projects and filters via URL state", async ({ page }) => {
         await page.goto("/projects");
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-        expect(await cards(page).count()).toBeGreaterThanOrEqual(10);
+        // The grid streams in behind a Suspense skeleton — poll instead of a one-shot count.
+        await expect.poll(() => cards(page).count()).toBeGreaterThanOrEqual(10);
 
         const search = page.getByRole("searchbox");
         await search.fill("codai");
@@ -24,7 +25,7 @@ test.describe("projects", () => {
         await page.getByRole("button", { name: /clear/i }).click();
         await expect(page).not.toHaveURL(/[?&](q|status)=/);
         await expect(search).toHaveValue("");
-        expect(await cards(page).count()).toBeGreaterThanOrEqual(10);
+        await expect.poll(() => cards(page).count()).toBeGreaterThanOrEqual(10);
     });
 
     test("detail page renders name and SoftwareApplication JSON-LD", async ({ page }) => {

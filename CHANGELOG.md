@@ -6,6 +6,36 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-09-15
+
+### Added
+
+- **Orange** accent, now the default (7 accents total). OG palette follows.
+- Elevation system: `shadow-elev-1/2/3` tokens (ambient + key shadow + 1 px
+  inner highlight, accent ring on level 3) applied to the header, primary
+  buttons (press drops the shadow), project cards, hero tech pills and badges.
+- `CoverArt`: deterministic inline-SVG cover per project (seeded pattern,
+  monogram, stack chips) used wherever a project has no image — zero bytes of
+  assets, theme-aware.
+- Screenshot pipeline: `pnpm shots` (Playwright, desktop/tablet/mobile ×
+  dark/light + full-page, optional authenticated internal pages via
+  `shots.config.json`), weekly GitHub Action opening a PR into
+  `public/shots/`, typed manifest reader `src/lib/shots.ts`.
+- `DeviceShowcase`: CSS device frames (desktop/tablet/phone) with a dark/light
+  toggle on project pages once screenshots exist; cards use the desktop shot
+  as cover automatically.
+
+### Changed
+
+- Header is a floating, centred pill (fixed, 12 px from top, elevated) that
+  compacts on scroll; full-width minus margins on mobile.
+- Locale switcher is a real link (works before hydration).
+
+### Fixed
+
+- E2E: projects grid and theme menu assertions now poll instead of racing
+  Suspense/hydration.
+
 ## [2.1.0] - 2026-09-15
 
 ### Added

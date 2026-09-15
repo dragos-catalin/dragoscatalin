@@ -16,18 +16,11 @@ test.describe("locale", () => {
         await expect(page.locator("link[rel=alternate][hreflang='x-default']")).toHaveCount(1);
         await expect(page.locator("html")).toHaveAttribute("lang", "en");
 
-        const switcher = page.locator("button[aria-label^='Language']");
-        // A click that lands before hydration is dropped by React; poll until navigation happened.
-        await expect
-            .poll(
-                async () => {
-                    await switcher.click();
-                    await page.waitForURL(/\/ro(\/|$)/, { timeout: 3_000 }).catch(() => {});
-                    return new URL(page.url()).pathname;
-                },
-                { timeout: 20_000 },
-            )
-            .toMatch(/^\/ro(\/|$)/);
+        // A real <a>: navigates even before hydration.
+        const switcher = page.locator("a[aria-label^='Language']");
+        await expect(switcher).toHaveAttribute("href", /^\/ro(\/|$)/);
+        await switcher.click();
+        await page.waitForURL(/\/ro(\/|$)/);
         await expect(page.locator("html")).toHaveAttribute("lang", "ro");
         await expect(h1).not.toHaveText(enTitle!);
         await expect(page.locator("link[rel=alternate][hreflang=en]")).toHaveCount(1);
