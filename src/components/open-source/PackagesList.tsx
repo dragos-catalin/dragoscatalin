@@ -44,7 +44,7 @@ export async function PackagesList({ locale }: { locale: string }) {
                                 href={url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 font-mono text-fg hover:text-accent"
+                                className="link-inline gap-1 font-mono text-fg hover:text-accent"
                             >
                                 {pkg.name}
                                 <ArrowUpRight className="size-3.5 text-fg-subtle" aria-hidden />
@@ -61,7 +61,7 @@ export async function PackagesList({ locale }: { locale: string }) {
                                 {owner ? (
                                     <Link
                                         href={`/projects/${owner.slug}`}
-                                        className="hover:text-accent"
+                                        className="link-inline hover:text-accent"
                                     >
                                         {owner.name}
                                     </Link>

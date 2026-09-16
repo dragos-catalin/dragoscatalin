@@ -1,6 +1,7 @@
 import type { Project } from "@/data/types";
 
-export const DEFAULT_HUE = 272;
+/** Projects without a brand hue follow the user's accent (CSS var, resolved at paint). */
+export const DEFAULT_HUE = "var(--accent-h)";
 
 /** Gradient background for a project cover, derived from its brand hue. */
 export function coverGradient(hue: number | undefined): string {

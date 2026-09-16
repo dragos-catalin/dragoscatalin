@@ -29,7 +29,7 @@ export async function NowStrip() {
                     </p>
                     <Link
                         href="/now"
-                        className="mt-auto inline-flex items-center gap-1.5 self-start text-sm font-medium text-fg-muted transition-colors hover:text-accent"
+                        className="link-inline mt-auto gap-1.5 self-start text-sm font-medium text-fg-muted transition-colors hover:text-accent"
                     >
                         {t("seeAll")}
                         <ArrowRight className="size-4" aria-hidden="true" />

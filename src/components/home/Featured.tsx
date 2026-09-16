@@ -71,7 +71,7 @@ export async function Featured() {
         <Section id="featured" eyebrow={t("eyebrow")} title={t("title")}>
             <div className="grid gap-6 lg:grid-cols-2">
                 {featuredProjects.slice(0, 2).map((p) => {
-                    const hue = p.hue ?? 300;
+                    const hue = p.hue ?? "var(--accent-h)";
                     return (
                         <Link
                             key={p.slug}

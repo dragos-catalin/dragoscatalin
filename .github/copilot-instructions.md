@@ -35,6 +35,8 @@ Node ≥ 22.22, pnpm ≥ 10 (`packageManager` pnpm@12). **Always pnpm.**
 | `pnpm tracker:check`          | `scripts/check-tracker.mjs` — CSV field count + evidence paths exist   |
 | `pnpm ci:local`               | `scripts/ci-local.mjs` — whole pipeline in WSL/Docker                  |
 | `pnpm lh`                     | Local Lighthouse sweep vs a running prod server (`-- --preset mobile`) |
+| `pnpm scan:contrast`          | Effective text contrast on every route × mode × accent (exit 1 on any) |
+| `pnpm scan:layout`            | Overflow / alignment / tap-target / clipped-text scan at 8 widths      |
 | `pnpm shots`                  | Playwright screenshots of live projects into `public/shots/`           |
 | `pnpm assets:optimize`        | Regenerate logo/icon variants from `public/logo.png` (sharp)           |
 
@@ -107,6 +109,9 @@ data-accent data-surface>` (`src/lib/theme.ts`: MODES/ACCENTS/SURFACES).
 
 - Run the command and show its output before claiming lint/typecheck/tests pass.
 - Load the page in the browser (port 24789) and check the console is clean.
+- After ANY change to tokens, Badge/Button variants or layout: `pnpm scan:contrast`
+  and `pnpm scan:layout` against the dev server must both print `0 findings`.
+  axe alone missed every issue the owner saw (it does not composite backdrops).
 - A11y: `@axe-core/playwright` in `pnpm test:e2e` must report zero violations
   across accents × modes × surfaces (see `skills/theme-surface`).
 - Say **VERIFIED** (ran it) vs **EXPECTED** (reasoned) explicitly.

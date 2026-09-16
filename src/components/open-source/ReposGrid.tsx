@@ -53,7 +53,7 @@ export async function ReposGrid({ locale }: { locale: string }) {
                             href={url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-start gap-1 font-mono text-sm font-medium text-fg hover:text-accent"
+                            className="link-inline gap-1 font-mono text-sm font-medium text-fg hover:text-accent"
                         >
                             <span className="break-all">{key}</span>
                             <ArrowUpRight
@@ -94,7 +94,7 @@ export async function ReposGrid({ locale }: { locale: string }) {
                                                     href={s.latestRelease.url}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="hover:text-accent"
+                                                    className="link-inline hover:text-accent"
                                                 >
                                                     {s.latestRelease.tag}
                                                 </a>

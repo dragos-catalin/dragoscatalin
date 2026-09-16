@@ -62,7 +62,7 @@ export async function RepoStatsPanel({ repos }: RepoStatsPanelProps) {
                             href={s?.url ?? `https://github.com/${full}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-mono text-sm font-medium text-fg hover:text-accent"
+                            className="link-inline font-mono text-sm font-medium text-fg hover:text-accent"
                         >
                             {r.label ?? full}
                         </a>

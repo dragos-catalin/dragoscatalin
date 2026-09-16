@@ -61,14 +61,14 @@ export function Header() {
     return (
         <header
             className={cn(
-                "surface fixed top-[calc(0.75rem+env(safe-area-inset-top))] left-3 right-3 z-50 rounded-pill border border-line transition-[box-shadow,padding] duration-300 ease-out-expo md:left-1/2 md:right-auto md:w-fit md:max-w-[calc(100%-24px)] md:-translate-x-1/2",
+                "surface fixed top-[calc(0.75rem+env(safe-area-inset-top))] left-3 right-3 z-50 rounded-pill border border-line transition-[box-shadow,padding] duration-300 ease-out-expo md:left-1/2 md:right-auto md:w-[min(72rem,calc(100%-3rem))] md:-translate-x-1/2",
                 compact ? "shadow-elev-1" : "shadow-elev-2 hover:shadow-elev-3",
             )}
         >
             <div
                 className={cn(
                     "flex items-center justify-between gap-4 transition-[height,padding] duration-300 ease-out-expo md:gap-6",
-                    compact ? "h-[3.25rem] px-3 md:px-4" : "h-[4.5rem] px-4 md:px-6",
+                    compact ? "h-[3.25rem] px-3 md:px-5" : "h-[4.5rem] px-4 md:px-8",
                 )}
             >
                 <Link

@@ -30,6 +30,7 @@
     --color-counter: var(--counter);
     --color-success: var(--success);
     --color-warning: var(--warning);
+    --color-warning-fg: var(--warning-fg);
     --color-danger: var(--danger);
 
     --shadow-glow: 0 0 40px var(--accent-glow), 0 0 120px var(--accent-glow);
@@ -112,19 +113,25 @@
     --fg-muted: oklch(0.45 0.02 272);
     /* ≥4.5:1 on --bg, --bg-deep and --surface (WCAG AA for small text). */
     --fg-subtle: oklch(0.5 0.018 272);
-    --line: oklch(0.9 0.008 272);
-    --line-strong: oklch(0.82 0.01 272);
+    --line: oklch(0.88 0.01 272);
+    --line-strong: oklch(0.78 0.012 272);
 
-    --accent: oklch(0.55 var(--accent-c) var(--accent-h));
-    --accent-strong: oklch(0.48 var(--accent-c) var(--accent-h));
-    --accent-soft: oklch(0.55 var(--accent-c) var(--accent-h) / 0.12);
-    --accent-glow: oklch(0.55 var(--accent-c) var(--accent-h) / 0.2);
+    /* L 0.50: orange (hue 50) at L 0.55 measured 4.16–4.32:1 as text on
+         accent-soft / surface (Launching / In development badges). 0.50 ≥ 4.5:1
+         for every accent hue, including the yellowish ones. */
+    --accent: oklch(0.5 var(--accent-c) var(--accent-h));
+    --accent-strong: oklch(0.44 var(--accent-c) var(--accent-h));
+    --accent-soft: oklch(0.5 var(--accent-c) var(--accent-h) / 0.12);
+    --accent-glow: oklch(0.5 var(--accent-c) var(--accent-h) / 0.2);
     --accent-fg: oklch(0.99 0.01 var(--accent-h));
     --counter: oklch(0.6 0.13 calc(var(--accent-h) + 140));
 
     /* used as text on bg-success/12 → needs ≥4.5:1 */
     --success: oklch(0.47 0.14 155);
+    /* --warning is the FILL/dot colour; --warning-fg is text on warning/14.
+         Light-mode amber at L 0.72 was 2.24:1 as text ("Research" badge). */
     --warning: oklch(0.72 0.16 75);
+    --warning-fg: oklch(0.42 0.12 70);
     --danger: oklch(0.58 0.2 25);
 
     --elev-key: oklch(0.2 0.02 272 / 0.1);
@@ -144,8 +151,10 @@
     --fg-muted: oklch(0.72 0.02 272);
     /* ≥ 4.5:1 on --bg / --surface / --surface-raised (WCAG AA small text). */
     --fg-subtle: oklch(0.62 0.02 272);
-    --line: oklch(0.26 0.02 272);
-    --line-strong: oklch(0.34 0.02 272);
+    /* Edges must read against --surface (L 0.17) and --bg (L 0.13): the old
+       L 0.26 measured 1.23:1 — cards had no visible border in dark mode. */
+    --line: oklch(0.32 0.022 272);
+    --line-strong: oklch(0.42 0.024 272);
 
     --accent: oklch(0.74 var(--accent-c) var(--accent-h));
     --accent-strong: oklch(0.8 var(--accent-c) var(--accent-h));
@@ -156,6 +165,7 @@
 
     --success: oklch(0.75 0.15 155);
     --warning: oklch(0.8 0.15 75);
+    --warning-fg: oklch(0.85 0.14 80);
     --danger: oklch(0.7 0.18 25);
 
     --elev-key: oklch(0 0 0 / 0.45);
@@ -206,6 +216,11 @@ body {
     text-rendering: optimizeLegibility;
     min-height: 100dvh;
     padding-bottom: env(safe-area-inset-bottom);
+    /* Stacking context so .page-mesh::before/::after (z -1) paint ABOVE the body
+       background but below content. Without it they sat behind <html> and the
+       accent mesh never rendered (found 2026-09-15). */
+    position: relative;
+    isolation: isolate;
 }
 
 ::selection {
@@ -263,6 +278,19 @@ body {
         max-width: var(--container-max);
         margin-inline: auto;
         padding-inline: clamp(1rem, 4vw, 3rem);
+    }
+
+    /* Inline text links: WCAG 2.2 target size (≥ 24 px) without changing the
+       visual line box — padding is cancelled by negative margins. */
+    .link-inline {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding-block: 4px;
+        margin-block: -4px;
+        padding-inline: 2px;
+        margin-inline: -2px;
+        border-radius: 4px;
     }
 
     .surface {
@@ -323,11 +351,12 @@ body {
         opacity: 1;
     }
 
-    .noise-overlay::before {
-        content: "";
+    /* Applied to a dedicated <div aria-hidden> in the layout (body::before is
+       taken by .page-mesh). Sits under the header (z-50) and overlays (z-40+). */
+    .noise-overlay {
         position: fixed;
         inset: 0;
-        z-index: 40;
+        z-index: 30;
         pointer-events: none;
         opacity: 0.025;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -470,7 +499,7 @@ body {
         content: "";
         position: fixed;
         pointer-events: none;
-        z-index: -10;
+        z-index: -1;
     }
 
     .page-mesh::before {

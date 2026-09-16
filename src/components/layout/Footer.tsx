@@ -92,12 +92,18 @@ export async function Footer() {
                             {t("footer.version", { version: pkg.version })}
                         </li>
                         <li>
-                            <a href="/feed.xml" className="transition-colors hover:text-fg">
+                            <a
+                                href="/feed.xml"
+                                className="link-inline transition-colors hover:text-fg"
+                            >
                                 {t("footer.feed")}
                             </a>
                         </li>
                         <li>
-                            <a href="/llms.txt" className="transition-colors hover:text-fg">
+                            <a
+                                href="/llms.txt"
+                                className="link-inline transition-colors hover:text-fg"
+                            >
                                 {t("footer.llms")}
                             </a>
                         </li>
@@ -106,7 +112,7 @@ export async function Footer() {
                                 href={SOURCE_URL}
                                 target="_blank"
                                 rel="noopener"
-                                className="transition-colors hover:text-fg"
+                                className="link-inline transition-colors hover:text-fg"
                             >
                                 {t("footer.source")}
                             </a>

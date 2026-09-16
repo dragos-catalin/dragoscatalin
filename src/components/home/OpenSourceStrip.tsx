@@ -76,7 +76,7 @@ export async function OpenSourceStrip() {
                                 href={url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 font-mono text-sm font-medium text-fg no-underline hover:text-accent"
+                                className="link-inline gap-1 font-mono text-sm font-medium text-fg no-underline hover:text-accent"
                             >
                                 {p.name}
                                 <ArrowUpRight

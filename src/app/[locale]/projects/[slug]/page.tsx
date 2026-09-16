@@ -136,7 +136,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
             <Link
                 href="/projects"
-                className="inline-flex w-fit items-center gap-1.5 text-sm text-fg-muted hover:text-accent"
+                className="link-inline w-fit gap-1.5 text-sm text-fg-muted hover:text-accent"
             >
                 <ArrowLeft className="size-4" aria-hidden />
                 {t("back")}
@@ -199,7 +199,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
                                 href={project.website}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-1 text-accent hover:underline"
+                                className="link-inline gap-1 text-accent hover:underline"
                             >
                                 {t("visitSite")}
                                 <ExternalLink className="size-3.5" aria-hidden />
@@ -211,7 +211,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
                                 href={`https://github.com/${r.owner}/${r.name}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-1 hover:text-fg"
+                                className="link-inline gap-1 hover:text-fg"
                             >
                                 {t("viewRepo")}: {r.label ?? r.name}
                                 <ExternalLink className="size-3" aria-hidden />
@@ -275,7 +275,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
                                                 href={s.url}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex items-center gap-1 font-mono text-xs text-accent hover:underline"
+                                                className="link-inline gap-1 font-mono text-xs text-accent hover:underline"
                                             >
                                                 {new URL(s.url).hostname}
                                                 <ExternalLink className="size-3" aria-hidden />
@@ -364,7 +364,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
                                             </span>
                                             <Link
                                                 href={`/projects/${r.slug}`}
-                                                className="text-fg hover:text-accent"
+                                                className="link-inline text-fg hover:text-accent"
                                             >
                                                 {r.project.name}
                                             </Link>

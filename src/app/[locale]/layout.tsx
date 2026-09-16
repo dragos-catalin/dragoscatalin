@@ -111,7 +111,8 @@ export default async function LocaleLayout({
             <head>
                 <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
             </head>
-            <body className="noise-overlay page-mesh antialiased">
+            <body className="page-mesh antialiased">
+                <div aria-hidden="true" className="noise-overlay" />
                 <NextIntlClientProvider>
                     <ThemeProvider initial={theme}>
                         <NuqsAdapter>

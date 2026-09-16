@@ -10,7 +10,7 @@ const variants: Record<BadgeVariant, string> = {
     muted: "bg-surface-raised text-fg-muted border-line",
     accent: "bg-accent-soft text-accent border-transparent",
     success: "bg-success/12 text-success border-transparent",
-    warning: "bg-warning/14 text-warning border-transparent",
+    warning: "bg-warning/14 text-warning-fg border-transparent",
     danger: "bg-danger/12 text-danger border-transparent",
     outline: "bg-transparent text-fg-muted border-line-strong",
 };

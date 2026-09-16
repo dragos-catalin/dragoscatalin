@@ -6,6 +6,36 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-09-15
+
+Visual-correctness pass driven by two new scanners run on every route × dark /
+light × orange / violet × 8 viewport widths (360 → 3440): `pnpm scan:contrast`
+(effective text contrast against the real composited backdrop) and
+`pnpm scan:layout` (overflow, container alignment, empty sections, tap targets,
+clipped text). Both report **0 findings**; E2E + axe 28/28.
+
+### Fixed
+
+- Text invisible on its own background: light-mode accent text on soft fills
+  (“Launching”, “In development” badges at 4.2:1) — light `--accent` L 0.55 →
+  0.50; warning badge text (“Research” at 2.2:1) now uses a dedicated
+  `--warning-fg`; hero pill labels/icons use `fg`.
+- Borders that did not exist visually: dark `--line` was 1.23:1 against cards
+  (L 0.26 → 0.32, `--line-strong` 0.34 → 0.42); light lines slightly stronger.
+- The accent page mesh never rendered (pseudo-elements at z -10 painted behind
+  `<html>`); body now isolates a stacking context. The film-grain overlay moved
+  to its own element (it shared `body::before` with the mesh and was lost).
+- Fallback cover hue for projects without a brand hue followed hard-coded
+  violet/indigo; now follows the active accent (`var(--accent-h)`).
+- 111 inline links under the 24 px WCAG 2.2 target size (footer, packages,
+  repos, press, project pages) via a `.link-inline` utility that enlarges the
+  hit area without changing the line box.
+
+### Changed
+
+- Header pill is wider: tracks the content column (`min(72rem, 100% − 3rem)`,
+  1152 px at 1440) instead of shrinking to its contents; centred at every width.
+
 ## [2.3.1] - 2026-09-15
 
 ### Fixed

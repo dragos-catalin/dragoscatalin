@@ -83,7 +83,7 @@ export default async function PressPage({ params }: { params: Params }) {
                                 href={p.website}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 font-mono text-sm text-accent hover:underline"
+                                className="link-inline gap-1 font-mono text-sm text-accent hover:underline"
                             >
                                 {p.website.replace(/^https?:\/\//, "")}
                                 <ArrowUpRight className="size-3.5" aria-hidden />
@@ -110,7 +110,7 @@ export default async function PressPage({ params }: { params: Params }) {
                         <a
                             href="/logo.png"
                             download
-                            className="inline-flex items-center gap-1 text-sm text-accent hover:underline"
+                            className="link-inline gap-1 text-sm text-accent hover:underline"
                         >
                             <Download className="size-4" aria-hidden />
                             {t("download")}
@@ -132,7 +132,7 @@ export default async function PressPage({ params }: { params: Params }) {
                             href={site.avatar}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-sm text-accent hover:underline"
+                            className="link-inline gap-1 text-sm text-accent hover:underline"
                         >
                             <Download className="size-4" aria-hidden />
                             {t("download")}
