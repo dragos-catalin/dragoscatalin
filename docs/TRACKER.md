@@ -170,6 +170,9 @@ See `tracker.csv` for the live list. Summary by area:
 - Vercel Hobby cannot build private repositories owned by an organisation, so
   pushes stopped deploying. The owner made the repo public, after a gitleaks
   full-history scan came back green and `.env.example` was checked for values.
+  Going public alone did not restore push deploys. The project's git link had
+  been rewritten in place to the new owner, and it needed an explicit unlink and
+  link (`DELETE` then `POST /v9/projects/{id}/link`).
 - CI was red before the move (prettier on brand HTML, a 7 px overflow on
   `/feedbrake/privacy` at 360 px). After the move `gitleaks-action` also
   needed a licence. All fixed: the secrets job is now the shared
