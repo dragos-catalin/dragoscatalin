@@ -6,6 +6,25 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-10-05
+
+### Changed
+
+- MuzicAI is now **MixAI** (mixai.ro). Its project slug is now `mixai`, and
+  `/projects/muzicai` and `/ro/projects/muzicai` redirect permanently (308).
+  The site brands, web manifest, press kit, messages (EN + RO) and
+  `docs/PUBLICITY.md` all use the new name. Status is now `active`.
+- Project surfaces now list every TV and watch app:
+  - MixAI: Android TV, Samsung Tizen TV, DJ app, MMO Server, mobile, extension
+  - Titi: Wear OS, Android TV, Tizen, desktop
+  - Vitals: Android, Wear OS, Android TV, Tizen
+  - Brivio: TV (Tizen, Cast, signage)
+
+### Added
+
+- Portfolio tracker in `docs/portfolio/` (`PORTFOLIO.md` + `portfolio.csv`).
+  `scripts/check-tracker.mjs` validates its header, ids, enums and score range.
+
 ## [2.4.0] - 2026-09-15
 
 Visual-correctness pass driven by two new scanners run on every route × dark /

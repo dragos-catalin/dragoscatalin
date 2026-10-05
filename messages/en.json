@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Dragos Catalin — Full-stack developer & builder",
-    "description": "I design and ship AI-native products end to end: Next.js, Rust/Tauri, PostgreSQL, GCP. codai, Brivio, StudiAI, MuzicAI and 20+ open-source repos.",
+    "description": "I design and ship AI-native products end to end: Next.js, Rust/Tauri, PostgreSQL, GCP. codai, Brivio, StudiAI, MixAI and 20+ open-source repos.",
     "keywords": "Dragos Catalin,full-stack developer,Next.js,Rust,Tauri,AI gateway,codai,Brivio,Romania,open source"
   },
   "nav": {
@@ -58,7 +58,7 @@
   "now": {
     "title": "Now",
     "eyebrow": "This quarter",
-    "focus": "Launching Brivio, hardening the codai gateway, shipping codai desktop 0.3 and keeping MuzicAI and notai healthy.",
+    "focus": "Launching Brivio, hardening the codai gateway, shipping codai desktop 0.3 and keeping MixAI and notai healthy.",
     "lastActive": "Last activity",
     "contributions": "{count} contributions in the last year",
     "seeAll": "Full status",

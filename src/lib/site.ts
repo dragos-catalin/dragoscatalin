@@ -20,7 +20,7 @@ export const site = {
         { name: "codai", url: "https://codai.ro" },
         { name: "Brivio", url: "https://brivio.ro" },
         { name: "StudiAI", url: "https://studiai.ro" },
-        { name: "MuzicAI", url: "https://muzicai.ro" },
+        { name: "MixAI", url: "https://mixai.ro" },
         { name: "notai", url: "https://notai.ro" },
     ],
 } as const;

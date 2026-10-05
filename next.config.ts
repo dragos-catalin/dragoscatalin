@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
         ],
         formats: ["image/avif", "image/webp"],
     },
+    redirects: async () => [
+        { source: "/projects/muzicai", destination: "/projects/mixai", permanent: true },
+        { source: "/ro/projects/muzicai", destination: "/ro/projects/mixai", permanent: true },
+    ],
     headers: async () => [
         {
             source: "/(.*)",

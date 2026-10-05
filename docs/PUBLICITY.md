@@ -61,7 +61,7 @@ Brivio este construit ca monorepo Next.js 16 pe PostgreSQL, cu autentificare pri
 
 **Prețuri:** [PLAN / PREȚ]. **Disponibilitate:** [ZI LUNĂ 2026], la brivio.ro.
 
-**Despre Brivio.** Brivio este succesorul Datuvia, o platformă de management de business dezvoltată pentru un client între 2024 și 2026. Este dezvoltat în România de Dragos Catalin Vladulescu, developer full-stack și autorul codai, StudiAI și MuzicAI.
+**Despre Brivio.** Brivio este succesorul Datuvia, o platformă de management de business dezvoltată pentru un client între 2024 și 2026. Este dezvoltat în România de Dragos Catalin Vladulescu, developer full-stack și autorul codai, StudiAI și MixAI.
 
 **Contact presă:** contact@dragoscatalin.ro · Kit de presă: https://dragoscatalin.ro/ro/press
 
@@ -79,7 +79,7 @@ Brivio is built as a Next.js 16 monorepo on PostgreSQL, with passkey authenticat
 
 **Pricing:** [PLAN / PRICE]. **Availability:** [DAY MONTH 2026], at brivio.ro.
 
-**About Brivio.** Brivio succeeds Datuvia, a business-management platform built for a client between 2024 and 2026. It is developed in Romania by Dragos Catalin Vladulescu, a full-stack developer and the author of codai, StudiAI and MuzicAI.
+**About Brivio.** Brivio succeeds Datuvia, a business-management platform built for a client between 2024 and 2026. It is developed in Romania by Dragos Catalin Vladulescu, a full-stack developer and the author of codai, StudiAI and MixAI.
 
 **Press contact:** contact@dragoscatalin.ro · Press kit: https://dragoscatalin.ro/press
 

@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: site.name,
         short_name: "Dragos",
         description:
-            "Full-stack developer & builder — codai, Brivio, StudiAI, MuzicAI and 20+ open-source repos.",
+            "Full-stack developer & builder — codai, Brivio, StudiAI, MixAI and 20+ open-source repos.",
         start_url: "/",
         display: "standalone",
         background_color: "#12111c",
