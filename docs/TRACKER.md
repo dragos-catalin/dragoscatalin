@@ -44,7 +44,7 @@ Assistant, with every gate green. Rows `V3-*` in `tracker.csv`.
 | Animation stack   | Motion (upgrade to 14) and GSAP freely. Lenis on desktop only, native scroll on touch.                                                                                                                                                                                                                                                                              |
 | Mobile            | Bottom tab bar, sheets, swipe, haptics where supported, safe-area aware, installable PWA with offline shell.                                                                                                                                                                                                                                                        |
 | Visual identity   | New brand pack: DC monogram/wordmark, OKLCH palette, display font + Geist body, icons/OG/favicon, logo motion. Owner picks from 3 concepts.                                                                                                                                                                                                                         |
-| Positioning       | "Product engineer — AI platforms, apps and watch faces for every screen", backed by real numbers.                                                                                                                                                                                                                                                                   |
+| Positioning       | Superseded by the V3-34 owner profile below: headline "I build products end to end — from cloud and network to the app in your pocket.", backed by real numbers.                                                                                                                                                                                                    |
 | Languages shown   | Measured set from the repos (TS, Kotlin/Compose, Rust, Python, SQL, Go, C#, Dart/Flutter, Swift, PowerShell, C/C++), plus an "also worked with" row for legacy tech.                                                                                                                                                                                                |
 | Projects          | Add: Horae (published faces only + "200 faces, N live" teaser, auto-synced from `watch-faces/docs/store/play-apps.csv`), scrin, marcai, caelia, titi, vitals, HIDE, axiom, VS Code extensions (Just Black 2, Tasks2, VS Remote Chat, prakter), notalone, alegeri2025, afti (demo built in days, client never replied; no consent needed), datuvia, Unscroll, dashy. |
 | Paused sites      | vsrchat, notai.ro, metu.ro return 402 → status `paused`, no live link; CI link-health check.                                                                                                                                                                                                                                                                        |
@@ -57,6 +57,25 @@ Assistant, with every gate green. Rows `V3-*` in `tracker.csv`.
 | Hosting/deps      | Stay on Vercel. Push the 9 pending v2.x commits first after gates. Latest versions everywhere.                                                                                                                                                                                                                                                                      |
 | Order             | baseline → in parallel: brivio fixes/features, vmui hook, brand + design briefs → mail/DNS setup with the owner logged in → skins → features → reality check.                                                                                                                                                                                                       |
 | Owner profile     | The next agent asks the owner question sets and stores the answers locally (memory) and in codai production for vladulescu.catalin@gmail.com (agent-memory).                                                                                                                                                                                                        |
+
+### Owner profile (V3-34, answered 2026-10-05)
+
+Stored in agent memory (`/memories/owner-profile.md`) and in codai production memory
+(10 semantic records via MCP `memory_store`, recall verified with `memory_search`).
+
+| Topic         | Answer                                                                                                                           |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Public name   | "Dragoș Cătălin" with diacritics; no family name on the public site.                                                             |
+| Roles         | Product engineer · founder · full-stack developer · cloud systems & networking · architect.                                      |
+| Location      | România (remote, EU).                                                                                                            |
+| Experience    | "20+ years of code, 15+ years paid" (coding since ~10, first paid at 15, first legal job at 18).                                 |
+| Availability  | Selective — open to the right projects.                                                                                          |
+| Headline      | "I build products end to end — from cloud and network to the app in your pocket." (RO translation by the agent.)                 |
+| Tone          | Direct, warm, concrete; first person, short sentences, real numbers.                                                             |
+| Brand (V3-02) | Full brand kit; show ALL directions (tech-premium, editorial, warm-human, brutalist/retro-terminal); accent chosen after seeing. |
+| Photo         | Portrait in About + small avatar in footer/OG; photo comes later — DC monogram until then.                                       |
+| Site goal     | Well-paid consulting/project leads. Products in equal rotation (no single hero product).                                         |
+| Audience      | Startups/founders (end-to-end MVP), RO SMEs (invoicing, e-Factura, automation), enterprise/EU (cloud, network), developers.      |
 
 ### Areas
 
