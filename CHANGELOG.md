@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.9.2] - 2026-10-05
+
+### Changed
+
+- `/lab`: mcp-lock 0.2 is public at github.com/dragoscv/mcp-lock. The entry now links the repository and describes the runtime proxy. EN + RO.
+
 ## [2.9.1] - 2026-10-05
 
 ### Changed

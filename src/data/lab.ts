@@ -33,10 +33,11 @@ export const labIdeas: LabIdea[] = [
             ro: "Serverele MCP pot schimba descrierea sau schema unui tool după ce l-ai aprobat (tool poisoning, rug-pull). Nimic nu fixează ce are voie un agent să apeleze.",
         },
         approach: {
-            en: "A lockfile of tool description and schema hashes and a CI check that fails on drift (0.1 works today: lock, check, stdio and HTTP servers). Next: a local proxy that refuses changed tools at runtime.",
-            ro: "Un lockfile cu hash-urile descrierilor și schemelor și o verificare în CI care pică la orice schimbare (versiunea 0.1 merge deja: lock, check, servere stdio și HTTP). Urmează un proxy local care refuză tool-urile modificate la rulare.",
+            en: "A lockfile of tool description and schema hashes, a CI check that fails on drift, and a stdio proxy that hides changed tools and refuses calls to them while the agent runs. Version 0.2 works today. Next: signed lockfiles.",
+            ro: "Un lockfile cu hash-urile descrierilor și schemelor, o verificare în CI care pică la orice schimbare și un proxy stdio care ascunde tool-urile modificate și le refuză apelurile cât timp rulează agentul. Versiunea 0.2 merge deja. Urmează lockfile-uri semnate.",
         },
         tags: ["MCP", "security", "CI"],
+        repo: "https://github.com/dragoscv/mcp-lock",
     },
     {
         id: "D-07",
