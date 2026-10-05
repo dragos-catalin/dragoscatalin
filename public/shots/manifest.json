@@ -1,1 +1,210 @@
-{ "generatedAt": null, "shots": {} }
+{
+  "generatedAt": "2026-10-05T12:56:09.142Z",
+  "shots": {
+    "codai": {
+      "url": "https://codai.ro",
+      "capturedAt": "2026-10-05T12:51:59.224Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/codai/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/codai/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/codai/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/codai/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/codai/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/codai/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/codai/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "brivio": {
+      "url": "https://brivio.ro",
+      "capturedAt": "2026-10-05T12:52:54.069Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/brivio/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/brivio/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/brivio/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/brivio/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/brivio/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/brivio/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/brivio/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "notai": {
+      "url": "https://notai.ro",
+      "capturedAt": "2026-10-05T12:53:15.204Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/notai/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/notai/full-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "desktop-light": {
+          "path": "shots/notai/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/notai/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/notai/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/notai/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/notai/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "titi": {
+      "url": "https://titi-xi.vercel.app",
+      "capturedAt": "2026-10-05T12:53:37.685Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/titi/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/titi/full-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "desktop-light": {
+          "path": "shots/titi/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/titi/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/titi/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/titi/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/titi/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "studiai": {
+      "url": "https://studiai.ro",
+      "capturedAt": "2026-10-05T12:56:09.114Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/studiai/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/studiai/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/studiai/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/studiai/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/studiai/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/studiai/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/studiai/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    }
+  }
+}
