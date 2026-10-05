@@ -109,6 +109,53 @@ if (existsSync(CSV)) {
         );
 }
 
+// Portfolio tracker (docs/portfolio/portfolio.csv + PORTFOLIO.md): gaps, ideas, decisions.
+const PCSV = resolve(root, "docs/portfolio/portfolio.csv");
+const PMD = resolve(root, "docs/portfolio/PORTFOLIO.md");
+const PHEADER = [
+    "id",
+    "kind",
+    "category",
+    "title",
+    "problem",
+    "proposal",
+    "repo",
+    "impact",
+    "effort",
+    "fit",
+    "status",
+    "decision",
+    "source",
+];
+const PSTATUS = new Set(["proposed", "keep", "doing", "done", "dropped", "later"]);
+const HML = new Set(["H", "M", "L"]);
+const SML = new Set(["S", "M", "L"]);
+if (existsSync(PCSV)) {
+    const rows = parseCsv(readFileSync(PCSV, "utf8"));
+    if ((rows[0] ?? []).join(",") !== PHEADER.join(","))
+        fail(`portfolio.csv header must be "${PHEADER.join(",")}"`);
+    const ids = new Set();
+    rows.slice(1).forEach((r, idx) => {
+        const line = idx + 2;
+        if (r.length !== PHEADER.length) {
+            fail(`portfolio.csv line ${line}: expected ${PHEADER.length} fields, got ${r.length}`);
+            return;
+        }
+        const [id, , , title, , , , impact, effort, fit, status, , source] = r;
+        if (!/^[A-Z]-\d{2}$/.test(id)) fail(`portfolio.csv line ${line}: bad id "${id}"`);
+        if (ids.has(id)) fail(`portfolio.csv: duplicate id ${id}`);
+        ids.add(id);
+        if (!title) fail(`portfolio ${id}: empty title`);
+        if (!HML.has(impact)) fail(`portfolio ${id}: impact must be H|M|L`);
+        if (!SML.has(effort)) fail(`portfolio ${id}: effort must be S|M|L`);
+        if (!/^[1-5]$/.test(fit)) fail(`portfolio ${id}: fit must be 1-5`);
+        if (!PSTATUS.has(status)) fail(`portfolio ${id}: invalid status "${status}"`);
+        if (!source) fail(`portfolio ${id}: empty source`);
+    });
+    if (!existsSync(PMD)) fail(`missing ${PMD}`);
+    if (!failures.length) console.log(`✔ check-tracker: portfolio ${rows.length - 1} rows ok`);
+}
+
 if (failures.length) {
     console.error(`✖ check-tracker: ${failures.length} problem(s)`);
     for (const f of failures) console.error(`   ${f}`);
