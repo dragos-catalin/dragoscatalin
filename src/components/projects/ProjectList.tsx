@@ -11,7 +11,7 @@ import { useProjectFilters } from "./useProjectFilters";
 
 export interface ProjectListItem {
     project: Project;
-    stats?: RepoStats;
+    stats?: RepoStats | undefined;
 }
 
 export interface ProjectListProps {

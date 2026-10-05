@@ -24,7 +24,7 @@ Copy-Item .env.example .env.local   # fill what you need; everything is optional
 pnpm dev                            # http://localhost:24789
 ```
 
-Node ≥ 22.22, pnpm ≥ 10. Always `pnpm`.
+Node 24 LTS, pnpm ≥ 12. Always `pnpm`.
 
 ## Scripts
 

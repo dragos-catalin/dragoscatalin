@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const PAGES = ["/", "/projects", "/projects/codai", "/about"];
+const PAGES = ["/", "/projects", "/projects/codai", "/about", "/services", "/lab"];
 
 // Reveal animations blend foreground colours mid-transition; axe would sample a
 // half-faded frame. The site honours prefers-reduced-motion, so audit the settled state.

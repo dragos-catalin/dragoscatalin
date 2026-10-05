@@ -20,7 +20,7 @@ React 19.3 · TypeScript 7 via alias (`typescript`→`@typescript/typescript6@6.
 nuqs 2 · zod 4 · lucide-react 1.x + `@/components/icons` · resend ·
 `@marsidev/react-turnstile` · schema-dts · feed · ESLint 10 flat + prettier 3 ·
 Vitest 5 · Playwright 1.63 + `@axe-core/playwright` · size-limit · husky + lint-staged.
-Node ≥ 22.22, pnpm ≥ 10 (`packageManager` pnpm@12). **Always pnpm.**
+Node 24 LTS (`.nvmrc`, `engines >=24`), pnpm ≥ 12 (`packageManager` pnpm@12). **Always pnpm.**
 
 ## Commands
 

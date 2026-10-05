@@ -12,7 +12,7 @@ import { statusVariant } from "./status";
 
 export interface ProjectCardProps {
     project: Project;
-    stats?: RepoStats;
+    stats?: RepoStats | undefined;
     locale: string;
     index?: number;
     priority?: boolean;

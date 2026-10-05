@@ -16,7 +16,9 @@
     "menu": "Meniu",
     "closeMenu": "Închide meniul",
     "skipToContent": "Sari la conținut",
-    "privacy": "Confidențialitate"
+    "privacy": "Confidențialitate",
+    "services": "Servicii",
+    "lab": "Laborator"
   },
   "theme": {
     "label": "Aspect",
@@ -350,5 +352,34 @@
     "rights": "Poți cere acces, rectificare, ștergere, restricționare, portabilitate sau te poți opune prelucrării și îți poți retrage consimțământul oricând, fără a afecta prelucrarea anterioară. Poți depune și plângere la ANSPDCP (dataprotection.ro).",
     "changeTitle": "Schimbă-ți alegerea",
     "change": "Deschide setările cookie-urilor ca să schimbi sau să retragi consimțământul. La retragere pagina se reîncarcă, astfel încât analiza se oprește imediat."
+  },
+  "services": {
+    "eyebrow": "Lucrăm împreună",
+    "title": "Servicii",
+    "intro": "Construiesc produse cap-coadă — de la cloud și rețea până la aplicația din buzunarul tău. Alege rândul care ți se potrivește.",
+    "offersLabel": "Ce primești",
+    "proofLabel": "Dovezi",
+    "engagementLabel": "Cum lucrăm",
+    "processTitle": "De la primul apel la predare",
+    "availability": "Disponibilitate selectivă: iau puține proiecte odată, ca fiecare să primească atenție reală.",
+    "cta": "Spune-mi despre proiectul tău",
+    "ctaSecondary": "Vezi toate proiectele"
+  },
+  "lab": {
+    "eyebrow": "Construiesc la vedere",
+    "title": "Laborator",
+    "intro": "Idei pe care le explorez sau le construiesc public. Fiecare intrare spune ce problemă rezolvă și cum. Se actualizează când se schimbă ceva, nu după un program.",
+    "problemLabel": "Problema",
+    "approachLabel": "Abordarea",
+    "updated": "Actualizat {date}",
+    "repo": "Repository",
+    "stages": {
+      "exploring": "Explorare",
+      "building": "În lucru",
+      "shipped": "Livrat",
+      "paused": "În pauză"
+    },
+    "empty": "Nimic aici încă.",
+    "cta": "Vrei una dintre ele mai repede sau ai o idee mai bună? Scrie-mi."
   }
 }

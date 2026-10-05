@@ -10,7 +10,9 @@ import pkg from "../../../package.json";
 const NAV = [
     { key: "home", href: "/" },
     { key: "projects", href: "/projects" },
+    { key: "services", href: "/services" },
     { key: "openSource", href: "/open-source" },
+    { key: "lab", href: "/lab" },
     { key: "about", href: "/about" },
     { key: "now", href: "/now" },
     { key: "uses", href: "/uses" },

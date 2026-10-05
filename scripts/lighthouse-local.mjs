@@ -47,7 +47,7 @@ for (const route of routes) {
             "--only-categories=performance,accessibility,best-practices,seo",
         ];
         if (preset === "desktop") flags.push("--preset=desktop");
-        const res = spawnSync("npx", ["--yes", "lighthouse@latest", ...flags], {
+        const res = spawnSync("pnpm", ["exec", "lighthouse", ...flags], {
             stdio: "ignore",
             shell: process.platform === "win32",
             env: { ...process.env, ...(chrome ? { CHROME_PATH: chrome } : {}) },

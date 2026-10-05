@@ -29,7 +29,7 @@ export default defineConfig({
     fullyParallel: true,
     forbidOnly: isCI,
     retries: isCI ? 2 : 0,
-    workers: isCI ? 2 : undefined,
+    ...(isCI && { workers: 2 }),
     reporter: [["list"], ["html", { open: "never" }]],
     use: {
         baseURL,
@@ -51,12 +51,12 @@ export default defineConfig({
         { name: "consent", testMatch: /consent\.spec/, use: { ...devices["Desktop Chrome"] } },
     ],
     // Locally we reuse the dev server already running on :24789.
-    webServer: isCI
-        ? {
-              command: "pnpm build && pnpm start",
-              port: PORT,
-              reuseExistingServer: true,
-              timeout: 300_000,
-          }
-        : undefined,
+    ...(isCI && {
+        webServer: {
+            command: "pnpm build && pnpm start",
+            port: PORT,
+            reuseExistingServer: true,
+            timeout: 300_000,
+        },
+    }),
 });

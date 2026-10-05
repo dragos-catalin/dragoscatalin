@@ -16,7 +16,9 @@
     "menu": "Menu",
     "closeMenu": "Close menu",
     "skipToContent": "Skip to content",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "services": "Services",
+    "lab": "Lab"
   },
   "theme": {
     "label": "Appearance",
@@ -350,5 +352,34 @@
     "rights": "You may ask for access, correction, deletion, restriction, portability or object to processing, and you may withdraw consent at any time without affecting earlier processing. You may also complain to ANSPDCP (dataprotection.ro).",
     "changeTitle": "Change your choice",
     "change": "Open the cookie settings to change or withdraw your consent. Withdrawing reloads the page so that analytics stops immediately."
+  },
+  "services": {
+    "eyebrow": "Work with me",
+    "title": "Services",
+    "intro": "I build products end to end — from cloud and network to the app in your pocket. Pick the line that sounds like you.",
+    "offersLabel": "What you get",
+    "proofLabel": "Proof",
+    "engagementLabel": "How we work",
+    "processTitle": "From first call to hand-over",
+    "availability": "Selective availability: I take a few projects at a time so each gets real attention.",
+    "cta": "Tell me about your project",
+    "ctaSecondary": "See all projects"
+  },
+  "lab": {
+    "eyebrow": "Building in the open",
+    "title": "Lab",
+    "intro": "Ideas I am exploring or building in public. Each entry says what problem it solves and how. Updated when something changes, not on a schedule.",
+    "problemLabel": "Problem",
+    "approachLabel": "Approach",
+    "updated": "Updated {date}",
+    "repo": "Repository",
+    "stages": {
+      "exploring": "Exploring",
+      "building": "Building",
+      "shipped": "Shipped",
+      "paused": "Paused"
+    },
+    "empty": "Nothing here yet.",
+    "cta": "Want one of these sooner, or have a better idea? Write to me."
   }
 }

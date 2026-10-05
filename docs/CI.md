@@ -46,23 +46,30 @@ the pid is dead or the lock is older than 20 min.
 - **Windows** → re-executes itself inside WSL (`wsl.exe -e bash -lc`), mapping
   the repo path with `wslpath` (`E:\gh\dragoscatalin` → `/mnt/e/gh/dragoscatalin`),
   then `corepack enable && pnpm install --frozen-lockfile && node scripts/ci-local.mjs --inner`.
-- **`--docker`** → same inside `node:26-bookworm` with the repo mounted at `/w`.
+- **`--docker`** → same inside `node:24-bookworm` with the repo mounted at `/w`.
 - **Linux/macOS** → runs inline.
 
-Steps, in order: lint · typecheck · check-messages · check-tracker ·
-test (coverage) · build · size · `playwright install --with-deps chromium` ·
-e2e (`CI=1`, Playwright starts `pnpm build && pnpm start` on :24789).
+Steps, in order: format:check · lint · typecheck · check-messages ·
+check-tracker · audit (high) · test (coverage) · build · size ·
+`playwright install --with-deps chromium` · start (`next start` on :24789) ·
+scan:contrast · scan:layout · e2e (`CI=1`, reuses the running server).
 Add `--keep-going` to run all steps despite failures. Each run writes
 `.copilot-tmp/ci-logs/<timestamp>.log` and prints a timing table.
 
 ## GitHub Actions
 
-- `.github/workflows/ci.yml` — PR/push to `main` + manual. Single `ci` job,
-  actions pinned by SHA. Runner is chosen by the repo variable `CI_RUNNER`
+- `.github/workflows/ci.yml` — PR/push to `main` + manual. Job `ci` (the
+  steps above, Node from `.nvmrc`) and job `secrets` (gitleaks over full
+  history). Actions pinned by SHA. Runner is chosen by the repo variable `CI_RUNNER`
   (falls back to `ubuntu-latest`).
 - `.github/workflows/lighthouse.yml` — PRs only; builds, starts on :24789 and
   runs `treosh/lighthouse-ci-action` with `lighthouserc.json` (performance ≥ 0.9
   warn; accessibility / best-practices / SEO ≥ 0.95 error).
+- `.github/workflows/links.yml` — weekly + manual lychee run over the LIVE
+  sitemap and `llms.txt` (`lychee.toml`); broken links open/update one issue
+  labelled `links` instead of failing a build.
+- `pnpm audit --audit-level high` ignores only GHSA-vfj7-8cjw-p6xm (braces,
+  no fix, lint-time only); reason and overrides live in `pnpm-workspace.yaml`.
 - `renovate.json` — weekly grouped non-major updates, lockfile maintenance,
   pinned action digests, `pnpm dedupe` after updates.
 
@@ -82,7 +89,7 @@ sudo ./svc.sh install && sudo ./svc.sh start
 sudo ./svc.sh status
 ```
 
-The runner needs Node 26 + pnpm (`corepack enable`) and Playwright's system
+The runner needs Node 24 + pnpm (`corepack enable`) and Playwright's system
 deps (`pnpm exec playwright install --with-deps chromium` once).
 
 Then point CI at it:

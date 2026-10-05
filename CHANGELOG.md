@@ -40,7 +40,7 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
-- The commit lock now works in a git worktree. `scripts/lib/commit-lock.mjs` joined the cwd with an absolute `--git-dir`, so pre-commit failed with ENOENT. It now uses the common git dir, so all worktrees share one lock.
+- The commit lock now works in a git worktree. `scripts/lib/commit-lock.mjs` joined the cwd with an absolute `--git-dir`, so pre-commit failed with ENOENT. It now uses the common git dir, so all worktrees share one lock. Because of this bug, 2.8.0 landed in two commits: the first carried only this changelog and the lock fix.
 - **CI gates** (S-01, S-02):
   - `format:check` and `pnpm audit --audit-level high` run in CI.
   - `scan:contrast` and `scan:layout` run against `next start` before E2E.
