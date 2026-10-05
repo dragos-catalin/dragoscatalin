@@ -6,6 +6,20 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-10-05
+
+### Added
+
+- **Cookie consent** under Law 506/2004 art. 4(5), ePrivacy art. 5(3) and GDPR art. 7. Nothing optional runs before an explicit choice:
+  - Vercel Analytics and Speed Insights mount only after an "analytics" opt-in (`ConsentedAnalytics`).
+  - The Turnstile script loads only once the visitor focuses the contact form.
+- The banner gives "Reject all" and "Accept all" equal prominence, plus a "Customise" option.
+- The preferences dialog is a native `<dialog>`: focus trap, Escape to close, `role="switch"` toggles, axe-clean.
+- A "Cookie settings" button in the footer lets visitors change or withdraw consent at any time. Withdrawing reloads the page so scripts that already ran stop.
+- The choice is stored in the `dc-consent` cookie (6 months, versioned). Visitors are asked again when the categories change.
+- New `/privacy` page (EN + RO) listing every stored item. It is in the sitemap, `llms.txt` and the footer.
+- Tests: `src/lib/consent.test.ts` (unit) and `e2e/consent.spec.ts` (no optional requests before a choice, reject persists, preferences keyboard and axe, privacy table). The other E2E projects start with a stored "reject" choice.
+
 ## [2.5.0] - 2026-10-05
 
 ### Changed

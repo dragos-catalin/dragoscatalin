@@ -15,7 +15,8 @@
     "contact": "Contact",
     "menu": "Meniu",
     "closeMenu": "Închide meniul",
-    "skipToContent": "Sari la conținut"
+    "skipToContent": "Sari la conținut",
+    "privacy": "Confidențialitate"
   },
   "theme": {
     "label": "Aspect",
@@ -113,8 +114,15 @@
     "showcase": {
       "title": "Pe orice ecran",
       "device": "Dispozitiv",
-      "devices": { "desktop": "Desktop", "tablet": "Tabletă", "mobile": "Telefon" },
-      "schemes": { "dark": "întunecat", "light": "luminos" },
+      "devices": {
+        "desktop": "Desktop",
+        "tablet": "Tabletă",
+        "mobile": "Telefon"
+      },
+      "schemes": {
+        "dark": "întunecat",
+        "light": "luminos"
+      },
       "showLight": "Arată modul luminos",
       "showDark": "Arată modul întunecat",
       "alt": "{name} pe {device}, mod {scheme}",
@@ -144,7 +152,6 @@
     "yearsNow": "{from}–prezent",
     "back": "Toate proiectele",
     "notFound": "Proiectul nu a fost găsit",
-    "forks": "{count} fork-uri",
     "license": "Licență",
     "packages": "Pachete",
     "more": "+{count}",
@@ -275,7 +282,8 @@
     "version": "v{version}",
     "source": "Sursă",
     "feed": "RSS",
-    "llms": "llms.txt"
+    "llms": "llms.txt",
+    "privacy": "Confidențialitate și cookie-uri"
   },
   "common": {
     "loading": "Se încarcă",
@@ -287,5 +295,60 @@
     "title": "Pagina nu există",
     "body": "Pagina căutată nu există sau s-a mutat.",
     "home": "Înapoi acasă"
+  },
+  "consent": {
+    "title": "Cookie-uri, alegerea ta",
+    "body": "Stocarea strict necesară reține tema și limba. Cu permisiunea ta, măsor și vizitele și viteza paginilor cu Vercel Analytics, anonim și fără cookie-uri, ca să îmbunătățesc site-ul. Nimic opțional nu rulează până nu alegi.",
+    "policy": "Confidențialitate și cookie-uri",
+    "acceptAll": "Accept toate",
+    "rejectAll": "Refuz toate",
+    "customize": "Personalizez",
+    "saveChoice": "Salvez alegerea",
+    "settings": "Setări cookie-uri",
+    "close": "Închide",
+    "alwaysOn": "Mereu active",
+    "prefsTitle": "Preferințe cookie-uri",
+    "prefsIntro": "Alege ce poate rula pe acest site. Poți schimba sau retrage alegerea oricând, din subsolul paginii.",
+    "categories": {
+      "necessary": {
+        "title": "Strict necesare",
+        "body": "Preferințele de temă și limbă (dc-theme, NEXT_LOCALE) și această alegere (dc-consent). Site-ul are nevoie de ele, așa că nu pot fi dezactivate."
+      },
+      "analytics": {
+        "title": "Analiză și performanță",
+        "body": "Vercel Web Analytics și Speed Insights: afișări de pagină anonime și Core Web Vitals. Fără cookie-uri, fără urmărire între site-uri, fără reclame."
+      }
+    }
+  },
+  "privacy": {
+    "eyebrow": "Legal",
+    "title": "Confidențialitate și cookie-uri",
+    "intro": "Ce stochează acest site, de ce, cât timp și cum îți schimbi alegerea. Ultima actualizare: 5 octombrie 2026.",
+    "controllerTitle": "Cine este responsabil",
+    "controller": "Dragoș Cătălin Vlădulescu, România. Contact: {email}.",
+    "storageTitle": "Ce se stochează pe dispozitivul tău",
+    "colName": "Nume",
+    "colPurpose": "Scop",
+    "colType": "Categorie",
+    "colDuration": "Durată",
+    "necessary": "Strict necesare",
+    "analytics": "Analiză (cu acord)",
+    "rows": {
+      "theme": "Reține modul întunecat/luminos, accentul și suprafața.",
+      "locale": "Reține limba aleasă.",
+      "consent": "Reține alegerea ta privind cookie-urile.",
+      "vercel": "Afișări de pagină anonime și Core Web Vitals. Nu setează cookie-uri; se încarcă doar după ce accepți analiza."
+    },
+    "durYear": "1 an",
+    "durConsent": "6 luni",
+    "durSession": "Fără stocare",
+    "contactTitle": "Formularul de contact",
+    "contact": "Când trimiți un mesaj, numele, emailul și mesajul tău sunt prelucrate doar pentru a-ți răspunde (interes legitim / demersuri înaintea unui contract, art. 6 alin. (1) lit. b) și f) GDPR). Verificarea anti-spam Cloudflare Turnstile se încarcă doar după ce începi să completezi formularul. Mesajele sunt păstrate cât durează conversația, apoi cel mult 2 ani.",
+    "hostingTitle": "Găzduire și jurnale",
+    "hosting": "Site-ul este găzduit pe Vercel. Serverele lor păstrează jurnale tehnice de scurtă durată (adresă IP, user agent) pentru securitate și prevenirea abuzurilor, ca orice server web.",
+    "rightsTitle": "Drepturile tale",
+    "rights": "Poți cere acces, rectificare, ștergere, restricționare, portabilitate sau te poți opune prelucrării și îți poți retrage consimțământul oricând, fără a afecta prelucrarea anterioară. Poți depune și plângere la ANSPDCP (dataprotection.ro).",
+    "changeTitle": "Schimbă-ți alegerea",
+    "change": "Deschide setările cookie-urilor ca să schimbi sau să retragi consimțământul. La retragere pagina se reîncarcă, astfel încât analiza se oprește imediat."
   }
 }

@@ -11,6 +11,7 @@ const PAGES: { label: string; path: string }[] = [
     { label: "Now", path: "/now" },
     { label: "Uses", path: "/uses" },
     { label: "Press kit", path: "/press" },
+    { label: "Privacy & cookies", path: "/privacy" },
 ];
 
 function header(): string {

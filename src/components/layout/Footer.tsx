@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Package } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { DiscordIcon, GitHubIcon, InstagramIcon, TikTokIcon } from "@/components/icons";
+import { ConsentSettingsButton } from "@/components/consent";
 import { site, type SocialKey } from "@/lib/site";
 import pkg from "../../../package.json";
 
@@ -106,6 +107,17 @@ export async function Footer() {
                             >
                                 {t("footer.llms")}
                             </a>
+                        </li>
+                        <li>
+                            <Link
+                                href="/privacy"
+                                className="link-inline transition-colors hover:text-fg"
+                            >
+                                {t("footer.privacy")}
+                            </Link>
+                        </li>
+                        <li>
+                            <ConsentSettingsButton className="link-inline inline-flex min-h-6 items-center transition-colors hover:text-fg" />
                         </li>
                         <li>
                             <a

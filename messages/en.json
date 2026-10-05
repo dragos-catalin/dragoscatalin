@@ -15,7 +15,8 @@
     "contact": "Contact",
     "menu": "Menu",
     "closeMenu": "Close menu",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "privacy": "Privacy"
   },
   "theme": {
     "label": "Appearance",
@@ -113,8 +114,15 @@
     "showcase": {
       "title": "On every screen",
       "device": "Device",
-      "devices": { "desktop": "Desktop", "tablet": "Tablet", "mobile": "Phone" },
-      "schemes": { "dark": "dark", "light": "light" },
+      "devices": {
+        "desktop": "Desktop",
+        "tablet": "Tablet",
+        "mobile": "Phone"
+      },
+      "schemes": {
+        "dark": "dark",
+        "light": "light"
+      },
       "showLight": "Show light mode",
       "showDark": "Show dark mode",
       "alt": "{name} on {device}, {scheme} mode",
@@ -144,7 +152,6 @@
     "yearsNow": "{from}–now",
     "back": "All projects",
     "notFound": "Project not found",
-    "forks": "{count} forks",
     "license": "License",
     "packages": "Packages",
     "more": "+{count}",
@@ -275,7 +282,8 @@
     "version": "v{version}",
     "source": "Source",
     "feed": "RSS",
-    "llms": "llms.txt"
+    "llms": "llms.txt",
+    "privacy": "Privacy & cookies"
   },
   "common": {
     "loading": "Loading",
@@ -287,5 +295,60 @@
     "title": "Page not found",
     "body": "The page you're looking for doesn't exist or moved.",
     "home": "Back home"
+  },
+  "consent": {
+    "title": "Cookies, your choice",
+    "body": "Strictly necessary storage keeps your theme and language. With your permission I also measure visits and page speed with Vercel Analytics, which is anonymous and stores no cookies, so I can improve the site. Nothing optional runs until you choose.",
+    "policy": "Privacy & cookies",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "customize": "Customise",
+    "saveChoice": "Save choice",
+    "settings": "Cookie settings",
+    "close": "Close",
+    "alwaysOn": "Always on",
+    "prefsTitle": "Cookie preferences",
+    "prefsIntro": "Choose what may run on this site. You can change or withdraw your choice at any time from the footer.",
+    "categories": {
+      "necessary": {
+        "title": "Strictly necessary",
+        "body": "Theme and language preferences (dc-theme, NEXT_LOCALE) and this choice (dc-consent). The site needs them, so they can't be turned off."
+      },
+      "analytics": {
+        "title": "Analytics & performance",
+        "body": "Vercel Web Analytics and Speed Insights: anonymous page views and Core Web Vitals. No cookies, no cross-site tracking, no advertising."
+      }
+    }
+  },
+  "privacy": {
+    "eyebrow": "Legal",
+    "title": "Privacy & cookies",
+    "intro": "What this site stores, why, for how long, and how to change your mind. Last updated 5 October 2026.",
+    "controllerTitle": "Who is responsible",
+    "controller": "Dragos Catalin Vladulescu, Romania. Contact: {email}.",
+    "storageTitle": "What is stored on your device",
+    "colName": "Name",
+    "colPurpose": "Purpose",
+    "colType": "Category",
+    "colDuration": "Duration",
+    "necessary": "Strictly necessary",
+    "analytics": "Analytics (opt-in)",
+    "rows": {
+      "theme": "Remembers dark/light mode, accent and surface.",
+      "locale": "Remembers the language you picked.",
+      "consent": "Remembers your cookie choice.",
+      "vercel": "Anonymous page views and Core Web Vitals. Sets no cookies; loads only after you accept analytics."
+    },
+    "durYear": "1 year",
+    "durConsent": "6 months",
+    "durSession": "No storage",
+    "contactTitle": "Contact form",
+    "contact": "When you send a message, your name, email and message are processed only to reply to you (legitimate interest / steps before a contract, GDPR art. 6(1)(b) and (f)). An anti-spam check from Cloudflare Turnstile loads only after you start filling in the form. Messages are kept for as long as the conversation lasts, then for at most 2 years.",
+    "hostingTitle": "Hosting and logs",
+    "hosting": "The site is hosted on Vercel. Their servers keep short-lived technical logs (IP address, user agent) for security and abuse prevention, as every web server does.",
+    "rightsTitle": "Your rights",
+    "rights": "You may ask for access, correction, deletion, restriction, portability or object to processing, and you may withdraw consent at any time without affecting earlier processing. You may also complain to ANSPDCP (dataprotection.ro).",
+    "changeTitle": "Change your choice",
+    "change": "Open the cookie settings to change or withdraw your consent. Withdrawing reloads the page so that analytics stops immediately."
   }
 }

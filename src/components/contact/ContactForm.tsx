@@ -33,6 +33,8 @@ export function ContactForm() {
     const { resolvedMode } = useTheme();
     const [state, action] = useActionState(contactAction, initial);
     const [clientErrors, setClientErrors] = useState<Partial<Record<Field, string>>>({});
+    // Turnstile (third-party) loads only once the visitor starts using the form, never on page load.
+    const [engaged, setEngaged] = useState(false);
     const id = useId();
     const turnstileKey = clientEnv.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
@@ -76,6 +78,9 @@ export function ContactForm() {
         <form
             action={action}
             noValidate
+            onFocus={() => {
+                if (!engaged) setEngaged(true);
+            }}
             onSubmit={(e) => {
                 if (!validate(e.currentTarget)) e.preventDefault();
             }}
@@ -135,7 +140,7 @@ export function ContactForm() {
             </div>
             <input type="hidden" name="locale" value={locale} />
 
-            {turnstileKey ? (
+            {turnstileKey && engaged ? (
                 <Turnstile
                     siteKey={turnstileKey}
                     options={{ theme: resolvedMode, language: locale, size: "flexible" }}
