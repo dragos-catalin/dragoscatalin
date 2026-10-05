@@ -162,6 +162,16 @@ See `tracker.csv` for the live list. Summary by area:
 
 ## Session log
 
+### 2026-10-06 — v2.10.1 three OSS scaffolds on /lab (V3-39)
+
+- D-07 agentcfg-audit, D-01 agentq (with the ACP-Lock 0.1 draft, P-01) and D-20
+  device-pairing were built as new repos in `dragos-catalin`, scanned with
+  gitleaks over their full history, and made public with the owner's approval.
+- `/lab` moves all three from exploring to building with repo links. The
+  approach text says what 0.1 does today and what comes next.
+- The first CI runs on the new repos were cancelled ("job was not acquired by
+  Runner of type hosted") during a GitHub Actions major outage. A rerun was green.
+
 ### 2026-10-05 — v2.9.4 → v2.9.6 move to org dragos-catalin (V3-38)
 
 - The repo moved from `dragoscv/dragoscatalin` to `dragos-catalin/dragoscatalin`.

@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.10.1] - 2026-10-06
+
+### Changed
+
+- `/lab`: agentcfg-audit, agentq and device-pairing move from exploring to building, each with a link to its public repository in `dragos-catalin`. agentq's entry mentions the ACP-Lock 0.1 protocol draft. Trackers: V3-39 in `docs/tracker.csv`; D-07, D-01, P-01 and D-20 in `docs/portfolio/portfolio.csv`.
+
 ## [2.10.0] - 2026-10-06
 
 ### Added
