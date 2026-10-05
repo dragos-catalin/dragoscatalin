@@ -6,6 +6,13 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.9.1] - 2026-10-05
+
+### Changed
+
+- `/lab`: mcp-lock moves from "Exploring" to "Building". Version 0.1 works today: lock, check, and stdio and HTTP servers. The runtime proxy comes next. EN + RO.
+- `docs/portfolio`: D-03 and X-04 are done. P-03 is in progress.
+
 ## [2.9.0] - 2026-10-05
 
 ### Added

@@ -26,15 +26,15 @@ export const labIdeas: LabIdea[] = [
     {
         id: "D-03",
         name: "mcp-lock",
-        stage: "exploring",
+        stage: "building",
         updated: "2026-10-05",
         problem: {
             en: "MCP servers can change a tool's description or schema after you approved it (tool poisoning, rug-pulls). Nothing pins what an agent is allowed to call.",
             ro: "Serverele MCP pot schimba descrierea sau schema unui tool după ce l-ai aprobat (tool poisoning, rug-pull). Nimic nu fixează ce are voie un agent să apeleze.",
         },
         approach: {
-            en: "A lockfile of tool description and schema hashes, a CI diff that fails on drift, and a local proxy that refuses changed tools.",
-            ro: "Un lockfile cu hash-urile descrierilor și schemelor, un diff în CI care pică la orice schimbare și un proxy local care refuză tool-urile modificate.",
+            en: "A lockfile of tool description and schema hashes and a CI check that fails on drift (0.1 works today: lock, check, stdio and HTTP servers). Next: a local proxy that refuses changed tools at runtime.",
+            ro: "Un lockfile cu hash-urile descrierilor și schemelor și o verificare în CI care pică la orice schimbare (versiunea 0.1 merge deja: lock, check, servere stdio și HTTP). Urmează un proxy local care refuză tool-urile modificate la rulare.",
         },
         tags: ["MCP", "security", "CI"],
     },
