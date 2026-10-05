@@ -6,6 +6,19 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.10.0] - 2026-10-06
+
+### Added
+
+- **Skins (V3-03).** A skin replaces the home page and its chrome; content pages are shared and only pick up the skin's tokens via `html[data-skin]`. **Classic** (the current design) stays the default and renders as before. Four new skin homes, CSS/SVG only for now: **Editorial** (masthead, kinetic headline, numbered index), **Constellation** (static starfield poster, projects as stars), **Command** (terminal `whoami` + `ps` table, keyboard hint) and **Devices** (CSS watch/phone/desktop/TV frames with screenshots or cover art). EN + RO.
+- Preview on production with `?skin=editorial|constellation|command|devices` (sets cookie `dc-skin` for a year and 307s to the clean URL); `?skin=classic` clears it. The theme menu has a new Skin group; skin chrome has "Back to classic".
+- `src/skins/registry.ts` (`SKINS`, `SKIN_META`), `SKIN_COOKIE` / `isSkin` / `DEFAULT_SKIN` in `src/lib/theme.ts`, `THEME_INIT_SCRIPT` stamps `data-skin` pre-paint. Skill `.github/skills/add-skin`.
+- Tests: `src/proxy.test.ts`, `src/skins/registry.test.ts`, new `data-skin` cases in `theme-init.test.tsx`, `e2e/skins.spec.ts` (every skin: home, /ro, content page, axe; `?skin=` set/clear; `/skin/*` 404; theme-menu switch). `scan:contrast`, `scan:layout`, `pnpm lh -- --skin <id|all>` and the Lighthouse workflow cover every skin.
+
+### Changed
+
+- Routing: `src/app/[locale]/layout.tsx` keeps html/fonts/providers/JSON-LD; the classic header/main/footer moved to the route group `src/app/[locale]/(site)/layout.tsx` together with every page (URLs unchanged). Skin homes live in static `src/app/[locale]/skin/<id>/` folders reached only through the `src/proxy.ts` rewrite of `/` and `/ro`; direct `/skin/*` URLs are 404, skin homes keep canonical `/` and are not in the sitemap or llms.txt.
+
 ### Fixed
 
 - Weekly `Screenshots` workflow: the bot commit for the refresh PR ran the husky version/CHANGELOG gate and failed (run 37306871390). That step now sets `SKIP_HOOKS=1`, and the PR still runs full CI.

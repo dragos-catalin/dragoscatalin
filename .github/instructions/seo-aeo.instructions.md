@@ -17,13 +17,17 @@ Helpers: `src/lib/seo.ts` (`localeUrl`, `localeAlternates`, `ogImageUrl`),
   `alternates: localeAlternates(locale, "/path")` (canonical + `en`/`ro`/`x-default`).
 - `openGraph.url` = `localeUrl(locale, path)`; OG image comes from the nearest
   `opengraph-image.tsx` (root: `src/app/[locale]/opengraph-image.tsx`, project:
-  `src/app/[locale]/projects/[slug]/opengraph-image.tsx`, drawn via `src/lib/og.tsx`
+  `src/app/[locale]/projects/[slug]/opengraph-image.tsx` — kept OUTSIDE the `(site)` group: inside
+  a route group Next suffixes it with a hash (`/opengraph-image-1ka1jg`) and the stable URL in
+  the page metadata 404s; drawn via `src/lib/og.tsx`
   — **hex colours only**, satori has no oklch).
 - JSON-LD: `<JsonLd data={breadcrumbJsonLd([...])} />` on subpages;
   `softwareApplicationJsonLd(project, locale)` on project detail. Person +
   WebSite are emitted once in `src/app/[locale]/layout.tsx`.
 - `generateStaticParams` for `[locale]` (and `[slug]`); nothing dynamic outside
   Suspense (cacheComponents trap).
+- Skin homes (`src/app/[locale]/skin/<id>/`) use `skinHomeMetadata` (canonical `/` | `/ro`) and
+  are NEVER listed in `sitemap.ts` or `llms.ts`; `/skin/*` answers 404.
 
 ## Machine surfaces (all derive from `src/data/projects.ts`)
 
@@ -39,7 +43,8 @@ Helpers: `src/lib/seo.ts` (`localeUrl`, `localeAlternates`, `ogImageUrl`),
 
 ## Ripple for a NEW PAGE (all in one commit)
 
-1. `src/app/[locale]/<page>/page.tsx` + `loading.tsx`, metadata as above.
+1. `src/app/[locale]/(site)/<page>/page.tsx` + `loading.tsx`, metadata as above (the `(site)`
+   group gives it the classic chrome; never add pages under `skin/`).
 2. `STATIC_PATHS` in `src/app/sitemap.ts`.
 3. `PAGES` in `src/lib/llms.ts`.
 4. Nav arrays in `src/components/layout/Header.tsx` and `Footer.tsx`.

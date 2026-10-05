@@ -451,5 +451,45 @@
     "not": "Fără cont, fără analiză, fără reclame, fără raportare de erori, fără vânzare sau partajare de date, nicio dată colectată despre copii. Aplicația nu colectează date în sensul secțiunii „Siguranța datelor” din Google Play.",
     "changesTitle": "Modificări",
     "changes": "Dacă politica se schimbă, noua versiune va fi publicată la această adresă, cu o nouă dată de intrare în vigoare."
+  },
+  "skins": {
+    "label": "Temă vizuală",
+    "backToClassic": "Înapoi la clasic",
+    "projectsTitle": "Lucrări alese",
+    "allProjects": "Toate proiectele",
+    "classic": {
+      "name": "Clasic",
+      "description": "Designul original."
+    },
+    "editorial": {
+      "name": "Editorial",
+      "description": "Tipografie mare, ritm de revistă.",
+      "issue": "Portofoliu — ediția de lucru",
+      "index": "În acest număr"
+    },
+    "constellation": {
+      "name": "Constelație",
+      "description": "Proiectele ca stele pe cerul nopții.",
+      "legend": "Fiecare stea e un proiect; cele mai strălucitoare sunt proiectele de bază."
+    },
+    "command": {
+      "name": "Consolă",
+      "description": "Terminal și monitor de sistem.",
+      "prompt": "whoami",
+      "processes": "Proiecte în rulare",
+      "colName": "Nume",
+      "colStatus": "Stare",
+      "colStack": "Tehnologii",
+      "hint": "Tastatura întâi: Tab trece de la un link la altul, Enter îl deschide."
+    },
+    "devices": {
+      "name": "Dispozitive",
+      "description": "Fiecare aplicație pe ecranul pe care rulează.",
+      "watch": "Ceas",
+      "phone": "Telefon",
+      "desktop": "Desktop",
+      "tv": "TV",
+      "onDevice": "{name} pe {device}"
+    }
   }
 }

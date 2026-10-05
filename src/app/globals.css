@@ -2,7 +2,8 @@
 
 /* ---------------------------------------------------------------------------
  * Theme system — see docs/DESIGN.md
- * <html data-mode="dark|light" data-accent="ember|orange|violet|indigo|cyan|emerald|amber|rose" data-surface="solid|glass|contrast">
+ * <html data-mode="dark|light" data-accent="ember|orange|violet|indigo|cyan|emerald|amber|rose" data-surface="solid|glass|contrast"
+ *       data-skin="classic|editorial|constellation|command|devices">
  * Components use ONLY semantic utilities generated from @theme inline below.
  * Values = brand Keystone (brand/BRAND.md, brand/tokens.json; proven by brand/contrast-pairs.json).
  * ------------------------------------------------------------------------- */
@@ -14,7 +15,10 @@
 @theme inline {
     --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
     --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
-    --font-display: var(--font-bricolage), var(--font-geist-sans), ui-sans-serif, sans-serif;
+    /* Skin hook (V3-03): @theme inline bakes values into utilities, so skins override --skin-*. */
+    --font-display: var(--skin-font-display);
+    /* The wordmark is brand (Bricolage) in every skin — never a skin hook. */
+    --font-brand: var(--font-bricolage), var(--font-geist-sans), ui-sans-serif, sans-serif;
 
     --color-bg: var(--bg);
     --color-bg-deep: var(--bg-deep);
@@ -50,7 +54,7 @@
         var(--elev-inset), 0 4px 12px var(--elev-key), 0 24px 56px -12px var(--elev-ambient),
         0 0 0 1px var(--accent-ring);
 
-    --radius-card: 1.25rem;
+    --radius-card: var(--skin-radius-card);
     --radius-pill: 999px;
 
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -111,6 +115,9 @@
 /* --- Light mode (default) -------------------------------------------------- */
 :root {
     color-scheme: light;
+    /* Skin hooks, classic values (see "Skins" below). */
+    --skin-font-display: var(--font-bricolage), var(--font-geist-sans), ui-sans-serif, sans-serif;
+    --skin-radius-card: 1.25rem;
     /* Keystone slate neutrals, hue 265. */
     --bg: oklch(0.99 0.004 265);
     --bg-deep: oklch(0.965 0.008 265);
@@ -196,6 +203,43 @@
     --line: oklch(0.5 0.016 265);
     --line-strong: oklch(0.7 0.016 265);
     --fg-subtle: oklch(0.8 0.016 265);
+}
+
+/* --- Skins (V3-03, docs/DESIGN.md § Skins) ---------------------------------
+ * html[data-skin] is stamped pre-paint from the dc-skin cookie. A skin replaces the HOME and its
+ * chrome (src/app/[locale]/skin/<id>/); shared content pages keep the classic chrome and only
+ * pick up these token tweaks. Classic has no block: it IS the default above. Neutral tints keep
+ * the same L as the defaults, so every proven contrast pair still holds (pnpm scan:contrast). */
+html[data-skin="editorial"] {
+    --skin-radius-card: 0.25rem;
+}
+
+html[data-skin="editorial"]:not([data-mode="dark"]) {
+    /* paper: same lightness, warm hue */
+    --bg: oklch(0.99 0.006 85);
+    --bg-deep: oklch(0.965 0.01 85);
+    --surface-raised: oklch(0.975 0.01 85);
+}
+
+html[data-skin="constellation"] {
+    --skin-radius-card: 1.5rem;
+}
+
+html[data-skin="constellation"][data-mode="dark"] {
+    /* night sky: same lightness, deeper indigo */
+    --bg: oklch(0.155 0.03 275);
+    --bg-deep: oklch(0.13 0.03 275);
+    --surface: oklch(0.182 0.03 275);
+    --surface-raised: oklch(0.212 0.03 275);
+}
+
+html[data-skin="command"] {
+    --skin-radius-card: 0.5rem;
+    --skin-font-display: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+html[data-skin="devices"] {
+    --skin-radius-card: 1.75rem;
 }
 
 /* --- Base ------------------------------------------------------------------ */

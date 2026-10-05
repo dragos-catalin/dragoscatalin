@@ -37,3 +37,18 @@ jobs:
           configPath: ./lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
+      # V3-03 skins: same assertions on each skin home + /projects (Cookie dc-skin=<id>).
+      - name: Skin configs
+        run: for s in editorial constellation command devices; do node scripts/lighthouserc-skin.mjs "$s"; done
+      - uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
+        with:
+          configPath: ./.lighthouseci/lighthouserc.editorial.json
+      - uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
+        with:
+          configPath: ./.lighthouseci/lighthouserc.constellation.json
+      - uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
+        with:
+          configPath: ./.lighthouseci/lighthouserc.command.json
+      - uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
+        with:
+          configPath: ./.lighthouseci/lighthouserc.devices.json

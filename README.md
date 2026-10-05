@@ -58,7 +58,9 @@ Every integration no-ops cleanly when its variable is absent.
 ```
 src/
 	app/
-		[locale]/            # en (root) + ro — layout, page, about, now, open-source, press, projects/[slug], uses
+		[locale]/            # en (root) + ro — root layout (html, fonts, providers, JSON-LD), OG image
+			(site)/          # classic chrome + classic home + every content page (about, projects/[slug], …)
+			skin/<id>/       # skin homes (editorial, constellation, command, devices) — proxy rewrite only
 		api/                 # /api/projects, /api/projects/[slug], /api/manifest
 		feed.xml/  llms.txt/  llms-full.txt/   # route handlers
 		sitemap.ts  robots.ts  manifest.ts  globals.css
@@ -76,7 +78,8 @@ src/
 	data/        # projects.ts (registry), types.ts, uses.ts, press.ts
 	lib/         # github.ts, llms.ts, projects-api.ts, seo.ts, site.ts, theme.ts, motion.ts, og.tsx, env.ts
 	i18n/        # routing.ts, request.ts (next/root-params), navigation.ts
-	proxy.ts     # next-intl middleware
+	skins/       # registry.ts + one folder per skin (components, css) + shared/
+	proxy.ts     # skin 404/preview/rewrite around the next-intl middleware
 messages/      # en.json, ro.json (identical key trees)
 docs/          # TRACKER.md, tracker.csv, DESIGN.md, PUBLICITY.md, WIKIDATA.md
 ```
@@ -96,6 +99,16 @@ inline script (`src/lib/theme.ts`), persisted in cookie `dc-theme` +
 localStorage. Modes dark/light/system, six accents (violet, indigo, cyan,
 emerald, amber, rose), surfaces solid/glass/contrast. Components use only
 semantic tokens from `globals.css`; raw palette classes are an ESLint error.
+
+### Skins (V3-03)
+
+A skin replaces the home page and its chrome; content pages are shared and only pick up the
+skin's tokens via `html[data-skin]`. Classic (the original design) is the default. Preview on
+any URL with `?skin=editorial|constellation|command|devices` (sets cookie `dc-skin` for a year
+and 307s to the clean URL); `?skin=classic` goes back. The theme menu has a Skin group.
+`src/proxy.ts` rewrites `/` and `/ro` to `src/app/[locale]/skin/<id>/`; `/skin/*` is a 404 and
+skin homes keep canonical `/`. Rules and canvas policy: `docs/DESIGN.md` § Skins; recipe:
+`.github/skills/add-skin/SKILL.md`.
 
 ### i18n
 

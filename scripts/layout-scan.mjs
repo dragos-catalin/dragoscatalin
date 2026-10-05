@@ -22,13 +22,27 @@ const routes = [
     "/ro",
 ];
 const widths = [360, 390, 768, 1024, 1440, 1920, 2560, 3440];
+// V3-03: every non-classic skin (cookie dc-skin) re-scans its home and a shared content page.
+const skins = ["editorial", "constellation", "command", "devices"];
+const skinRoutes = ["/", "/ro", "/projects"];
+const jobs = [
+    ...routes.map((route) => ({ skin: "classic", route })),
+    ...skins.flatMap((skin) => skinRoutes.map((route) => ({ skin, route }))),
+];
 
 const b = await chromium.launch();
 const problems = [];
 for (const w of widths) {
     const page = await b.newPage({ viewport: { width: w, height: 900 } });
-    for (const route of routes) {
-        await page.goto(base + route, { waitUntil: "networkidle" });
+    for (const { skin, route: path } of jobs) {
+        await page.context().clearCookies({ name: "dc-skin" });
+        if (skin !== "classic")
+            await page.context().addCookies([{ name: "dc-skin", value: skin, url: base }]);
+        const route = skin === "classic" ? path : `${path} [${skin}]`;
+        // Repeat visits leave Next segment prefetches pending → "networkidle" never fires
+        // (also on the pre-skins build); wait for load + bounded idle instead.
+        await page.goto(base + path, { waitUntil: "load" });
+        await page.waitForLoadState("networkidle", { timeout: 5000 }).catch(() => {});
         await page.evaluate(() =>
             document.getAnimations().forEach((a) => {
                 try {

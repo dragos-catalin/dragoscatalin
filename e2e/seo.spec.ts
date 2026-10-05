@@ -35,4 +35,18 @@ test.describe("seo / aeo routes", () => {
         expect(res.ok()).toBeTruthy();
         expect(await res.text()).toContain("<rss");
     });
+
+    // V3-03: opengraph-image inside a route group gets a hashed URL; the stable ones must stay 200.
+    test("OG images answer on their stable URLs", async ({ request }) => {
+        for (const path of [
+            "/opengraph-image",
+            "/ro/opengraph-image",
+            "/projects/codai/opengraph-image",
+            "/ro/projects/codai/opengraph-image",
+        ]) {
+            const res = await request.get(path);
+            expect(res.status(), path).toBe(200);
+            expect(res.headers()["content-type"], path).toContain("image/png");
+        }
+    });
 });

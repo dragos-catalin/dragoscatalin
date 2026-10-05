@@ -6,9 +6,6 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import { Header } from "@/components/layout/Header";
-import { HEADER_OFFSET_CLASS } from "@/components/layout/header-offset";
-import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { ConsentBanner, ConsentProvider, ConsentedAnalytics } from "@/components/consent";
 import { PersonJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
@@ -129,11 +126,9 @@ export default async function LocaleLayout({
                         <ConsentProvider>
                             <NuqsAdapter>
                                 <SkipLink />
-                                <Header />
-                                <main id="main" className={`relative ${HEADER_OFFSET_CLASS}`}>
-                                    {children}
-                                </main>
-                                <Footer />
+                                {/* Chrome (header / main#main / footer) comes from the route group:
+                                    (site)/layout.tsx = classic, skin/<id>/layout.tsx = skin homes. */}
+                                {children}
                             </NuqsAdapter>
                             <ConsentBanner />
                             {/* Optional scripts mount only after an explicit opt-in. */}

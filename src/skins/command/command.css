@@ -1,0 +1,60 @@
+/* Command skin home (V3-03). Loaded only by src/app/[locale]/skin/command/layout.tsx.
+   Terminal / system-monitor look, monospace everywhere, tokens only. The cursor blink is the
+   one tiny looping animation and it is OFF under prefers-reduced-motion; no canvas. */
+
+.cmd-root {
+    font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+    background:
+        linear-gradient(transparent 0 calc(100% - 1px), var(--line) 0) 0 0 / 100% 2.25rem,
+        var(--bg-deep);
+}
+
+.cmd-panel {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 0.5rem;
+}
+
+.cmd-bar {
+    border-bottom: 1px solid var(--line);
+}
+
+.cmd-cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1em;
+    margin-left: 0.15em;
+    vertical-align: -0.12em;
+    background: var(--accent);
+    animation: cmd-blink 1.1s steps(1) 6;
+}
+
+.cmd-row {
+    border-top: 1px solid var(--line);
+}
+
+.cmd-row:hover,
+.cmd-row:focus-within {
+    background: var(--accent-soft);
+}
+
+.cmd-kbd {
+    border: 1px solid var(--line-strong);
+    border-bottom-width: 2px;
+    border-radius: 0.3rem;
+    padding: 0.05rem 0.4rem;
+    background: var(--surface-raised);
+    color: var(--fg);
+}
+
+@keyframes cmd-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cmd-cursor {
+        animation: none;
+    }
+}

@@ -451,5 +451,45 @@
     "not": "No account, no analytics, no advertising, no crash reporting, no selling or sharing of data, no data collected about children. The app does not collect any data as defined by Google Play's Data safety section.",
     "changesTitle": "Changes",
     "changes": "If this policy changes, the new version will be published at this address with a new effective date."
+  },
+  "skins": {
+    "label": "Skin",
+    "backToClassic": "Back to classic",
+    "projectsTitle": "Selected work",
+    "allProjects": "All projects",
+    "classic": {
+      "name": "Classic",
+      "description": "The original design."
+    },
+    "editorial": {
+      "name": "Editorial",
+      "description": "Big type, magazine pacing.",
+      "issue": "Portfolio — the working edition",
+      "index": "In this issue"
+    },
+    "constellation": {
+      "name": "Constellation",
+      "description": "Projects as stars in a night sky.",
+      "legend": "Every star is a project; the brightest ones are the flagships."
+    },
+    "command": {
+      "name": "Command",
+      "description": "Terminal and system monitor.",
+      "prompt": "whoami",
+      "processes": "Running projects",
+      "colName": "Name",
+      "colStatus": "Status",
+      "colStack": "Stack",
+      "hint": "Keyboard first: Tab moves between links, Enter opens one."
+    },
+    "devices": {
+      "name": "Devices",
+      "description": "Every app on the screen it runs on.",
+      "watch": "Watch",
+      "phone": "Phone",
+      "desktop": "Desktop",
+      "tv": "TV",
+      "onDevice": "{name} on {device}"
+    }
   }
 }

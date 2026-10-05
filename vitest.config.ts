@@ -12,6 +12,9 @@ export default defineConfig({
     test: {
         globals: true,
         exclude,
+        // next-intl's ESM middleware imports "next/server" without an extension; inlining it lets
+        // Vite resolve that (src/proxy.test.ts exercises the real middleware).
+        server: { deps: { inline: ["next-intl"] } },
         coverage: {
             provider: "v8",
             reportsDirectory: "./coverage",

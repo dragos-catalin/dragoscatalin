@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { THEME_INIT_SCRIPT, THEME_STORAGE_KEY, serializeTheme } from "./theme";
+import { SKIN_COOKIE, THEME_INIT_SCRIPT, THEME_STORAGE_KEY, serializeTheme } from "./theme";
 
 function run() {
     // The inline script is an IIFE string; evaluating it must not throw.
@@ -13,7 +13,8 @@ describe("THEME_INIT_SCRIPT", () => {
         sessionStorage.clear();
         document.documentElement.removeAttribute("data-intro");
         document.cookie = `${THEME_STORAGE_KEY}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-        for (const a of ["data-mode", "data-accent", "data-surface"])
+        document.cookie = `${SKIN_COOKIE}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+        for (const a of ["data-mode", "data-accent", "data-surface", "data-skin"])
             document.documentElement.removeAttribute(a);
         vi.unstubAllGlobals();
     });
@@ -60,5 +61,25 @@ describe("THEME_INIT_SCRIPT", () => {
         h.removeAttribute("data-intro");
         run();
         expect(h.hasAttribute("data-intro")).toBe(false);
+    });
+
+    it("stamps data-skin=classic when no skin cookie is set", () => {
+        vi.stubGlobal("matchMedia", () => ({ matches: false }));
+        run();
+        expect(document.documentElement.getAttribute("data-skin")).toBe("classic");
+    });
+
+    it("stamps data-skin from a valid dc-skin cookie", () => {
+        vi.stubGlobal("matchMedia", () => ({ matches: false }));
+        document.cookie = `${SKIN_COOKIE}=command`;
+        run();
+        expect(document.documentElement.getAttribute("data-skin")).toBe("command");
+    });
+
+    it("falls back to classic for an unknown skin cookie", () => {
+        vi.stubGlobal("matchMedia", () => ({ matches: false }));
+        document.cookie = `${SKIN_COOKIE}=%3Cscript%3E`;
+        run();
+        expect(document.documentElement.getAttribute("data-skin")).toBe("classic");
     });
 });

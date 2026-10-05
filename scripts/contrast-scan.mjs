@@ -21,13 +21,32 @@ const routes = [
 ];
 const modes = ["dark", "light"];
 const accents = ["ember", "violet"];
+// V3-03: every non-classic skin (cookie dc-skin) re-scans its home and a shared content page.
+const skins = ["editorial", "constellation", "command", "devices"];
+const skinRoutes = ["/", "/ro", "/projects"];
+const jobs = [
+    ...routes.map((route) => ({ skin: "classic", route })),
+    ...skins.flatMap((skin) => skinRoutes.map((route) => ({ skin, route }))),
+];
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 const issues = [];
 
-for (const route of routes) {
-    await page.goto(base + route, { waitUntil: "networkidle" });
+// A repeat visit to a page in the same tab leaves Next's segment prefetches (`?_rsc=`, header
+// next-router-segment-prefetch) pending forever, so "networkidle" never fires (reproduced on the
+// pre-skins build 6691cc0 too). Skin passes revisit /projects → wait for load + bounded idle.
+async function open(url) {
+    await page.goto(url, { waitUntil: "load" });
+    await page.waitForLoadState("networkidle", { timeout: 5000 }).catch(() => {});
+}
+
+for (const { skin, route: path } of jobs) {
+    await page.context().clearCookies({ name: "dc-skin" });
+    if (skin !== "classic")
+        await page.context().addCookies([{ name: "dc-skin", value: skin, url: base }]);
+    const route = skin === "classic" ? path : `${path} [${skin}]`;
+    await open(base + path);
     for (const mode of modes)
         for (const accent of accents) {
             await page.evaluate(

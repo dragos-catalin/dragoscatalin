@@ -65,6 +65,13 @@ data-accent data-surface>` (`src/lib/theme.ts`: MODES/ACCENTS/SURFACES).
 9. **Tracker update per feature**: `docs/TRACKER.md` + `docs/tracker.csv` in the
    same commit; `done` rows cite real paths in `evidence`.
 10. Shared clone: stage explicit paths only (never `git add -A`).
+11. **Skins (V3-03).** Registry `src/skins/registry.ts` (`SKINS`, `SKIN_META`); helpers
+    `SKIN_COOKIE` / `isSkin` / `DEFAULT_SKIN` in `src/lib/theme.ts`. Routes: `src/app/[locale]/layout.tsx`
+    = root (html, fonts, init script, providers, JSON-LD, no chrome); `(site)/layout.tsx` = classic
+    chrome + every content page and the classic home; `skin/<id>/{layout,page}.tsx` = skin homes
+    (static folders, one per skin — never a `[skin]` dynamic segment, never `_skin`). `src/proxy.ts`:
+    `/skin/*` → 404, `?skin=` → 307 + cookie, then next-intl, then `/`|`/ro` + cookie → rewrite.
+    Skin homes: canonical `/` | `/ro`, never in sitemap/llms. New skin: `skills/add-skin`.
 
 ## Known traps (verified 2026-09-15)
 
@@ -88,6 +95,10 @@ data-accent data-surface>` (`src/lib/theme.ts`: MODES/ACCENTS/SURFACES).
   indicators.
 - (i) `ViewTransition` is a stable named export from `react` in 19.3 (not `unstable_`).
 - OG images (`src/lib/og.tsx`) must use hex colours — satori has no oklch.
+- (j) `@theme inline` variables (`--font-display`, `--radius-card`, `--ease-out-expo`) are inlined
+  into utilities and may not exist at runtime — skin CSS uses `--skin-*` hooks / plain tokens.
+- (k) next-intl's ESM middleware imports `next/server` extension-less: vitest needs
+  `server.deps.inline: ["next-intl"]` (`src/proxy.test.ts`).
 
 ## Performance contract (verified 2026-09-15)
 

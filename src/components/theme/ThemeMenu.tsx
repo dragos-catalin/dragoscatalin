@@ -1,10 +1,31 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type ComponentType, type SVGProps } from "react";
+import {
+    useEffect,
+    useId,
+    useRef,
+    useState,
+    useSyncExternalStore,
+    type ComponentType,
+    type SVGProps,
+} from "react";
 import { useTranslations } from "next-intl";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/components/theme/ThemeProvider";
-import { ACCENTS, MODES, SURFACES, type Accent, type Mode, type Surface } from "@/lib/theme";
+import {
+    ACCENTS,
+    DEFAULT_SKIN,
+    MODES,
+    SKINS,
+    SKIN_COOKIE,
+    SKIN_COOKIE_MAX_AGE,
+    SURFACES,
+    parseSkin,
+    type Accent,
+    type Mode,
+    type Skin,
+    type Surface,
+} from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
 const ACCENT_HUE: Record<Accent, number> = {
@@ -25,6 +46,33 @@ const MODE_ICON: Record<Mode, ComponentType<SVGProps<SVGSVGElement>>> = {
 };
 
 const FOCUSABLE = 'button:not([disabled]), [href], input, [tabindex]:not([tabindex="-1"])';
+
+// data-skin is stamped on <html> pre-paint by THEME_INIT_SCRIPT from the dc-skin cookie.
+const subscribeNever = () => () => {};
+const getSkinSnapshot = () => parseSkin(document.documentElement.getAttribute("data-skin"));
+const getSkinServerSnapshot = (): Skin => DEFAULT_SKIN;
+
+/**
+ * Persist the skin and show it. Content pages only restyle (data-skin tokens); the home is a
+ * different route, so it is re-requested and the proxy serves the chosen skin's home. On
+ * content pages the token swap cross-fades with a View Transition where supported.
+ */
+function applySkin(next: Skin) {
+    document.cookie =
+        next === DEFAULT_SKIN
+            ? `${SKIN_COOKIE}=; path=/; max-age=0; samesite=lax`
+            : `${SKIN_COOKIE}=${next}; path=/; max-age=${SKIN_COOKIE_MAX_AGE}; samesite=lax`;
+    const path = window.location.pathname.replace(/\/+$/, "") || "/";
+    if (path === "/" || path === "/ro") {
+        window.location.replace(window.location.pathname);
+        return;
+    }
+    const swap = () => document.documentElement.setAttribute("data-skin", next);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduce && typeof document.startViewTransition === "function")
+        document.startViewTransition(swap);
+    else swap();
+}
 
 function Segmented<T extends string>({
     label,
@@ -82,8 +130,16 @@ function Segmented<T extends string>({
 
 export function ThemeMenu({ className }: { className?: string }) {
     const t = useTranslations("theme");
+    const ts = useTranslations("skins");
     const theme = useTheme();
     const [open, setOpen] = useState(false);
+    const stampedSkin = useSyncExternalStore(
+        subscribeNever,
+        getSkinSnapshot,
+        getSkinServerSnapshot,
+    );
+    const [chosenSkin, setChosenSkin] = useState<Skin | null>(null);
+    const skin = chosenSkin ?? stampedSkin;
     const id = useId();
     const buttonRef = useRef<HTMLButtonElement>(null);
     const panelRef = useRef<HTMLDivElement>(null);
@@ -222,6 +278,42 @@ export function ThemeMenu({ className }: { className?: string }) {
                                 render={(s) => <span>{t(s)}</span>}
                             />
                         </fieldset>
+
+                        <div>
+                            <p className="mb-2 font-mono text-[11px] tracking-[0.16em] text-fg-subtle uppercase">
+                                {ts("label")}
+                            </p>
+                            <div
+                                role="group"
+                                aria-label={ts("label")}
+                                className="grid grid-cols-2 gap-1 rounded-card border border-line bg-bg p-1"
+                            >
+                                {SKINS.map((s) => {
+                                    const active = s === skin;
+                                    return (
+                                        <button
+                                            key={s}
+                                            type="button"
+                                            aria-pressed={active}
+                                            title={ts(`${s}.description`)}
+                                            onClick={() => {
+                                                if (active) return;
+                                                setChosenSkin(s);
+                                                applySkin(s);
+                                            }}
+                                            className={cn(
+                                                "flex min-h-9 items-center justify-center rounded-pill px-3 text-xs font-medium transition-colors",
+                                                active
+                                                    ? "bg-surface-raised text-fg shadow-card"
+                                                    : "text-fg-muted hover:text-fg",
+                                            )}
+                                        >
+                                            {ts(`${s}.name`)}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
                     </div>
                 </div>
             ) : null}

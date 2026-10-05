@@ -1,0 +1,77 @@
+/* Editorial skin home (V3-03). Loaded only by src/app/[locale]/skin/editorial/layout.tsx.
+    Plain :root tokens only (@theme inline vars such as --ease-out-expo / --font-display are
+    inlined by Tailwind and may not exist as CSS variables here). Entrance motion is CSS and
+    transform-only on the headline, so the LCP element paints in the first frame. */
+
+.ed-masthead {
+    border-bottom: 3px double var(--line-strong);
+}
+
+.ed-headline {
+    font-size: clamp(3rem, 10.5vw, 10.5rem);
+    line-height: 0.88;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+}
+
+.ed-line {
+    display: block;
+    animation: ed-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 120ms);
+}
+
+.ed-fade {
+    animation: ed-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+.ed-rule {
+    border-top: 1px solid var(--line-strong);
+}
+
+.ed-index-item {
+    border-bottom: 1px solid var(--line);
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ed-index-item:hover,
+.ed-index-item:focus-within {
+    background: var(--accent-soft);
+}
+
+.ed-index-name {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ed-index-item:hover .ed-index-name,
+.ed-index-item:focus-within .ed-index-name {
+    transform: translateX(0.5rem);
+}
+
+@keyframes ed-rise {
+    from {
+        transform: translateY(0.35em) skewY(3deg);
+    }
+}
+
+@keyframes ed-fade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ed-line,
+    .ed-fade {
+        animation: none;
+    }
+
+    .ed-index-name {
+        transition: none;
+    }
+
+    .ed-index-item:hover .ed-index-name,
+    .ed-index-item:focus-within .ed-index-name {
+        transform: none;
+    }
+}

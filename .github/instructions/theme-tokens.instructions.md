@@ -9,7 +9,22 @@ Source of truth: `src/app/globals.css` (`@theme inline`) and `docs/DESIGN.md`.
 Theme state is stamped on `<html>` pre-paint by `THEME_INIT_SCRIPT`
 (`src/lib/theme.ts`): `data-mode="dark|light"`,
 `data-accent="ember|orange|amber|rose|violet|indigo|cyan|emerald"` (default ember, brand Keystone — `brand/BRAND.md`),
-`data-surface="solid|glass|contrast"`.
+`data-surface="solid|glass|contrast"`,
+`data-skin="classic|editorial|constellation|command|devices"` (from cookie `dc-skin`, default classic).
+
+## Skins (`data-skin`, V3-03)
+
+- Skin = home + chrome, in `src/app/[locale]/skin/<id>/` (thin route files) + `src/skins/<id>/`
+  (components + `<id>.css`, imported only by that skin's layout). Shared bits: `src/skins/shared/`.
+- Content pages restyle ONLY through `html[data-skin="<id>"]` token blocks in `globals.css`.
+  `@theme inline` bakes values into utilities, so skins override the `--skin-font-display` /
+  `--skin-radius-card` hooks and plain neutrals (`--bg`, `--surface`…) — keep each neutral at the
+  classic lightness so contrast pairs hold. Classic has no block and must stay byte-for-byte styled.
+- Skin CSS files use plain `:root` vars (`--line`, `--accent`, `--fg`…) and literal easings;
+  fonts via utilities (`font-display`, `font-mono`).
+- Skin chrome: no `usePathname` (proxy rewrite → hydration mismatch), no `aria-current`, a
+  `data-skin-home="<id>"` root, `main#main`, and the `SkinTools` (theme menu, locale, Back to classic).
+- Canvas only where `SKIN_META[id].hasCanvas` (constellation/devices, later tasks) — see DESIGN.md § Skins.
 
 ## Token vocabulary (use as Tailwind utilities: `bg-*`, `text-*`, `border-*`)
 

@@ -54,6 +54,38 @@ Art direction contract. Every visual change is scored against this by the
 - Tokens live in `src/app/globals.css` under `@theme inline`; components use
   only semantic utilities (`bg-surface`, `text-fg`, `text-accent`,
   `border-line`). Raw palette classes (`bg-violet-500`) are banned.
+- `data-skin="classic|editorial|constellation|command|devices"` (default classic) —
+  see Skins below.
+
+## Skins (V3-03)
+
+A skin replaces the **home page and its chrome** (header, nav, footer). Every content page
+(projects, about, services, lab, now, uses, press, open-source, privacy, feedbrake) is shared:
+it keeps the classic chrome and only picks up the skin's tokens through
+`html[data-skin="<id>"]` in `globals.css` (radius, display font, neutral tint at the same
+lightness, so contrast pairs still hold).
+
+| Skin            | Home                                                                 | Canvas policy                                   |
+| --------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
+| `classic`       | The original design (this file's SCENE). **Default.**                | none, ever                                      |
+| `editorial`     | Magazine masthead, kinetic headline (CSS), numbered index of work    | none                                            |
+| `constellation` | Night sky; static SVG starfield poster, projects as stars            | allowed from V3-05 (R3F), poster stays fallback |
+| `command`       | Terminal `whoami` + `ps` process table, monospace, keyboard hint     | none                                            |
+| `devices`       | Wall of CSS device frames (watch/phone/desktop/TV) with shots/covers | allowed from V3-07 (3D carousel), 2D fallback   |
+
+- **Mechanics** — cookie `dc-skin` (1 year). `?skin=<id>` on any URL sets it and 307s to the
+  clean URL; `?skin=classic` or an invalid id clears it. `src/proxy.ts` rewrites `/` and `/ro`
+  to the static `src/app/[locale]/skin/<id>/` route; direct `/skin/*` URLs are 404. The theme
+  menu has a Skin group; skin chrome always shows "Back to classic".
+- **Canvas guardrails** (constellation/devices, later tasks): mount after LCP and only when
+  the device passes a low-end gate, `frameloop="demand"`, pause offscreen and in hidden tabs,
+  never under `prefers-reduced-motion` (the static poster IS that fallback), budget-gated.
+  `SKIN_META[id].hasCanvas` in `src/skins/registry.ts` is the allowlist; e2e asserts zero
+  canvases until then.
+- **Rules** — skin chrome never uses `usePathname` (rewrite → hydration mismatch), so nav has
+  no `aria-current`. Skin homes keep canonical `/` / `/ro` and are not in the sitemap or
+  llms.txt. Every skin passes `pnpm scan:contrast`, `pnpm scan:layout`, axe and Lighthouse.
+  Recipe for a new skin: `.github/skills/add-skin/SKILL.md`.
 
 ## Brand (Keystone, V3-02)
 
@@ -89,3 +121,5 @@ Stock photos · centred everything · 3 identical cards in a row · raw Tailwind
 palette classes · animations without reduced-motion variant · text on flat
 colour without atmosphere · **any continuously running animation (canvas,
 WebGL, rAF loops, scroll-linked springs)** — rejected by the owner for perf.
+(Exception planned by the owner in V3: the constellation and devices skins only, under the
+guardrails in § Skins. Classic, editorial and command stay canvas-free.)

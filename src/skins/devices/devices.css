@@ -1,0 +1,74 @@
+/* Devices skin home (V3-03). Loaded only by src/app/[locale]/skin/devices/layout.tsx.
+   Pure-CSS device frames (watch / phone / desktop / TV) — no images for the bezels, no canvas.
+   V3-07 may add a 3D carousel later; this 2D wall stays as its fallback. */
+
+.dv-wall {
+    background:
+        radial-gradient(70% 50% at 50% 0%, var(--accent-glow), transparent 70%), var(--bg-deep);
+}
+
+.dv-frame {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-deep);
+    border: 1px solid var(--line-strong);
+    box-shadow:
+        var(--elev-inset),
+        0 24px 56px -12px var(--elev-ambient);
+}
+
+.dv-watch {
+    aspect-ratio: 1 / 1.2;
+    border-radius: 2.25rem;
+    border-width: 0.6rem;
+    border-color: var(--surface-raised);
+}
+
+.dv-phone {
+    aspect-ratio: 9 / 19;
+    border-radius: 2rem;
+    border-width: 0.55rem;
+    border-color: var(--surface-raised);
+}
+
+.dv-desktop {
+    aspect-ratio: 16 / 10;
+    border-radius: 0.75rem;
+    border-top-width: 1.4rem;
+    border-top-color: var(--surface-raised);
+}
+
+.dv-tv {
+    aspect-ratio: 16 / 9;
+    border-radius: 0.4rem;
+    border-width: 0.45rem;
+    border-color: var(--surface-raised);
+}
+
+.dv-stand {
+    margin-inline: auto;
+    width: 28%;
+    height: 0.6rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    background: var(--line-strong);
+}
+
+.dv-tile {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dv-tile:hover,
+.dv-tile:focus-within {
+    transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dv-tile {
+        transition: none;
+    }
+
+    .dv-tile:hover,
+    .dv-tile:focus-within {
+        transform: none;
+    }
+}
