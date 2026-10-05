@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: site.name,
         short_name: "Dragoș",
         description:
-            "Full-stack developer & builder — codai, Brivio, StudiAI, MixAI and 20+ open-source repos.",
+            "Product engineer & founder — codai, Brivio, StudiAI, MixAI and 20+ open-source repos.",
         start_url: "/",
         display: "standalone",
         // Keystone dark canvas / mark tile (brand/tokens.json).

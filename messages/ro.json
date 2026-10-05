@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Dragoș Cătălin — Developer full-stack & builder",
-    "description": "Proiectez și livrez produse AI-native cap-coadă: Next.js, Rust/Tauri, PostgreSQL, GCP. codai, Brivio, StudiAI, MixAI și 20+ repo-uri open source.",
+    "title": "Dragoș Cătălin — Product engineer & fondator",
+    "description": "Construiesc produse cap-coadă — de la cloud și rețea până la aplicația din buzunarul tău. Peste 20 de ani de cod: codai, Brivio, StudiAI, MixAI și 20+ repo-uri open source.",
     "keywords": "Dragoș Cătălin,Dragos Catalin,developer full-stack,Next.js,Rust,Tauri,gateway AI,codai,Brivio,România,open source"
   },
   "nav": {
@@ -48,11 +48,11 @@
     "ro": "Română"
   },
   "hero": {
-    "eyebrow": "Developer full-stack · România",
-    "title": "Construiesc lucruri pentru web.",
-    "titleLine1": "Construiesc lucruri",
-    "titleLine2": "pentru web.",
-    "subtitle": "Developer full-stack care creează aplicații web moderne, gateway-uri AI, aplicații desktop și SDK-uri — cu cod curat, design atent și soluții bazate pe AI.",
+    "eyebrow": "Product engineer · fondator · România",
+    "title": "Construiesc produse cap-coadă — de la cloud și rețea până la aplicația din buzunarul tău.",
+    "titleLine1": "Construiesc produse cap-coadă",
+    "titleLine2": "din cloud până în buzunar.",
+    "subtitle": "Product engineer, fondator și arhitect. Peste 20 de ani de cod, 15+ plătit: sisteme cloud și rețelistică, web, desktop, Android și AI — livrate, nu doar prezentate.",
     "ctaProjects": "Vezi proiectele",
     "ctaContact": "Hai să vorbim",
     "available": "Disponibil pentru proiecte",

@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.9.3] - 2026-10-05
+
+### Changed
+
+- **New headline** (owner decision, V3-34 profile): "I build products end to end — from cloud and network to the app in your pocket." / RO "Construiesc produse cap-coadă — de la cloud și rețea până la aplicația din buzunarul tău." Hero, OG image, page title, meta description, web manifest, JSON-LD `jobTitle` and `llms.txt` now say "product engineer & founder" instead of "full-stack developer". The press bios and About copy follow in V3-11.
+
 ## [2.9.2] - 2026-10-05
 
 ### Changed

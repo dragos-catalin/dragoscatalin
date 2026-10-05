@@ -4,7 +4,7 @@ import ro from "../../../messages/ro.json";
 import { OG, OgFrame, ogFonts } from "@/lib/og";
 import { site } from "@/lib/site";
 
-export const alt = `${site.name} — full-stack developer & builder`;
+export const alt = `${site.name} — product engineer & founder`;
 export const size = OG.size;
 export const contentType = "image/png";
 

@@ -44,7 +44,7 @@ export function personJsonLd(): WithContext<Person> {
         url: site.url,
         image: site.avatar,
         email: `mailto:${site.email}`,
-        jobTitle: "Full-stack developer",
+        jobTitle: "Product engineer & founder",
         address: { "@type": "PostalAddress", addressCountry: "RO" },
         sameAs: Object.values(site.socials),
         knowsAbout: KNOWS_ABOUT,
