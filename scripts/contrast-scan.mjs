@@ -15,6 +15,8 @@ const routes = [
     "/now",
     "/uses",
     "/press",
+    "/feedbrake",
+    "/feedbrake/privacy",
     "/ro",
 ];
 const modes = ["dark", "light"];

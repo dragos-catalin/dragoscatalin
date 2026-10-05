@@ -15,6 +15,8 @@ const STATIC_PATHS = [
     "/uses",
     "/press",
     "/privacy",
+    "/feedbrake",
+    "/feedbrake/privacy",
 ] as const;
 
 function priorityFor(path: string): number {

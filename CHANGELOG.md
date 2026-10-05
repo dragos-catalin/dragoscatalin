@@ -6,6 +6,15 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.8.2] - 2026-10-05
+
+### Added
+
+- **`/feedbrake`** (V3-37), EN + RO: the product page for Feedbrake, the Android app that blocks only the infinite short-video feed (TikTok For You, Instagram Reels and Home, YouTube Shorts, Facebook Reels) and leaves the rest of the app working. It lists the features, the privacy model and the public, signed detection rules. It says "Coming soon on Google Play" until `PLAY_URL` in `src/data/feedbrake.ts` is set.
+- **`/feedbrake/privacy`**, EN + RO: the app's privacy policy (effective 2026-10-05), the URL used in the Play Console.
+- `/unscroll` and `/unscroll/privacy` (the app's working name) redirect permanently (308) to the Feedbrake pages, with and without a locale prefix.
+- Both pages are in the sitemap and `llms.txt`. `e2e/feedbrake.spec.ts` checks status, canonical, hreflang, axe and the redirects.
+
 ## [2.8.1] - 2026-10-05
 
 ### Fixed

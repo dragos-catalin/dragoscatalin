@@ -160,6 +160,17 @@ See `tracker.csv` for the live list. Summary by area:
 
 ## Session log
 
+### 2026-10-05 — v2.8.2 Feedbrake pages (V3-37)
+
+- `/feedbrake` (product page) and `/feedbrake/privacy` (privacy policy for the
+  Android app, package `ro.dragoscatalin.unscroll`), EN + RO, in sitemap and
+  llms.txt, metadata via `localeAlternates`, indexable.
+- `/unscroll` and `/unscroll/privacy` (+ `/en`, `/ro` prefixes) redirect 308 to
+  the Feedbrake paths; the Play Console privacy URL promised earlier keeps working.
+- `PLAY_URL` in `src/data/feedbrake.ts` is `null` until the app is published; the
+  page shows "Coming soon on Google Play" until then. Site tokens only (no
+  per-page accent exists, so the brand coral is not used).
+
 ### 2026-09-15 — v2.0.0 rebuild (portfolio-only)
 
 Shipped in one day by parallel agents; rows A1–A6, B1–B5, C1–C2, D1–D4, E1–E7,

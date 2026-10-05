@@ -381,5 +381,74 @@
     },
     "empty": "Nothing here yet.",
     "cta": "Want one of these sooner, or have a better idea? Write to me."
+  },
+  "feedbrake": {
+    "eyebrow": "Android app",
+    "title": "Feedbrake",
+    "tagline": "Brakes for the infinite feed — not for the app.",
+    "intro": "Feedbrake blocks only the infinite short-video feed: TikTok For You, Instagram Reels and Home, YouTube Shorts and Facebook Reels. It does not block the app. Messages, search, profiles and the camera keep working.",
+    "comingSoon": "Coming soon on Google Play",
+    "playBadge": "Get it on Google Play",
+    "privacyLink": "Privacy policy",
+    "featuresTitle": "What it does",
+    "features": [
+      {
+        "title": "A limit per app",
+        "body": "For each app, pick how much feed you allow: blocked, N minutes a day or N videos a day."
+      },
+      {
+        "title": "Three blocking styles",
+        "body": "Shield, Cover or Redirect. Swipes and volume keys stop moving to the next video; tabs and the rest of the app still work."
+      },
+      {
+        "title": "Pause with friction",
+        "body": "Pausing protection takes a deliberate step, so a reflex is not enough to turn it off."
+      },
+      {
+        "title": "Focus sessions and schedules",
+        "body": "Start a strict focus session with no pauses, or set the hours when feeds are blocked."
+      },
+      {
+        "title": "Quick Settings tile and widget",
+        "body": "See and change protection from the notification shade or the home screen."
+      },
+      {
+        "title": "Weekly report",
+        "body": "Once a week, a short summary of how many feeds were blocked and how much time they took."
+      }
+    ],
+    "privacyTitle": "Private by design",
+    "privacy": [
+      "No account, no ads, no analytics, no crash reporting.",
+      "Everything is processed and stored on your phone.",
+      "The detection rules are public and cryptographically signed, so you can read exactly what the app looks for."
+    ],
+    "rulesLink": "Detection rules on GitHub",
+    "contactTitle": "Contact",
+    "contact": "Questions, bugs or a feed that slipped through? Write to {email}."
+  },
+  "feedbrakePrivacy": {
+    "eyebrow": "Feedbrake",
+    "title": "Feedbrake — Privacy policy",
+    "meta": "Feedbrake processes everything on your phone: no account, no analytics, no ads, no personal data leaves the device.",
+    "byline": "Effective: {date} · Publisher: Dragoș Cătălin Vlădulescu · Contact: {email}",
+    "intro": "Feedbrake blocks infinite short-video feeds (TikTok, Instagram Reels and Home, YouTube Shorts, Facebook Reels) on your phone. It is built so that no personal data leaves your device.",
+    "accessTitle": "What the app accesses and why",
+    "a11yTitle": "Accessibility service (AccessibilityService API)",
+    "a11y": "Feedbrake uses it only to recognise when one of the supported apps is showing an infinite feed, to place a shield over that feed, to pass your taps through to the app, and to handle the volume keys while a feed is blocked. The service reads the structure of the screen (element types, ids and positions) of the supported apps only while protection is active. It does not read your messages, does not record the screen, does not log what you type and does not store or send any screen content. This use is disclosed in the app before you enable the service, and the service only works after you give consent.",
+    "storedTitle": "Data stored on your device",
+    "stored": [
+      "Your settings (limits, schedules, appearance).",
+      "Daily counters per app: number of blocks, videos watched under a limit, minutes spent in a feed, swipes blocked, pauses and whether protection was turned off."
+    ],
+    "storedNote": "You can export these settings, import them or delete the statistics in Settings at any time. Uninstalling the app removes everything.",
+    "backupTitle": "Android backup",
+    "backup": "If you have Android backup turned on, your settings and counters are included in your own Google backup, encrypted by Android. Feedbrake has no access to that backup.",
+    "networkTitle": "Network",
+    "network": "The only network request is an optional daily download of the public detection rules from {host}. The file is cryptographically signed and is checked before use. The request contains no identifiers beyond what any HTTPS request carries (IP address, seen by GitHub). You can turn it off in Settings.",
+    "notTitle": "What we do not do",
+    "not": "No account, no analytics, no advertising, no crash reporting, no selling or sharing of data, no data collected about children. The app does not collect any data as defined by Google Play's Data safety section.",
+    "changesTitle": "Changes",
+    "changes": "If this policy changes, the new version will be published at this address with a new effective date."
   }
 }

@@ -23,6 +23,15 @@ const nextConfig: NextConfig = {
     redirects: async () => [
         { source: "/projects/muzicai", destination: "/projects/mixai", permanent: true },
         { source: "/ro/projects/muzicai", destination: "/ro/projects/mixai", permanent: true },
+        // Feedbrake was announced as "Unscroll"; the Play Console privacy URL points here.
+        { source: "/unscroll", destination: "/feedbrake", permanent: true },
+        { source: "/unscroll/privacy", destination: "/feedbrake/privacy", permanent: true },
+        { source: "/:locale(en|ro)/unscroll", destination: "/:locale/feedbrake", permanent: true },
+        {
+            source: "/:locale(en|ro)/unscroll/privacy",
+            destination: "/:locale/feedbrake/privacy",
+            permanent: true,
+        },
     ],
     headers: async () => [
         {

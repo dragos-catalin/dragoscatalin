@@ -17,6 +17,8 @@ const routes = [
     "/now",
     "/uses",
     "/press",
+    "/feedbrake",
+    "/feedbrake/privacy",
     "/ro",
 ];
 const widths = [360, 390, 768, 1024, 1440, 1920, 2560, 3440];

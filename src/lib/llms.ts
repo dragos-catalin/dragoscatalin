@@ -16,6 +16,8 @@ const PAGES: { label: string; path: string }[] = [
     { label: "Uses", path: "/uses" },
     { label: "Press kit", path: "/press" },
     { label: "Privacy & cookies", path: "/privacy" },
+    { label: "Feedbrake (Android app)", path: "/feedbrake" },
+    { label: "Feedbrake privacy policy", path: "/feedbrake/privacy" },
 ];
 
 function header(): string {

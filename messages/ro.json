@@ -381,5 +381,74 @@
     },
     "empty": "Nimic aici încă.",
     "cta": "Vrei una dintre ele mai repede sau ai o idee mai bună? Scrie-mi."
+  },
+  "feedbrake": {
+    "eyebrow": "Aplicație Android",
+    "title": "Feedbrake",
+    "tagline": "Frână pentru fluxul infinit — nu pentru aplicație.",
+    "intro": "Feedbrake blochează doar fluxul infinit de clipuri scurte: TikTok For You, Instagram Reels și Home, YouTube Shorts și Facebook Reels. Nu blochează aplicația. Mesajele, căutarea, profilurile și camera merg în continuare.",
+    "comingSoon": "În curând pe Google Play",
+    "playBadge": "Descarcă de pe Google Play",
+    "privacyLink": "Politica de confidențialitate",
+    "featuresTitle": "Ce face",
+    "features": [
+      {
+        "title": "O limită pentru fiecare aplicație",
+        "body": "Pentru fiecare aplicație alegi cât flux permiți: blocat, N minute pe zi sau N clipuri pe zi."
+      },
+      {
+        "title": "Trei stiluri de blocare",
+        "body": "Scut, Acoperire sau Redirecționare. Glisările și tastele de volum nu mai trec la clipul următor; filele și restul aplicației merg în continuare."
+      },
+      {
+        "title": "Pauză cu efort",
+        "body": "Ca să pui protecția pe pauză e nevoie de un pas deliberat, așa că un reflex nu e de ajuns ca s-o oprești."
+      },
+      {
+        "title": "Sesiuni de focus și programări",
+        "body": "Pornești o sesiune de focus strictă, fără pauze, sau alegi orele în care fluxurile sunt blocate."
+      },
+      {
+        "title": "Comutator în Setări rapide și widget",
+        "body": "Vezi și schimbi protecția din bara de notificări sau de pe ecranul principal."
+      },
+      {
+        "title": "Raport săptămânal",
+        "body": "O dată pe săptămână, un rezumat scurt: câte fluxuri au fost blocate și cât timp au luat."
+      }
+    ],
+    "privacyTitle": "Confidențială din construcție",
+    "privacy": [
+      "Fără cont, fără reclame, fără analiză, fără raportare de erori.",
+      "Totul se procesează și se păstrează pe telefonul tău.",
+      "Regulile de detecție sunt publice și semnate criptografic, deci poți citi exact ce caută aplicația."
+    ],
+    "rulesLink": "Regulile de detecție pe GitHub",
+    "contactTitle": "Contact",
+    "contact": "Întrebări, erori sau un flux care a scăpat? Scrie la {email}."
+  },
+  "feedbrakePrivacy": {
+    "eyebrow": "Feedbrake",
+    "title": "Feedbrake — Politica de confidențialitate",
+    "meta": "Feedbrake procesează totul pe telefonul tău: fără cont, fără analiză, fără reclame, nicio dată personală nu părăsește dispozitivul.",
+    "byline": "În vigoare: {date} · Editor: Dragoș Cătălin Vlădulescu · Contact: {email}",
+    "intro": "Feedbrake blochează fluxurile infinite de clipuri scurte (TikTok, Instagram Reels și Home, YouTube Shorts, Facebook Reels) pe telefonul tău. Este construită astfel încât nicio dată personală să nu părăsească dispozitivul.",
+    "accessTitle": "Ce accesează aplicația și de ce",
+    "a11yTitle": "Serviciul de accesibilitate",
+    "a11y": "Serviciul de accesibilitate este folosit doar pentru a recunoaște când una dintre aplicațiile acceptate afișează un flux infinit, pentru a pune un scut peste el, pentru a trece atingerile mai departe către aplicație și pentru tastele de volum cât timp fluxul e blocat. Serviciul citește doar structura ecranului (tipuri de elemente, id-uri, poziții) în aplicațiile acceptate, doar cât timp protecția e activă. Nu citește mesaje, nu înregistrează ecranul, nu reține ce scrii și nu stochează și nu trimite conținutul ecranului. Utilizarea este explicată în aplicație înainte de activare și funcționează doar după acordul tău.",
+    "storedTitle": "Pe dispozitiv",
+    "stored": [
+      "Setările (limite, programări, aspect).",
+      "Contoare zilnice per aplicație: blocări, clipuri în limită, minute, glisări blocate, pauze, dezactivări."
+    ],
+    "storedNote": "Le poți exporta, importa sau șterge din Setări; dezinstalarea șterge tot.",
+    "backupTitle": "Backup Android",
+    "backup": "Dacă ai backup Android activ, ele sunt incluse în backup-ul tău Google, criptat de Android. Feedbrake nu are acces la acest backup.",
+    "networkTitle": "Rețea",
+    "network": "Singura cerere este descărcarea opțională, zilnică, a regulilor publice de detecție de pe {host}, semnate criptografic și verificate înainte de folosire. Cererea nu conține alți identificatori decât cei pe care îi poartă orice cerere HTTPS (adresa IP, văzută de GitHub). Se poate opri din Setări.",
+    "notTitle": "Ce nu facem",
+    "not": "Fără cont, fără analiză, fără reclame, fără raportare de erori, fără vânzare sau partajare de date, nicio dată colectată despre copii. Aplicația nu colectează date în sensul secțiunii „Siguranța datelor” din Google Play.",
+    "changesTitle": "Modificări",
+    "changes": "Dacă politica se schimbă, noua versiune va fi publicată la această adresă, cu o nouă dată de intrare în vigoare."
   }
 }
