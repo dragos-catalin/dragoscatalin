@@ -6,6 +6,48 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.8.0] - 2026-10-05
+
+### Security
+
+- **Next.js 16.3.5 → 16.3.8.** This fixes a critical remote code execution bug in `next/og` `ImageResponse` (affects 16.2.0–16.3.5). Every OG image route here used it.
+- `pnpm audit --audit-level high` is now clean. Overrides in `pnpm-workspace.yaml` pin the fixed `brace-expansion` and `fast-uri`. One advisory is ignored, with the reason written down: GHSA-vfj7-8cjw-p6xm (`braces`). It has no fix, it is reachable only at lint time, and it only sees globs we write.
+
+### Changed
+
+- **Every dependency is on its latest version** (V3-01), checked with `npm view`. Highlights: `@sentry/nextjs` 11.4, `next-intl` 4.14.9, `lucide-react` 1.52, `eslint` 10.12, `vitest` 5.0.3, `vite` 8.3.2, `size-limit` 14.1, `prettier` 3.9.9 and `motion` 14.0. Motion 14 only removes internal APIs, so `motion/react` usage is unchanged. `typescript-eslint` stays at 8.70 because it comes in through `eslint-config-next`.
+- **Sentry 11, server-only, with an explicit `dataCollection`.** In v11 an unset `dataCollection` collects everything. `src/lib/sentry.ts` now turns off user info, cookies, headers, bodies, query strings, stack-frame variables, database, queue and AI payloads. `src/instrumentation.ts` initialises Sentry only when `SENTRY_DSN` is set and captures request errors. There is no client SDK, so first-load JS is unchanged and no consent category is needed. `withSentryConfig` now comes from `@sentry/nextjs/config`, and the removed `disableLogger` option is gone.
+- **Node 24 LTS everywhere** (S-03): `.nvmrc`, `engines` (`node >=24`, `pnpm >=12`), all workflows (now read from `.nvmrc`), the `ci:local` Docker image, the README and agent instructions.
+- `sharp` and `lighthouse` are declared as dev dependencies (S-03). `pnpm lh` runs the pinned Lighthouse instead of `npx lighthouse@latest`.
+
+### Added
+
+- **`/services`** (S-05), EN + RO:
+  - one section per audience from the owner profile: startups, Romanian SMEs, enterprise/EU and developers;
+  - each section lists what you get, proof links to registry projects and how we work;
+  - a four-step process, a selective-availability note and CTAs to the contact form;
+  - `ProfessionalService` + `OfferCatalog` JSON-LD;
+  - data lives in `src/data/services.ts`.
+- **`/lab`** (S-05), EN + RO: a public idea log of the OSS ideas the owner chose to build in the open (mcp-lock, agentcfg-audit, agentq, e-Factura SDK, wff-dsl, device-pairing).
+  - Each entry has a stage, the problem, the approach, tags and an "updated" date.
+  - The page has `ItemList` JSON-LD.
+  - Ids equal `docs/portfolio/portfolio.csv` rows, and a test enforces it.
+- Both pages are wired everywhere:
+  - Header: Services. Footer: Services and Lab.
+  - Sitemap, `llms.txt` and `llms-full.txt` (with the full services and lab text).
+  - The axe sweep, the contrast and layout scans, and `e2e/services.spec.ts`.
+- **`exactOptionalPropertyTypes`** is on in `tsconfig.json`. This needed 6 small fixes: optional `stats` props, the Sentry build options, and the Playwright config.
+
+### Fixed
+
+- The commit lock now works in a git worktree. `scripts/lib/commit-lock.mjs` joined the cwd with an absolute `--git-dir`, so pre-commit failed with ENOENT. It now uses the common git dir, so all worktrees share one lock.
+- **CI gates** (S-01, S-02):
+  - `format:check` and `pnpm audit --audit-level high` run in CI.
+  - `scan:contrast` and `scan:layout` run against `next start` before E2E.
+  - A new `secrets` job runs gitleaks over the full history.
+  - `ci:local` mirrors the same steps.
+- `.github/workflows/links.yml` and `lychee.toml`: a weekly lychee check over the live sitemap and `llms.txt`. Broken links open or update one `links` issue.
+
 ## [2.6.0] - 2026-10-05
 
 ### Added

@@ -1,12 +1,15 @@
 import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
 
 const STALE_MS = 20 * 60 * 1000;
 
+// The COMMON git dir, so every worktree of this repo shares one commit lock. In a worktree
+// `--git-dir` is absolute (E:\...\.git\worktrees\x) and join(cwd, abs) produced
+// "<cwd>\E:\..." -> ENOENT in pre-commit (2026-10-05). resolve() handles both forms.
 function gitDir(cwd = process.cwd()) {
-    const r = spawnSync("git", ["rev-parse", "--git-dir"], { cwd, encoding: "utf8" });
-    return r.status === 0 ? join(cwd, r.stdout.trim()) : join(cwd, ".git");
+    const r = spawnSync("git", ["rev-parse", "--git-common-dir"], { cwd, encoding: "utf8" });
+    return r.status === 0 ? resolve(cwd, r.stdout.trim()) : join(cwd, ".git");
 }
 
 export function lockPath(cwd) {
