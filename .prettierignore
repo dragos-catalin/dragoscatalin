@@ -8,3 +8,5 @@ playwright-report
 test-results
 .vitest
 docs/tracker.csv
+# Generated brand previews (brand/src/build.mjs, render-motion.mjs input)
+brand/**/*.html

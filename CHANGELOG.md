@@ -6,6 +6,10 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- CI: the `secrets` job used `gitleaks-action`, which needs a paid licence for organisation repositories and failed after the move. It is now the shared `dragos-catalin/workflows` `security.yml@v1` job, which runs the gitleaks CLI over the full history plus osv-scanner. `format:check` had been red since the brand kit landed. It now ignores the generated `brand/**/*.html` previews.
+
 ## [2.9.4] - 2026-10-05
 
 ### Changed
