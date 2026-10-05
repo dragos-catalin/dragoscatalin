@@ -3,7 +3,7 @@ name: theme-surface
 description: >-
   Design or add a themed component for dragoscatalin.ro following docs/DESIGN.md: semantic
   tokens only, glass/contrast variants, reduced motion, then verify contrast and axe across the
-  6 accents × 2 modes × 3 surfaces. Use for any new section, card, hero or visual redesign.
+  8 accents × 2 modes × 3 surfaces. Use for any new section, card, hero or visual redesign.
 ---
 
 # Theme surface
@@ -27,7 +27,7 @@ description: >-
 - Server component unless it needs state; `"use client"` leaf only.
 - Strings in `messages/en.json` + `messages/ro.json`.
 
-## Verify matrix: 6 accents × 2 modes × 3 surfaces (36 combos)
+## Verify matrix: 8 accents × 2 modes × 3 surfaces (48 combos)
 
 Playwright snippet (put in `e2e/theme-matrix.spec.ts`):
 
@@ -35,7 +35,7 @@ Playwright snippet (put in `e2e/theme-matrix.spec.ts`):
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const ACCENTS = ["orange", "violet", "indigo", "cyan", "emerald", "amber", "rose"];
+const ACCENTS = ["ember", "orange", "amber", "rose", "violet", "indigo", "cyan", "emerald"];
 const MODES = ["dark", "light"];
 const SURFACES = ["solid", "glass", "contrast"];
 

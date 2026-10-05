@@ -1,6 +1,6 @@
 {
   "name": "dragoscatalin",
-  "version": "2.8.2",
+  "version": "2.9.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -20,7 +20,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "size": "size-limit",
+    "size": "node scripts/check-first-load.mjs",
     "tracker:check": "node scripts/check-tracker.mjs",
     "shots": "node scripts/shots.mjs",
     "assets:optimize": "node scripts/optimize-assets.mjs",
@@ -53,7 +53,6 @@
     "@axe-core/playwright": "4.13.0",
     "@next/playwright": "16.3.8",
     "@playwright/test": "1.63.0",
-    "@size-limit/file": "14.1.0",
     "@tailwindcss/postcss": "4.3.3",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
@@ -75,7 +74,6 @@
     "postcss": "8.5.28",
     "prettier": "3.9.9",
     "sharp": "0.35.5",
-    "size-limit": "14.1.0",
     "tailwindcss": "4.3.3",
     "typescript": "npm:@typescript/typescript6@6.0.2",
     "vite": "8.3.2",

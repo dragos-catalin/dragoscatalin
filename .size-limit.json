@@ -1,8 +1,0 @@
-[
-  {
-    "name": "home first-load JS",
-    "path": [".next/static/chunks/*.js"],
-    "limit": "300 KB",
-    "gzip": true
-  }
-]

@@ -9,7 +9,7 @@ test.describe("home", () => {
         page.on("pageerror", (err) => errors.push(err.message));
 
         await page.goto("/");
-        await expect(page).toHaveTitle(/Dragos Catalin/);
+        await expect(page).toHaveTitle(/Dragoș Cătălin/);
 
         const h1 = page.getByRole("heading", { level: 1 });
         await expect(h1).toBeVisible();

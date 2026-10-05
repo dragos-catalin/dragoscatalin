@@ -6,6 +6,37 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.9.0] - 2026-10-05
+
+### Added
+
+- **Brand Keystone** (V3-02). The mark is a solid D with the C carved out of it. The wordmark is "Dragoș Cătălin" in Bricolage Grotesque, with the comma of ș drawn as a round accent drop. The brand pack lives in `brand/`:
+  - `BRAND.md` covers usage, clear space, minimum sizes, don'ts, palette, type and voice.
+  - `brand.json` holds the facts, and `tokens.json` holds the DTCG 2025.10 tokens.
+  - `logo/` has the SVG masters: mark, 16 px cut, mono, construction, wordmarks and lockups.
+  - `src/build.mjs` is the single generator for all of the above.
+- **Display font: Bricolage Grotesque.** It is subset to Latin, Latin Extended-A and ȘșȚț as a 43 KB variable WOFF2 (wght 700–800) and loaded with `next/font/local` and `display: swap`. It is used on the wordmark, h1 and section headings. The Romanian glyph gate passes on every shipped file. The OFL licence ships in `src/fonts/OFL.txt`.
+- **Logo motion, CSS only.** On the first page load of a session, the header mark plays its intro: the D lands, the C is carved in one stroke, and the comma drops into the wordmark (about 1 s). On hover or focus, the carved C turns 90°. With reduced motion, the final frame shows. Preview for the owner: `brand/motion/intro.webm` and `intro-frames.png`.
+- **Ember accent** (`data-accent="ember"`, #f46622) is the new default. Orange stays switchable, for 8 accents in total.
+- New icon set, generated from the masters by `pnpm assets:optimize`:
+  - `favicon.ico` (16/32/48, with a pixel-tuned 16 px cut) and `icon.svg`
+  - full-bleed `apple-icon.png`
+  - PWA icons at 192 and 512, plus a maskable 512
+  - a 1024 press-kit logo, down from 1.3 MB to 29 KB
+
+### Changed
+
+- **Palette values moved to Keystone.** Neutrals are now slate (hue 265). The semantic token names did not change. `brand/contrast-pairs.json` proves 101 pairs with 0 WCAG 2.2 AA failures.
+- Header and footer use the new mark and wordmark. Between 768 and 1024 px the header shows the mark only, so the six nav items fit.
+- OG images show the mark, the wordmark with its comma, and Bricolage titles. The glow is an SVG radial gradient, because satori clips `filter: blur`.
+- The public name is now **Dragoș Cătălin**, with diacritics and without the family name. This applies to titles, the manifest, the footer and the feed. The full name stays only where it is needed: the privacy controller line and JSON-LD `alternateName`.
+- `scan:contrast` now checks the Ember default.
+- **`pnpm size` now measures what a visitor downloads.** `scripts/check-first-load.mjs` sums the gzip of every JS chunk each prerendered page references; the heaviest page must stay within `first-load-budget.json` (300 kB; today `/projects` at 275.4 kB). It replaces size-limit, whose sum of all chunks grew to 305.8 kB only because Turbopack split the `next/image` runtime into per-route copies once the header stopped using it (per-page totals moved by ±1 kB). size-limit and `.size-limit.json` are removed.
+
+### Removed
+
+- `public/logo-64.webp`, `public/logo-128.webp`, `public/apple-icon.png` and `src/app/icon.png`. The inline SVG mark and the file-convention icons replace them.
+
 ## [2.8.2] - 2026-10-05
 
 ### Added

@@ -8,7 +8,7 @@ applyTo: "src/**/*.{tsx,css}"
 Source of truth: `src/app/globals.css` (`@theme inline`) and `docs/DESIGN.md`.
 Theme state is stamped on `<html>` pre-paint by `THEME_INIT_SCRIPT`
 (`src/lib/theme.ts`): `data-mode="dark|light"`,
-`data-accent="orange|violet|indigo|cyan|emerald|amber|rose"` (default orange),
+`data-accent="ember|orange|amber|rose|violet|indigo|cyan|emerald"` (default ember, brand Keystone — `brand/BRAND.md`),
 `data-surface="solid|glass|contrast"`.
 
 ## Token vocabulary (use as Tailwind utilities: `bg-*`, `text-*`, `border-*`)
@@ -89,7 +89,7 @@ canvas, WebGL, rAF loops, orbiting objects or scroll-linked springs.
   replacement ring.
 - Decorative canvases/SVG: `aria-hidden`; meaningful ones `role="img"` + `aria-label`.
 - Colour is never the only signal (add icon or text).
-- Run axe in e2e across the 6 accents × 2 modes × 3 surfaces.
+- Run axe in e2e across the 8 accents × 2 modes × 3 surfaces.
 
 ## Skeletons
 

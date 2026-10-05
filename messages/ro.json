@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Dragos Catalin — Developer full-stack & builder",
+    "title": "Dragoș Cătălin — Developer full-stack & builder",
     "description": "Proiectez și livrez produse AI-native cap-coadă: Next.js, Rust/Tauri, PostgreSQL, GCP. codai, Brivio, StudiAI, MixAI și 20+ repo-uri open source.",
-    "keywords": "Dragos Catalin,developer full-stack,Next.js,Rust,Tauri,gateway AI,codai,Brivio,România,open source"
+    "keywords": "Dragoș Cătălin,Dragos Catalin,developer full-stack,Next.js,Rust,Tauri,gateway AI,codai,Brivio,România,open source"
   },
   "nav": {
     "home": "Acasă",
@@ -32,6 +32,7 @@
     "glass": "Sticlă",
     "contrast": "Contrast ridicat",
     "accents": {
+      "ember": "Jar",
       "orange": "Portocaliu",
       "violet": "Violet",
       "indigo": "Indigo",
@@ -206,7 +207,7 @@
   "about": {
     "title": "Despre",
     "eyebrow": "Cine",
-    "intro": "Sunt Dragos, developer full-stack din România. Construiesc produse cap-coadă — de la schema bazei de date și infrastructura cloud până la interfețe cu shadere — și construiesc fluxurile de agenți care mă ajută să livrez mai repede.",
+    "intro": "Sunt Dragoș, developer full-stack din România. Construiesc produse cap-coadă — de la schema bazei de date și infrastructura cloud până la interfețe cu shadere — și construiesc fluxurile de agenți care mă ajută să livrez mai repede.",
     "values": {
       "title": "Cum lucrez",
       "items": [
@@ -247,7 +248,7 @@
       "packages": "Pachete publicate",
       "years": "Ani pe GitHub"
     },
-    "avatarAlt": "Portretul lui Dragos Catalin",
+    "avatarAlt": "Portretul lui Dragoș Cătălin",
     "cta": "Salută"
   },
   "uses": {
@@ -279,7 +280,7 @@
     "avatar": "Portret"
   },
   "footer": {
-    "rights": "© {year} Dragos Catalin Vladulescu",
+    "rights": "© {year} Dragoș Cătălin",
     "built": "Construit cu Next.js {next}, React {react} și un shader WebGL.",
     "version": "v{version}",
     "source": "Sursă",

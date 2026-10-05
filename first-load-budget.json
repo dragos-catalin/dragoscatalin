@@ -1,0 +1,5 @@
+{
+  "$comment": "Max gzip first-load JS of the heaviest prerendered page (scripts/check-first-load.mjs). V3-32 adds per-skin budgets.",
+  "budgetKB": 300,
+  "top": 8
+}

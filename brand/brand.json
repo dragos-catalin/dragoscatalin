@@ -1,0 +1,104 @@
+{
+  "$schema": "https://dragoscatalin.ro/brand/brand.schema.json",
+  "name": "Dragoș Cătălin",
+  "asciiName": "Dragos Catalin",
+  "concept": "E · Keystone",
+  "version": "1.0.0",
+  "owner": "Dragoș Cătălin (dragoscatalin.ro)",
+  "decided": "2026-10-05",
+  "meaning": "A solid D with the C carved out of it — one block from foundation to finish. The comma of ș is the one Romanian cue.",
+  "colors": {
+    "accentDefault": "ember",
+    "ember": { "oklch": "oklch(0.68 0.19 42)", "hex": "#f46622" },
+    "tile": { "oklch": "oklch(0.182 0.016 265)", "hex": "#0f1219" },
+    "neutralHue": 265,
+    "switchableAccents": [
+      "ember",
+      "orange",
+      "amber",
+      "rose",
+      "violet",
+      "indigo",
+      "cyan",
+      "emerald"
+    ],
+    "tokens": "brand/tokens.json",
+    "contrastPairs": "brand/contrast-pairs.json",
+    "contrastGate": "node brand/scripts/contrast-gate.mjs brand/contrast-pairs.json"
+  },
+  "fonts": [
+    {
+      "role": "display",
+      "family": "Bricolage Grotesque",
+      "licence": "OFL-1.1",
+      "source": "https://github.com/ateliertriay/bricolage (google/fonts ofl/bricolagegrotesque)",
+      "files": [
+        "src/fonts/bricolage-display.woff2",
+        "src/assets/og/bricolage-720.ttf",
+        "src/assets/og/bricolage-500.ttf"
+      ],
+      "axes": { "wght": "700-800 (web), 720 wordmark", "wdth": 88, "opsz": 96 },
+      "subset": "Basic Latin, Latin-1, Latin Extended-A, U+0218-021B, typographic punctuation",
+      "generator": "brand/scripts/subset-fonts.py",
+      "verifiedGlyphs": "2026-10-05 check-glyphs.py: OK on all three files (316 code points, ș ț Ș Ț comma-below, ă â î Ă Â Î)"
+    },
+    {
+      "role": "body",
+      "family": "Geist",
+      "licence": "OFL-1.1",
+      "source": "next/font/google (latin + latin-ext)",
+      "verifiedGlyphs": "2026-10-05 check-glyphs.py on Geist[wght].ttf: OK"
+    },
+    {
+      "role": "mono",
+      "family": "Geist Mono",
+      "licence": "OFL-1.1",
+      "source": "next/font/google",
+      "verifiedGlyphs": "2026-10-05 check-glyphs.py on GeistMono[wght].ttf: OK"
+    }
+  ],
+  "logo": {
+    "masters": "brand/logo/",
+    "generator": "node brand/src/build.mjs",
+    "files": [
+      "mark.svg",
+      "mark-16.svg",
+      "mark-square.svg",
+      "mark-bare.svg",
+      "mark-mono-black.svg",
+      "mark-mono-white.svg",
+      "construction.svg",
+      "wordmark-light.svg",
+      "wordmark-dark.svg",
+      "wordmark-mono-black.svg",
+      "lockup-light.svg",
+      "lockup-dark.svg"
+    ],
+    "react": [
+      "src/components/brand/BrandMark.tsx",
+      "src/components/brand/Wordmark.tsx",
+      "src/components/brand/geometry.ts"
+    ]
+  },
+  "motion": {
+    "demo": "brand/motion/demo.html",
+    "preview": ["brand/motion/intro-frames.png", "brand/motion/intro.webm"],
+    "css": "src/app/globals.css § Keystone logo motion",
+    "states": {
+      "intro": "once per session, header",
+      "hover": "carved C turns -90°",
+      "reducedMotion": "final frame only"
+    },
+    "gateE": "pending owner review of brand/motion/intro.webm"
+  },
+  "platforms": ["web"],
+  "outputs": {
+    "favicon": ["src/app/favicon.ico (16/32/48)", "src/app/icon.svg"],
+    "appleTouch": "src/app/apple-icon.png (180, full-bleed)",
+    "manifest": ["public/icon-192.png", "public/icon-512.png", "public/icon-maskable-512.png"],
+    "og": "src/lib/og.tsx (hex, Bricolage TTF) -> /[locale]/opengraph-image, /[locale]/projects/[slug]/opengraph-image",
+    "pressKit": "public/logo.png (1024)",
+    "iconGenerator": "node scripts/optimize-assets.mjs"
+  },
+  "changelog": "brand/BRAND.md § Changelog"
+}

@@ -32,7 +32,7 @@ export async function Hero() {
                     </HeroItem>
 
                     <HeroItem index={1} lcp className="mb-6">
-                        <h1 className="text-5xl leading-[0.95] font-extrabold tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl">
+                        <h1 className="font-display text-5xl leading-[0.95] font-extrabold tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl">
                             <span className="block text-fg">{t("titleLine1")}</span>
                             <span className="gradient-text block">{t("titleLine2")}</span>
                         </h1>

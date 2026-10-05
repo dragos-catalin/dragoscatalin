@@ -1,0 +1,143 @@
+{
+  "$description": "Concept C Hearth",
+  "pairs": [
+    {
+      "name": "light: fg on canvas",
+      "fg": "oklch(0.22 0.014 65)",
+      "bg": "oklch(0.99 0.007 65)",
+      "use": "body"
+    },
+    {
+      "name": "light: fg on surface",
+      "fg": "oklch(0.22 0.014 65)",
+      "bg": "oklch(0.975 0.014 65)",
+      "use": "body"
+    },
+    {
+      "name": "light: muted on canvas",
+      "fg": "oklch(0.54 0.014 65)",
+      "bg": "oklch(0.99 0.007 65)",
+      "use": "body"
+    },
+    {
+      "name": "light: muted on surface",
+      "fg": "oklch(0.54 0.014 65)",
+      "bg": "oklch(0.975 0.014 65)",
+      "use": "body"
+    },
+    {
+      "name": "light: accent text on canvas",
+      "fg": "oklch(0.55 0.135 58)",
+      "bg": "oklch(0.99 0.007 65)",
+      "use": "body"
+    },
+    {
+      "name": "light: accent text on surface",
+      "fg": "oklch(0.55 0.135 58)",
+      "bg": "oklch(0.975 0.014 65)",
+      "use": "body"
+    },
+    {
+      "name": "light: on-solid text on accent",
+      "fg": "oklch(0.18 0.03 58)",
+      "bg": "oklch(0.76 0.15 58)",
+      "use": "body"
+    },
+    {
+      "name": "light: focus ring on canvas",
+      "fg": "oklch(0.55 0.135 58)",
+      "bg": "oklch(0.99 0.007 65)",
+      "use": "ui"
+    },
+    {
+      "name": "light: border.strong on canvas",
+      "fg": "oklch(0.65 0.014 65)",
+      "bg": "oklch(0.99 0.007 65)",
+      "use": "ui"
+    },
+    {
+      "name": "light: danger text on surface",
+      "fg": "oklch(0.56 0.17 25)",
+      "bg": "oklch(0.975 0.014 65)",
+      "use": "body"
+    },
+    {
+      "name": "light: success text on surface",
+      "fg": "oklch(0.52 0.17 150)",
+      "bg": "oklch(0.975 0.014 65)",
+      "use": "body"
+    },
+    {
+      "name": "dark: fg on canvas",
+      "fg": "oklch(0.95 0.011 65)",
+      "bg": "oklch(0.155 0.018 65)",
+      "use": "body"
+    },
+    {
+      "name": "dark: fg on surface",
+      "fg": "oklch(0.95 0.011 65)",
+      "bg": "oklch(0.182 0.018 65)",
+      "use": "body"
+    },
+    {
+      "name": "dark: muted on canvas",
+      "fg": "oklch(0.7 0.018 65)",
+      "bg": "oklch(0.155 0.018 65)",
+      "use": "body"
+    },
+    {
+      "name": "dark: muted on surface",
+      "fg": "oklch(0.7 0.018 65)",
+      "bg": "oklch(0.182 0.018 65)",
+      "use": "body"
+    },
+    {
+      "name": "dark: accent text on canvas",
+      "fg": "oklch(0.76 0.128 58)",
+      "bg": "oklch(0.155 0.018 65)",
+      "use": "body"
+    },
+    {
+      "name": "dark: accent text on surface",
+      "fg": "oklch(0.76 0.128 58)",
+      "bg": "oklch(0.182 0.018 65)",
+      "use": "body"
+    },
+    {
+      "name": "dark: on-solid text on accent",
+      "fg": "oklch(0.18 0.03 58)",
+      "bg": "oklch(0.76 0.15 58)",
+      "use": "body"
+    },
+    {
+      "name": "dark: focus ring on canvas",
+      "fg": "oklch(0.76 0.15 58)",
+      "bg": "oklch(0.155 0.018 65)",
+      "use": "ui"
+    },
+    {
+      "name": "dark: border.strong on canvas",
+      "fg": "oklch(0.49 0.018 65)",
+      "bg": "oklch(0.155 0.018 65)",
+      "use": "ui"
+    },
+    {
+      "name": "dark: danger text on surface",
+      "fg": "oklch(0.7 0.15 25)",
+      "bg": "oklch(0.182 0.018 65)",
+      "use": "body"
+    },
+    {
+      "name": "dark: success text on surface",
+      "fg": "oklch(0.7 0.15 150)",
+      "bg": "oklch(0.182 0.018 65)",
+      "use": "body"
+    },
+    {
+      "name": "logo: cocoa dc on apricot tile",
+      "fg": "oklch(0.22 0.014 65)",
+      "bg": "oklch(0.76 0.15 58)",
+      "use": "ui"
+    }
+  ]
+}

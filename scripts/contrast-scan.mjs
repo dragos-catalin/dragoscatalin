@@ -20,7 +20,7 @@ const routes = [
     "/ro",
 ];
 const modes = ["dark", "light"];
-const accents = ["orange", "violet"];
+const accents = ["ember", "violet"];
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });

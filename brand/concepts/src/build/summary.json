@@ -1,0 +1,507 @@
+[
+  {
+    "id": "a",
+    "name": "Trace",
+    "mood": "Tech-premium",
+    "accent": "Signal lime",
+    "notes": [],
+    "pairs": 24,
+    "pass": 24,
+    "apcaAdvisories": 13,
+    "semantic": {
+      "light": {
+        "canvas": "oklch(0.99 0.005 255) #fafcff",
+        "surface": "oklch(0.975 0.01 255) #f2f7fe",
+        "line": "oklch(0.882 0.01 255) #d4d9df",
+        "fg": "oklch(0.22 0.01 255) #181b1f",
+        "muted": "oklch(0.54 0.01 255) #6b6f75",
+        "borderStrong": "oklch(0.65 0.01 255) #8b9095",
+        "accentText": "oklch(0.53 0.18 128) #547a00",
+        "solid": "oklch(0.89 0.2 128) #b4f24e",
+        "onSolid": "oklch(0.18 0.03 128) #0e1406",
+        "focus": "oklch(0.53 0.18 128) #547a00",
+        "danger": "oklch(0.56 0.17 25) #c43f3e",
+        "success": "oklch(0.52 0.17 150) #007f38"
+      },
+      "dark": {
+        "canvas": "oklch(0.155 0.014 255) #080d12",
+        "surface": "oklch(0.182 0.014 255) #0e1218",
+        "line": "oklch(0.3 0.014 255) #292e35",
+        "fg": "oklch(0.95 0.008 255) #ebeff4",
+        "muted": "oklch(0.7 0.014 255) #999fa7",
+        "borderStrong": "oklch(0.49 0.014 255) #5b6168",
+        "accentText": "oklch(0.8 0.17 128) #9ed24d",
+        "solid": "oklch(0.89 0.2 128) #b4f24e",
+        "onSolid": "oklch(0.18 0.03 128) #0e1406",
+        "focus": "oklch(0.89 0.2 128) #b4f24e",
+        "danger": "oklch(0.7 0.15 25) #ed756e",
+        "success": "oklch(0.7 0.15 150) #4cb86a"
+      }
+    },
+    "accentRamp": {
+      "light": [
+        "oklch(0.99 0.012 128) #f9fdf5",
+        "oklch(0.975 0.024 128) #f2fae9",
+        "oklch(0.955 0.05 128) #e6f7d4",
+        "oklch(0.93 0.072 128) #daf2be",
+        "oklch(0.9 0.092 128) #cceaa9",
+        "oklch(0.865 0.112 128) #bde190",
+        "oklch(0.81 0.136 128) #a7d16e",
+        "oklch(0.74 0.164 128) #8cbd3d",
+        "oklch(0.89 0.2 128) #b4f24e",
+        "oklch(0.84 0.2 128) #a4e238",
+        "oklch(0.53 0.18 128) #547a00",
+        "oklch(0.3 0.1 128) #223500"
+      ],
+      "dark": [
+        "oklch(0.17 0.024 128) #0c1106",
+        "oklch(0.2 0.036 128) #111907",
+        "oklch(0.245 0.06 128) #182502",
+        "oklch(0.285 0.08 128) #1f3000",
+        "oklch(0.325 0.1 128) #273c00",
+        "oklch(0.375 0.12 128) #324a00",
+        "oklch(0.445 0.14 128) #415f00",
+        "oklch(0.535 0.17 128) #557b00",
+        "oklch(0.89 0.2 128) #b4f24e",
+        "oklch(0.93 0.2 128) #c3ff69",
+        "oklch(0.8 0.17 128) #9ed24d",
+        "oklch(0.94 0.06 128) #e0f4c9"
+      ]
+    },
+    "neutralRamp": {
+      "light": [
+        "oklch(0.99 0.005 255) #fafcff",
+        "oklch(0.975 0.01 255) #f2f7fe",
+        "oklch(0.952 0.01 255) #ebf0f6",
+        "oklch(0.93 0.01 255) #e3e8ef",
+        "oklch(0.908 0.01 255) #dce1e7",
+        "oklch(0.882 0.01 255) #d4d9df",
+        "oklch(0.848 0.01 255) #c9cdd4",
+        "oklch(0.77 0.01 255) #b0b5bb",
+        "oklch(0.65 0.01 255) #8b9095",
+        "oklch(0.6 0.01 255) #7c8186",
+        "oklch(0.54 0.01 255) #6b6f75",
+        "oklch(0.22 0.01 255) #181b1f"
+      ],
+      "dark": [
+        "oklch(0.155 0.014 255) #080d12",
+        "oklch(0.182 0.014 255) #0e1218",
+        "oklch(0.212 0.014 255) #14191f",
+        "oklch(0.24 0.014 255) #1b2026",
+        "oklch(0.268 0.014 255) #21262d",
+        "oklch(0.3 0.014 255) #292e35",
+        "oklch(0.348 0.014 255) #353a41",
+        "oklch(0.42 0.014 255) #484e55",
+        "oklch(0.49 0.014 255) #5b6168",
+        "oklch(0.54 0.014 255) #696f77",
+        "oklch(0.7 0.014 255) #999fa7",
+        "oklch(0.95 0.008 255) #ebeff4"
+      ]
+    },
+    "fails": []
+  },
+  {
+    "id": "b",
+    "name": "Ink",
+    "mood": "Editorial",
+    "accent": "Press red",
+    "notes": [],
+    "pairs": 24,
+    "pass": 24,
+    "apcaAdvisories": 15,
+    "semantic": {
+      "light": {
+        "canvas": "oklch(0.99 0.002 80) #fcfcfa",
+        "surface": "oklch(0.975 0.004 80) #f8f6f4",
+        "line": "oklch(0.882 0.004 80) #d9d8d5",
+        "fg": "oklch(0.22 0.004 80) #1c1a19",
+        "muted": "oklch(0.54 0.004 80) #706e6c",
+        "borderStrong": "oklch(0.65 0.004 80) #908f8c",
+        "accentText": "oklch(0.52 0.194 28) #bf201d",
+        "solid": "oklch(0.58 0.215 28) #dd2824",
+        "onSolid": "oklch(0.99 0.008 28) #fffbfa",
+        "focus": "oklch(0.58 0.215 28) #dd2824",
+        "danger": "oklch(0.56 0.17 355) #bc3e79",
+        "success": "oklch(0.52 0.17 150) #007f38"
+      },
+      "dark": {
+        "canvas": "oklch(0.155 0.004 80) #0d0c0a",
+        "surface": "oklch(0.182 0.004 80) #131210",
+        "line": "oklch(0.3 0.004 80) #2f2e2c",
+        "fg": "oklch(0.95 0.002 80) #efeeed",
+        "muted": "oklch(0.7 0.004 80) #a09e9c",
+        "borderStrong": "oklch(0.49 0.004 80) #62605e",
+        "accentText": "oklch(0.72 0.183 28) #ff7264",
+        "solid": "oklch(0.58 0.215 28) #dd2824",
+        "onSolid": "oklch(0.99 0.008 28) #fffbfa",
+        "focus": "oklch(0.58 0.215 28) #dd2824",
+        "danger": "oklch(0.7 0.15 355) #e573a3",
+        "success": "oklch(0.7 0.15 150) #4cb86a"
+      }
+    },
+    "accentRamp": {
+      "light": [
+        "oklch(0.99 0.013 28) #fffbfa",
+        "oklch(0.975 0.026 28) #fff4f2",
+        "oklch(0.955 0.054 28) #ffebe8",
+        "oklch(0.93 0.077 28) #ffe0db",
+        "oklch(0.9 0.099 28) #ffd2cb",
+        "oklch(0.865 0.12 28) #ffc1b8",
+        "oklch(0.81 0.146 28) #ffa69a",
+        "oklch(0.74 0.176 28) #ff7f71",
+        "oklch(0.58 0.215 28) #dd2824",
+        "oklch(0.54 0.215 28) #ce0f14",
+        "oklch(0.52 0.194 28) #bf201d",
+        "oklch(0.3 0.108 28) #580c0a"
+      ],
+      "dark": [
+        "oklch(0.17 0.026 28) #190b09",
+        "oklch(0.2 0.039 28) #250e0c",
+        "oklch(0.245 0.065 28) #3a110e",
+        "oklch(0.285 0.086 28) #4c1410",
+        "oklch(0.325 0.108 28) #601511",
+        "oklch(0.375 0.129 28) #771915",
+        "oklch(0.445 0.151 28) #96241e",
+        "oklch(0.535 0.183 28) #c12f28",
+        "oklch(0.58 0.215 28) #dd2824",
+        "oklch(0.62 0.215 28) #ec3a32",
+        "oklch(0.72 0.183 28) #ff7264",
+        "oklch(0.94 0.065 28) #ffe4e0"
+      ]
+    },
+    "neutralRamp": {
+      "light": [
+        "oklch(0.99 0.002 80) #fcfcfa",
+        "oklch(0.975 0.004 80) #f8f6f4",
+        "oklch(0.952 0.004 80) #f0efec",
+        "oklch(0.93 0.004 80) #e9e7e5",
+        "oklch(0.908 0.004 80) #e2e0de",
+        "oklch(0.882 0.004 80) #d9d8d5",
+        "oklch(0.848 0.004 80) #cecdca",
+        "oklch(0.77 0.004 80) #b5b4b1",
+        "oklch(0.65 0.004 80) #908f8c",
+        "oklch(0.6 0.004 80) #81807d",
+        "oklch(0.54 0.004 80) #706e6c",
+        "oklch(0.22 0.004 80) #1c1a19"
+      ],
+      "dark": [
+        "oklch(0.155 0.004 80) #0d0c0a",
+        "oklch(0.182 0.004 80) #131210",
+        "oklch(0.212 0.004 80) #1a1917",
+        "oklch(0.24 0.004 80) #201f1d",
+        "oklch(0.268 0.004 80) #272624",
+        "oklch(0.3 0.004 80) #2f2e2c",
+        "oklch(0.348 0.004 80) #3b3a38",
+        "oklch(0.42 0.004 80) #4e4d4b",
+        "oklch(0.49 0.004 80) #62605e",
+        "oklch(0.54 0.004 80) #706e6c",
+        "oklch(0.7 0.004 80) #a09e9c",
+        "oklch(0.95 0.002 80) #efeeed"
+      ]
+    },
+    "fails": []
+  },
+  {
+    "id": "c",
+    "name": "Hearth",
+    "mood": "Warm-human",
+    "accent": "Apricot",
+    "notes": [],
+    "pairs": 23,
+    "pass": 23,
+    "apcaAdvisories": 15,
+    "semantic": {
+      "light": {
+        "canvas": "oklch(0.99 0.007 65) #fffbf7",
+        "surface": "oklch(0.975 0.014 65) #fef5ed",
+        "line": "oklch(0.882 0.014 65) #dfd6cf",
+        "fg": "oklch(0.22 0.014 65) #1f1914",
+        "muted": "oklch(0.54 0.014 65) #756d66",
+        "borderStrong": "oklch(0.65 0.014 65) #958e86",
+        "accentText": "oklch(0.55 0.135 58) #a95a00",
+        "solid": "oklch(0.76 0.15 58) #f79643",
+        "onSolid": "oklch(0.18 0.03 58) #1b0e05",
+        "focus": "oklch(0.55 0.135 58) #a95a00",
+        "danger": "oklch(0.56 0.17 25) #c43f3e",
+        "success": "oklch(0.52 0.17 150) #007f38"
+      },
+      "dark": {
+        "canvas": "oklch(0.155 0.018 65) #120b05",
+        "surface": "oklch(0.182 0.018 65) #18100a",
+        "line": "oklch(0.3 0.018 65) #342c24",
+        "fg": "oklch(0.95 0.011 65) #f4ede7",
+        "muted": "oklch(0.7 0.018 65) #a79c93",
+        "borderStrong": "oklch(0.49 0.018 65) #685f56",
+        "accentText": "oklch(0.76 0.128 58) #ed9b59",
+        "solid": "oklch(0.76 0.15 58) #f79643",
+        "onSolid": "oklch(0.18 0.03 58) #1b0e05",
+        "focus": "oklch(0.76 0.15 58) #f79643",
+        "danger": "oklch(0.7 0.15 25) #ed756e",
+        "success": "oklch(0.7 0.15 150) #4cb86a"
+      }
+    },
+    "accentRamp": {
+      "light": [
+        "oklch(0.99 0.009 58) #fffbf8",
+        "oklch(0.975 0.018 58) #fff5ed",
+        "oklch(0.955 0.038 58) #ffecdf",
+        "oklch(0.93 0.054 58) #ffe2cc",
+        "oklch(0.9 0.069 58) #ffd4b5",
+        "oklch(0.865 0.084 58) #fdc69c",
+        "oklch(0.81 0.102 58) #f3b17e",
+        "oklch(0.74 0.123 58) #e49657",
+        "oklch(0.76 0.15 58) #f79643",
+        "oklch(0.72 0.15 58) #e98a35",
+        "oklch(0.55 0.135 58) #a95a00",
+        "oklch(0.3 0.075 58) #482300"
+      ],
+      "dark": [
+        "oklch(0.17 0.018 58) #150d08",
+        "oklch(0.2 0.027 58) #1f1309",
+        "oklch(0.245 0.045 58) #301a09",
+        "oklch(0.285 0.06 58) #402107",
+        "oklch(0.325 0.075 58) #502903",
+        "oklch(0.375 0.09 58) #633300",
+        "oklch(0.445 0.105 58) #7e4203",
+        "oklch(0.535 0.128 58) #a25700",
+        "oklch(0.76 0.15 58) #f79643",
+        "oklch(0.8 0.15 58) #ffa65e",
+        "oklch(0.76 0.128 58) #ed9b59",
+        "oklch(0.94 0.045 58) #ffe6d4"
+      ]
+    },
+    "neutralRamp": {
+      "light": [
+        "oklch(0.99 0.007 65) #fffbf7",
+        "oklch(0.975 0.014 65) #fef5ed",
+        "oklch(0.952 0.014 65) #f6ede6",
+        "oklch(0.93 0.014 65) #efe6de",
+        "oklch(0.908 0.014 65) #e7dfd7",
+        "oklch(0.882 0.014 65) #dfd6cf",
+        "oklch(0.848 0.014 65) #d4cbc4",
+        "oklch(0.77 0.014 65) #bbb3ab",
+        "oklch(0.65 0.014 65) #958e86",
+        "oklch(0.6 0.014 65) #867f78",
+        "oklch(0.54 0.014 65) #756d66",
+        "oklch(0.22 0.014 65) #1f1914"
+      ],
+      "dark": [
+        "oklch(0.155 0.018 65) #120b05",
+        "oklch(0.182 0.018 65) #18100a",
+        "oklch(0.212 0.018 65) #1f1710",
+        "oklch(0.24 0.018 65) #251e16",
+        "oklch(0.268 0.018 65) #2c241d",
+        "oklch(0.3 0.018 65) #342c24",
+        "oklch(0.348 0.018 65) #413830",
+        "oklch(0.42 0.018 65) #544b43",
+        "oklch(0.49 0.018 65) #685f56",
+        "oklch(0.54 0.018 65) #766d64",
+        "oklch(0.7 0.018 65) #a79c93",
+        "oklch(0.95 0.011 65) #f4ede7"
+      ]
+    },
+    "fails": []
+  },
+  {
+    "id": "d",
+    "name": "Phosphor",
+    "mood": "Brutalist / retro-terminal",
+    "accent": "Amber phosphor",
+    "notes": [],
+    "pairs": 23,
+    "pass": 23,
+    "apcaAdvisories": 15,
+    "semantic": {
+      "light": {
+        "canvas": "oklch(0.99 0.004 85) #fdfcf9",
+        "surface": "oklch(0.975 0.008 85) #f9f6f1",
+        "line": "oklch(0.882 0.008 85) #dad8d2",
+        "fg": "oklch(0.22 0.008 85) #1c1a16",
+        "muted": "oklch(0.54 0.008 85) #716e69",
+        "borderStrong": "oklch(0.65 0.008 85) #918f8a",
+        "accentText": "oklch(0.545 0.149 75) #976500",
+        "solid": "oklch(0.82 0.165 75) #ffb334",
+        "onSolid": "oklch(0.18 0.03 75) #190f03",
+        "focus": "oklch(0.545 0.149 75) #976500",
+        "danger": "oklch(0.56 0.17 25) #c43f3e",
+        "success": "oklch(0.52 0.17 150) #007f38"
+      },
+      "dark": {
+        "canvas": "oklch(0.155 0.01 85) #0e0c08",
+        "surface": "oklch(0.182 0.01 85) #14120d",
+        "line": "oklch(0.3 0.01 85) #302d28",
+        "fg": "oklch(0.95 0.006 85) #f0eeea",
+        "muted": "oklch(0.7 0.01 85) #a19e98",
+        "borderStrong": "oklch(0.49 0.01 85) #63605a",
+        "accentText": "oklch(0.8 0.14 75) #f2af48",
+        "solid": "oklch(0.82 0.165 75) #ffb334",
+        "onSolid": "oklch(0.18 0.03 75) #190f03",
+        "focus": "oklch(0.82 0.165 75) #ffb334",
+        "danger": "oklch(0.7 0.15 25) #ed756e",
+        "success": "oklch(0.7 0.15 150) #4cb86a"
+      }
+    },
+    "accentRamp": {
+      "light": [
+        "oklch(0.99 0.01 75) #fffbf6",
+        "oklch(0.975 0.02 75) #fff5e8",
+        "oklch(0.955 0.041 75) #ffedd6",
+        "oklch(0.93 0.059 75) #ffe3be",
+        "oklch(0.9 0.076 75) #fcd8a6",
+        "oklch(0.865 0.092 75) #f6ca8e",
+        "oklch(0.81 0.112 75) #ebb66a",
+        "oklch(0.74 0.135 75) #dc9d39",
+        "oklch(0.82 0.165 75) #ffb334",
+        "oklch(0.77 0.165 75) #efa200",
+        "oklch(0.545 0.149 75) #976500",
+        "oklch(0.3 0.083 75) #402800"
+      ],
+      "dark": [
+        "oklch(0.17 0.02 75) #150e06",
+        "oklch(0.2 0.03 75) #1e1406",
+        "oklch(0.245 0.05 75) #2e1c01",
+        "oklch(0.285 0.066 75) #3b2500",
+        "oklch(0.325 0.083 75) #482e00",
+        "oklch(0.375 0.099 75) #593a00",
+        "oklch(0.445 0.115 75) #724b00",
+        "oklch(0.535 0.14 75) #936200",
+        "oklch(0.82 0.165 75) #ffb334",
+        "oklch(0.86 0.165 75) #ffc673",
+        "oklch(0.8 0.14 75) #f2af48",
+        "oklch(0.94 0.05 75) #ffe7c8"
+      ]
+    },
+    "neutralRamp": {
+      "light": [
+        "oklch(0.99 0.004 85) #fdfcf9",
+        "oklch(0.975 0.008 85) #f9f6f1",
+        "oklch(0.952 0.008 85) #f2efe9",
+        "oklch(0.93 0.008 85) #eae7e2",
+        "oklch(0.908 0.008 85) #e3e0db",
+        "oklch(0.882 0.008 85) #dad8d2",
+        "oklch(0.848 0.008 85) #cfcdc7",
+        "oklch(0.77 0.008 85) #b6b4af",
+        "oklch(0.65 0.008 85) #918f8a",
+        "oklch(0.6 0.008 85) #82807b",
+        "oklch(0.54 0.008 85) #716e69",
+        "oklch(0.22 0.008 85) #1c1a16"
+      ],
+      "dark": [
+        "oklch(0.155 0.01 85) #0e0c08",
+        "oklch(0.182 0.01 85) #14120d",
+        "oklch(0.212 0.01 85) #1b1814",
+        "oklch(0.24 0.01 85) #211f1a",
+        "oklch(0.268 0.01 85) #282620",
+        "oklch(0.3 0.01 85) #302d28",
+        "oklch(0.348 0.01 85) #3c3a34",
+        "oklch(0.42 0.01 85) #504d47",
+        "oklch(0.49 0.01 85) #63605a",
+        "oklch(0.54 0.01 85) #716e68",
+        "oklch(0.7 0.01 85) #a19e98",
+        "oklch(0.95 0.006 85) #f0eeea"
+      ]
+    },
+    "fails": []
+  },
+  {
+    "id": "e",
+    "name": "Keystone",
+    "mood": "Hybrid",
+    "accent": "Ember",
+    "notes": [],
+    "pairs": 63,
+    "pass": 63,
+    "apcaAdvisories": 54,
+    "semantic": {
+      "light": {
+        "canvas": "oklch(0.99 0.004 265) #fafcff",
+        "surface": "oklch(0.975 0.008 265) #f4f7fc",
+        "line": "oklch(0.882 0.008 265) #d5d8de",
+        "fg": "oklch(0.22 0.008 265) #191b1e",
+        "muted": "oklch(0.54 0.008 265) #6c6f73",
+        "borderStrong": "oklch(0.65 0.008 265) #8d8f94",
+        "accentText": "oklch(0.555 0.171 42) #bf4700",
+        "solid": "oklch(0.68 0.19 42) #f46622",
+        "onSolid": "oklch(0.18 0.03 42) #1d0d07",
+        "focus": "oklch(0.68 0.19 42) #f46622",
+        "danger": "oklch(0.56 0.17 10) #c23d5d",
+        "success": "oklch(0.52 0.17 150) #007f38"
+      },
+      "dark": {
+        "canvas": "oklch(0.155 0.016 265) #090c13",
+        "surface": "oklch(0.182 0.016 265) #0f1219",
+        "line": "oklch(0.3 0.016 265) #2a2e36",
+        "fg": "oklch(0.95 0.01 265) #ebeef5",
+        "muted": "oklch(0.7 0.016 265) #999ea9",
+        "borderStrong": "oklch(0.49 0.016 265) #5c606a",
+        "accentText": "oklch(0.72 0.162 42) #f67d4b",
+        "solid": "oklch(0.68 0.19 42) #f46622",
+        "onSolid": "oklch(0.18 0.03 42) #1d0d07",
+        "focus": "oklch(0.68 0.19 42) #f46622",
+        "danger": "oklch(0.7 0.15 10) #eb7289",
+        "success": "oklch(0.7 0.15 150) #4cb86a"
+      }
+    },
+    "accentRamp": {
+      "light": [
+        "oklch(0.99 0.011 42) #fffbf9",
+        "oklch(0.975 0.023 42) #fff4f0",
+        "oklch(0.955 0.048 42) #ffebe4",
+        "oklch(0.93 0.068 42) #ffe0d5",
+        "oklch(0.9 0.087 42) #ffd3c2",
+        "oklch(0.865 0.106 42) #ffc3ac",
+        "oklch(0.81 0.129 42) #ffa886",
+        "oklch(0.74 0.156 42) #fb8556",
+        "oklch(0.68 0.19 42) #f46622",
+        "oklch(0.64 0.19 42) #e65909",
+        "oklch(0.555 0.171 42) #bf4700",
+        "oklch(0.3 0.095 42) #511900"
+      ],
+      "dark": [
+        "oklch(0.17 0.023 42) #180c08",
+        "oklch(0.2 0.034 42) #231109",
+        "oklch(0.245 0.057 42) #361608",
+        "oklch(0.285 0.076 42) #481a06",
+        "oklch(0.325 0.095 42) #5a1e02",
+        "oklch(0.375 0.114 42) #702600",
+        "oklch(0.445 0.133 42) #8d3302",
+        "oklch(0.535 0.162 42) #b64300",
+        "oklch(0.68 0.19 42) #f46622",
+        "oklch(0.72 0.19 42) #ff763b",
+        "oklch(0.72 0.162 42) #f67d4b",
+        "oklch(0.94 0.057 42) #ffe5db"
+      ]
+    },
+    "neutralRamp": {
+      "light": [
+        "oklch(0.99 0.004 265) #fafcff",
+        "oklch(0.975 0.008 265) #f4f7fc",
+        "oklch(0.952 0.008 265) #eceff5",
+        "oklch(0.93 0.008 265) #e5e8ed",
+        "oklch(0.908 0.008 265) #dee1e6",
+        "oklch(0.882 0.008 265) #d5d8de",
+        "oklch(0.848 0.008 265) #cacdd2",
+        "oklch(0.77 0.008 265) #b2b4b9",
+        "oklch(0.65 0.008 265) #8d8f94",
+        "oklch(0.6 0.008 265) #7e8085",
+        "oklch(0.54 0.008 265) #6c6f73",
+        "oklch(0.22 0.008 265) #191b1e"
+      ],
+      "dark": [
+        "oklch(0.155 0.016 265) #090c13",
+        "oklch(0.182 0.016 265) #0f1219",
+        "oklch(0.212 0.016 265) #151920",
+        "oklch(0.24 0.016 265) #1c1f27",
+        "oklch(0.268 0.016 265) #22262e",
+        "oklch(0.3 0.016 265) #2a2e36",
+        "oklch(0.348 0.016 265) #363a43",
+        "oklch(0.42 0.016 265) #494d56",
+        "oklch(0.49 0.016 265) #5c606a",
+        "oklch(0.54 0.016 265) #6a6f78",
+        "oklch(0.7 0.016 265) #999ea9",
+        "oklch(0.95 0.01 265) #ebeef5"
+      ]
+    },
+    "fails": []
+  }
+]

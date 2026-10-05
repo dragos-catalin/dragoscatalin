@@ -4,6 +4,8 @@ import { Package } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { DiscordIcon, GitHubIcon, InstagramIcon, TikTokIcon } from "@/components/icons";
 import { ConsentSettingsButton } from "@/components/consent";
+import { BrandMark } from "@/components/brand/BrandMark";
+import { Wordmark } from "@/components/brand/Wordmark";
 import { site, type SocialKey } from "@/lib/site";
 import pkg from "../../../package.json";
 
@@ -43,10 +45,10 @@ export async function Footer() {
                     <div className="flex flex-col gap-4">
                         <Link
                             href="/"
-                            className="inline-flex items-center gap-2 text-lg font-bold tracking-tight text-fg"
+                            className="brand-link inline-flex items-center gap-2.5 self-start rounded-pill text-fg"
                         >
-                            {site.name}
-                            <span className="text-accent">.</span>
+                            <BrandMark className="size-9" />
+                            <Wordmark className="text-xl" />
                         </Link>
                         <p className="max-w-xs text-sm text-pretty text-fg-muted">
                             {t("meta.description")}

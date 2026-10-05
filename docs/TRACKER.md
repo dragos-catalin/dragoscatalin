@@ -21,7 +21,7 @@ Status values: `todo` · `doing` · `done` · `blocked` · `cancelled`.
 | Pages         | `/`, `/projects`, `/projects/[slug]`, `/about`, `/open-source`, `/now`, `/uses`, `/press`.                                                                                                                                            |
 | AEO           | JSON-LD (Person, SoftwareApplication, WebSite, BreadcrumbList), `llms.txt` + `llms-full.txt`, sitemap, robots, RSS, OG images, `/api/projects.json`.                                                                                  |
 | Contact       | Server Action + Zod + Resend (env-gated no-op) + honeypot + Turnstile. Firebase removed.                                                                                                                                              |
-| Gates         | husky pre-commit/pre-push, lint-staged, Vitest, Playwright smoke, size-limit, version+CHANGELOG gate, `scripts/ci-local.mjs` (WSL/Docker), Actions self-hosted w/ hosted fallback, Renovate.                                          |
+| Gates         | husky pre-commit/pre-push, lint-staged, Vitest, Playwright smoke, per-page first-load budget, version+CHANGELOG gate, `scripts/ci-local.mjs` (WSL/Docker), Actions self-hosted w/ hosted fallback, Renovate.                          |
 | Analytics     | Vercel Analytics + Speed Insights + Sentry (env-gated).                                                                                                                                                                               |
 | Hosting       | Vercel.                                                                                                                                                                                                                               |
 | Publicity     | `/press` kit, outlet list, dev.to articles, Wikidata/Wikipedia draft later (needs independent coverage first).                                                                                                                        |
@@ -43,7 +43,7 @@ Assistant, with every gate green. Rows `V3-*` in `tracker.csv`.
 | Default skin      | Owner decides after seeing all four (V3-08).                                                                                                                                                                                                                                                                                                                        |
 | Animation stack   | Motion (upgrade to 14) and GSAP freely. Lenis on desktop only, native scroll on touch.                                                                                                                                                                                                                                                                              |
 | Mobile            | Bottom tab bar, sheets, swipe, haptics where supported, safe-area aware, installable PWA with offline shell.                                                                                                                                                                                                                                                        |
-| Visual identity   | New brand pack: DC monogram/wordmark, OKLCH palette, display font + Geist body, icons/OG/favicon, logo motion. Owner picks from 3 concepts.                                                                                                                                                                                                                         |
+| Visual identity   | **Done (v2.9.0): brand Keystone**: a solid D with the C carved out, Bricolage Grotesque display + Geist body, the comma of ș as the Romanian cue, Ember #f46622 as default accent. Pack in `brand/` (`BRAND.md`, `brand.json`, DTCG `tokens.json`, `logo/`, `motion/`).                                                                                             |
 | Positioning       | Superseded by the V3-34 owner profile below: headline "I build products end to end — from cloud and network to the app in your pocket.", backed by real numbers.                                                                                                                                                                                                    |
 | Languages shown   | Measured set from the repos (TS, Kotlin/Compose, Rust, Python, SQL, Go, C#, Dart/Flutter, Swift, PowerShell, C/C++), plus an "also worked with" row for legacy tech.                                                                                                                                                                                                |
 | Projects          | Add: Horae (published faces only + "200 faces, N live" teaser, auto-synced from `watch-faces/docs/store/play-apps.csv`), scrin, marcai, caelia, titi, vitals, HIDE, axiom, VS Code extensions (Just Black 2, Tasks2, VS Remote Chat, prakter), notalone, alegeri2025, afti (demo built in days, client never replied; no consent needed), datuvia, Unscroll, dashy. |
@@ -63,19 +63,19 @@ Assistant, with every gate green. Rows `V3-*` in `tracker.csv`.
 Stored in agent memory (`/memories/owner-profile.md`) and in codai production memory
 (10 semantic records via MCP `memory_store`, recall verified with `memory_search`).
 
-| Topic         | Answer                                                                                                                           |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| Public name   | "Dragoș Cătălin" with diacritics; no family name on the public site.                                                             |
-| Roles         | Product engineer · founder · full-stack developer · cloud systems & networking · architect.                                      |
-| Location      | România (remote, EU).                                                                                                            |
-| Experience    | "20+ years of code, 15+ years paid" (coding since ~10, first paid at 15, first legal job at 18).                                 |
-| Availability  | Selective — open to the right projects.                                                                                          |
-| Headline      | "I build products end to end — from cloud and network to the app in your pocket." (RO translation by the agent.)                 |
-| Tone          | Direct, warm, concrete; first person, short sentences, real numbers.                                                             |
-| Brand (V3-02) | Full brand kit; show ALL directions (tech-premium, editorial, warm-human, brutalist/retro-terminal); accent chosen after seeing. |
-| Photo         | Portrait in About + small avatar in footer/OG; photo comes later — DC monogram until then.                                       |
-| Site goal     | Well-paid consulting/project leads. Products in equal rotation (no single hero product).                                         |
-| Audience      | Startups/founders (end-to-end MVP), RO SMEs (invoicing, e-Factura, automation), enterprise/EU (cloud, network), developers.      |
+| Topic         | Answer                                                                                                                        |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Public name   | "Dragoș Cătălin" with diacritics; no family name on the public site.                                                          |
+| Roles         | Product engineer · founder · full-stack developer · cloud systems & networking · architect.                                   |
+| Location      | România (remote, EU).                                                                                                         |
+| Experience    | "20+ years of code, 15+ years paid" (coding since ~10, first paid at 15, first legal job at 18).                              |
+| Availability  | Selective — open to the right projects.                                                                                       |
+| Headline      | "I build products end to end — from cloud and network to the app in your pocket." (RO translation by the agent.)              |
+| Tone          | Direct, warm, concrete; first person, short sentences, real numbers.                                                          |
+| Brand (V3-02) | Chose **E · Keystone** + Ember #f46622 (gate A, 2026-10-05); refinements delegated. Gate E: review `brand/motion/intro.webm`. |
+| Photo         | Portrait in About + small avatar in footer/OG; photo comes later — DC monogram until then.                                    |
+| Site goal     | Well-paid consulting/project leads. Products in equal rotation (no single hero product).                                      |
+| Audience      | Startups/founders (end-to-end MVP), RO SMEs (invoicing, e-Factura, automation), enterprise/EU (cloud, network), developers.   |
 
 ### Areas
 

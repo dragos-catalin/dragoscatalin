@@ -40,7 +40,7 @@ export function Section({
                                 </p>
                             ) : null}
                             {title ? (
-                                <Heading className="text-3xl font-bold tracking-[-0.03em] text-balance text-fg md:text-4xl lg:text-5xl">
+                                <Heading className="font-display text-3xl font-bold tracking-[-0.03em] text-balance text-fg md:text-4xl lg:text-5xl">
                                     {title}
                                 </Heading>
                             ) : null}

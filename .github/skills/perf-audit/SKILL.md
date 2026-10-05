@@ -62,7 +62,7 @@ worse (1057 → 1360 ms). Removing `priority` from non-LCP images was neutral.
 Every fix needs a gate, otherwise it comes back:
 
 - `lighthouserc.json` — hard thresholds run on PRs (`.github/workflows/lighthouse.yml`).
-- `.size-limit.json` — tighten the budget to the new number + ~7 %.
+- `first-load-budget.json` — tighten `budgetKB` to the new heaviest-page number + ~7 %.
 - `eslint.config.mjs` — `no-restricted-imports` for anything server-only.
 - `scripts/pre-commit.mjs` — asset size gate, `check-shots-manifest`.
 - Record the measurement in `docs/TRACKER.md` (P area) + `CHANGELOG.md`.

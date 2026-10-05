@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import en from "../../../../../messages/en.json";
 import ro from "../../../../../messages/ro.json";
 import { getProject, projects } from "@/data/projects";
-import { OG, OgFrame } from "@/lib/og";
+import { OG, OgFrame, ogFonts } from "@/lib/og";
 import { routing } from "@/i18n/routing";
 
 export const alt = "Project cover";
@@ -31,10 +31,8 @@ export default async function ProjectOgImage({
     return new ImageResponse(
         <OgFrame
             blob={{
-                width: 640,
-                height: 640,
-                right: -200,
-                top: -220,
+                right: 60,
+                top: 0,
                 background: `hsl(${hue} 60% 40%)`,
             }}
         >
@@ -45,7 +43,8 @@ export default async function ProjectOgImage({
                             padding: "6px 16px",
                             borderRadius: 9999,
                             border: `2px solid ${OG.accent}`,
-                            color: OG.accent,
+                            color: OG.accentText,
+                            fontWeight: 500,
                             display: "flex",
                         }}
                     >
@@ -58,7 +57,7 @@ export default async function ProjectOgImage({
                 <div style={{ fontSize: 88, fontWeight: 700, lineHeight: 1, letterSpacing: -3 }}>
                     {project.name}
                 </div>
-                <div style={{ fontSize: 34, color: OG.muted, lineHeight: 1.3 }}>
+                <div style={{ fontSize: 34, fontWeight: 500, color: OG.muted, lineHeight: 1.3 }}>
                     {project.tagline[lang]}
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 8 }}>
@@ -68,7 +67,8 @@ export default async function ProjectOgImage({
                             style={{
                                 padding: "6px 14px",
                                 borderRadius: 10,
-                                background: "rgba(245,242,234,0.08)",
+                                background: "rgba(235,238,245,0.08)",
+                                fontWeight: 500,
                                 border: `1px solid ${OG.line}`,
                                 fontSize: 22,
                                 display: "flex",
@@ -80,6 +80,6 @@ export default async function ProjectOgImage({
                 </div>
             </div>
         </OgFrame>,
-        { ...size },
+        { ...size, fonts: await ogFonts() },
     );
 }

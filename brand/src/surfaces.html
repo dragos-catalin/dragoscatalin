@@ -1,0 +1,182 @@
+<!doctype html>
+<!-- Real-surface check for the Keystone exports (rendered by brand/src/render-surfaces.mjs). -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Keystone surfaces</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 28px;
+            background: #e9ebef;
+            font: 13px system-ui;
+            color: #191b1e;
+            display: grid;
+            gap: 22px;
+            width: 900px
+        }
+
+        .lab {
+            font: 600 11px ui-monospace, monospace;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #555a63;
+            margin-bottom: 8px
+        }
+
+        .tabs {
+            display: flex;
+            gap: 2px;
+            background: #dfe2e7;
+            padding: 6px 6px 0;
+            border-radius: 10px 10px 0 0
+        }
+
+        .tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 8px 8px 0 0;
+            background: #cfd3da;
+            width: 170px;
+            white-space: nowrap;
+            overflow: hidden
+        }
+
+        .tab.on {
+            background: #fff
+        }
+
+        .tabs.dark {
+            background: #1c1f27
+        }
+
+        .tabs.dark .tab {
+            background: #262a33;
+            color: #c9cdd6
+        }
+
+        .tabs.dark .tab.on {
+            background: #0f1219;
+            color: #ebeef5
+        }
+
+        .dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            background: #8d8f94
+        }
+
+        .bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #202020;
+            padding: 6px 12px;
+            border-radius: 8px;
+            width: max-content
+        }
+
+        .bar img,
+        .bar .dot {
+            width: 24px;
+            height: 24px
+        }
+
+        .bar.big img,
+        .bar.big .dot {
+            width: 36px;
+            height: 36px
+        }
+
+        .row {
+            display: flex;
+            gap: 26px;
+            align-items: flex-end
+        }
+
+        .mask {
+            width: 132px;
+            height: 132px;
+            border-radius: 50%;
+            overflow: hidden;
+            outline: 2px dashed #f46622;
+            outline-offset: -1px
+        }
+
+        .mask img {
+            width: 132px;
+            height: 132px
+        }
+
+        .squircle img {
+            width: 132px;
+            height: 132px;
+            border-radius: 30px
+        }
+
+        figure {
+            margin: 0;
+            text-align: center
+        }
+
+        figcaption {
+            margin-top: 6px;
+            color: #555a63
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="lab">Browser tabs · favicon.ico 16 px (light / dark chrome)</div>
+        <div class="tabs">
+            <div class="tab"><span class="dot"></span>Inbox</div>
+            <div class="tab on"><img src="../../src/app/favicon.ico" width="16" height="16" alt="">Dragoș Cătălin</div>
+            <div class="tab"><span class="dot" style="background:#4a8"></span>Docs</div>
+        </div>
+        <div class="tabs dark" style="margin-top:8px">
+            <div class="tab"><span class="dot"></span>Inbox</div>
+            <div class="tab on"><img src="../../src/app/favicon.ico" width="16" height="16" alt="">Dragoș Cătălin</div>
+            <div class="tab"><span class="dot" style="background:#4a8"></span>Docs</div>
+        </div>
+    </div>
+    <div>
+        <div class="lab">Windows taskbar · 24 px @100 % and 36 px @150 % (PWA icon)</div>
+        <div class="row">
+            <div class="bar"><span class="dot" style="background:#e8b23a"></span><span class="dot"
+                    style="background:#3a7be8"></span><img src="../../public/icon-192.png" alt=""><span class="dot"
+                    style="background:#7b5cf0"></span><span class="dot" style="background:#e85a5a"></span></div>
+            <div class="bar big"><span class="dot" style="background:#e8b23a"></span><span class="dot"
+                    style="background:#3a7be8"></span><img src="../../public/icon-192.png" alt=""><span class="dot"
+                    style="background:#7b5cf0"></span><span class="dot" style="background:#e85a5a"></span></div>
+        </div>
+    </div>
+    <div>
+        <div class="lab">Launchers · Android maskable (circle) · iOS apple-icon (squircle) · SVG favicon</div>
+        <div class="row">
+            <figure>
+                <div class="mask"><img src="../../public/icon-maskable-512.png" alt=""></div>
+                <figcaption>maskable 512 in circle</figcaption>
+            </figure>
+            <figure>
+                <div class="squircle"><img src="../../src/app/apple-icon.png" alt=""></div>
+                <figcaption>apple-icon 180</figcaption>
+            </figure>
+            <figure><img src="../../src/app/icon.svg" width="64" height="64" alt="">
+                <figcaption>icon.svg 64</figcaption>
+            </figure>
+            <figure><img src="../logo/lockup-light.svg" height="64" alt="">
+                <figcaption>lockup light</figcaption>
+            </figure>
+        </div>
+    </div>
+    <div style="background:#090c13;padding:18px;border-radius:12px"><img src="../logo/lockup-dark.svg" height="72"
+            alt=""> &nbsp; <img src="../logo/mark-16.svg" width="16" height="16" alt=""> <img
+            src="../logo/mark-mono-white.svg" width="48" height="48" alt=""></div>
+</body>
+
+</html>

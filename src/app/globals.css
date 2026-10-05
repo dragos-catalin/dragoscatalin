@@ -2,8 +2,9 @@
 
 /* ---------------------------------------------------------------------------
  * Theme system — see docs/DESIGN.md
- * <html data-mode="dark|light" data-accent="violet|indigo|cyan|emerald|amber|rose" data-surface="solid|glass|contrast">
+ * <html data-mode="dark|light" data-accent="ember|orange|violet|indigo|cyan|emerald|amber|rose" data-surface="solid|glass|contrast">
  * Components use ONLY semantic utilities generated from @theme inline below.
+ * Values = brand Keystone (brand/BRAND.md, brand/tokens.json; proven by brand/contrast-pairs.json).
  * ------------------------------------------------------------------------- */
 
 @custom-variant dark (&:where([data-mode="dark"], [data-mode="dark"] *));
@@ -13,6 +14,7 @@
 @theme inline {
     --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
     --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+    --font-display: var(--font-bricolage), var(--font-geist-sans), ui-sans-serif, sans-serif;
 
     --color-bg: var(--bg);
     --color-bg-deep: var(--bg-deep);
@@ -27,6 +29,8 @@
     --color-accent-soft: var(--accent-soft);
     --color-accent-strong: var(--accent-strong);
     --color-accent-fg: var(--accent-fg);
+    --color-accent-mark: var(--accent-mark);
+    --color-mark-tile: var(--mark-tile);
     --color-counter: var(--counter);
     --color-success: var(--success);
     --color-warning: var(--warning);
@@ -62,9 +66,11 @@
 }
 
 /* --- Accent hue per data-accent (OKLCH). counter = hue + 140deg ----------- */
-:root {
-    --accent-h: 50;
-    --accent-c: 0.18;
+:root,
+[data-accent="ember"] {
+    /* Ember #f46622 — brand default (owner, gate A 2026-10-05). */
+    --accent-h: 42;
+    --accent-c: 0.19;
 }
 
 [data-accent="orange"] {
@@ -105,16 +111,17 @@
 /* --- Light mode (default) -------------------------------------------------- */
 :root {
     color-scheme: light;
-    --bg: oklch(0.985 0.005 80);
-    --bg-deep: oklch(0.965 0.008 80);
+    /* Keystone slate neutrals, hue 265. */
+    --bg: oklch(0.99 0.004 265);
+    --bg-deep: oklch(0.965 0.008 265);
     --surface: oklch(1 0 0);
-    --surface-raised: oklch(0.975 0.006 80);
-    --fg: oklch(0.18 0.02 272);
-    --fg-muted: oklch(0.45 0.02 272);
+    --surface-raised: oklch(0.975 0.008 265);
+    --fg: oklch(0.2 0.01 265);
+    --fg-muted: oklch(0.45 0.012 265);
     /* ≥4.5:1 on --bg, --bg-deep and --surface (WCAG AA for small text). */
-    --fg-subtle: oklch(0.5 0.018 272);
-    --line: oklch(0.88 0.01 272);
-    --line-strong: oklch(0.78 0.012 272);
+    --fg-subtle: oklch(0.5 0.01 265);
+    --line: oklch(0.88 0.008 265);
+    --line-strong: oklch(0.78 0.01 265);
 
     /* L 0.50: orange (hue 50) at L 0.55 measured 4.16–4.32:1 as text on
          accent-soft / surface (Launching / In development badges). 0.50 ≥ 4.5:1
@@ -124,6 +131,9 @@
     --accent-soft: oklch(0.5 var(--accent-c) var(--accent-h) / 0.12);
     --accent-glow: oklch(0.5 var(--accent-c) var(--accent-h) / 0.2);
     --accent-fg: oklch(0.99 0.01 var(--accent-h));
+    /* Logo solid (the D) and its slate tile — identical in both modes. */
+    --accent-mark: oklch(0.68 var(--accent-c) var(--accent-h));
+    --mark-tile: oklch(0.182 0.016 265);
     --counter: oklch(0.6 0.13 calc(var(--accent-h) + 140));
 
     /* used as text on bg-success/12 → needs ≥4.5:1 */
@@ -132,10 +142,10 @@
          Light-mode amber at L 0.72 was 2.24:1 as text ("Research" badge). */
     --warning: oklch(0.72 0.16 75);
     --warning-fg: oklch(0.42 0.12 70);
-    --danger: oklch(0.58 0.2 25);
+    --danger: oklch(0.53 0.2 25);
 
-    --elev-key: oklch(0.2 0.02 272 / 0.1);
-    --elev-ambient: oklch(0.2 0.02 272 / 0.16);
+    --elev-key: oklch(0.2 0.02 265 / 0.1);
+    --elev-ambient: oklch(0.2 0.02 265 / 0.16);
     --elev-inset: inset 0 1px 0 0 oklch(1 0 0 / 0.7);
     --accent-ring: oklch(0.55 var(--accent-c) var(--accent-h) / 0.18);
 }
@@ -143,18 +153,18 @@
 /* --- Dark mode ------------------------------------------------------------- */
 [data-mode="dark"] {
     color-scheme: dark;
-    --bg: oklch(0.13 0.02 272);
-    --bg-deep: oklch(0.1 0.018 272);
-    --surface: oklch(0.17 0.025 272);
-    --surface-raised: oklch(0.21 0.028 272);
-    --fg: oklch(0.95 0.015 80);
-    --fg-muted: oklch(0.72 0.02 272);
+    --bg: oklch(0.155 0.016 265);
+    --bg-deep: oklch(0.13 0.016 265);
+    --surface: oklch(0.182 0.016 265);
+    --surface-raised: oklch(0.212 0.016 265);
+    --fg: oklch(0.95 0.01 265);
+    --fg-muted: oklch(0.72 0.016 265);
     /* ≥ 4.5:1 on --bg / --surface / --surface-raised (WCAG AA small text). */
-    --fg-subtle: oklch(0.62 0.02 272);
-    /* Edges must read against --surface (L 0.17) and --bg (L 0.13): the old
-       L 0.26 measured 1.23:1 — cards had no visible border in dark mode. */
-    --line: oklch(0.32 0.022 272);
-    --line-strong: oklch(0.42 0.024 272);
+    --fg-subtle: oklch(0.64 0.016 265);
+    /* Edges must read against --surface and --bg: the old L 0.26 measured
+       1.23:1 — cards had no visible border in dark mode. */
+    --line: oklch(0.32 0.016 265);
+    --line-strong: oklch(0.42 0.016 265);
 
     --accent: oklch(0.74 var(--accent-c) var(--accent-h));
     --accent-strong: oklch(0.8 var(--accent-c) var(--accent-h));
@@ -176,16 +186,16 @@
 
 /* --- Surface modes --------------------------------------------------------- */
 [data-surface="contrast"] {
-    --line: oklch(0.6 0.02 272);
-    --line-strong: oklch(0.4 0.02 272);
+    --line: oklch(0.6 0.012 265);
+    --line-strong: oklch(0.4 0.012 265);
     --fg-muted: var(--fg);
-    --fg-subtle: oklch(0.35 0.02 272);
+    --fg-subtle: oklch(0.35 0.012 265);
 }
 
 [data-mode="dark"][data-surface="contrast"] {
-    --line: oklch(0.5 0.02 272);
-    --line-strong: oklch(0.7 0.02 272);
-    --fg-subtle: oklch(0.8 0.02 272);
+    --line: oklch(0.5 0.016 265);
+    --line-strong: oklch(0.7 0.016 265);
+    --fg-subtle: oklch(0.8 0.016 265);
 }
 
 /* --- Base ------------------------------------------------------------------ */
@@ -493,6 +503,56 @@ body {
         }
     }
 
+    /* --- Keystone logo motion (brand/BRAND.md § Motion; tokens motion.logo) ---
+       Static mark = final frame. The intro runs once per session: THEME_INIT_SCRIPT
+       stamps <html data-intro> on the first page load only. CSS-only — the header
+       is global, so no motion/react here. */
+    .brand-c {
+        transform-box: fill-box;
+        /* fill-box of the C arc spans x 16..27.48 on the 48 grid; ring centre x 22.5 = 56.6 %. */
+        transform-origin: 56.6% 50%;
+        transition: transform 0.45s var(--ease-spring);
+    }
+
+    .brand-link:hover .brand-c,
+    .brand-link:focus-visible .brand-c {
+        transform: rotate(-90deg);
+    }
+
+    [data-intro] header .brand-d {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: brand-land 0.38s var(--ease-out-expo) both;
+    }
+
+    [data-intro] header .brand-c path {
+        animation: brand-carve 0.48s var(--ease-out-expo) 0.26s both;
+    }
+
+    [data-intro] header .brand-comma {
+        animation: brand-drop 0.32s var(--ease-spring) 0.7s both;
+    }
+
+    @keyframes brand-land {
+        from {
+            opacity: 0;
+            transform: translateY(-12%) scale(0.9);
+        }
+    }
+
+    @keyframes brand-carve {
+        from {
+            stroke-dashoffset: 1;
+        }
+    }
+
+    @keyframes brand-drop {
+        from {
+            opacity: 0;
+            transform: translateY(-0.45em);
+        }
+    }
+
     /* Fixed, static page-wide mesh: one gradient + one radial glow, no animation. */
     .page-mesh::before,
     .page-mesh::after {
@@ -541,6 +601,21 @@ body {
 
         .hero-scroll-dot {
             animation: none;
+        }
+
+        [data-intro] header .brand-d,
+        [data-intro] header .brand-c path,
+        [data-intro] header .brand-comma {
+            animation: none;
+        }
+
+        .brand-c {
+            transition: none;
+        }
+
+        .brand-link:hover .brand-c,
+        .brand-link:focus-visible .brand-c {
+            transform: none;
         }
     }
 }

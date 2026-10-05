@@ -102,8 +102,11 @@ gh variable delete CI_RUNNER
 
 ## Budgets
 
-- `.size-limit.json` — gzip budget on `.next/static/chunks/*.js` after a
-  production build. Re-measure with `pnpm size` after `pnpm build`.
+- `first-load-budget.json` — gzip budget for the **heaviest prerendered page**:
+  `pnpm size` (`scripts/check-first-load.mjs`) sums the `/_next/static/chunks/*.js`
+  each `.next/server/app/**/*.html` references, i.e. what a visitor downloads.
+  Run after `pnpm build`. (Replaced size-limit's all-chunks sum on 2026-10-05:
+  Turbopack per-route splits made it count code no page loads together.)
 - Vitest coverage thresholds: statements 60 %, lines 60 % on `src/lib`,
   `src/data`, `src/i18n`.
 

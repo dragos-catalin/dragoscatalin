@@ -47,7 +47,7 @@ async function buildFeed(): Promise<string> {
 
     const feed = new Feed({
         title: site.name,
-        description: "Projects and releases by Dragos Catalin Vladulescu.",
+        description: `Projects and releases by ${site.name}.`,
         id: site.url,
         link: site.url,
         language: "en",
