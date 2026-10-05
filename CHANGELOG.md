@@ -6,8 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.9.5] - 2026-10-05
+
 ### Fixed
 
+- `/feedbrake/privacy` overflowed by 7 px at 360 px: the unbroken `raw.githubusercontent.com/...` host in the Network paragraph could not wrap. The paragraph and the rules link now use `wrap-anywhere`. `pnpm scan:layout` in CI had been failing on it.
+- FeedBrake rules links now point to `dragos-catalin/unscroll-rules`. The repository moved to the organisation, and the old `raw.githubusercontent.com/dragoscv/...` URL used by the app still answers 200.
 - CI: the `secrets` job used `gitleaks-action`, which needs a paid licence for organisation repositories and failed after the move. It is now the shared `dragos-catalin/workflows` `security.yml@v1` job, which runs the gitleaks CLI over the full history plus osv-scanner. `format:check` had been red since the brand kit landed. It now ignores the generated `brand/**/*.html` previews.
 
 ## [2.9.4] - 2026-10-05

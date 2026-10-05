@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 type Params = Promise<{ locale: string }>;
 
 const PATH = "/feedbrake/privacy";
-const RULES_HOST = "raw.githubusercontent.com/dragoscv/unscroll-rules";
+const RULES_HOST = "raw.githubusercontent.com/dragos-catalin/unscroll-rules";
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
     const { locale } = await params;
@@ -60,12 +60,14 @@ export default async function FeedbrakePrivacyPage({ params }: { params: Params 
                 <p className="mt-3 max-w-prose text-fg-muted">{t("storedNote")}</p>
             </Section>
             <Section title={t("networkTitle")}>
-                <p className="max-w-prose text-fg-muted">{t("network", { host: RULES_HOST })}</p>
+                <p className="max-w-prose text-fg-muted wrap-anywhere">
+                    {t("network", { host: RULES_HOST })}
+                </p>
                 <a
                     href={FEEDBRAKE.rulesUrl}
                     target="_blank"
                     rel="noopener"
-                    className="link-inline mt-4 inline-block font-mono text-sm text-fg"
+                    className="link-inline mt-4 inline-block max-w-full font-mono text-sm text-fg wrap-anywhere"
                 >
                     {FEEDBRAKE.rulesUrl.replace("https://", "")}
                 </a>

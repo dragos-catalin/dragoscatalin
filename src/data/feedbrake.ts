@@ -6,6 +6,6 @@ export const PLAY_URL: string | null = null;
 export const FEEDBRAKE = {
     name: "Feedbrake",
     packageId: "ro.dragoscatalin.unscroll",
-    rulesUrl: "https://github.com/dragoscv/unscroll-rules",
+    rulesUrl: "https://github.com/dragos-catalin/unscroll-rules",
     policyEffective: "2026-10-05",
 } as const;
