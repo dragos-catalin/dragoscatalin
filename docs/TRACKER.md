@@ -139,6 +139,8 @@ See `tracker.csv` for the live list. Summary by area:
 - **J — Publicity**: press kit, outlets, articles, Wikidata.
 - **P — Performance**: Lighthouse 100×4 desktop, client bundle diet (no zod /
   motion globally), HTML + asset diet, LHCI gate, mobile CWV.
+- **infra — Repository and CI plumbing**: GitHub org, shared workflows,
+  Renovate preset, deploy wiring.
 
 ### 2026-09-15 — v2.2.0 → v2.3.0 design system + performance
 
@@ -159,6 +161,19 @@ See `tracker.csv` for the live list. Summary by area:
   FCP _worse_ (1057 → 1360 ms); reverted. Mono `preload: false` helped.
 
 ## Session log
+
+### 2026-10-05 — v2.9.4 → v2.9.6 move to org dragos-catalin (V3-38)
+
+- The repo moved from `dragoscv/dragoscatalin` to `dragos-catalin/dragoscatalin`.
+  The Vercel project `dragoscatalin-ro` follows the repository id, so no re-link
+  was needed.
+- Vercel Hobby cannot build private repositories owned by an organisation, so
+  pushes stopped deploying. The owner made the repo public, after a gitleaks
+  full-history scan came back green and `.env.example` was checked for values.
+- CI was red before the move (prettier on brand HTML, a 7 px overflow on
+  `/feedbrake/privacy` at 360 px). After the move `gitleaks-action` also
+  needed a licence. All fixed: the secrets job is now the shared
+  `security.yml@v1`, and `renovate.json` extends `github>dragos-catalin/renovate-config`.
 
 ### 2026-10-05 — v2.8.2 Feedbrake pages (V3-37)
 

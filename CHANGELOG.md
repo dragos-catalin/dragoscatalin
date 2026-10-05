@@ -6,6 +6,14 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.9.6] - 2026-10-05
+
+### Changed
+
+- `renovate.json` now extends the shared `github>dragos-catalin/renovate-config` preset. It keeps `rangeStrategy: pin`, because every dependency here is pinned exactly.
+- The repository is public, so the Vercel Hobby team builds it on push again. Hobby cannot build private repositories owned by an organisation.
+- Trackers: V3-38 in `docs/tracker.csv`, X-08 in `docs/portfolio/portfolio.csv`.
+
 ## [2.9.5] - 2026-10-05
 
 ### Fixed
