@@ -82,8 +82,8 @@ mkdir -p ~/actions-runner && cd ~/actions-runner
 VER=$(curl -s https://api.github.com/repos/actions/runner/releases/latest | grep -oP '"tag_name": "v\K[^"]+')
 curl -L -o runner.tar.gz "https://github.com/actions/runner/releases/download/v${VER}/actions-runner-linux-x64-${VER}.tar.gz"
 tar xzf runner.tar.gz && rm runner.tar.gz
-TOKEN=$(gh api -X POST repos/dragoscv/dragoscatalin/actions/runners/registration-token --jq .token)
-./config.sh --url https://github.com/dragoscv/dragoscatalin --token "$TOKEN" \
+TOKEN=$(gh api -X POST repos/dragos-catalin/dragoscatalin/actions/runners/registration-token --jq .token)
+./config.sh --url https://github.com/dragos-catalin/dragoscatalin --token "$TOKEN" \
   --name dragoscatalin-wsl-1 --labels dragoscatalin-linux --unattended --replace
 sudo ./svc.sh install && sudo ./svc.sh start
 sudo ./svc.sh status

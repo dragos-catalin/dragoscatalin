@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.9.4] - 2026-10-05
+
+### Changed
+
+- The repository moved to the GitHub organisation `dragos-catalin`. The footer "Source" link and the self-hosted runner commands in `docs/CI.md` now point to `github.com/dragos-catalin/dragoscatalin`. The old URL redirects. The Vercel project `dragoscatalin-ro` follows the repository id, so deploys continue without a re-link.
+
 ## [2.9.3] - 2026-10-05
 
 ### Changed

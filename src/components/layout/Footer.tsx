@@ -30,7 +30,7 @@ const SOCIALS: { key: SocialKey; label: string; Icon: ComponentType<{ className?
     { key: "npm", label: "npm", Icon: Package },
 ];
 
-const SOURCE_URL = "https://github.com/dragoscv/dragoscatalin";
+const SOURCE_URL = "https://github.com/dragos-catalin/dragoscatalin";
 // Evaluated once at module load (build time) so the shell stays statically prerenderable.
 const BUILD_YEAR = new Date().getFullYear();
 
