@@ -6,6 +6,10 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- Weekly `Screenshots` workflow: the bot commit for the refresh PR ran the husky version/CHANGELOG gate and failed (run 37306871390). That step now sets `SKIP_HOOKS=1`, and the PR still runs full CI.
+
 ## [2.9.6] - 2026-10-05
 
 ### Changed
