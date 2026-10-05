@@ -108,7 +108,7 @@ export default async function NowPage({ params }: { params: Params }) {
                                     href={r.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 font-mono text-fg hover:text-accent"
+                                    className="inline-flex min-h-6 items-center gap-1 font-mono text-fg hover:text-accent"
                                 >
                                     {r.repo}
                                     <ExternalLink className="size-3.5 text-fg-subtle" aria-hidden />

@@ -128,3 +128,13 @@ Phases follow the owner's order. A row goes `keep` → `doing` → `done` (with 
    - The drift report (X-07).
 4. **OSS:** a new scaffold repo per chosen item, in order D-03 → D-07 → D-01/P-01 → I-19 → D-19 → D-20. D-02/P-02 and D-05/D-06 extend axiom and codai.
 5. **Products (I-_, C-_, G-16, G-17, G-19):** each gets a tracker row in its own repo plus a ready-to-paste prompt for a dedicated chat. Other sessions are active in brivio, codai and watch-faces.
+
+## Progress (2026-10-05)
+
+| Phase      | Done                                                                                                                                                                    | Open                                                                               |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| 1 Urgent   | G-02, G-15, G-23 (RSVPs kept until 2026-11-04)                                                                                                                          | G-01: only the owner can rotate the token in BotFather                             |
+| 2 Site     | S-01, S-02, S-03, S-05, S-06, V3-01: 2.8.0 is live. This brings Next 16.3.8 (critical `next/og` RCE fix), Sentry 11 server-only, the CI gates, and `/services` + `/lab` | G-21: Resend → Brivio, blocked until the V3-23 JMAP fix reaches Brivio production  |
+| 3 Infra    | X-01 guard, X-02 `-ExpectRepo`, X-03 unstage on failure, X-04 budget/backup/hook-test checks, X-05 `run-logged.ps1`                                                     | X-06, G-03, G-04, G-05 (others), X-07: one prompt each in [PROMPTS.md](PROMPTS.md) |
+| 4 OSS      | D-03 mcp-lock scaffold at `E:\gh\mcp-lock` (`@codai/mcp-lock`)                                                                                                          | D-07, D-01/P-01, I-19, D-19, D-20: one prompt in [PROMPTS.md](PROMPTS.md)          |
+| 5 Products | Ready-to-paste prompt per repo: [PROMPTS.md](PROMPTS.md)                                                                                                                | Each prompt runs in its own chat                                                   |

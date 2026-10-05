@@ -6,6 +6,16 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.8.1] - 2026-10-05
+
+### Fixed
+
+- 24 px minimum tap targets (WCAG 2.5.8) for the GitHub repo links on `/now` and the latest-release links in the project repo panel. They render only when `GITHUB_TOKEN` is set, so the new CI `scan:layout` gate caught them on the first run and the local run did not. The local check now builds with a token too.
+
+### Added
+
+- `docs/portfolio/PROMPTS.md`: a ready-to-paste prompt for each kept product and infra row (phase 5), plus a progress table in `PORTFOLIO.md`.
+
 ## [2.8.0] - 2026-10-05
 
 ### Security
