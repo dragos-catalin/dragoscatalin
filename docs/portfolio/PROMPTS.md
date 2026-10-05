@@ -64,13 +64,17 @@ Context: E:\gh\dragoscatalin\docs\portfolio\portfolio.csv rows D-02, P-02; axiom
 Done means: (1) policy rules for DROP/TRUNCATE, force-push, bucket/volume deletes, with dry-run + approval; (2) MCP + hook + GitHub Action surfaces enforce them; (3) spec doc P-02 in docs/; (4) changeset + release notes; (5) rows done.
 ```
 
-## Shared infra — X-06, G-03, G-04, G-05
+## Shared infra — X-06, G-03, G-04, G-05 (done 2026-10-05)
+
+Done: `dragos-catalin/workflows` (node-ci, python-ci, security; tag `v1`) and `dragos-catalin/renovate-config` (`v1.0.0`) are public in the new org `dragos-catalin` (Vercel + Mend Renovate apps installed, all repos). Evidence in portfolio.csv rows X-06, G-03, G-04, G-05.
+
+## Org migration — move repos into dragos-catalin
 
 ```text
-Goal: one shared CI + security workflow and a Renovate preset used by every active repo (X-06, G-04), CI for money/vmui/Unscroll/notalone (G-03), and Sentry 11 with explicit dataCollection in codai, money, afti, caelia (G-05; dragoscatalin is done in 2.8.0 — copy src/lib/sentry.ts + its test).
-Context: E:\gh\dragoscatalin\docs\portfolio\portfolio.csv rows X-06, G-03, G-04, G-05; reference implementation: E:\gh\dragoscatalin\.github\workflows\ci.yml (format, audit, gitleaks job) and links.yml.
-Done means: (1) new repo dragoscv/workflows with a reusable workflow (lint/typecheck/test/gitleaks/audit/engines check) and dragoscv/renovate-config (golden-stack groups, minimumReleaseAge 1 day); (2) each repo calls it, first run green (link the run); (3) Sentry slice merged per repo with a test that dataCollection is explicit; (4) rows done.
-Constraints: one worktree per repo; agentq commit -ExpectRepo; never touch other sessions' files.
+Goal: move the dragoscatalin portfolio repo and the repos it links to into the GitHub org dragos-catalin, so shared workflows use `secrets: inherit` and one Renovate install covers everything; then roll the shared CI + renovate preset to every active repo.
+Context: org dragos-catalin exists (Free plan; Vercel app + Renovate app on all repos). Shared repos: dragos-catalin/workflows (@v1), dragos-catalin/renovate-config. Inventory of what a transfer breaks: E:\gh\dragoscatalin\.copilot-tmp\infra\transfer-impact.log (Vercel git links: dragoscatalin, money, metu, mmo, cursuri, notai, vsrchat, dexai; GCP WIF attribute.repository in titi/metu/notai/vsrchat; axiom Pages + Sigstore subject dragoscv/axiom; vitals Pages custom domain + homebrew-tap/scoop-vitals; ghcr.io/dragoscv/mmo-server).
+Done means: (1) dragoscatalin transferred first, Vercel project dragoscatalin-ro re-linked to dragos-catalin/dragoscatalin and a production deploy from the new repo VERIFIED live; Footer SOURCE_URL + docs/CI.md runner URL updated (version bump + CHANGELOG); (2) each further repo moved only after its breakage list is fixed and verified (Vercel re-link, WIF principalSet for the new owner kept alongside the old, Pages/brew/ghcr checked); (3) shared ci.yml + renovate.json in every active repo with a first green run linked; (4) portfolio rows updated.
+Constraints: ask before each transfer batch (irreversible-ish: URLs redirect, Pages and ghcr do not); one worktree per repo; agentq commit -ExpectRepo; clean-tree deploys only.
 ```
 
 ## OSS scaffolds — D-07, D-01 + P-01, D-20
