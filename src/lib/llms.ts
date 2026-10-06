@@ -26,7 +26,7 @@ function header(): string {
     return [
         `# ${site.name}`,
         "",
-        `> ${en.meta.description} Site of ${site.fullName}, product engineer and founder based in Romania.`,
+        `> ${en.meta.description} Site of ${site.name}, product engineer and founder based in Romania.`,
         "",
     ].join("\n");
 }

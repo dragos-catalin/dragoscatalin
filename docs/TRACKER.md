@@ -162,6 +162,20 @@ See `tracker.csv` for the live list. Summary by area:
 
 ## Session log
 
+### 2026-10-07 — V3-11 bio and copy rewrite (2.16.0)
+
+- **Positioning** from the owner profile (V3-34): public name Dragoș Cătălin, product
+  engineer / founder / architect, 20+ years of code, 15+ paid, Romania + remote EU,
+  selective availability. Hero lead, About, press bios, meta and Person JSON-LD in EN + RO.
+- **Numbers**: registry-derived in `src/data/numbers.ts` (tested); machine numbers in
+  `src/data/measured.json` from `pnpm measure:repos` — 49 own repos under `E:\gh`,
+  12,048 non-bot commits in 2026 across 44 repos, 15 languages ≥ 1,000 non-blank lines
+  (TypeScript 79.3 %, Rust 5.1 %, Kotlin 4.0 %, JavaScript 3.4 %, Python 2.5 %, Dart 2.5 %…).
+  Also-worked-with evidenced in the 2025 tree `E:\GitHub`.
+- **Timeline** from registry years (`src/data/timeline.ts`); `now.focus` in both locales;
+  WebGL footer claim removed (`src/i18n/claims.test.ts`); `site.brands` + `site.storeProfiles`
+  in footer, About, JSON-LD. Store URLs checked 200 on 2026-10-07.
+
 ### 2026-10-06 — V3-12..14 project model, new projects, link health (2.15.0)
 
 - **Model**: `platforms`, typed `stores` (host-checked), sourced `metrics`, `teaser`,

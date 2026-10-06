@@ -1,46 +1,20 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Section } from "@/components/ui";
-import { archiveTimeline, projects } from "@/data/projects";
+import { buildTimeline, timelineSpan } from "@/data/timeline";
 import { Link } from "@/i18n/navigation";
 import { TimelineRail } from "./TimelineRail";
 
-const FIRST_YEAR = 2015;
-const LAST_YEAR = 2026;
 /** Chips shown per year before collapsing into "+N" (2026 alone has 11 entries). */
 const MAX_PER_YEAR = 8;
-
-interface Entry {
-    key: string;
-    name: string;
-    note?: string;
-    slug?: string;
-}
 
 export async function Timeline() {
     const locale = (await getLocale()) as "en" | "ro";
     const t = await getTranslations("timeline");
     const tp = await getTranslations("projects");
-
-    const years: { year: number; entries: Entry[] }[] = [];
-    for (let year = LAST_YEAR; year >= FIRST_YEAR; year--) {
-        const entries: Entry[] = [
-            ...projects
-                .filter((p) => p.years.from === year)
-                .map((p) => ({
-                    key: `p-${p.slug}`,
-                    name: p.name,
-                    note: p.tagline[locale],
-                    slug: p.slug,
-                })),
-            ...archiveTimeline
-                .filter((a) => a.year === year)
-                .map((a) => ({ key: `a-${year}-${a.name}`, name: a.name, note: a.note[locale] })),
-        ];
-        if (entries.length > 0) years.push({ year, entries });
-    }
+    const years = buildTimeline(locale);
 
     return (
-        <Section id="timeline" eyebrow={t("eyebrow")} title={t("title")}>
+        <Section id="timeline" eyebrow={t("eyebrow")} title={t("title", { years: timelineSpan() })}>
             <TimelineRail className="py-1">
                 <ol className="flex flex-col">
                     {years.map(({ year, entries }, yi) => (

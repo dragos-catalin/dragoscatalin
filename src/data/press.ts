@@ -1,3 +1,4 @@
+import { CAREER, horaeLive, measured } from "./numbers";
 import { allPackages, projects } from "./projects";
 import type { LocalizedText } from "./types";
 import { site } from "@/lib/site";
@@ -20,19 +21,30 @@ const publicRepoCount = new Set(
         .flatMap((p) => (p.repos ?? []).map((r) => `${r.owner}/${r.name}`)),
 ).size;
 
+// V3-11: public name only (owner, V3-34). Numbers come from ./numbers (registry + measured.json).
 export const bioShort: LocalizedText = {
-    en: "Dragos Catalin Vladulescu is a full-stack developer from Romania. He builds codai, an AI gateway and command center; Brivio, an ERP with e-Factura for Romanian and EU businesses; StudiAI, a course platform; and the open-source MixAI and notai. His libraries ship on npm and PyPI.",
-    ro: "Dragos Catalin Vladulescu este developer full-stack din România. Construiește codai, un gateway și centru de comandă AI; Brivio, un ERP cu e-Factura pentru firme din România și UE; StudiAI, o platformă de cursuri; și proiectele open-source MixAI și notai. Bibliotecile sale sunt publicate pe npm și PyPI.",
+    en: `Dragoș Cătălin is a product engineer and founder from Romania. He builds products end to end — from cloud and network to the app in your pocket — with ${CAREER.codeYears}+ years of code behind him. His products include codai, an AI gateway with desktop and phone apps; Brivio, invoicing and e-Factura for Romanian businesses; and Horae, ${horaeLive} watch faces live on Google Play.`,
+    ro: `Dragoș Cătălin este product engineer și fondator din România. Construiește produse cap-coadă — de la cloud și rețea până la aplicația din buzunarul tău — și scrie cod de peste ${CAREER.codeYears} de ani. Printre produsele lui: codai, un gateway AI cu aplicații de desktop și telefon; Brivio, facturare și e-Factura pentru firmele din România; și Horae, cu ${horaeLive} cadrane publicate pe Google Play.`,
 };
 
 export const bioLong: LocalizedText = {
-    en: "Dragos Catalin Vladulescu is a full-stack developer based in Romania who designs and ships AI-native products end to end — database schema, cloud infrastructure, native desktop and polished web interfaces alike.\n\nHis flagship is codai, a live AI gateway and personal command center that exposes a single model name routed across Google Vertex (Anthropic Claude) and Azure AI Foundry, with spend caps, prompt caching and transparent pricing. It ships as a web console, a Tauri desktop app with Windows computer-use, an Android agent, and TypeScript and Python SDKs.\n\nHe is launching Brivio in Q4 2026: an ERP for Romanian and EU businesses with ANAF e-Factura and e-Transport, double-entry accounting, an immutable hash-chained audit log, SAF-T, payroll and inventory. Brivio succeeds Datuvia, a business-management platform he built for a client.\n\nStudiAI, his course platform, has been live since 2023 with inference tiers powered by codai. He maintains MixAI, a self-hosted media platform for films and music with a DJ mixer, on web, desktop and TV, and notai, a calm collaborative notes app built on a drawing canvas.\n\nOn the research side he works on HIDE, an experimental hybrid post-quantum file-encryption protocol in Rust, and notalone, a preregistered statistical search over pulsar data. He publishes open-source libraries and MCP servers on npm and PyPI, and shares the rules, skills and hooks he uses to work with AI coding agents.",
-    ro: "Dragos Catalin Vladulescu este developer full-stack din România care proiectează și livrează produse AI-native cap-coadă — de la schema bazei de date și infrastructura cloud până la aplicații desktop native și interfețe web șlefuite.\n\nProdusul său principal este codai, un gateway AI și centru de comandă personal, live, care expune un singur nume de model rutat către Google Vertex (Anthropic Claude) și Azure AI Foundry, cu plafoane de cost, prompt caching și prețuri transparente. Vine ca o consolă web, o aplicație desktop Tauri cu computer-use pe Windows, un agent Android și SDK-uri TypeScript și Python.\n\nÎn T4 2026 lansează Brivio: un ERP pentru firme din România și UE cu e-Factura și e-Transport ANAF, contabilitate în partidă dublă, jurnal de audit imutabil înlănțuit criptografic, SAF-T, salarizare și stocuri. Brivio este succesorul Datuvia, o platformă de management de business construită pentru un client.\n\nStudiAI, platforma sa de cursuri, este live din 2023, cu niveluri de inferență alimentate de codai. Menține MixAI, o platformă media self-hosted pentru filme și muzică, cu mixer DJ, pe web, desktop și TV, și notai, o aplicație de notițe colaborative construită pe o pânză de desen.\n\nPe partea de cercetare lucrează la HIDE, un protocol experimental de criptare hibridă post-cuantică în Rust, și la notalone, o căutare statistică preînregistrată în date de pulsari. Publică biblioteci open-source și servere MCP pe npm și PyPI și împărtășește regulile, skill-urile și hook-urile cu care lucrează alături de agenți AI de programare.",
+    en: `Dragoș Cătălin is a product engineer, founder and architect based in Romania. He started coding at about ten, was first paid for it at fifteen and has worked in software ever since: cloud systems and networking, web, desktop, Android and AI.\n\nHis flagship is codai, a live AI gateway and personal command center: one model name routed across Google Vertex and Azure AI Foundry, with spend caps, prompt caching and transparent pricing. It ships as a web console, a Windows desktop app on the Microsoft Store, an Android agent, a VS Code extension and TypeScript and Python SDKs.\n\nHe is launching Brivio, an ERP for Romanian and EU businesses with ANAF e-Factura and e-Transport, double-entry accounting, an immutable audit log, SAF-T, payroll and inventory. Horae, his watch-face studio for Wear OS, has ${horaeLive} faces live on Google Play.\n\nIn ${measured.year} alone he made ${measured.commits.total.toLocaleString("en")} commits across ${measured.commits.reposWithCommits} of his repositories, mostly in TypeScript, Rust and Kotlin. He publishes open-source libraries, MCP servers and VS Code extensions, and builds the tools his AI coding agents use to work safely side by side.`,
+    ro: `Dragoș Cătălin este product engineer, fondator și arhitect, din România. A început să scrie cod pe la zece ani, a fost plătit prima dată pentru asta la cincisprezece și de atunci lucrează în software: sisteme cloud și rețelistică, web, desktop, Android și AI.\n\nProdusul lui principal este codai, un gateway AI și centru de comandă personal, live: un singur nume de model rutat către Google Vertex și Azure AI Foundry, cu plafoane de cost, prompt caching și prețuri transparente. Vine ca o consolă web, o aplicație desktop pentru Windows în Microsoft Store, un agent Android, o extensie VS Code și SDK-uri TypeScript și Python.\n\nLansează Brivio, un ERP pentru firme din România și UE, cu e-Factura și e-Transport ANAF, contabilitate în partidă dublă, jurnal de audit imutabil, SAF-T, salarizare și stocuri. Horae, studioul lui de cadrane pentru Wear OS, are ${horaeLive} cadrane publicate pe Google Play.\n\nDoar în ${measured.year} a făcut ${measured.commits.total.toLocaleString("ro")} de commit-uri în ${measured.commits.reposWithCommits} de repo-uri proprii, mai ales în TypeScript, Rust și Kotlin. Publică biblioteci open source, servere MCP și extensii VS Code și construiește uneltele cu care agenții lui AI de programare lucrează în siguranță unul lângă altul.`,
 };
 
 export const pressFacts: PressFact[] = [
-    { label: { en: "Name", ro: "Nume" }, value: { en: site.fullName, ro: site.fullName } },
-    { label: { en: "Location", ro: "Locație" }, value: { en: "Romania", ro: "România" } },
+    { label: { en: "Name", ro: "Nume" }, value: { en: site.name, ro: site.name } },
+    {
+        label: { en: "Location", ro: "Locație" },
+        value: { en: "Romania (remote, EU)", ro: "România (remote, UE)" },
+    },
+    {
+        label: { en: "Experience", ro: "Experiență" },
+        value: {
+            en: `${CAREER.codeYears}+ years of code, ${CAREER.paidYears}+ paid`,
+            ro: `Peste ${CAREER.codeYears} de ani de cod, peste ${CAREER.paidYears} plătiți`,
+        },
+    },
     { label: { en: "On GitHub since", ro: "Pe GitHub din" }, value: { en: "2015", ro: "2015" } },
     {
         label: { en: "Public repositories", ro: "Repo-uri publice" },

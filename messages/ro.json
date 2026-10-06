@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "Dragoș Cătălin — Product engineer & fondator",
-    "description": "Construiesc produse cap-coadă — de la cloud și rețea până la aplicația din buzunarul tău. Peste 20 de ani de cod: codai, Brivio, StudiAI, MixAI și 20+ repo-uri open source.",
-    "keywords": "Dragoș Cătălin,Dragos Catalin,developer full-stack,Next.js,Rust,Tauri,gateway AI,codai,Brivio,România,open source"
+    "description": "Construiesc produse cap-coadă — de la cloud și rețea până la aplicația din buzunarul tău. Product engineer și fondator din România: peste 20 de ani de cod, aplicații pe Google Play, Microsoft Store și VS Marketplace.",
+    "keywords": "Dragoș Cătălin,Dragos Catalin,product engineer,fondator,developer full-stack,arhitect cloud,Next.js,Rust,Kotlin,Tauri,codai,Brivio,Horae,e-Factura,România,open source"
   },
   "nav": {
     "home": "Acasă",
@@ -53,14 +53,15 @@
     "title": "Construiesc produse cap-coadă — de la cloud și rețea până la aplicația din buzunarul tău.",
     "titleLine1": "Construiesc produse cap-coadă",
     "titleLine2": "din cloud până în buzunar.",
-    "subtitle": "Product engineer, fondator și arhitect. Peste 20 de ani de cod, 15+ plătit: sisteme cloud și rețelistică, web, desktop, Android și AI — livrate, nu doar prezentate.",
+    "subtitle": "Product engineer, fondator și arhitect. Peste 20 de ani de cod, din care peste 15 plătiți. Duc un produs de la rețea și cloud până la web, desktop, Android și AI — și îl livrez.",
     "ctaProjects": "Vezi proiectele",
     "ctaContact": "Hai să vorbim",
-    "available": "Disponibil pentru proiecte",
+    "available": "Deschis la proiectele potrivite",
     "techLabel": "Tehnologii cu care lucrez",
     "stackLabel": "Ce livrez",
     "stackRange": "buzunar → rețea",
-    "stackProof": "Proiecte care o dovedesc"
+    "stackProof": "Proiecte care o dovedesc",
+    "proof": "{shipped, plural, one {# produs livrat} few {# produse livrate} other {# de produse livrate}} · {platforms, plural, one {# platformă} few {# platforme} other {# de platforme}} · {stores, plural, one {# listare în magazine} few {# listări în magazine} other {# de listări în magazine}} · {commits, plural, one {# commit} few {# commit-uri} other {# de commit-uri}} în {year}"
   },
   "help": {
     "eyebrow": "Cu ce te pot ajuta",
@@ -73,7 +74,7 @@
   "now": {
     "title": "Acum",
     "eyebrow": "Trimestrul acesta",
-    "focus": "Lansez Brivio, consolidez gateway-ul codai, livrez codai desktop 0.3 și țin MixAI și notai în formă.",
+    "focus": "Lansez Brivio, întăresc gateway-ul codai și aplicațiile lui de desktop și telefon, public tot mai multe cadrane Horae și deschid agentq — coada pe care o împart agenții mei de programare.",
     "lastActive": "Ultima activitate",
     "contributions": "{count} contribuții în ultimul an",
     "seeAll": "Status complet",
@@ -230,7 +231,7 @@
   },
   "timeline": {
     "eyebrow": "Cronologie",
-    "title": "Zece ani de livrat"
+    "title": "{years, plural, one {# an} few {# ani} other {# de ani}} de livrat"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -254,7 +255,7 @@
   "about": {
     "title": "Despre",
     "eyebrow": "Cine",
-    "intro": "Sunt Dragoș, developer full-stack din România. Construiesc produse cap-coadă — de la schema bazei de date și infrastructura cloud până la interfețe cu shadere — și construiesc fluxurile de agenți care mă ajută să livrez mai repede.",
+    "intro": "Sunt Dragoș Cătălin. Construiesc produse cap-coadă — de la cloud și rețea până la aplicația din buzunarul tău. Am început să scriu cod pe la zece ani, am fost plătit prima dată la cincisprezece și de atunci trăiesc din asta.",
     "values": {
       "title": "Cum lucrez",
       "items": [
@@ -290,13 +291,31 @@
     },
     "stats": {
       "title": "În cifre",
-      "projects": "Proiecte",
-      "repos": "Repo-uri publice",
-      "packages": "Pachete publicate",
-      "years": "Ani pe GitHub"
+      "projects": "proiecte în registru",
+      "packages": "pachete publicate",
+      "codeYears": "ani de cod",
+      "paidYears": "ani plătiți",
+      "shipped": "produse livrate",
+      "platforms": "platforme acoperite",
+      "stores": "listări în magazine",
+      "commits": "commit-uri în {year}, în {repos, plural, one {# repo} few {# repo-uri} other {# de repo-uri}}"
     },
     "avatarAlt": "Portretul lui Dragoș Cătălin",
-    "cta": "Salută"
+    "cta": "Salută",
+    "body": "Azi îmi construiesc propriile produse: codai, un gateway AI cu aplicații de desktop și telefon; Brivio, facturare și e-Factura pentru firmele din România; cadranele Horae de pe Google Play. Lucrez din România, la distanță, pentru startup-uri care au nevoie de un MVP făcut cap-coadă, firme românești care vor facturare și automatizări și echipe din UE care au nevoie de cloud, rețea și arhitectură făcute cum trebuie. Iau puține proiecte și le duc la capăt.",
+    "languages": {
+      "title": "Limbajele în care scriu",
+      "note": "Măsurat pe {date} în {repos, plural, one {# repo} few {# repo-uri} other {# de repo-uri}} ale mele: linii de cod nevide, fără cod generat sau preluat.",
+      "lines": "{count, plural, one {# linie} few {# linii} other {# de linii}}",
+      "also": "Am mai lucrat cu",
+      "alsoNote": "Din proiecte mai vechi; le folosesc oricând un proiect o cere."
+    },
+    "find": {
+      "title": "Unde îmi găsești munca",
+      "brands": "Produsele mele",
+      "stores": "Aplicații și extensii",
+      "msApp": "{app} în Microsoft Store"
+    }
   },
   "uses": {
     "title": "Unelte",
@@ -328,12 +347,14 @@
   },
   "footer": {
     "rights": "© {year} Dragoș Cătălin",
-    "built": "Construit cu Next.js {next}, React {react} și un shader WebGL.",
     "version": "v{version}",
     "source": "Sursă",
     "feed": "RSS",
     "llms": "llms.txt",
-    "privacy": "Confidențialitate și cookie-uri"
+    "privacy": "Confidențialitate și cookie-uri",
+    "products": "Produse",
+    "stores": "Magazine",
+    "msStore": "Microsoft Store"
   },
   "common": {
     "loading": "Se încarcă",

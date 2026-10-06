@@ -34,6 +34,8 @@ const SOCIALS: { key: SocialKey; label: string; Icon: ComponentType<{ className?
 const SOURCE_URL = "https://github.com/dragos-catalin/dragoscatalin";
 // Evaluated once at module load (build time) so the shell stays statically prerenderable.
 const BUILD_YEAR = new Date().getFullYear();
+const SMALL_LINK =
+    "inline-flex min-h-9 items-center text-sm text-fg-muted transition-colors hover:text-fg";
 
 export async function Footer() {
     const t = await getTranslations();
@@ -71,24 +73,68 @@ export async function Footer() {
                         </ul>
                     </nav>
 
-                    <ul
-                        className="flex flex-wrap items-start gap-2 md:justify-end"
-                        aria-label={t("common.external")}
-                    >
-                        {SOCIALS.map(({ key, label, Icon }) => (
-                            <li key={key}>
-                                <a
-                                    href={site.socials[key]}
-                                    target="_blank"
-                                    rel="me noopener"
-                                    aria-label={`${label} ${t("common.external")}`}
-                                    className="inline-flex size-11 items-center justify-center rounded-pill text-fg-muted transition-colors hover:bg-accent-soft hover:text-fg"
-                                >
-                                    <Icon className="size-5" />
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="flex flex-col gap-6 md:items-end">
+                        <ul
+                            className="flex flex-wrap items-start gap-2 md:justify-end"
+                            aria-label={t("common.external")}
+                        >
+                            {SOCIALS.map(({ key, label, Icon }) => (
+                                <li key={key}>
+                                    <a
+                                        href={site.socials[key]}
+                                        target="_blank"
+                                        rel="me noopener"
+                                        aria-label={`${label} ${t("common.external")}`}
+                                        className="inline-flex size-11 items-center justify-center rounded-pill text-fg-muted transition-colors hover:bg-accent-soft hover:text-fg"
+                                    >
+                                        <Icon className="size-5" />
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                        <div className="grid grid-cols-2 gap-x-8 gap-y-2 md:text-right">
+                            <div>
+                                <p className="mb-1 font-mono text-xs tracking-[0.14em] text-fg-subtle uppercase">
+                                    {t("footer.products")}
+                                </p>
+                                <ul data-testid="footer-brands">
+                                    {site.brands.map((b) => (
+                                        <li key={b.slug}>
+                                            <a
+                                                href={b.url}
+                                                target="_blank"
+                                                rel="noopener"
+                                                className={SMALL_LINK}
+                                            >
+                                                {b.name}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div>
+                                <p className="mb-1 font-mono text-xs tracking-[0.14em] text-fg-subtle uppercase">
+                                    {t("footer.stores")}
+                                </p>
+                                <ul data-testid="footer-stores">
+                                    {site.storeProfiles.map((s) => (
+                                        <li key={s.url}>
+                                            <a
+                                                href={s.url}
+                                                target="_blank"
+                                                rel={s.profile ? "me noopener" : "noopener"}
+                                                className={SMALL_LINK}
+                                            >
+                                                {"app" in s
+                                                    ? `${s.app} · ${t("footer.msStore")}`
+                                                    : t(`projects.store.${s.store}`)}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-xs text-fg-subtle md:flex-row md:items-center md:justify-between">

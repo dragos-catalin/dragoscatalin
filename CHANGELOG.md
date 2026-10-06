@@ -6,6 +6,21 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.16.0] - 2026-10-07
+
+### Changed
+
+- **Bio and copy rewritten (V3-11).** Product-engineer positioning in EN and natural Romanian: public name Dragoș Cătălin (no family name), "20+ years of code, 15+ paid", Romania + remote across the EU, selective availability. New hero proof line, About intro + body, press bios, meta descriptions and Person JSON-LD description.
+- **Real numbers only.** `src/data/numbers.ts` derives products shipped, platforms, store listings, projects and packages from the registry at build time (unit-tested); commits and languages come from `src/data/measured.json`, written by `pnpm measure:repos` (`scripts/measure-repos.mjs`) over the owner's repos under `E:\gh`, with its method and date stored next to the data.
+- **About**: "In numbers", measured "Languages I write" with shares, an evidenced "Also worked with" row (Electron, Firebase, React Native / Expo, MongoDB, WinUI 3 / .NET, Arduino / ESP32), and "Where to find my work" with the product brands and store profiles.
+- **Timeline** years and the "N years of shipping" title come from the registry `years` field and the archive (`src/data/timeline.ts`, tested), no hardcoded 2015–2026.
+- **`now.focus`** is back in both locales, with its project slugs and date in `src/data/now.ts` (tested against the registry and the lab).
+- **`site.brands`** (codai, Brivio, Horae, StudiAI, MarcAI — registry-checked) and **`site.storeProfiles`** (Google Play developer page, Microsoft Store codai + Brivio, VS Marketplace publisher; each answered 200 on 2026-10-07) feed the footer, About and the Person JSON-LD (`sameAs`, `brand`).
+
+### Removed
+
+- The false "Built with … and a WebGL shader" footer line; a test now fails if footer, About, meta or hero copy claims WebGL, shaders or three.js, or uses the family name.
+
 ## [2.15.0] - 2026-10-06
 
 ### Added

@@ -1,0 +1,113 @@
+{
+  "measuredAt": "2026-10-07",
+  "method": "Repos under E:\\gh with an origin on the owner's GitHub accounts/orgs. Languages = non-blank lines over `rg --files` (gitignore-aware; generated, vendored, minified, .d.ts and >1 MB files skipped), languages under 1,000 lines dropped. Commits = git log since Jan 1 on HEAD, bots excluded. Also-worked-with = package.json deps / project files in the 2025 tree (E:\\GitHub).",
+  "year": 2026,
+  "repos": 49,
+  "commits": {
+    "total": 12048,
+    "reposWithCommits": 44
+  },
+  "languages": [
+    {
+      "name": "TypeScript",
+      "lines": 3970167,
+      "share": 79.3
+    },
+    {
+      "name": "Rust",
+      "lines": 255595,
+      "share": 5.1
+    },
+    {
+      "name": "Kotlin",
+      "lines": 198237,
+      "share": 4
+    },
+    {
+      "name": "JavaScript",
+      "lines": 168475,
+      "share": 3.4
+    },
+    {
+      "name": "Python",
+      "lines": 127403,
+      "share": 2.5
+    },
+    {
+      "name": "Dart",
+      "lines": 123352,
+      "share": 2.5
+    },
+    {
+      "name": "SQL",
+      "lines": 59930,
+      "share": 1.2
+    },
+    {
+      "name": "PowerShell",
+      "lines": 55352,
+      "share": 1.1
+    },
+    {
+      "name": "Shell",
+      "lines": 22539,
+      "share": 0.5
+    },
+    {
+      "name": "PHP",
+      "lines": 9457,
+      "share": 0.2
+    },
+    {
+      "name": "Java",
+      "lines": 4983,
+      "share": 0.1
+    },
+    {
+      "name": "Go",
+      "lines": 4876,
+      "share": 0.1
+    },
+    {
+      "name": "C#",
+      "lines": 4161,
+      "share": 0.1
+    },
+    {
+      "name": "Swift",
+      "lines": 2076,
+      "share": 0
+    },
+    {
+      "name": "C/C++",
+      "lines": 1928,
+      "share": 0
+    }
+  ],
+  "alsoWorkedWith": [
+    {
+      "name": "Electron",
+      "repos": 5
+    },
+    {
+      "name": "Firebase",
+      "repos": 20
+    },
+    {
+      "name": "React Native / Expo",
+      "repos": 7
+    },
+    {
+      "name": "MongoDB",
+      "repos": 2
+    },
+    {
+      "name": "WinUI 3 / .NET",
+      "repos": 3
+    },
+    {
+      "name": "Arduino / ESP32",
+      "repos": 1
+    }
+  ]
+}

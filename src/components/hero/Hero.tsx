@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Badge, ButtonLink } from "@/components/ui";
+import { measured, platformsCovered, shippedProjects, storeListingCount } from "@/data/numbers";
 import { HeroItem, HeroReveal } from "./HeroReveal";
 import { StackLayers } from "./StackLayers";
 import { TechStack } from "./TechStack";
@@ -43,6 +44,18 @@ export async function Hero() {
                         <HeroItem index={2} className="mb-9">
                             <p className="max-w-xl text-base leading-relaxed text-pretty text-fg-muted sm:text-lg">
                                 {t("subtitle")}
+                            </p>
+                            <p
+                                data-testid="hero-proof"
+                                className="mt-4 max-w-xl font-mono text-xs leading-relaxed text-fg-subtle"
+                            >
+                                {t("proof", {
+                                    shipped: shippedProjects().length,
+                                    platforms: platformsCovered().length,
+                                    stores: storeListingCount(),
+                                    commits: measured.commits.total,
+                                    year: String(measured.year),
+                                })}
                             </p>
                         </HeroItem>
 

@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "Dragoș Cătălin — Product engineer & founder",
-    "description": "I build products end to end — from cloud and network to the app in your pocket. 20+ years of code: codai, Brivio, StudiAI, MixAI and 20+ open-source repos.",
-    "keywords": "Dragoș Cătălin,Dragos Catalin,full-stack developer,Next.js,Rust,Tauri,AI gateway,codai,Brivio,Romania,open source"
+    "description": "I build products end to end — from cloud and network to the app in your pocket. Product engineer and founder in Romania: 20+ years of code, apps on Google Play, Microsoft Store and VS Marketplace.",
+    "keywords": "Dragoș Cătălin,Dragos Catalin,product engineer,founder,full-stack developer,cloud architect,Next.js,Rust,Kotlin,Tauri,codai,Brivio,Horae,e-Factura,Romania,open source"
   },
   "nav": {
     "home": "Home",
@@ -53,14 +53,15 @@
     "title": "I build products end to end — from cloud and network to the app in your pocket.",
     "titleLine1": "I build products end to end",
     "titleLine2": "from cloud to your pocket.",
-    "subtitle": "Product engineer, founder and architect. 20+ years of code, 15+ paid: cloud systems and networking, web, desktop, Android and AI — shipped, not slideware.",
+    "subtitle": "Product engineer, founder and architect. 20+ years of code, 15+ of them paid. I take a product from network and cloud to web, desktop, Android and AI — and ship it.",
     "ctaProjects": "View my work",
     "ctaContact": "Get in touch",
-    "available": "Available for work",
+    "available": "Open to the right projects",
     "techLabel": "Technologies I work with",
     "stackLabel": "What I ship",
     "stackRange": "pocket → network",
-    "stackProof": "Projects that prove it"
+    "stackProof": "Projects that prove it",
+    "proof": "{shipped} products shipped · {platforms} platforms · {stores} store listings · {commits, plural, one {# commit} other {# commits}} in {year}"
   },
   "help": {
     "eyebrow": "How I can help",
@@ -73,7 +74,7 @@
   "now": {
     "title": "Now",
     "eyebrow": "This quarter",
-    "focus": "Launching Brivio, hardening the codai gateway, shipping codai desktop 0.3 and keeping MixAI and notai healthy.",
+    "focus": "Launching Brivio, hardening the codai gateway and its desktop and phone apps, publishing more Horae watch faces and opening up agentq — the queue my coding agents share.",
     "lastActive": "Last activity",
     "contributions": "{count} contributions in the last year",
     "seeAll": "Full status",
@@ -230,7 +231,7 @@
   },
   "timeline": {
     "eyebrow": "Timeline",
-    "title": "Ten years of shipping"
+    "title": "{years} years of shipping"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -254,7 +255,7 @@
   "about": {
     "title": "About",
     "eyebrow": "Who",
-    "intro": "I'm Dragoș, a full-stack developer from Romania. I build products end to end — from database schema and cloud infrastructure to shader-driven UIs — and I build the agent workflows that help me ship faster.",
+    "intro": "I'm Dragoș Cătălin. I build products end to end — from cloud and network to the app in your pocket. I started coding at about ten, got paid for it at fifteen and have shipped for a living ever since.",
     "values": {
       "title": "How I work",
       "items": [
@@ -290,13 +291,31 @@
     },
     "stats": {
       "title": "In numbers",
-      "projects": "Projects",
-      "repos": "Public repositories",
-      "packages": "Published packages",
-      "years": "Years on GitHub"
+      "projects": "projects in the registry",
+      "packages": "published packages",
+      "codeYears": "years of code",
+      "paidYears": "years paid",
+      "shipped": "products shipped",
+      "platforms": "platforms covered",
+      "stores": "store listings",
+      "commits": "commits in {year} across {repos, plural, one {# repo} other {# repos}}"
     },
     "avatarAlt": "Portrait of Dragoș Cătălin",
-    "cta": "Say hello"
+    "cta": "Say hello",
+    "body": "Today I run my own products: codai, an AI gateway with desktop and phone apps; Brivio, invoicing and e-Factura for Romanian businesses; Horae watch faces on Google Play. I work from Romania, remotely, for startups that need an MVP end to end, Romanian companies that need invoicing and automation, and EU teams that need cloud, network and architecture done right. I take on few projects, and I finish them.",
+    "languages": {
+      "title": "Languages I write",
+      "note": "Measured on {date} over {repos} of my repositories: non-blank lines of code, generated and vendored code excluded.",
+      "lines": "{count, plural, one {# line} other {# lines}}",
+      "also": "Also worked with",
+      "alsoNote": "From older projects, still in my hands when a job needs them."
+    },
+    "find": {
+      "title": "Where to find my work",
+      "brands": "Products I run",
+      "stores": "Apps and extensions",
+      "msApp": "{app} on Microsoft Store"
+    }
   },
   "uses": {
     "title": "Uses",
@@ -328,12 +347,14 @@
   },
   "footer": {
     "rights": "© {year} Dragoș Cătălin",
-    "built": "Built with Next.js {next}, React {react} and a WebGL shader.",
     "version": "v{version}",
     "source": "Source",
     "feed": "RSS",
     "llms": "llms.txt",
-    "privacy": "Privacy & cookies"
+    "privacy": "Privacy & cookies",
+    "products": "Products",
+    "stores": "Stores",
+    "msStore": "Microsoft Store"
   },
   "common": {
     "loading": "Loading",
