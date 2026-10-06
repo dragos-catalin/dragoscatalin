@@ -162,6 +162,17 @@ See `tracker.csv` for the live list. Summary by area:
 
 ## Session log
 
+### 2026-10-06 — V3-29 certificates via Brivio, V3-20 newsletter (2.12.0)
+
+- V3-29 done: home.* and mui.* renew through lego `--dns exec` → Brivio
+  `/api/dns/acme` with per-device `brv_dns_` tokens limited to
+  `_acme-challenge*` TXT (vmui `d7fb24c`). Staging dry-runs, then a forced prod
+  renewal (home.* valid to 2027-01-04). home.* had been down since 09-18
+  (Caddy boot race) — fixed with a systemd drop-in.
+- V3-20 shipped as 2.12.0 (`/newsletter`, double opt-in, consent evidence);
+  live subscriptions wait for a Brivio fix: `/v1/marketing/subscribers`
+  answers 400 because `subscribers` is missing from the web id-guard allowlist.
+
 ### 2026-10-06 — v2.11.1 OSS 0.2 milestones on /lab (V3-40)
 
 - agentcfg-audit 0.2: VS Code gate (`extension/`) that verifies a workspace's
