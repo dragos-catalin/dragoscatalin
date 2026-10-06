@@ -18,7 +18,8 @@
     "skipToContent": "Sari la conținut",
     "privacy": "Confidențialitate",
     "services": "Servicii",
-    "lab": "Laborator"
+    "lab": "Laborator",
+    "newsletter": "Newsletter"
   },
   "theme": {
     "label": "Aspect",
@@ -352,7 +353,9 @@
     "rightsTitle": "Drepturile tale",
     "rights": "Poți cere acces, rectificare, ștergere, restricționare, portabilitate sau te poți opune prelucrării și îți poți retrage consimțământul oricând, fără a afecta prelucrarea anterioară. Poți depune și plângere la ANSPDCP (dataprotection.ro).",
     "changeTitle": "Schimbă-ți alegerea",
-    "change": "Deschide setările cookie-urilor ca să schimbi sau să retragi consimțământul. La retragere pagina se reîncarcă, astfel încât analiza se oprește imediat."
+    "change": "Deschide setările cookie-urilor ca să schimbi sau să retragi consimțământul. La retragere pagina se reîncarcă, astfel încât analiza se oprește imediat.",
+    "newsletterTitle": "Newsletter",
+    "newsletter": "Dacă te abonezi, adresa de email, limba, versiunea textului de consimțământ și momentul consimțământului sunt stocate în Brivio, platforma mea de email găzduită în UE (GDPR art. 6 alin. (1) lit. a), consimțământ). IP-ul este păstrat doar ca hash cu sare, ca dovadă a consimțământului. Nu trimit nimic până nu dai clic pe linkul de confirmare (double opt-in). Fiecare email are un link de dezabonare dintr-un clic; după dezabonare, adresa rămâne doar ca înregistrare „dezabonat”, ca să nu-ți mai scriu niciodată."
   },
   "services": {
     "eyebrow": "Lucrăm împreună",
@@ -491,5 +494,30 @@
       "tv": "TV",
       "onDevice": "{name} pe {device}"
     }
+  },
+  "newsletter": {
+    "eyebrow": "Newsletter",
+    "title": "Note de construcție, din când în când",
+    "intro": "Emailuri ocazionale despre ce lansez: produse noi, versiuni care merită știute și ce am învățat construindu-le.",
+    "points": {
+      "what": "Lansări și versiuni majore din codai, Brivio, MixAI și proiectele open-source.",
+      "cadence": "Cel mult o dată pe lună. Fără pixeli de urmărire, fără reclame.",
+      "leave": "Te dezabonezi dintr-un clic, din orice email."
+    },
+    "email": "Email",
+    "consent": "Sunt de acord să primesc newsletterul dragoscatalin.ro pe email și știu că mă pot dezabona oricând.",
+    "privacyLink": "Cum îmi sunt folosite datele",
+    "submit": "Abonează-mă",
+    "sending": "Se abonează…",
+    "pending": "Aproape gata — verifică-ți inboxul și dă clic pe linkul de confirmare. Nu trimit nimic până atunci.",
+    "already": "Ești deja abonat. Mulțumesc!",
+    "invalidEmail": "Introdu o adresă de email validă.",
+    "consentRequired": "Bifează căsuța pentru a fi de acord.",
+    "error": "Ceva n-a mers. Încearcă din nou peste un minut.",
+    "rate": "Prea multe încercări. Încearcă mai târziu.",
+    "disabled": "Abonările sunt oprite momentan. Încearcă mai târziu.",
+    "confirmedTitle": "Te-ai abonat",
+    "confirmedBody": "Mulțumesc pentru confirmare. Următorul email vine când am ceva ce merită trimis.",
+    "confirmedCta": "Vezi proiectele"
   }
 }

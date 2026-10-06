@@ -39,6 +39,11 @@ export async function SkinFooter({
                         </Link>
                     </li>
                     <li>
+                        <Link href="/newsletter" className={LINK}>
+                            {t("nav.newsletter")}
+                        </Link>
+                    </li>
+                    <li>
                         <Link href="/privacy" className={LINK}>
                             {t("footer.privacy")}
                         </Link>

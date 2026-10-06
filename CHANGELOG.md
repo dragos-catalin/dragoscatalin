@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.12.0] - 2026-10-06
+
+### Added
+
+- **Newsletter with double opt-in via Brivio (V3-20).** New `/newsletter` page (EN + RO) whose Server Action calls Brivio `POST /v1/marketing/subscribers` with consent evidence (wording version, wording text, end-user IP and user agent — Brivio stores the text and IP only as hashes). Brivio sends the confirmation email and, after the click, redirects to `/newsletter/confirmed` (noindex). Explicit consent checkbox, honeypot, per-instance rate limit and Vercel BotID on `/newsletter` + `/ro/newsletter`. Linked from both footers, listed in the sitemap and `llms.txt`; the privacy page gains a Newsletter section (art. 6(1)(a)).
+
 ## [2.11.1] - 2026-10-06
 
 ### Changed

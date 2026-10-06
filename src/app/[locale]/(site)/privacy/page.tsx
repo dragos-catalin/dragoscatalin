@@ -55,6 +55,7 @@ export default async function PrivacyPage({ params }: { params: Params }) {
 
     const blocks = [
         ["contactTitle", "contact"],
+        ["newsletterTitle", "newsletter"],
         ["hostingTitle", "hosting"],
         ["rightsTitle", "rights"],
     ] as const;
@@ -111,7 +112,7 @@ export default async function PrivacyPage({ params }: { params: Params }) {
                 </div>
             </Section>
             {blocks.map(([title, body]) => (
-                <Section key={title} title={t(title)}>
+                <Section key={title} title={t(title)} id={body}>
                     <p className="max-w-prose text-fg-muted">{t(body)}</p>
                 </Section>
             ))}

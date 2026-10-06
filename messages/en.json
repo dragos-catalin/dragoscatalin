@@ -18,7 +18,8 @@
     "skipToContent": "Skip to content",
     "privacy": "Privacy",
     "services": "Services",
-    "lab": "Lab"
+    "lab": "Lab",
+    "newsletter": "Newsletter"
   },
   "theme": {
     "label": "Appearance",
@@ -352,7 +353,9 @@
     "rightsTitle": "Your rights",
     "rights": "You may ask for access, correction, deletion, restriction, portability or object to processing, and you may withdraw consent at any time without affecting earlier processing. You may also complain to ANSPDCP (dataprotection.ro).",
     "changeTitle": "Change your choice",
-    "change": "Open the cookie settings to change or withdraw your consent. Withdrawing reloads the page so that analytics stops immediately."
+    "change": "Open the cookie settings to change or withdraw your consent. Withdrawing reloads the page so that analytics stops immediately.",
+    "newsletterTitle": "Newsletter",
+    "newsletter": "If you subscribe, your email address, language, the consent wording version and the time of consent are stored in Brivio, my own mail platform hosted in the EU (GDPR art. 6(1)(a), consent). Your IP is kept only as a salted hash, as proof of consent. Nothing is sent until you click the confirmation link (double opt-in). Every email has a one-click unsubscribe link; after you leave, the address is kept only as an unsubscribed record so you are never written to again."
   },
   "services": {
     "eyebrow": "Work with me",
@@ -491,5 +494,30 @@
       "tv": "TV",
       "onDevice": "{name} on {device}"
     }
+  },
+  "newsletter": {
+    "eyebrow": "Newsletter",
+    "title": "Build notes, now and then",
+    "intro": "Occasional emails about what I ship: new products, releases worth knowing about, and what I learned building them.",
+    "points": {
+      "what": "Launches and major releases across codai, Brivio, MixAI and the open-source repos.",
+      "cadence": "At most once a month. No tracking pixels, no ads.",
+      "leave": "One click to leave, from any email."
+    },
+    "email": "Email",
+    "consent": "I agree to receive the dragoscatalin.ro newsletter by email and know I can unsubscribe at any time.",
+    "privacyLink": "How my data is used",
+    "submit": "Subscribe",
+    "sending": "Subscribing…",
+    "pending": "Almost there — check your inbox and click the confirmation link. Nothing is sent until you do.",
+    "already": "You are already subscribed. Thanks!",
+    "invalidEmail": "Please enter a valid email.",
+    "consentRequired": "Please tick the box to agree.",
+    "error": "Something went wrong. Try again in a minute.",
+    "rate": "Too many attempts. Try again later.",
+    "disabled": "Subscriptions are offline right now. Try again later.",
+    "confirmedTitle": "You're subscribed",
+    "confirmedBody": "Thanks for confirming. The next email will reach you when there is something worth sending.",
+    "confirmedCta": "See the projects"
   }
 }

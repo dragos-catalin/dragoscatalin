@@ -14,6 +14,7 @@ const STATIC_PATHS = [
     "/now",
     "/uses",
     "/press",
+    "/newsletter",
     "/privacy",
     "/feedbrake",
     "/feedbrake/privacy",
