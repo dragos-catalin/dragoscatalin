@@ -162,6 +162,16 @@ See `tracker.csv` for the live list. Summary by area:
 
 ## Session log
 
+### 2026-10-06 — v2.11.1 OSS 0.2 milestones on /lab (V3-40)
+
+- agentcfg-audit 0.2: VS Code gate (`extension/`) that verifies a workspace's
+  agent config on open and locks the workspace chat settings on failure.
+- agentq 0.2: pre-tool hooks for Claude Code, Codex, Copilot CLI and VS Code
+  that rewrite builds, installs, deploys and commits into `agentq run`.
+- device-pairing 0.2: UniFFI Kotlin bindings tested on a JVM, per-app `Domain`;
+  dashy moved onto the crate with SPAKE2 as link protocol v2 (ADR-0007 there).
+- `/lab` approach text updated EN + RO; CI run ids in `docs/tracker.csv` V3-40.
+
 ### 2026-10-06 — v2.10.1 three OSS scaffolds on /lab (V3-39)
 
 - D-07 agentcfg-audit, D-01 agentq (with the ACP-Lock 0.1 draft, P-01) and D-20
