@@ -162,6 +162,14 @@ See `tracker.csv` for the live list. Summary by area:
 
 ## Session log
 
+### 2026-10-06 — contact form sends From contact@ (V3-22 follow-up)
+
+- Brivio CI-0073 (`e341f2d72`, prod v0.349.9): a mailbox can be an API sender through a
+  Stalwart app password kept in Secret Manager, so its aliases (contact@, hello@) are valid
+  From addresses. Vercel `CONTACT_FROM_EMAIL=contact@dragoscatalin.ro`, prod redeployed.
+  VERIFIED: live form on `/ro#contact` → Brivio inbox of catalin@ shows From
+  `contact@dragoscatalin.ro`.
+
 ### 2026-10-06 — V3-08 default skin decided
 
 - Owner: **classic** stays the default on desktop and mobile. `DEFAULT_SKIN` was already
