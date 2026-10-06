@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.11.1] - 2026-10-06
+
+### Changed
+
+- `/lab`: the three OSS projects reach 0.2. **agentcfg-audit** ships a VS Code gate that verifies a workspace's agent config when it opens and switches it off when the signature fails or an unsigned repo has a high-severity finding. **agentq** ships pre-tool hooks for Claude Code, Codex, Copilot CLI and VS Code that rewrite builds, installs, deploys and commits into `agentq run`. **device-pairing** ships UniFFI Kotlin bindings and per-app domain strings, and dashy now pairs on it with SPAKE2 as link protocol v2. EN + RO. Trackers: V3-40 in `docs/tracker.csv`; D-07, D-01, P-01 and D-20 in `docs/portfolio/portfolio.csv`.
+
 ## [2.11.0] - 2026-10-06
 
 ### Changed
