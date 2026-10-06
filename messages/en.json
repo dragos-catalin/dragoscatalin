@@ -111,6 +111,7 @@
       "active": "In development",
       "research": "Research",
       "maintenance": "Maintained",
+      "paused": "Paused",
       "case-study": "Case study",
       "archived": "Archived"
     },
@@ -170,7 +171,42 @@
     "packages": "Packages",
     "more": "+{count}",
     "noStats": "Live stats unavailable",
-    "privateNote": "Private engagement — source not public."
+    "privateNote": "Private engagement — source not public.",
+    "pausedNote": "The site is offline for now; the code and store listings still work.",
+    "platformsLabel": "Platforms",
+    "platform": {
+      "web": "Web",
+      "android": "Android",
+      "wear-os": "Wear OS",
+      "google-tv": "Google TV",
+      "ios": "iOS",
+      "windows": "Windows",
+      "macos": "macOS",
+      "linux": "Linux",
+      "browser-extension": "Browser extension",
+      "vscode-extension": "VS Code extension",
+      "cli": "CLI",
+      "api": "API",
+      "sdk": "SDK",
+      "mcp": "MCP server"
+    },
+    "storesLabel": "Get it",
+    "store": {
+      "play": "Google Play",
+      "ms-store": "Microsoft Store",
+      "app-store": "App Store",
+      "vscode-marketplace": "VS Marketplace",
+      "open-vsx": "Open VSX",
+      "chrome-web-store": "Chrome Web Store",
+      "npm": "npm",
+      "pypi": "PyPI"
+    },
+    "storeLink": "{name} on {store} (opens in a new tab)",
+    "metricsLabel": "In numbers",
+    "metricSource": "source",
+    "metricAsOf": "as of {date}",
+    "listingsLabel": "Published",
+    "listingLink": "{name} on {store} (opens in a new tab)"
   },
   "openSource": {
     "eyebrow": "Open source",

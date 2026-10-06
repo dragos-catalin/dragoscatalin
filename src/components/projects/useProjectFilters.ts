@@ -9,6 +9,7 @@ export const STATUSES = [
     "active",
     "research",
     "maintenance",
+    "paused",
     "case-study",
     "archived",
 ] as const satisfies readonly ProjectStatus[];

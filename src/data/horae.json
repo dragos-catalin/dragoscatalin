@@ -1,0 +1,105 @@
+{
+  "source": "watch-faces/docs/store/play-apps.csv",
+  "built": 206,
+  "live": 14,
+  "faces": [
+    {
+      "id": "pulse-lite",
+      "name": "Pulse Lite",
+      "tier": "free",
+      "package": "ro.horae.watchface.pulselite",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.pulselite"
+    },
+    {
+      "id": "meridian-lite",
+      "name": "Meridian Lite",
+      "tier": "free",
+      "package": "ro.horae.watchface.meridianlite",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.meridianlite"
+    },
+    {
+      "id": "big-type",
+      "name": "Big Type",
+      "tier": "free",
+      "package": "ro.horae.watchface.bigtype",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.bigtype"
+    },
+    {
+      "id": "sunny-kids",
+      "name": "Sunny Kids",
+      "tier": "free",
+      "package": "ro.horae.watchface.sunnykids",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.sunnykids"
+    },
+    {
+      "id": "atlas-pro",
+      "name": "Atlas Pro",
+      "tier": "paid",
+      "package": "ro.horae.watchface.atlaspro",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.atlaspro"
+    },
+    {
+      "id": "meridian",
+      "name": "Meridian",
+      "tier": "paid",
+      "package": "ro.horae.watchface.meridian",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.meridian"
+    },
+    {
+      "id": "chrono-hybrid",
+      "name": "Chrono Hybrid",
+      "tier": "paid",
+      "package": "ro.horae.watchface.chronohybrid",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.chronohybrid"
+    },
+    {
+      "id": "pulse-pro",
+      "name": "Pulse Pro",
+      "tier": "paid",
+      "package": "ro.horae.watchface.pulsepro",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.pulsepro"
+    },
+    {
+      "id": "nebula",
+      "name": "Nebula",
+      "tier": "paid",
+      "package": "ro.horae.watchface.nebula",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.nebula"
+    },
+    {
+      "id": "retro-lcd",
+      "name": "Retro LCD",
+      "tier": "paid",
+      "package": "ro.horae.watchface.retrolcd",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.retrolcd"
+    },
+    {
+      "id": "terminal",
+      "name": "Terminal",
+      "tier": "paid",
+      "package": "ro.horae.watchface.terminal",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.terminal"
+    },
+    {
+      "id": "bloom",
+      "name": "Bloom",
+      "tier": "paid",
+      "package": "ro.horae.watchface.bloom",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.bloom"
+    },
+    {
+      "id": "horizon",
+      "name": "Horizon",
+      "tier": "paid",
+      "package": "ro.horae.watchface.horizon",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.horizon"
+    },
+    {
+      "id": "morph",
+      "name": "Morph",
+      "tier": "paid",
+      "package": "ro.horae.watchface.morph",
+      "url": "https://play.google.com/store/apps/details?id=ro.horae.watchface.morph"
+    }
+  ]
+}

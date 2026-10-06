@@ -6,6 +6,21 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.15.0] - 2026-10-06
+
+### Added
+
+- **Richer project model (V3-12).** Projects now carry `platforms` (web, Android, Wear OS, Google TV, iOS, Windows, macOS, Linux, browser/VS Code extension, CLI, API, SDK, MCP), typed `stores` (Google Play, Microsoft Store, App Store, VS Marketplace, Open VSX, Chrome Web Store, npm, PyPI), sourced `metrics`, a live-count `teaser` and published `listings`. The detail page shows store badges, platform chips, an "In numbers" block and the published items; cards show platforms and stores; `/api/projects`, `llms-full.txt` and the SoftwareApplication JSON-LD (`operatingSystem`, `installUrl`, `downloadUrl`) carry them. Shared helpers in `src/lib/project-links.ts`; the registry test enforces https store URLs on each store's own host.
+- **New status `paused`** for products whose site is offline because hosting is not paid: no "Visit site" link, same-host surface links hidden, a short note instead; the API and llms output drop the website too.
+- **New projects (V3-13):** Horae (Wear OS watch faces; "206 faces built · 14 live on Google Play" and the 14 live faces with their Play links, synced by `scripts/sync-horae.mjs` into the committed `src/data/horae.json`), MarcAI, scrin, Feedbrake (Unscroll), alegeri2025, and the VS Code extensions Just Black 2 and prakter.
+- **Project link health (V3-14):** `pnpm links:projects` (`scripts/check-project-links.mjs`) checks every registry website, surface, store URL and listing with timeout + retries, fails on 4xx/5xx (402 included) and reports paused sites separately; a `projects` job in the weekly `links.yml` opens/updates the `links` issue.
+
+### Changed
+
+- codai: Microsoft Store, Wear OS and VS Code extension surfaces + store links; brivio: Microsoft Store; tasks2 and VS Remote Chat: VS Marketplace + Open VSX links and install counts; HIDE: PyPI; axiom: current tagline, summary and docs site; platforms set on every project.
+- notai, metu and VS Remote Chat are `paused` (their sites answer 402).
+- Fixed links found by the checker: MixAI no longer links mixai.ro (the domain does not resolve), Metric Time points at `dragoscv.github.io/metric-time/` (the old path was 404), the codai gateway surface no longer links a root that answers 404, and vmui/notalone repos point at their new `dragos-catalin` owner.
+
 ## [2.14.0] - 2026-10-06
 
 ### Changed

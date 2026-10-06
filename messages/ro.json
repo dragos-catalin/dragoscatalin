@@ -111,6 +111,7 @@
       "active": "În dezvoltare",
       "research": "Cercetare",
       "maintenance": "Întreținut",
+      "paused": "În pauză",
       "case-study": "Studiu de caz",
       "archived": "Arhivat"
     },
@@ -170,7 +171,42 @@
     "packages": "Pachete",
     "more": "+{count}",
     "noStats": "Statisticile live nu sunt disponibile",
-    "privateNote": "Proiect privat — codul sursă nu este public."
+    "privateNote": "Proiect privat — codul sursă nu este public.",
+    "pausedNote": "Site-ul este oprit deocamdată; codul și paginile din magazine funcționează în continuare.",
+    "platformsLabel": "Platforme",
+    "platform": {
+      "web": "Web",
+      "android": "Android",
+      "wear-os": "Wear OS",
+      "google-tv": "Google TV",
+      "ios": "iOS",
+      "windows": "Windows",
+      "macos": "macOS",
+      "linux": "Linux",
+      "browser-extension": "Extensie de browser",
+      "vscode-extension": "Extensie VS Code",
+      "cli": "CLI",
+      "api": "API",
+      "sdk": "SDK",
+      "mcp": "Server MCP"
+    },
+    "storesLabel": "Descarcă",
+    "store": {
+      "play": "Google Play",
+      "ms-store": "Microsoft Store",
+      "app-store": "App Store",
+      "vscode-marketplace": "VS Marketplace",
+      "open-vsx": "Open VSX",
+      "chrome-web-store": "Chrome Web Store",
+      "npm": "npm",
+      "pypi": "PyPI"
+    },
+    "storeLink": "{name} pe {store} (se deschide într-un tab nou)",
+    "metricsLabel": "În cifre",
+    "metricSource": "sursă",
+    "metricAsOf": "la {date}",
+    "listingsLabel": "Publicate",
+    "listingLink": "{name} pe {store} (se deschide într-un tab nou)"
   },
   "openSource": {
     "eyebrow": "Open source",

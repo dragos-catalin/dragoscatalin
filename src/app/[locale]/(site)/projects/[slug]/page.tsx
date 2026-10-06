@@ -12,10 +12,23 @@ import { RepoStatsPanel } from "@/components/projects/RepoStatsPanel";
 import { coverGradient, coverTransitionName } from "@/components/projects/cover";
 import { CoverArt } from "@/components/projects/CoverArt";
 import { DeviceShowcase } from "@/components/projects/DeviceShowcase";
+import {
+    ListingsList,
+    MetricsList,
+    PlatformChips,
+    StoreBadges,
+} from "@/components/projects/ProjectMeta";
 import { getShots, shotSrc } from "@/lib/shots";
 import { statusVariant } from "@/components/projects/status";
 import { getProject, projects } from "@/data/projects";
 import type { LocalizedText, PackageRef, Project } from "@/data/types";
+import {
+    downloadUrl,
+    installUrl,
+    liveSurfaceUrl,
+    liveWebsite,
+    operatingSystems,
+} from "@/lib/project-links";
 import { localeAlternates, localeUrl } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -93,6 +106,9 @@ export default async function ProjectPage({ params }: { params: Params }) {
         .filter((r): r is typeof r & { project: Project } => r.project !== undefined);
 
     const pageUrl = localeUrl(locale, `/projects/${slug}`);
+    const website = liveWebsite(project);
+    const install = installUrl(project);
+    const download = downloadUrl(project);
     const shots = getShots(project.slug);
     const heroSrc = project.cover ?? shotSrc(project.slug, "desktop-dark");
     const software: WithContext<SoftwareApplication> = {
@@ -100,10 +116,12 @@ export default async function ProjectPage({ params }: { params: Params }) {
         "@type": "SoftwareApplication",
         name: project.name,
         description: tagline,
-        url: project.website ?? pageUrl,
+        url: website ?? pageUrl,
         applicationCategory: categoryToApplication(project.category),
-        operatingSystem: "Web",
+        operatingSystem: operatingSystems(project),
         author: { "@type": "Person", name: site.fullName, url: site.url },
+        ...(install ? { installUrl: install } : {}),
+        ...(download ? { downloadUrl: download } : {}),
         ...(showRepos
             ? { codeRepository: `https://github.com/${repos[0]?.owner}/${repos[0]?.name}` }
             : {}),
@@ -191,14 +209,20 @@ export default async function ProjectPage({ params }: { params: Params }) {
                         {project.name}
                     </h1>
                     <p className="text-lg text-fg-muted md:text-xl">{tagline}</p>
+                    {project.teaser ? (
+                        <p className="font-mono text-sm text-accent" data-testid="teaser">
+                            {pick(project.teaser, locale)}
+                        </p>
+                    ) : null}
 
                     <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-fg-subtle">
                         <span>{years}</span>
-                        {project.website ? (
+                        {website ? (
                             <a
-                                href={project.website}
+                                href={website}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                data-testid="visit-site"
                                 className="link-inline gap-1 text-accent hover:underline"
                             >
                                 {t("visitSite")}
@@ -218,6 +242,12 @@ export default async function ProjectPage({ params }: { params: Params }) {
                             </a>
                         ))}
                     </div>
+                    {project.status === "paused" ? (
+                        <p className="text-sm text-fg-muted" data-testid="paused-note">
+                            {t("pausedNote")}
+                        </p>
+                    ) : null}
+                    <StoreBadges project={project} />
                 </div>
             </header>
 
@@ -228,6 +258,8 @@ export default async function ProjectPage({ params }: { params: Params }) {
                             <p key={i}>{p}</p>
                         ))}
                     </div>
+
+                    <MetricsList project={project} locale={locale} />
 
                     {shots ? (
                         <DeviceShowcase
@@ -258,31 +290,36 @@ export default async function ProjectPage({ params }: { params: Params }) {
                         </section>
                     ) : null}
 
+                    <ListingsList project={project} locale={locale} />
+
                     {project.surfaces && project.surfaces.length > 0 ? (
                         <section className="flex flex-col gap-3">
                             <h2 className="font-mono text-[11px] uppercase tracking-wider text-fg-subtle">
                                 {t("surfaces")}
                             </h2>
                             <ul className="grid gap-2 sm:grid-cols-2">
-                                {project.surfaces.map((s) => (
-                                    <li
-                                        key={s.label}
-                                        className="rounded-card surface flex items-center justify-between gap-3 px-4 py-3 text-sm"
-                                    >
-                                        <span className="text-fg">{s.label}</span>
-                                        {s.url ? (
-                                            <a
-                                                href={s.url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="link-inline gap-1 font-mono text-xs text-accent hover:underline"
-                                            >
-                                                {new URL(s.url).hostname}
-                                                <ExternalLink className="size-3" aria-hidden />
-                                            </a>
-                                        ) : null}
-                                    </li>
-                                ))}
+                                {project.surfaces.map((s) => {
+                                    const url = liveSurfaceUrl(project, s);
+                                    return (
+                                        <li
+                                            key={s.label}
+                                            className="rounded-card surface flex items-center justify-between gap-3 px-4 py-3 text-sm"
+                                        >
+                                            <span className="text-fg">{s.label}</span>
+                                            {url ? (
+                                                <a
+                                                    href={url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="link-inline gap-1 font-mono text-xs text-accent hover:underline"
+                                                >
+                                                    {new URL(url).hostname}
+                                                    <ExternalLink className="size-3" aria-hidden />
+                                                </a>
+                                            ) : null}
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </section>
                     ) : null}
@@ -310,6 +347,8 @@ export default async function ProjectPage({ params }: { params: Params }) {
                         ) : project.visibility === "private" ? (
                             <p className="text-xs text-fg-subtle">{t("privateNote")}</p>
                         ) : null}
+
+                        <PlatformChips project={project} />
 
                         <section className="flex flex-col gap-3">
                             <h2 className="font-mono text-[11px] uppercase tracking-wider text-fg-subtle">

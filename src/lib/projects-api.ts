@@ -1,6 +1,7 @@
 import { allRepos } from "@/data/projects";
 import type { Project, RepoStats } from "@/data/types";
 import { fetchRepoStats } from "@/lib/github";
+import { liveSurfaces, liveWebsite, sortedPlatforms, sortedStores } from "@/lib/project-links";
 import { site } from "@/lib/site";
 
 export interface ApiProject {
@@ -15,6 +16,11 @@ export interface ApiProject {
     years: Project["years"];
     stack: string[];
     surfaces: NonNullable<Project["surfaces"]>;
+    platforms: NonNullable<Project["platforms"]>;
+    stores: NonNullable<Project["stores"]>;
+    metrics: NonNullable<Project["metrics"]>;
+    teaser?: Project["teaser"];
+    listings: NonNullable<Project["listings"]>;
     website?: string;
     repos: { owner: string; name: string; url?: string; stats?: RepoStats }[];
     packages: NonNullable<Project["packages"]>;
@@ -22,6 +28,7 @@ export interface ApiProject {
 }
 
 export function toApiProject(p: Project, stats: Record<string, RepoStats>): ApiProject {
+    const website = liveWebsite(p);
     return {
         slug: p.slug,
         name: p.name,
@@ -33,8 +40,13 @@ export function toApiProject(p: Project, stats: Record<string, RepoStats>): ApiP
         visibility: p.visibility,
         years: p.years,
         stack: p.stack,
-        surfaces: p.surfaces ?? [],
-        ...(p.website ? { website: p.website } : {}),
+        surfaces: liveSurfaces(p),
+        platforms: sortedPlatforms(p),
+        stores: sortedStores(p),
+        metrics: p.metrics ?? [],
+        ...(p.teaser ? { teaser: p.teaser } : {}),
+        listings: p.listings ?? [],
+        ...(website ? { website } : {}),
         repos: (p.repos ?? []).map((r) => {
             const s = stats[`${r.owner}/${r.name}`];
             return {

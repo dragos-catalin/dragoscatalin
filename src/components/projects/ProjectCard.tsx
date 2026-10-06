@@ -8,6 +8,7 @@ import type { Project, RepoStats } from "@/data/types";
 import { coverGradient, coverTransitionName } from "./cover";
 import { CoverArt } from "./CoverArt";
 import { shotSrc } from "@/lib/shots";
+import { sortedPlatforms, sortedStores } from "@/lib/project-links";
 import { statusVariant } from "./status";
 
 export interface ProjectCardProps {
@@ -30,6 +31,8 @@ export function ProjectCard({ project, stats, locale, priority = false }: Projec
     const extra = project.stack.length - chips.length;
     const shot = shotSrc(project.slug, "desktop-dark");
     const coverSrc = project.cover ?? shot;
+    const platforms = sortedPlatforms(project);
+    const stores = [...new Set(sortedStores(project).map((s) => s.store))];
     const years = project.years.to
         ? t("years", { from: project.years.from, to: project.years.to })
         : t("yearsNow", { from: project.years.from });
@@ -87,6 +90,28 @@ export function ProjectCard({ project, stats, locale, priority = false }: Projec
                 <p className="line-clamp-2 text-sm text-fg-muted">
                     {localized(project.tagline, locale)}
                 </p>
+                {project.teaser ? (
+                    <p className="font-mono text-xs text-accent">
+                        {localized(project.teaser, locale)}
+                    </p>
+                ) : null}
+                {platforms.length > 0 || stores.length > 0 ? (
+                    <p className="text-xs text-fg-subtle" data-testid="card-platforms">
+                        {platforms.length > 0 ? (
+                            <span>
+                                <span className="sr-only">{t("platformsLabel")}: </span>
+                                {platforms.map((p) => t(`platform.${p}`)).join(" · ")}
+                            </span>
+                        ) : null}
+                        {stores.length > 0 ? (
+                            <span className="text-fg-muted">
+                                {platforms.length > 0 ? " — " : null}
+                                <span className="sr-only">{t("storesLabel")}: </span>
+                                {stores.map((s) => t(`store.${s}`)).join(", ")}
+                            </span>
+                        ) : null}
+                    </p>
+                ) : null}
 
                 <ul className="mt-auto flex flex-wrap gap-1.5 pt-1" aria-label={t("stack")}>
                     {chips.map((s) => (

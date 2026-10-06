@@ -4,6 +4,7 @@ import { labIdeas } from "@/data/lab";
 import { allPackages, projects } from "@/data/projects";
 import { audiences } from "@/data/services";
 import type { Project } from "@/data/types";
+import { liveSurfaces, liveWebsite, sortedPlatforms, sortedStores } from "@/lib/project-links";
 import { site } from "@/lib/site";
 
 const PAGES: { label: string; path: string }[] = [
@@ -86,15 +87,30 @@ export async function buildLlmsFullTxt(): Promise<string> {
         lines.push(`- Category: ${p.category}`);
         lines.push(`- Years: ${years(p)}`);
         lines.push(`- Stack: ${p.stack.join(", ")}`);
-        if (p.surfaces?.length)
+        const surfaces = liveSurfaces(p);
+        if (surfaces.length)
             lines.push(
-                `- Surfaces: ${p.surfaces.map((s) => (s.url ? `${s.label} (${s.url})` : s.label)).join(", ")}`,
+                `- Surfaces: ${surfaces.map((s) => (s.url ? `${s.label} (${s.url})` : s.label)).join(", ")}`,
             );
+        const platforms = sortedPlatforms(p);
+        if (platforms.length) lines.push(`- Platforms: ${platforms.join(", ")}`);
+        const stores = sortedStores(p);
+        if (stores.length)
+            lines.push(`- Stores: ${stores.map((s) => `${s.store} (${s.url})`).join(", ")}`);
+        if (p.metrics?.length)
+            lines.push(
+                `- Metrics: ${p.metrics.map((m) => `${m.label.en}: ${m.value}${m.asOf ? ` (as of ${m.asOf})` : ""}`).join("; ")}`,
+            );
+        if (p.teaser) lines.push(`- Live: ${p.teaser.en}`);
+        if (p.listings?.length)
+            lines.push(`- Published: ${p.listings.map((l) => `${l.name} (${l.url})`).join(", ")}`);
         if (p.visibility === "public" && p.repos?.length)
             lines.push(
                 `- Repos: ${p.repos.map((r) => `https://github.com/${r.owner}/${r.name}`).join(", ")}`,
             );
-        if (p.website) lines.push(`- Website: ${p.website}`);
+        const website = liveWebsite(p);
+        if (website) lines.push(`- Website: ${website}`);
+        else if (p.status === "paused") lines.push("- Website: offline (paused)");
         lines.push("", p.summary.en, "");
         if (p.disclaimer) lines.push(`> Note: ${p.disclaimer.en}`, "");
     }

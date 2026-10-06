@@ -35,3 +35,32 @@ jobs:
           n=$(gh issue list --label links --state open --json number --jq '.[0].number')
           if [ -n "$n" ]; then gh issue comment "$n" --body-file lychee/out.md
           else gh issue create --title "Broken links on dragoscatalin.ro" --label links --body-file lychee/out.md; fi
+
+  # V3-14: every registry website, store URL and published listing (paused sites are
+  # reported but expected to be down). Runs the registry from source with node 24.
+  projects:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version-file: .nvmrc
+      - name: Check project links
+        id: check
+        run: |
+          set +e
+          node scripts/check-project-links.mjs | tee links-projects.txt
+          echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+      - name: Open or update an issue on broken project links
+        if: steps.check.outputs.exit_code != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          { echo '```'; cat links-projects.txt; echo '```'; } > body.md
+          n=$(gh issue list --label links --state open --json number --jq '.[0].number')
+          if [ -n "$n" ]; then gh issue comment "$n" --body-file body.md
+          else gh issue create --title "Broken project links on dragoscatalin.ro" --label links --body-file body.md; fi
+      - name: Fail the job on broken links
+        if: steps.check.outputs.exit_code != '0'
+        run: exit 1

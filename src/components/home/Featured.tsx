@@ -15,6 +15,7 @@ const STATUS_VARIANT: Record<Project["status"], BadgeVariant> = {
     active: "accent",
     research: "warning",
     maintenance: "outline",
+    paused: "warning",
     "case-study": "muted",
     archived: "muted",
 };

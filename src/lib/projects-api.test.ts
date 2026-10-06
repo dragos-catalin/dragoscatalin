@@ -55,6 +55,21 @@ describe("toApiProject", () => {
         expect(out).not.toHaveProperty("disclaimer");
         expect(out.surfaces).toEqual(noSite.surfaces ?? []);
     });
+
+    it("drops the website of a paused project and exposes platforms/stores/metrics", () => {
+        const out = toApiProject(getProject("notai")!, {});
+        expect(out.status).toBe("paused");
+        expect(out).not.toHaveProperty("website");
+        expect(out.surfaces.find((s) => s.url?.includes("notai.ro"))).toBeUndefined();
+
+        const codai = toApiProject(getProject("codai")!, {});
+        expect(codai.platforms).toContain("wear-os");
+        expect(codai.stores.map((s) => s.store)).toContain("ms-store");
+        const horae = toApiProject(getProject("horae")!, {});
+        expect(horae.teaser?.en).toMatch(/live on Google Play/);
+        expect(horae.listings.length).toBeGreaterThan(0);
+        expect(Array.isArray(horae.metrics)).toBe(true);
+    });
 });
 
 describe("json", () => {

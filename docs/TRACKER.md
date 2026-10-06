@@ -162,6 +162,24 @@ See `tracker.csv` for the live list. Summary by area:
 
 ## Session log
 
+### 2026-10-06 — V3-12..14 project model, new projects, link health (2.15.0)
+
+- **Model**: `platforms`, typed `stores` (host-checked), sourced `metrics`, `teaser`,
+  `listings`, status `paused`. Rendered on detail pages and cards, in `/api/projects`,
+  `llms-full.txt` and the SoftwareApplication JSON-LD. Helpers: `src/lib/project-links.ts`.
+- **Projects added**: Horae, MarcAI, scrin, Feedbrake (slug `unscroll`), alegeri2025,
+  Just Black 2, prakter. Horae numbers come from `node scripts/sync-horae.mjs`
+  (`watch-faces/docs/store/play-apps.csv` + `faces/` modules) into the committed
+  `src/data/horae.json` — re-run it after new Play uploads (206 built, 14 live today).
+- **Sources**: local repos (README, AGENTS.md, manifests, docs/TRACKER), Microsoft
+  Store pages (codai 9NT1T78Q4VKM, Brivio 9P9J0P8V8FCP), VS Marketplace gallery API and
+  Open VSX API (counts as of 2026-10-06), Google Play listing pages. Left out as
+  unverified: Play links for codai, titi, vitals, brivio, marcai, scrin, Feedbrake
+  (all 404 = internal testing / not published), `@vitals/client` / `@abridge/sdk` /
+  `@brivio/sdk` on npm (404), winget/Scoop entries, mixai.ro (no DNS).
+- **Paused**: notai, metu, VS Remote Chat (402). `pnpm links:projects` checks every
+  registry URL; weekly job `projects` in `links.yml`.
+
 ### 2026-10-06 — contact form sends From contact@ (V3-22 follow-up)
 
 - Brivio CI-0073 (`e341f2d72`, prod v0.349.9): a mailbox can be an API sender through a

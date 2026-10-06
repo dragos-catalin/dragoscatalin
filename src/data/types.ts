@@ -4,6 +4,7 @@ export type ProjectStatus =
     | "active" // in active development (alpha/beta)
     | "research" // experimental / research
     | "maintenance" // shipped, low activity
+    | "paused" // site offline (hosting not paid); no live link is shown
     | "case-study" // finished / private engagement
     | "archived"; // no longer developed
 
@@ -35,6 +36,59 @@ export interface LocalizedText {
     ro: string;
 }
 
+/** Where a project actually runs. Only shipped or in-repo targets, never wishes. */
+export type Platform =
+    | "web"
+    | "android"
+    | "wear-os"
+    | "google-tv"
+    | "ios"
+    | "windows"
+    | "macos"
+    | "linux"
+    | "browser-extension"
+    | "vscode-extension"
+    | "cli"
+    | "api"
+    | "sdk"
+    | "mcp";
+
+/** Public store / marketplace a project is listed in. Host is enforced by the registry test. */
+export type StoreId =
+    | "play"
+    | "ms-store"
+    | "app-store"
+    | "vscode-marketplace"
+    | "open-vsx"
+    | "chrome-web-store"
+    | "npm"
+    | "pypi";
+
+export interface StoreLink {
+    store: StoreId;
+    /** https listing URL on the store's own host */
+    url: string;
+}
+
+/** A small, sourced number. `value` is pre-formatted; never invent it. */
+export interface ProjectMetric {
+    label: LocalizedText;
+    value: string;
+    /** https page that shows the number */
+    source?: string;
+    /** ISO date the number was read */
+    asOf?: string;
+}
+
+/** One published item inside a project (e.g. a single watch face on Google Play). */
+export interface ProjectListing {
+    name: string;
+    store: StoreId;
+    url: string;
+    /** e.g. "Free" / "Paid" */
+    note?: LocalizedText;
+}
+
 export interface Project {
     slug: string;
     name: string;
@@ -54,8 +108,16 @@ export interface Project {
     years: { from: number; to?: number };
     stack: string[];
     surfaces?: SurfaceRef[];
+    platforms?: Platform[];
+    stores?: StoreLink[];
+    metrics?: ProjectMetric[];
+    /** short live-count line, e.g. "206 faces built · 14 live on Google Play" */
+    teaser?: LocalizedText;
+    /** published items, e.g. the watch faces that are live */
+    listings?: ProjectListing[];
     repos?: RepoRef[];
     packages?: PackageRef[];
+    /** project site; hidden as a link while `status` is "paused" */
     website?: string;
     /** brand hue override in OKLCH degrees, used for cover gradient */
     hue?: number;

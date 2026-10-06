@@ -1,6 +1,6 @@
 {
   "name": "dragoscatalin",
-  "version": "2.14.0",
+  "version": "2.15.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -22,6 +22,8 @@
     "test:e2e": "playwright test",
     "size": "node scripts/check-first-load.mjs",
     "tracker:check": "node scripts/check-tracker.mjs",
+    "links:projects": "node scripts/check-project-links.mjs",
+    "sync:horae": "node scripts/sync-horae.mjs",
     "shots": "node scripts/shots.mjs",
     "assets:optimize": "node scripts/optimize-assets.mjs",
     "lh": "node scripts/lighthouse-local.mjs",

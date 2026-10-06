@@ -7,6 +7,7 @@ import type {
     WithContext,
 } from "schema-dts";
 import type { Project } from "@/data/types";
+import { downloadUrl, installUrl, liveWebsite, operatingSystems } from "@/lib/project-links";
 import { localeUrl } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -89,15 +90,19 @@ export function softwareApplicationJsonLd(
 ): WithContext<SoftwareApplication> {
     const lang = locale === "ro" ? "ro" : "en";
     const repo = project.repos?.[0];
+    const install = installUrl(project);
+    const download = downloadUrl(project);
     return {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         name: project.name,
         description: project.tagline[lang],
-        url: project.website ?? localeUrl(locale, `/projects/${project.slug}`),
+        url: liveWebsite(project) ?? localeUrl(locale, `/projects/${project.slug}`),
         applicationCategory:
             project.category === "library" ? "DeveloperApplication" : "WebApplication",
-        operatingSystem: project.surfaces?.map((s) => s.label).join(", ") || "Web",
+        operatingSystem: operatingSystems(project),
+        ...(install ? { installUrl: install } : {}),
+        ...(download ? { downloadUrl: download } : {}),
         author: { "@id": PERSON_ID },
         inLanguage: lang,
         keywords: project.stack.join(", "),

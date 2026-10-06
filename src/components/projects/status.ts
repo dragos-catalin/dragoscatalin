@@ -8,6 +8,7 @@ export const statusVariant: Record<ProjectStatus, BadgeVariant> = {
     active: "accent",
     research: "warning",
     maintenance: "neutral",
+    paused: "warning",
     "case-study": "outline",
     archived: "neutral",
 };

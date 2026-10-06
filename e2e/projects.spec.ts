@@ -40,4 +40,34 @@ test.describe("projects", () => {
         });
         expect(types).toContain("SoftwareApplication");
     });
+
+    test("paused project shows no live site link", async ({ page }) => {
+        await page.goto("/projects/notai");
+        await expect(page.getByRole("heading", { level: 1 })).toHaveText("notai");
+        await expect(page.getByTestId("paused-note")).toBeVisible();
+        await expect(page.getByTestId("visit-site")).toHaveCount(0);
+        await expect(page.locator("main a[href*='notai.ro']")).toHaveCount(0);
+    });
+
+    test("store badges link to the store with an accessible name", async ({ page }) => {
+        await page.goto("/projects/codai");
+        const ms = page.getByTestId("store-badges").locator("a[data-store='ms-store']");
+        await expect(ms).toHaveAttribute("href", /^https:\/\/apps\.microsoft\.com\//);
+        await expect(ms).toHaveAccessibleName(/codai on Microsoft Store/);
+        await expect(page.getByTestId("platform-chips")).toContainText("Wear OS");
+
+        const ld = await page.locator("script[type='application/ld+json']").allTextContents();
+        const app = ld
+            .map((p) => JSON.parse(p) as Record<string, unknown>)
+            .find((j) => j["@type"] === "SoftwareApplication");
+        expect(app?.installUrl).toMatch(/^https:\/\/apps\.microsoft\.com\//);
+        expect(String(app?.operatingSystem)).toContain("Wear OS");
+    });
+
+    test("Horae lists its live faces with Play links", async ({ page }) => {
+        await page.goto("/ro/projects/horae");
+        await expect(page.getByTestId("teaser")).toContainText("publicate pe Google Play");
+        const links = page.getByTestId("listings").locator("a[href^='https://play.google.com/']");
+        await expect.poll(() => links.count()).toBeGreaterThan(0);
+    });
 });
