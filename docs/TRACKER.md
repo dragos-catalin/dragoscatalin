@@ -162,6 +162,16 @@ See `tracker.csv` for the live list. Summary by area:
 
 ## Session log
 
+### 2026-10-06 — V3-04..07 skins live (2.13.0), V3-20 newsletter live end to end
+
+- Skins: editorial (GSAP kinetic headline + pinned chapters), constellation (lazy R3F sky
+  behind a low-end gate, SVG poster stays), command (real prompt, `/` / ⌘K), devices
+  (CSS-3D ring). three.js is in no page's first load; scans 0; e2e 128 passed. The default
+  skin (V3-08) waits for the owner to look at all five.
+- Newsletter: Brivio fixed in `16c2c0c2e` (shipped in v0.347.9); live form → confirmation
+  email → `/ro/newsletter/confirmed`, confirmed by the owner. Verifying a sending domain now
+  reports whether it can send as itself.
+
 ### 2026-10-06 — V3-29 certificates via Brivio, V3-20 newsletter (2.12.0)
 
 - V3-29 done: home.* and mui.* renew through lego `--dns exec` → Brivio
