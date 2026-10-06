@@ -6,15 +6,20 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { teaserProjects } from "@/skins/shared/projects";
 import { cn } from "@/lib/utils";
+import { SkyCanvasIsland } from "./SkyCanvasIsland";
 import { Starfield } from "./Starfield";
 
-/** Constellation home: headline under a static starfield poster, projects as named stars. */
+/**
+ * Constellation home: headline over a static starfield poster (LCP-safe first paint and the
+ * low-end / reduced-motion fallback), with the R3F sky lazily mounted on top after load + idle.
+ */
 export async function ConstellationHome() {
     const locale = (await getLocale()) as Locale;
     const t = await getTranslations("hero");
     const ts = await getTranslations("skins");
     const items = teaserProjects(6);
     const flagships = new Set(featuredProjects.map((p) => p.slug));
+    const flags = Math.min(flagships.size, 3);
 
     return (
         <>
@@ -22,7 +27,8 @@ export async function ConstellationHome() {
                 aria-labelledby="cs-title"
                 className="relative isolate flex min-h-[80dvh] items-center overflow-hidden"
             >
-                <Starfield flags={Math.min(flagships.size, 3)} />
+                <Starfield flags={flags} />
+                <SkyCanvasIsland flags={flags} />
                 <div className="container-x relative z-10 py-20 text-center">
                     <p className="mb-6 font-mono text-xs tracking-[0.2em] text-accent uppercase">
                         {t("eyebrow")}

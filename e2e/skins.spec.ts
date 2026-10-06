@@ -36,7 +36,8 @@ test.describe("skins", () => {
             );
             // Classic home markers are absent (hero pills belong to classic only).
             expect(await page.locator(".hero-pill").count()).toBe(0);
-            // V3-03 skins are CSS/SVG only; canvases arrive with V3-05/V3-07 guardrails.
+            // Lab runs (navigator.webdriver) never get a canvas: constellation's R3F sky (V3-05)
+            // is gated off there, so the poster is what tests and Lighthouse see.
             expect(await page.locator("canvas").count()).toBe(0);
 
             const nav = page.getByRole("navigation").first();

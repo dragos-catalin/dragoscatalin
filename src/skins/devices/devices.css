@@ -1,6 +1,7 @@
 /* Devices skin home (V3-03). Loaded only by src/app/[locale]/skin/devices/layout.tsx.
-   Pure-CSS device frames (watch / phone / desktop / TV) — no images for the bezels, no canvas.
-   V3-07 may add a 3D carousel later; this 2D wall stays as its fallback. */
+    Pure-CSS device frames (watch / phone / desktop / TV) — no images for the bezels, no canvas.
+    V3-07: DeviceCarousel lays the slides on a CSS 3D ring (perspective + rotateY) on md+ without
+    reduced motion; the server HTML and every other case get the scroll-snap row (.dv-row). */
 
 .dv-wall {
     background:
@@ -53,22 +54,82 @@
     background: var(--line-strong);
 }
 
-.dv-tile {
+/* --- 2D fallback: horizontal scroll-snap row (SSR, < md, reduced motion) --- */
+
+.dv-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.5rem;
+    padding: 0.5rem 0.5rem 1rem;
+}
+
+.dv-row > .dv-slide {
+    flex: 0 0 min(75vw, var(--dv-slide-w, 16rem));
+    scroll-snap-align: center;
+}
+
+/* --- 3D ring (client, md+, motion allowed) --- */
+
+.dv-stage {
+    position: relative;
+    height: 27rem;
+    perspective: 80rem;
+    perspective-origin: 50% 40%;
+    overflow-x: clip;
+    touch-action: pan-y;
+    cursor: grab;
+    user-select: none;
+}
+
+.dv-stage:active {
+    cursor: grabbing;
+}
+
+.dv-ring {
+    position: relative;
+    width: var(--dv-slide-w, 16rem);
+    height: 100%;
+    margin-inline: auto;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dv-ring[data-dragging] {
+    transition: none;
+}
+
+.dv-ring > .dv-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    backface-visibility: hidden;
+}
+
+.dv-card {
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.dv-tile:hover,
-.dv-tile:focus-within {
+.dv-row .dv-card:hover,
+.dv-row .dv-card:focus-visible,
+.dv-ring > [data-front] .dv-card:hover,
+.dv-ring > [data-front] .dv-card:focus-visible {
     transform: translateY(-4px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .dv-tile {
+    .dv-ring,
+    .dv-card {
         transition: none;
     }
 
-    .dv-tile:hover,
-    .dv-tile:focus-within {
+    .dv-row .dv-card:hover,
+    .dv-row .dv-card:focus-visible {
         transform: none;
     }
 }

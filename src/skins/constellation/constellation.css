@@ -1,7 +1,7 @@
 /* Constellation skin home (V3-03). Loaded only by src/app/[locale]/skin/constellation/layout.tsx.
    Always a dark night sky regardless of data-mode: the subtree re-declares the dark neutrals so
-   every token-based utility inside stays AA. The static SVG starfield is the poster — it stays
-   as the reduced-motion / low-end fallback when V3-05 adds the R3F scene. No animation loops. */
+    every token-based utility inside stays AA. The static SVG starfield is the poster and the
+    reduced-motion / low-end fallback; the V3-05 R3F sky (.cs-canvas) cross-fades over it. */
 
 .cs-sky {
     color-scheme: dark;
@@ -34,6 +34,25 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
+    transition: opacity 600ms ease;
+}
+
+/* V3-05: decorative WebGL layer, behind the text (z-10), above the poster. Fades in after its
+   first frame; the poster stays in the DOM and fades out underneath. */
+.cs-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 600ms ease;
+}
+
+.cs-canvas[data-live] {
+    opacity: 1;
+}
+
+section:has(> .cs-canvas[data-live]) > .cs-stars {
+    opacity: 0;
 }
 
 .cs-star {

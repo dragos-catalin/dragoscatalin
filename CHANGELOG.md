@@ -6,6 +6,18 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.13.0] - 2026-10-06
+
+### Added
+
+- **Four skins come alive (V3-04..07), for the owner to pick the default (V3-08).**
+  - **Editorial:** GSAP SplitText kinetic headline (letters rise per line; the server HTML is the finished h1, `aria-label` keeps the sentence) and pinned horizontal chapters of the work on desktop with a fine pointer, with a scroll progress bar; a vertical numbered list on touch, small screens and reduced motion; a focused off-screen chapter scrolls into view.
+  - **Constellation:** a React Three Fiber night sky (custom point shader, slow orbit, twinkle, pointer parallax, flagship stars joined in the accent colour) lazy-loaded after `load` + idle on top of the unchanged SVG poster, behind a low-end gate (reduced motion, webdriver, ≤ 4 cores, < 4 GB, Save-Data, no WebGL2), `frameloop="demand"` at ≤ 30 fps only while visible.
+  - **Command center:** a real prompt — `help`, `whoami`, `ls projects`, `open <slug>`, `cd <page>`, `skin <id>`, `history`, `clear`, Tab completion, history arrows, Ctrl+L — focused from anywhere with `/` or ⌘K (never while typing elsewhere), output in a live region, plus a monitor strip (uptime, build, projects by status). Server HTML stays the complete `whoami` + `ps` page.
+  - **Device wall:** a CSS-3D ring of device mockups with previous/next buttons, arrow keys, swipe and a pausable auto-advance (off under reduced motion); only the front slide is focusable; the server HTML is a 2D scroll-snap row, also used below `md` and under reduced motion.
+- Dependencies: `gsap` 3.15.0, `three` 0.186.1, `@react-three/fiber` 9.8.1 (each loaded only by its skin's route), `@types/three`.
+- e2e `skins-v3.spec.ts` (prompt, shortcut not hijacking the contact form, ring + inert slides, reduced-motion 2D row, accessible kinetic headline, no canvas in lab runs, axe with motion on); unit tests for the command parser, carousel math and the sky gate/accent parsing.
+
 ## [2.12.0] - 2026-10-06
 
 ### Added

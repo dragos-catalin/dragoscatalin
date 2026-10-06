@@ -1,28 +1,12 @@
-import { coverRandom, coverSeed } from "@/components/projects/cover";
-
-const STARS = 140;
-
-function round(n: number) {
-    return Math.round(n * 100) / 100;
-}
+import { SKY_H, SKY_W, skyLayout } from "./layout";
 
 /**
- * Static, deterministic starfield poster (one SVG, ~140 circles, no animation). It is the
- * reduced-motion / low-end fallback that V3-05's lazily-mounted R3F scene will sit on top of.
- * Flagship "stars" are joined by faint constellation lines.
+ * Static, deterministic starfield poster (one SVG, ~140 circles, no animation). It is the LCP-safe
+ * first paint and the reduced-motion / low-end fallback under the lazily mounted R3F sky (V3-05),
+ * which reuses the same layout. Flagship "stars" are joined by faint constellation lines.
  */
 export function Starfield({ flags }: { flags: number }) {
-    const rnd = coverRandom(coverSeed("constellation"));
-    const stars = Array.from({ length: STARS }, () => ({
-        x: round(rnd() * 100),
-        y: round(rnd() * 60),
-        r: round(0.04 + rnd() * rnd() * 0.22),
-        o: round(0.35 + rnd() * 0.65),
-    }));
-    const bright = Array.from({ length: Math.max(flags, 2) + 3 }, (_, i) => ({
-        x: round(12 + i * 15 + rnd() * 6),
-        y: round(14 + rnd() * 30),
-    }));
+    const { stars, bright } = skyLayout(flags);
     const path = bright.map((p, i) => `${i === 0 ? "M" : "L"}${p.x} ${p.y}`).join(" ");
 
     return (
@@ -30,7 +14,7 @@ export function Starfield({ flags }: { flags: number }) {
             aria-hidden="true"
             focusable="false"
             className="cs-stars"
-            viewBox="0 0 100 60"
+            viewBox={`0 0 ${SKY_W} ${SKY_H}`}
             preserveAspectRatio="xMidYMid slice"
         >
             {stars.map((s, i) => (

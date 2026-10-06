@@ -1,7 +1,8 @@
-/* Editorial skin home (V3-03). Loaded only by src/app/[locale]/skin/editorial/layout.tsx.
+/* Editorial skin home (V3-03, kinetic V3-04). Loaded only by src/app/[locale]/skin/editorial/layout.tsx.
     Plain :root tokens only (@theme inline vars such as --ease-out-expo / --font-display are
     inlined by Tailwind and may not exist as CSS variables here). Entrance motion is CSS and
-    transform-only on the headline, so the LCP element paints in the first frame. */
+    transform-only on the headline, so the LCP element paints in the first frame. GSAP
+    (KineticHeadline, ChaptersPin) only enhances after hydration via data attributes. */
 
 .ed-masthead {
     border-bottom: 3px double var(--line-strong);
@@ -20,6 +21,21 @@
     animation-delay: calc(var(--i, 0) * 120ms);
 }
 
+/* SplitText owns the motion once it runs; the CSS rise steps aside. */
+.ed-headline[data-kinetic] .ed-line {
+    animation: none;
+}
+
+.ed-headline .ed-word-mask {
+    /* Room for descenders and the rotate on entry; SplitText sets overflow: clip. */
+    padding-block: 0.06em 0.12em;
+    margin-block: -0.06em -0.12em;
+}
+
+.ed-headline .ed-char {
+    will-change: transform;
+}
+
 .ed-fade {
     animation: ed-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
 }
@@ -28,23 +44,144 @@
     border-top: 1px solid var(--line-strong);
 }
 
-.ed-index-item {
+/* Chapters — default (touch, small screens, reduced motion, no JS): a vertical index. */
+.ed-progress-rail {
+    display: none;
+}
+
+.ed-track {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 3rem);
+    border-top: 1px solid var(--line-strong);
+}
+
+.ed-chapter {
     border-bottom: 1px solid var(--line);
     transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.ed-index-item:hover,
-.ed-index-item:focus-within {
+.ed-chapter:hover,
+.ed-chapter:focus-within {
     background: var(--accent-soft);
 }
 
-.ed-index-name {
+.ed-chapter-link {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    column-gap: 1rem;
+    row-gap: 0.5rem;
+    align-items: baseline;
+    padding-block: 1.5rem;
+}
+
+.ed-chapter-num {
+    grid-row: span 3;
+    font-size: 1.5rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.ed-chapter-name {
+    font-size: clamp(1.875rem, 6vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.ed-index-item:hover .ed-index-name,
-.ed-index-item:focus-within .ed-index-name {
+.ed-chapter:hover .ed-chapter-name,
+.ed-chapter:focus-within .ed-chapter-name {
     transform: translateX(0.5rem);
+}
+
+@media (min-width: 768px) {
+    .ed-chapter-link {
+        grid-template-columns: 5rem minmax(0, 22rem) 1fr auto;
+        column-gap: 2rem;
+    }
+
+    .ed-chapter-num {
+        grid-row: auto;
+        font-size: 2rem;
+    }
+}
+
+/* Chapters — pinned horizontal track (ChaptersPin sets data-pinned only at >= 1024px,
+   pointer: fine, no reduced-motion). The section fills the viewport while pinned. */
+.ed-chapters[data-pinned] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100dvh;
+    /* clip, not hidden: focusing an off-screen link must not scroll this box sideways. */
+    overflow: clip;
+}
+
+.ed-chapters[data-pinned] .ed-progress-rail {
+    display: block;
+    height: 2px;
+    background: var(--line);
+}
+
+.ed-chapters[data-pinned] .ed-progress {
+    height: 100%;
+    background: var(--accent);
+    transform-origin: left center;
+    transform: scaleX(0);
+}
+
+.ed-chapters[data-pinned] .ed-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: max(clamp(1rem, 4vw, 3rem), calc((100vw - var(--container-max)) / 2));
+    margin-top: 2.5rem;
+    border-top: 0;
+    will-change: transform;
+}
+
+.ed-chapters[data-pinned] .ed-chapter {
+    flex: 0 0 auto;
+    width: clamp(22rem, 34vw, 32rem);
+    border-bottom: 0;
+    border-left: 1px solid var(--line-strong);
+}
+
+.ed-chapters[data-pinned] .ed-chapter:last-child {
+    border-right: 1px solid var(--line-strong);
+}
+
+.ed-chapters[data-pinned] .ed-chapter-link {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    height: min(62dvh, 34rem);
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.ed-chapters[data-pinned] .ed-chapter-num {
+    font-size: clamp(6rem, 11vw, 10rem);
+    line-height: 0.8;
+    letter-spacing: -0.06em;
+    will-change: transform;
+}
+
+.ed-chapters[data-pinned] .ed-chapter-name {
+    margin-top: auto;
+    font-size: clamp(2.25rem, 3.6vw, 3.5rem);
+}
+
+.ed-chapters[data-pinned] .ed-chapter-meta {
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+}
+
+.ed-chapters[data-pinned] .ed-chapter-link:focus-visible {
+    outline-offset: -4px;
 }
 
 @keyframes ed-rise {
@@ -66,12 +203,12 @@
         animation: none;
     }
 
-    .ed-index-name {
+    .ed-chapter-name {
         transition: none;
     }
 
-    .ed-index-item:hover .ed-index-name,
-    .ed-index-item:focus-within .ed-index-name {
+    .ed-chapter:hover .ed-chapter-name,
+    .ed-chapter:focus-within .ed-chapter-name {
         transform: none;
     }
 }

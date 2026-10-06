@@ -9,28 +9,31 @@ import type { Locale } from "@/i18n/routing";
 import { shotSrc, type ShotKey } from "@/lib/shots";
 import { cn } from "@/lib/utils";
 import { teaserProjects } from "@/skins/shared/projects";
+import { pickDevice, type Device } from "./carousel-math";
+import { DeviceCarousel, type DeviceCarouselSlide } from "./DeviceCarousel";
 
-type Device = "watch" | "phone" | "desktop" | "tv";
+/** Preferred frame per slot, in order; a project that does not run there gets its own first device. */
+const SLOTS: Device[] = ["desktop", "phone", "tv", "watch", "desktop", "phone"];
 
-/** Which frame each tile gets, in order; spans keep the wall balanced at lg (6 columns). */
-const LAYOUT: { device: Device; shot: ShotKey; span: string; frameMax: string }[] = [
-    { device: "desktop", shot: "desktop-dark", span: "lg:col-span-4", frameMax: "" },
-    { device: "phone", shot: "mobile-dark", span: "lg:col-span-2", frameMax: "max-w-[11rem]" },
-    { device: "tv", shot: "desktop-dark", span: "lg:col-span-3", frameMax: "" },
-    { device: "watch", shot: "mobile-dark", span: "lg:col-span-1", frameMax: "max-w-[8rem]" },
-    { device: "desktop", shot: "desktop-dark", span: "lg:col-span-2", frameMax: "" },
-];
+const FRAME: Record<Device, { shot: ShotKey; max: string }> = {
+    desktop: { shot: "desktop-dark", max: "" },
+    tv: { shot: "desktop-dark", max: "" },
+    phone: { shot: "mobile-dark", max: "max-w-[8.5rem]" },
+    watch: { shot: "mobile-dark", max: "max-w-[7rem]" },
+};
 
 function Screen({ project, shot, alt }: { project: Project; shot: ShotKey; alt: string }) {
     const src = shotSrc(project.slug, shot);
+    // The h1 is the LCP on this page, so no carousel image gets `priority`.
     if (src)
         return (
             <Image
                 src={src}
                 alt={alt}
                 fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
+                sizes="(min-width: 48rem) 16rem, 75vw"
                 className="object-cover object-top"
+                draggable={false}
             />
         );
     // No screenshot yet (public/shots/manifest.json): generated cover art, decorative.
@@ -42,7 +45,53 @@ export async function DevicesHome() {
     const locale = (await getLocale()) as Locale;
     const t = await getTranslations("hero");
     const ts = await getTranslations("skins");
-    const items = teaserProjects(LAYOUT.length);
+    const items = teaserProjects(SLOTS.length);
+
+    const slides: DeviceCarouselSlide[] = items.map((p, i) => {
+        const kind = pickDevice(
+            (p.surfaces ?? []).map((s) => s.label),
+            SLOTS[i % SLOTS.length]!,
+        );
+        const frame = FRAME[kind];
+        const device = ts(`devices.${kind}`);
+        return {
+            key: p.slug,
+            label: ts("devices.slideLabel", {
+                index: i + 1,
+                total: items.length,
+                name: p.name,
+            }),
+            content: (
+                <Link
+                    href={`/projects/${p.slug}`}
+                    draggable={false}
+                    className="dv-card flex h-full flex-col items-center justify-end gap-4 rounded-card p-2"
+                >
+                    <figure className="w-full">
+                        <div className={cn("dv-frame mx-auto w-full", `dv-${kind}`, frame.max)}>
+                            <Screen
+                                project={p}
+                                shot={frame.shot}
+                                alt={ts("devices.onDevice", { name: p.name, device })}
+                            />
+                        </div>
+                        {kind === "tv" ? <div aria-hidden="true" className="dv-stand" /> : null}
+                        <figcaption className="mt-4 text-center">
+                            <span className="block font-display text-lg font-bold text-fg">
+                                {p.name}
+                            </span>
+                            <span className="block text-sm text-pretty text-fg-muted">
+                                {p.tagline[locale]}
+                            </span>
+                            <span className="mt-1 block font-mono text-[11px] tracking-[0.16em] text-fg-muted uppercase">
+                                {device}
+                            </span>
+                        </figcaption>
+                    </figure>
+                </Link>
+            ),
+        };
+    });
 
     return (
         <>
@@ -88,53 +137,16 @@ export async function DevicesHome() {
                             {ts("allProjects")}
                         </Link>
                     </div>
-                    <ul className="grid grid-cols-1 items-end gap-8 sm:grid-cols-2 lg:grid-cols-6">
-                        {items.map((p, i) => {
-                            const slot = LAYOUT[i % LAYOUT.length]!;
-                            const device = ts(`devices.${slot.device}`);
-                            return (
-                                <li key={p.slug} className={cn("dv-tile", slot.span)}>
-                                    <Link
-                                        href={`/projects/${p.slug}`}
-                                        className="flex flex-col items-center gap-4 rounded-card p-2"
-                                    >
-                                        <figure className="w-full">
-                                            <div
-                                                className={cn(
-                                                    "dv-frame mx-auto w-full",
-                                                    `dv-${slot.device}`,
-                                                    slot.frameMax,
-                                                )}
-                                            >
-                                                <Screen
-                                                    project={p}
-                                                    shot={slot.shot}
-                                                    alt={ts("devices.onDevice", {
-                                                        name: p.name,
-                                                        device,
-                                                    })}
-                                                />
-                                            </div>
-                                            {slot.device === "tv" ? (
-                                                <div aria-hidden="true" className="dv-stand" />
-                                            ) : null}
-                                            <figcaption className="mt-4 text-center">
-                                                <span className="block font-display text-lg font-bold text-fg">
-                                                    {p.name}
-                                                </span>
-                                                <span className="block text-sm text-pretty text-fg-muted">
-                                                    {p.tagline[locale]}
-                                                </span>
-                                                <span className="mt-1 block font-mono text-[11px] tracking-[0.16em] text-fg-muted uppercase">
-                                                    {device}
-                                                </span>
-                                            </figcaption>
-                                        </figure>
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                    <DeviceCarousel
+                        slides={slides}
+                        labels={{
+                            carousel: ts("devices.carousel"),
+                            previous: ts("devices.previous"),
+                            next: ts("devices.next"),
+                            pause: ts("devices.pause"),
+                            play: ts("devices.play"),
+                        }}
+                    />
                 </div>
             </section>
 

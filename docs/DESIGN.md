@@ -65,23 +65,27 @@ it keeps the classic chrome and only picks up the skin's tokens through
 `html[data-skin="<id>"]` in `globals.css` (radius, display font, neutral tint at the same
 lightness, so contrast pairs still hold).
 
-| Skin            | Home                                                                 | Canvas policy                                   |
-| --------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
-| `classic`       | The original design (this file's SCENE). **Default.**                | none, ever                                      |
-| `editorial`     | Magazine masthead, kinetic headline (CSS), numbered index of work    | none                                            |
-| `constellation` | Night sky; static SVG starfield poster, projects as stars            | allowed from V3-05 (R3F), poster stays fallback |
-| `command`       | Terminal `whoami` + `ps` process table, monospace, keyboard hint     | none                                            |
-| `devices`       | Wall of CSS device frames (watch/phone/desktop/TV) with shots/covers | allowed from V3-07 (3D carousel), 2D fallback   |
+| Skin            | Home                                                                                                                                             | Canvas policy                          |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| `classic`       | The original design (this file's SCENE). **Default.**                                                                                            | none, ever                             |
+| `editorial`     | Magazine cover: GSAP SplitText headline, pinned horizontal chapters (desktop, fine pointer); vertical list on touch/reduced motion               | none                                   |
+| `constellation` | Night sky: SVG poster first, lazy R3F star field after load + idle behind the low-end gate                                                       | R3F (V3-05); poster stays the fallback |
+| `command`       | Terminal: real prompt (help, ls, open, cd, skin, history, Tab completion), `/` or ⌘K to focus, live monitor strip                                | none                                   |
+| `devices`       | CSS-3D ring of device mockups (prev/next, arrows, swipe, pausable auto-advance); 2D snap row before hydration, below md and under reduced motion | none (CSS 3D, no WebGL)                |
 
 - **Mechanics** — cookie `dc-skin` (1 year). `?skin=<id>` on any URL sets it and 307s to the
   clean URL; `?skin=classic` or an invalid id clears it. `src/proxy.ts` rewrites `/` and `/ro`
   to the static `src/app/[locale]/skin/<id>/` route; direct `/skin/*` URLs are 404. The theme
   menu has a Skin group; skin chrome always shows "Back to classic".
-- **Canvas guardrails** (constellation/devices, later tasks): mount after LCP and only when
-  the device passes a low-end gate, `frameloop="demand"`, pause offscreen and in hidden tabs,
-  never under `prefers-reduced-motion` (the static poster IS that fallback), budget-gated.
+- **Canvas guardrails** (constellation, `src/skins/constellation/gate.ts` +
+  `SkyCanvasIsland.tsx`): dynamic import after `load` + `requestIdleCallback`; skipped under
+  `prefers-reduced-motion`, `navigator.webdriver`, ≤ 4 cores, < 4 GB device memory,
+  Save-Data or no WebGL2 (the static poster IS that fallback); `frameloop="demand"` driven at
+  ≤ 30 fps only while visible and on screen; DPR ≤ 1.5; disposed on unmount.
   `SKIN_META[id].hasCanvas` in `src/skins/registry.ts` is the allowlist; e2e asserts zero
-  canvases until then.
+  canvases in lab runs.
+- **GSAP** (editorial only) and **three / R3F** (constellation only) are route-local: never
+  imported by shared chrome or classic.
 - **Rules** — skin chrome never uses `usePathname` (rewrite → hydration mismatch), so nav has
   no `aria-current`. Skin homes keep canonical `/` / `/ro` and are not in the sitemap or
   llms.txt. Every skin passes `pnpm scan:contrast`, `pnpm scan:layout`, axe and Lighthouse.

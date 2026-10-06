@@ -1,13 +1,36 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { ContactSection } from "@/components/contact/ContactSection";
 import { ButtonLink } from "@/components/ui";
+import { projects } from "@/data/projects";
+import type { ProjectStatus } from "@/data/types";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import { SKINS } from "@/skins/registry";
+import { backToClassicHref } from "@/skins/shared/nav";
 import { teaserProjects } from "@/skins/shared/projects";
+import pkg from "../../../package.json";
+import type { HelpKey } from "./commands";
+import { Terminal, type TerminalLabels } from "./Terminal";
+import { Uptime } from "./Uptime";
 
-/** Command-center home: a `whoami` terminal and a process table of projects. */
+const HELP_KEYS: readonly HelpKey[] = [
+    "help",
+    "whoami",
+    "projects",
+    "open",
+    "cd",
+    "theme",
+    "clear",
+    "history",
+];
+
+/**
+ * Command-center home: a `whoami` terminal with an interactive prompt (V3-06), a live system
+ * monitor strip and a process table of projects. Everything but the prompt and the uptime is
+ * server-rendered, so the page is complete without JS.
+ */
 export async function CommandHome() {
     const locale = (await getLocale()) as Locale;
     const t = await getTranslations("hero");
@@ -15,6 +38,34 @@ export async function CommandHome() {
     const tp = await getTranslations("projects");
     const items = teaserProjects(8);
     const host = new URL(site.url).host;
+    const homePath = backToClassicHref(locale).split("?")[0] ?? "/";
+
+    const counts = new Map<ProjectStatus, number>();
+    for (const p of projects) counts.set(p.status, (counts.get(p.status) ?? 0) + 1);
+
+    const help = Object.fromEntries(HELP_KEYS.map((k) => [k, ts(`command.help.${k}`)])) as Record<
+        HelpKey,
+        string
+    >;
+    const labels: TerminalLabels = {
+        help,
+        whoami: [t("eyebrow"), t("subtitle")],
+        notFound: ts.raw("command.notFound") as string,
+        noProject: ts.raw("command.noProject") as string,
+        noPage: ts.raw("command.noPage") as string,
+        noSkin: ts.raw("command.noSkin") as string,
+        opening: ts.raw("command.opening") as string,
+        historyEmpty: ts("command.historyEmpty"),
+        inputLabel: ts("command.inputLabel"),
+        placeholder: ts("command.placeholder"),
+        shortcut: ts("command.shortcut"),
+    };
+    const termProjects = projects.map((p) => ({
+        slug: p.slug,
+        name: p.name,
+        statusLabel: tp(`status.${p.status}`),
+        tagline: p.tagline[locale],
+    }));
 
     return (
         <>
@@ -58,6 +109,44 @@ export async function CommandHome() {
                                 <kbd className="cmd-kbd">Tab</kbd> /{" "}
                                 <kbd className="cmd-kbd">Enter</kbd> — {ts("command.hint")}
                             </p>
+                            <Terminal
+                                labels={labels}
+                                projects={termProjects}
+                                skins={SKINS}
+                                homePath={homePath}
+                                user="~"
+                            />
+                        </div>
+                        <div
+                            role="group"
+                            aria-label={ts("command.monitor.title")}
+                            className="cmd-monitor flex flex-wrap items-center gap-x-6 gap-y-2 px-4 py-2 text-xs text-fg-muted"
+                        >
+                            <p>
+                                {ts("command.monitor.uptime")} <Uptime />
+                            </p>
+                            <p>
+                                {ts("command.monitor.build")}{" "}
+                                <span className="text-fg">v{pkg.version}</span>
+                            </p>
+                            <p>
+                                {ts("command.monitor.projects")}{" "}
+                                <span className="text-fg">{projects.length}</span>
+                            </p>
+                            <ul className="flex flex-wrap gap-x-4 gap-y-1">
+                                {[...counts].map(([status, n]) => (
+                                    <li key={status}>
+                                        <span
+                                            className={cn(
+                                                status === "live" ? "text-success" : "text-fg",
+                                            )}
+                                        >
+                                            {n}
+                                        </span>{" "}
+                                        {tp(`status.${status}`)}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </div>

@@ -483,7 +483,32 @@
       "colName": "Nume",
       "colStatus": "Stare",
       "colStack": "Tehnologii",
-      "hint": "Tastatura întâi: Tab trece de la un link la altul, Enter îl deschide."
+      "hint": "Tastatura întâi: Tab trece de la un link la altul, Enter îl deschide.",
+      "help": {
+        "help": "Afișează acest ajutor",
+        "whoami": "Cine sunt",
+        "projects": "Listează toate proiectele",
+        "open": "Deschide pagina unui proiect",
+        "cd": "Mergi la o pagină",
+        "theme": "Schimbă aspectul site-ului",
+        "clear": "Golește ecranul",
+        "history": "Afișează istoricul comenzilor"
+      },
+      "notFound": "comandă negăsită: {cmd} — încearcă help",
+      "noProject": "proiect inexistent: {slug} — încearcă ls projects",
+      "noPage": "pagină inexistentă: {page}",
+      "noSkin": "aspect inexistent: {id}",
+      "opening": "se deschide {target}…",
+      "historyEmpty": "Nicio comandă încă.",
+      "inputLabel": "Comandă",
+      "placeholder": "scrie help și apasă Enter",
+      "shortcut": "activează promptul de oriunde",
+      "monitor": {
+        "title": "Monitor de sistem",
+        "uptime": "timp activ",
+        "build": "versiune",
+        "projects": "proiecte"
+      }
     },
     "devices": {
       "name": "Dispozitive",
@@ -492,7 +517,13 @@
       "phone": "Telefon",
       "desktop": "Desktop",
       "tv": "TV",
-      "onDevice": "{name} pe {device}"
+      "onDevice": "{name} pe {device}",
+      "carousel": "Aplicații pe dispozitivele lor",
+      "previous": "Proiectul anterior",
+      "next": "Proiectul următor",
+      "pause": "Oprește rotația",
+      "play": "Pornește rotația",
+      "slideLabel": "{index} din {total}: {name}"
     }
   },
   "newsletter": {

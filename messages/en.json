@@ -483,7 +483,32 @@
       "colName": "Name",
       "colStatus": "Status",
       "colStack": "Stack",
-      "hint": "Keyboard first: Tab moves between links, Enter opens one."
+      "hint": "Keyboard first: Tab moves between links, Enter opens one.",
+      "help": {
+        "help": "Show this help",
+        "whoami": "Who I am",
+        "projects": "List all projects",
+        "open": "Open a project page",
+        "cd": "Go to a page",
+        "theme": "Switch the site skin",
+        "clear": "Clear the screen",
+        "history": "Show command history"
+      },
+      "notFound": "command not found: {cmd} — try help",
+      "noProject": "no such project: {slug} — try ls projects",
+      "noPage": "no such page: {page}",
+      "noSkin": "no such skin: {id}",
+      "opening": "opening {target}…",
+      "historyEmpty": "No commands yet.",
+      "inputLabel": "Command",
+      "placeholder": "type help and press Enter",
+      "shortcut": "focus the prompt from anywhere",
+      "monitor": {
+        "title": "System monitor",
+        "uptime": "uptime",
+        "build": "build",
+        "projects": "projects"
+      }
     },
     "devices": {
       "name": "Devices",
@@ -492,7 +517,13 @@
       "phone": "Phone",
       "desktop": "Desktop",
       "tv": "TV",
-      "onDevice": "{name} on {device}"
+      "onDevice": "{name} on {device}",
+      "carousel": "Apps on their devices",
+      "previous": "Previous project",
+      "next": "Next project",
+      "pause": "Pause rotation",
+      "play": "Play rotation",
+      "slideLabel": "{index} of {total}: {name}"
     }
   },
   "newsletter": {
