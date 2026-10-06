@@ -57,19 +57,16 @@ export async function OpenSourceStrip() {
                 </ButtonLink>
             }
         >
-            <ul
-                className="surface rounded-card divide-y divide-line overflow-hidden"
-                aria-label={t("packages")}
-            >
+            <ul className="grid grid-cols-1 gap-3 md:grid-cols-2" aria-label={t("packages")}>
                 {allPackages.map((p) => {
                     const key = `${p.registry}:${p.name}`;
                     const url = fallbackUrl(p);
                     return (
                         <li
                             key={key}
-                            className="flex flex-wrap items-center gap-x-4 gap-y-2 px-5 py-3 transition-colors hover:bg-surface-raised"
+                            className="surface rounded-card flex min-w-0 flex-wrap items-center gap-x-4 gap-y-2 px-5 py-4 shadow-elev-1 transition-[border-color,box-shadow] duration-200 hover:border-line-strong hover:shadow-elev-2"
                         >
-                            <span className="font-mono text-[11px] tracking-[0.16em] text-fg-subtle uppercase">
+                            <span className="w-14 shrink-0 font-mono text-[11px] tracking-[0.16em] text-fg-subtle uppercase">
                                 {p.registry}
                             </span>
                             <a

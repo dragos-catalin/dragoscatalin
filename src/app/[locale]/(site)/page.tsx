@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { ContactSection } from "@/components/contact/ContactSection";
 import { Hero } from "@/components/hero/Hero";
 import { Featured } from "@/components/home/Featured";
+import { HelpBento } from "@/components/home/HelpBento";
 import { NowStrip } from "@/components/home/NowStrip";
 import { OpenSourceStrip } from "@/components/home/OpenSourceStrip";
 import { ProjectsGrid } from "@/components/home/ProjectsGrid";
@@ -28,6 +29,7 @@ export default function HomePage() {
         <>
             <Hero />
             <NowStrip />
+            <HelpBento />
             <Featured />
             <ProjectsGrid />
             <OpenSourceStrip />

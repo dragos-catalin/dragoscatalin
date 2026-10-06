@@ -11,19 +11,16 @@ Art direction contract. Every visual change is scored against this by the
 > animated objects** (canvas, shaders, scroll-linked springs, orbiting nodes)
 > anywhere on the site. Motion is entrance-only or hover-only.
 
-- **SUBJECT** — Calm, typographic hero: a centred two-line display headline
-  (line 2 in `gradient-text` accent→counter), a status badge, one sentence,
-  two pill CTAs and a wrapped row of technology pills with brand icons.
-- **COMPOSITION** — Everything centred, `max-w-4xl`, ≥ 45 % negative space.
-  Behind: one static ambient glow (`bg-accent-soft` blurred 120px) and a
-  60px grid pattern at 3–5 % masked to the centre. Ultra-wide (>21:9): content
-  stays `--container-max` (88rem) centred, background fills.
-- **PALETTE (OKLCH, brand Keystone)** — slate neutrals, hue 265: dark base
-  `oklch(0.155 0.016 265)`, surface `oklch(0.182 0.016 265)`, text
-  `oklch(0.95 0.01 265)`. Light base `oklch(0.99 0.004 265)`, text
-  `oklch(0.2 0.01 265)`. Accent = user-chosen, default **Ember**
-  `oklch(0.68 0.19 42)` #f46622 (owner, gate A 2026-10-05); cool counter =
-  accent hue +140°. Full table and proof: [`brand/BRAND.md`](../brand/BRAND.md).
+- **SUBJECT** — (V3-41, 2026-10-06, owner asked for a new layout "representative
+  of me") Asymmetric hero: left, status badge + mono eyebrow, a two-line display
+  headline (line 2 in `gradient-text`, OKLCH accent→accent/counter mix), one
+  sentence, two pill CTAs. Right, the **"What I ship" panel**: six layers from
+  pocket to network (`src/data/stack.ts`), each with the registry projects that
+  prove it. Tech pills sit below as a left-labelled band.
+- **COMPOSITION** — 1.15fr / 0.85fr grid on `lg`, stacked below; text left-aligned
+  on the golden-ratio line, ≥ 40 % negative space. Behind: one static ambient glow
+  top-left of the headline and the 60px grid at 3–5 %. Ultra-wide: content stays
+  `--container-max`, background fills.
 - **LIGHTING** — a single soft accent glow behind the headline; page-wide
   static mesh (`.page-mesh`: one diagonal accent→counter gradient + one radial
   glow at the top). Nothing moves.
@@ -109,15 +106,16 @@ and DTCG tokens in `brand/tokens.json`.
 
 ## Section signatures (home)
 
-| Section     | Subject                                           | Motion                  |
-| ----------- | ------------------------------------------------- | ----------------------- |
-| Hero        | Centred headline + tech pills, static glow/grid   | entrance stagger only   |
-| Now         | Terminal-style status strip, live GitHub activity | typewriter once         |
-| Flagships   | 2 large cards (codai, brivio) with product cover  | cover parallax on hover |
-| Projects    | Filterable grid, `<ViewTransition>` covers        | stagger reveal          |
-| Open source | Packages with live downloads/stars                | count-up                |
-| Timeline    | Year rail (2015→2026), static gradient rail       | items reveal once       |
-| Contact     | Minimal form, invisible BotID                     | none                    |
+| Section     | Subject                                         | Motion                |
+| ----------- | ----------------------------------------------- | --------------------- |
+| Hero        | Split headline + stack layers panel, tech band  | entrance stagger only |
+| Now         | One-line status strip with live dot (+ heatmap) | dot ping only         |
+| Help        | Audience bento (3/2, 2/3) from services.ts      | hover lift            |
+| Flagships   | 3/2 bento, covers list each product's surfaces  | hover lift            |
+| Projects    | Filterable grid, `<ViewTransition>` covers      | stagger reveal        |
+| Open source | Packages with live downloads/stars              | count-up              |
+| Timeline    | Year ledger, ≤ 8 entries per year then +N       | none                  |
+| Contact     | Minimal form, invisible BotID                   | none                  |
 
 ## Anti-patterns to reject
 

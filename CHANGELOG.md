@@ -6,6 +6,18 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.14.0] - 2026-10-06
+
+### Changed
+
+- **Classic home redesign (V3-41).** Owner: "arată urat" — new layout, same Keystone brand.
+  - **Hero:** asymmetric split — headline, one line of proof and the CTAs on the left; on the right a "What I ship" panel that draws _from cloud to your pocket_ as six layers (Android/Wear/TV → desktop → web → AI → APIs → cloud & network), each linking the registry projects that prove it (`src/data/stack.ts`, tested). The headline no longer breaks mid-word ("cap-/coadă"); the gradient interpolates in OKLCH and stays on the accent instead of going olive. Tech pills moved to a left-labelled band under the fold line; the scroll hint is gone.
+  - **New "How I can help" bento** (`HelpBento`) from `src/data/services.ts`: the four audiences in a wide/narrow rhythm with icon, lead, proof projects and a link into `/services#<audience>`.
+  - **Flagships:** 3/2 asymmetric bento; covers show each product's real surfaces (Console, Gateway, Desktop, Android, SDKs…) on a fine grid instead of an empty gradient with a 15 % watermark.
+  - **Projects:** six cards in an even 1/2/3-column grid (cards had unequal widths); covers drop the duplicated stack chips and the heavy orange offset shadow for an outlined accent echo; the monogram stays light on the always-dark cover in light mode.
+  - **Now** is a one-line strip with a live dot (no hollow card when the GitHub heatmap is unavailable); **open source** is a two-column list of package cards; the **timeline** is a single-column year ledger capped at eight entries per year with "+N".
+  - Section rhythm tightened (`py-16 md:py-24`) and every section gets `scroll-mt-24` under the floating header.
+
 ## [2.13.0] - 2026-10-06
 
 ### Added

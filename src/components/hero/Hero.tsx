@@ -1,21 +1,19 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Badge, ButtonLink } from "@/components/ui";
 import { HeroItem, HeroReveal } from "./HeroReveal";
+import { StackLayers } from "./StackLayers";
 import { TechStack } from "./TechStack";
 
 export async function Hero() {
     const t = await getTranslations("hero");
 
     return (
-        <section
-            id="home"
-            className="relative isolate flex min-h-[calc(100dvh-6rem)] items-center justify-center overflow-hidden md:min-h-[calc(100dvh-7rem)]"
-        >
-            {/* Ambient glow — static, GPU-cheap */}
+        <section id="home" className="relative isolate overflow-hidden">
+            {/* Ambient glow behind the headline — static, GPU-cheap */}
             <div
                 aria-hidden="true"
-                className="pointer-events-none absolute top-1/2 left-1/2 -z-10 size-[min(600px,90vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-soft blur-[120px]"
+                className="pointer-events-none absolute top-[18%] left-[8%] -z-10 size-[min(560px,90vw)] rounded-full bg-accent-soft blur-[120px]"
             />
             {/* Grid pattern */}
             <div
@@ -23,65 +21,64 @@ export async function Hero() {
                 className="hero-grid pointer-events-none absolute inset-0 -z-10"
             />
 
-            <div className="container-x relative z-10 py-24 lg:py-28">
-                <HeroReveal className="mx-auto flex max-w-4xl flex-col items-center text-center">
-                    <HeroItem index={0} className="mb-10">
-                        <Badge variant="success" dot className="tracking-wide uppercase">
-                            {t("available")}
-                        </Badge>
-                    </HeroItem>
+            <div className="container-x relative z-10 pt-16 pb-14 md:pt-24 lg:pt-28">
+                <HeroReveal className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
+                    <div className="flex flex-col items-start">
+                        <HeroItem index={0} className="mb-8 flex flex-wrap items-center gap-3">
+                            <Badge variant="success" dot className="tracking-wide uppercase">
+                                {t("available")}
+                            </Badge>
+                            <span className="font-mono text-xs tracking-[0.14em] text-fg-subtle uppercase">
+                                {t("eyebrow")}
+                            </span>
+                        </HeroItem>
 
-                    <HeroItem index={1} lcp className="mb-6">
-                        <h1 className="font-display text-5xl leading-[0.95] font-extrabold tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl">
-                            <span className="block text-fg">{t("titleLine1")}</span>
-                            <span className="gradient-text block">{t("titleLine2")}</span>
-                        </h1>
-                    </HeroItem>
+                        <HeroItem index={1} lcp className="mb-6">
+                            <h1 className="font-display text-[clamp(2.6rem,6.4vw,5.6rem)] leading-[0.95] font-extrabold tracking-tighter text-balance">
+                                <span className="block text-fg">{t("titleLine1")}</span>
+                                <span className="gradient-text block pb-1">{t("titleLine2")}</span>
+                            </h1>
+                        </HeroItem>
 
-                    <HeroItem index={2} className="mb-10">
-                        <p className="mx-auto max-w-xl text-base leading-relaxed text-pretty text-fg-muted sm:text-lg">
-                            {t("subtitle")}
-                        </p>
-                    </HeroItem>
+                        <HeroItem index={2} className="mb-9">
+                            <p className="max-w-xl text-base leading-relaxed text-pretty text-fg-muted sm:text-lg">
+                                {t("subtitle")}
+                            </p>
+                        </HeroItem>
 
-                    <HeroItem index={3} className="mb-20 flex flex-col gap-3 sm:flex-row">
-                        <ButtonLink
-                            href="/projects"
-                            variant="primary"
-                            size="lg"
-                            className="rounded-pill px-8"
+                        <HeroItem
+                            index={3}
+                            className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row"
                         >
-                            {t("ctaProjects")}
-                            <ArrowDown className="ml-2 size-4" aria-hidden="true" />
-                        </ButtonLink>
-                        <ButtonLink
-                            href="/#contact"
-                            variant="secondary"
-                            size="lg"
-                            className="rounded-pill px-8"
-                        >
-                            {t("ctaContact")}
-                        </ButtonLink>
-                    </HeroItem>
+                            <ButtonLink
+                                href="/projects"
+                                variant="primary"
+                                size="lg"
+                                className="rounded-pill px-8"
+                            >
+                                {t("ctaProjects")}
+                                <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                            </ButtonLink>
+                            <ButtonLink
+                                href="/#contact"
+                                variant="secondary"
+                                size="lg"
+                                className="rounded-pill px-8"
+                            >
+                                {t("ctaContact")}
+                            </ButtonLink>
+                        </HeroItem>
+                    </div>
 
-                    <HeroItem index={4} className="w-full">
-                        <TechStack label={t("techLabel")} />
+                    <HeroItem index={4}>
+                        <StackLayers />
                     </HeroItem>
                 </HeroReveal>
-            </div>
 
-            <a
-                href="#now"
-                aria-label={t("scroll")}
-                className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 rounded-pill p-2 text-fg-subtle transition-colors hover:text-fg-muted"
-            >
-                <span
-                    aria-hidden="true"
-                    className="flex h-8 w-5 items-start justify-center rounded-pill border border-line-strong p-1.5"
-                >
-                    <span className="hero-scroll-dot size-1 rounded-full bg-fg-muted" />
-                </span>
-            </a>
+                <div className="mt-16 border-t border-line pt-8 md:mt-20">
+                    <TechStack label={t("techLabel")} />
+                </div>
+            </div>
         </section>
     );
 }

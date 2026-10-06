@@ -29,7 +29,7 @@ export function Section({
 }: SectionProps) {
     const hasHeader = Boolean(eyebrow || title || subtitle || action);
     return (
-        <section id={id} className={cn("relative py-20 md:py-28", className)}>
+        <section id={id} className={cn("relative scroll-mt-24 py-16 md:py-24", className)}>
             <div className={cn("container-x", innerClassName)}>
                 {hasHeader ? (
                     <div className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">

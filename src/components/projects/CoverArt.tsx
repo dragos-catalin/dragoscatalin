@@ -117,9 +117,12 @@ function pattern(family: Family, rnd: () => number, id: string): ReactNode {
 export function CoverArt({
     project,
     className,
+    chips: showChips = true,
 }: {
     project: Project;
     className?: string;
+    /** Stack chips drawn on the cover. Off where the card already lists the stack. */
+    chips?: boolean;
 }): ReactNode {
     const seed = coverSeed(project.slug);
     const rnd = coverRandom(seed);
@@ -128,8 +131,8 @@ export function CoverArt({
     const gx = round(20 + rnd() * 40);
     const gy = round(10 + rnd() * 40);
     const letters = monogram(project.name);
-    const fontSize = letters.length > 1 ? 300 : 360;
-    const chips = project.stack.slice(0, 3);
+    const fontSize = letters.length > 1 ? 250 : 300;
+    const chips = showChips ? project.stack.slice(0, 3) : [];
     const id = `cover-${project.slug}`;
     const style = { "--cover-h": hue } as CSSProperties;
 
@@ -192,26 +195,28 @@ export function CoverArt({
             <rect width={W} height={H} fill={`url(#${id}-glow)`} />
             {pattern(family, rnd, id)}
             <text
-                x={W - 40 + 10}
-                y={H / 2 + fontSize * 0.36 + 10}
+                x={W - 56 + 14}
+                y={H / 2 + fontSize * 0.36 + 14}
                 textAnchor="end"
                 fontFamily="var(--font-mono), ui-monospace, monospace"
                 fontSize={fontSize}
                 fontWeight={800}
-                fill="var(--accent)"
-                opacity={0.25}
+                fill="none"
+                stroke="var(--accent)"
+                strokeWidth={3}
+                opacity={0.55}
             >
                 {letters}
             </text>
             <text
-                x={W - 40}
+                x={W - 56}
                 y={H / 2 + fontSize * 0.36}
                 textAnchor="end"
                 fontFamily="var(--font-mono), ui-monospace, monospace"
                 fontSize={fontSize}
                 fontWeight={800}
-                fill="var(--fg)"
-                opacity={0.9}
+                style={{ fill: "oklch(0.96 0.01 var(--cover-h))" }}
+                opacity={0.88}
                 data-monogram
             >
                 {letters}

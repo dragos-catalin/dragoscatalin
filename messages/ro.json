@@ -58,7 +58,17 @@
     "ctaContact": "Hai să vorbim",
     "available": "Disponibil pentru proiecte",
     "techLabel": "Tehnologii cu care lucrez",
-    "scroll": "Derulează"
+    "stackLabel": "Ce livrez",
+    "stackRange": "buzunar → rețea",
+    "stackProof": "Proiecte care o dovedesc"
+  },
+  "help": {
+    "eyebrow": "Cu ce te pot ajuta",
+    "title": "Un singur inginer, tot stack-ul",
+    "subtitle": "Alege rândul care ți se potrivește. Fiecare afirmație duce la ceva care deja rulează.",
+    "cta": "Toate serviciile",
+    "proof": "Dovezi",
+    "more": "Cum am lucra"
   },
   "now": {
     "title": "Acum",

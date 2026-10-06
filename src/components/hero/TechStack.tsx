@@ -62,11 +62,11 @@ export const TECH_STACK: ReadonlyArray<{ name: string; icon: ReactNode }> = [
 /** Pill list of technologies — static markup, entrance handled by the parent's CSS stagger. */
 export function TechStack({ label }: { label: string }) {
     return (
-        <div className="w-full max-w-3xl">
-            <p className="mb-4 text-xs font-medium tracking-[0.2em] text-fg-subtle uppercase">
+        <div className="grid w-full gap-4 md:grid-cols-[12rem_minmax(0,1fr)] md:items-start md:gap-8">
+            <p className="pt-1.5 font-mono text-xs tracking-[0.18em] text-fg-subtle uppercase">
                 {label}
             </p>
-            <ul className="flex flex-wrap justify-center gap-2">
+            <ul className="flex flex-wrap gap-2">
                 {TECH_STACK.map((tech, i) => (
                     <li
                         key={tech.name}

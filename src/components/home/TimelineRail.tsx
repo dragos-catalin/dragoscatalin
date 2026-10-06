@@ -10,7 +10,7 @@ export function TimelineRail({
         <div className={`relative ${className ?? ""}`}>
             <div
                 aria-hidden="true"
-                className="absolute top-0 bottom-0 left-[7px] w-px bg-gradient-to-b from-accent via-line to-transparent md:left-1/2"
+                className="absolute top-8 bottom-8 left-[7px] w-px bg-gradient-to-b from-accent via-line to-transparent"
             />
             {children}
         </div>

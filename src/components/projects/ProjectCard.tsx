@@ -37,7 +37,7 @@ export function ProjectCard({ project, stats, locale, priority = false }: Projec
     return (
         <Link
             href={`/projects/${project.slug}`}
-            className="group rounded-card surface gradient-border flex h-full flex-col overflow-hidden shadow-elev-2 transition-[transform,box-shadow] duration-300 hover:shadow-elev-3 focus-visible:outline motion-safe:hover:-translate-y-1"
+            className="group rounded-card surface gradient-border flex h-full w-full min-w-0 flex-col overflow-hidden shadow-elev-2 transition-[transform,box-shadow] duration-300 hover:shadow-elev-3 focus-visible:outline motion-safe:hover:-translate-y-1"
         >
             <ViewTransition name={coverTransitionName(project.slug)}>
                 <div
@@ -54,7 +54,11 @@ export function ProjectCard({ project, stats, locale, priority = false }: Projec
                             className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
                         />
                     ) : (
-                        <CoverArt project={project} className="absolute inset-0 size-full" />
+                        <CoverArt
+                            project={project}
+                            chips={false}
+                            className="absolute inset-0 size-full"
+                        />
                     )}
                     {coverSrc ? (
                         <span

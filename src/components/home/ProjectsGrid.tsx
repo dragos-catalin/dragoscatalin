@@ -16,7 +16,7 @@ const SHOWN: ReadonlySet<ProjectStatus> = new Set<ProjectStatus>([
 ]);
 
 function shownProjects(): Project[] {
-    return projects.filter((p) => !p.featured && SHOWN.has(p.status)).slice(0, 9);
+    return projects.filter((p) => !p.featured && SHOWN.has(p.status)).slice(0, 6);
 }
 
 function Grid({
@@ -29,12 +29,12 @@ function Grid({
     locale: string;
 }) {
     return (
-        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
+        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {shown.map((p, i) => {
                 const first = p.repos?.[0];
                 const s = first ? stats[`${first.owner}/${first.name}`] : undefined;
                 return (
-                    <li key={p.slug} className="flex">
+                    <li key={p.slug} className="flex min-w-0">
                         <ProjectCard project={p} stats={s} locale={locale} index={i} />
                     </li>
                 );

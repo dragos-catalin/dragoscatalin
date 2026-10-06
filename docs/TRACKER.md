@@ -183,6 +183,14 @@ See `tracker.csv` for the live list. Summary by area:
   live subscriptions wait for a Brivio fix: `/v1/marketing/subscribers`
   answers 400 because `subscribers` is missing from the web id-guard allowlist.
 
+### 2026-10-06 — v2.14.0 classic home redesign (V3-41)
+
+- Owner found the classic home "urât" and asked for a new layout that represents
+  him, keeping the Keystone brand. Audit of prod: mid-word headline break,
+  unequal card widths, empty flagship covers, hollow Now card, crowded timeline.
+- New: split hero + "What I ship" stack panel, "How I can help" bento, flagship
+  surfaces bento, even project grid, year ledger. Details in CHANGELOG 2.14.0.
+
 ### 2026-10-06 — v2.11.1 OSS 0.2 milestones on /lab (V3-40)
 
 - agentcfg-audit 0.2: VS Code gate (`extension/`) that verifies a workspace's

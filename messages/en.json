@@ -58,7 +58,17 @@
     "ctaContact": "Get in touch",
     "available": "Available for work",
     "techLabel": "Technologies I work with",
-    "scroll": "Scroll"
+    "stackLabel": "What I ship",
+    "stackRange": "pocket → network",
+    "stackProof": "Projects that prove it"
+  },
+  "help": {
+    "eyebrow": "How I can help",
+    "title": "One engineer, the whole stack",
+    "subtitle": "Pick the row that sounds like you. Every claim links to something already running.",
+    "cta": "All services",
+    "proof": "Proof",
+    "more": "How we'd work"
   },
   "now": {
     "title": "Now",
