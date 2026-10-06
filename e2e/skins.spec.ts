@@ -19,6 +19,19 @@ function collectErrors(page: Page) {
 }
 
 test.describe("skins", () => {
+    // V3-08 (owner, 2026-10-06): classic is the default skin on every device.
+    test("a first visit without a skin cookie gets the classic home", async ({ page, context }) => {
+        const res = await page.request.get("/", { maxRedirects: 0 });
+        expect(res.status()).toBe(200);
+        expect(res.headers()["set-cookie"] ?? "").not.toContain("dc-skin=");
+
+        await page.goto("/");
+        await expect(page.locator("html")).toHaveAttribute("data-skin", "classic");
+        await expect(page.locator("[data-skin-home]")).toHaveCount(0);
+        await expect(page.locator("#home .hero-pill").first()).toBeAttached();
+        expect((await context.cookies()).find((c) => c.name === "dc-skin")).toBeUndefined();
+    });
+
     for (const skin of SKIN_HOMES) {
         test(`${skin}: home renders the skin with headline, nav and a clean console`, async ({
             page,

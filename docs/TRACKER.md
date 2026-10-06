@@ -40,7 +40,7 @@ Assistant, with every gate green. Rows `V3-*` in `tracker.csv`.
 | Motion budget     | 3D/shader allowed with guardrails: lazy after LCP, pause offscreen/hidden tab, poster on low-end + reduced-motion, Lighthouse ≥ 98.                                                                                                                                                                                                                                                                   |
 | Skins             | All four concepts become switchable **skins**: Constellation (3D orbit, morph into case study), Command center (terminal/⌘K), Device wall (3D device carousel), Editorial (kinetic type, GSAP pinned chapters). More skins can be added later.                                                                                                                                                        |
 | Skin architecture | Cookie `dc-skin` (set by `?skin=<id>` → 307, or the theme menu Skin group). `src/proxy.ts` rewrites `/` and `/ro` to static `src/app/[locale]/skin/<id>/` (one folder per skin, so only that skin's code loads); `/skin/*` is 404. Content pages stay in `(site)` with classic chrome and restyle via `html[data-skin]`. Registry `src/skins/registry.ts` + `add-skin` skill. Done in 2.10.0 (V3-03). |
-| Default skin      | Owner decides after seeing all four (V3-08).                                                                                                                                                                                                                                                                                                                                                          |
+| Default skin      | **Classic**, on every device including mobile (owner, 2026-10-06, V3-08). Other skins stay opt-in via `?skin=` or the theme menu.                                                                                                                                                                                                                                                                     |
 | Animation stack   | Motion (upgrade to 14) and GSAP freely. Lenis on desktop only, native scroll on touch.                                                                                                                                                                                                                                                                                                                |
 | Mobile            | Bottom tab bar, sheets, swipe, haptics where supported, safe-area aware, installable PWA with offline shell.                                                                                                                                                                                                                                                                                          |
 | Visual identity   | **Done (v2.9.0): brand Keystone**: a solid D with the C carved out, Bricolage Grotesque display + Geist body, the comma of ș as the Romanian cue, Ember #f46622 as default accent. Pack in `brand/` (`BRAND.md`, `brand.json`, DTCG `tokens.json`, `logo/`, `motion/`).                                                                                                                               |
@@ -161,6 +161,12 @@ See `tracker.csv` for the live list. Summary by area:
   FCP _worse_ (1057 → 1360 ms); reverted. Mono `preload: false` helped.
 
 ## Session log
+
+### 2026-10-06 — V3-08 default skin decided
+
+- Owner: **classic** stays the default on desktop and mobile. `DEFAULT_SKIN` was already
+  `classic`; added an e2e that a cookie-less first visit gets the classic home with no
+  `dc-skin` cookie. `e2e/skins.spec.ts` 42/42 against production (chromium + mobile).
 
 ### 2026-10-06 — V3-04..07 skins live (2.13.0), V3-20 newsletter live end to end
 
