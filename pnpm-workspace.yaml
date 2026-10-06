@@ -17,6 +17,8 @@ overrides:
   "brace-expansion@<2": 1.1.21
   "brace-expansion@>=4 <6": 5.0.12
   "fast-uri@>=3 <3.1.8": 3.1.8
+  # 2026-10-06: postcss > source-map-js event-loop DoS (pnpm audit high); 1.2.2 patched.
+  "source-map-js@<1.2.2": 1.2.2
 auditConfig:
   ignoreGhsas:
     # braces <=3.0.3 has no patched release. Only path: eslint-config-next >
