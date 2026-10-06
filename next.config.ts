@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withBotId } from "botid/next/config";
 import createNextIntlPlugin from "next-intl/plugin";
 import { withSentryConfig } from "@sentry/nextjs/config";
 
@@ -50,7 +51,7 @@ const nextConfig: NextConfig = {
     ],
 };
 
-const config = withNextIntl(nextConfig);
+const config = withBotId(withNextIntl(nextConfig));
 
 export default process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
     ? withSentryConfig(config, {

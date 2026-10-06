@@ -346,7 +346,7 @@
     "durConsent": "6 luni",
     "durSession": "Fără stocare",
     "contactTitle": "Formularul de contact",
-    "contact": "Când trimiți un mesaj, numele, emailul și mesajul tău sunt prelucrate doar pentru a-ți răspunde (interes legitim / demersuri înaintea unui contract, art. 6 alin. (1) lit. b) și f) GDPR). Verificarea anti-spam Cloudflare Turnstile se încarcă doar după ce începi să completezi formularul. Mesajele sunt păstrate cât durează conversația, apoi cel mult 2 ani.",
+    "contact": "Când trimiți un mesaj, numele, emailul și mesajul tău sunt prelucrate doar pentru a-ți răspunde (interes legitim / demersuri înaintea unui contract, art. 6 alin. (1) lit. b) și f) GDPR). Mesajul este livrat prin Brivio, platforma mea de email găzduită în UE, iar la trimitere rulează o verificare anti-bot invizibilă Vercel BotID; nu se încarcă niciun widget terț. Mesajele sunt păstrate cât durează conversația, apoi cel mult 2 ani.",
     "hostingTitle": "Găzduire și jurnale",
     "hosting": "Site-ul este găzduit pe Vercel. Serverele lor păstrează jurnale tehnice de scurtă durată (adresă IP, user agent) pentru securitate și prevenirea abuzurilor, ca orice server web.",
     "rightsTitle": "Drepturile tale",

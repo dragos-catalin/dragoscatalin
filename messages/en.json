@@ -346,7 +346,7 @@
     "durConsent": "6 months",
     "durSession": "No storage",
     "contactTitle": "Contact form",
-    "contact": "When you send a message, your name, email and message are processed only to reply to you (legitimate interest / steps before a contract, GDPR art. 6(1)(b) and (f)). An anti-spam check from Cloudflare Turnstile loads only after you start filling in the form. Messages are kept for as long as the conversation lasts, then for at most 2 years.",
+    "contact": "When you send a message, your name, email and message are processed only to reply to you (legitimate interest / steps before a contract, GDPR art. 6(1)(b) and (f)). The message is delivered through Brivio, my own mail platform hosted in the EU, and an invisible anti-bot check from Vercel BotID runs when you send it; no third-party widget is loaded. Messages are kept for as long as the conversation lasts, then for at most 2 years.",
     "hostingTitle": "Hosting and logs",
     "hosting": "The site is hosted on Vercel. Their servers keep short-lived technical logs (IP address, user agent) for security and abuse prevention, as every web server does.",
     "rightsTitle": "Your rights",

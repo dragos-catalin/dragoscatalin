@@ -13,7 +13,7 @@ Live: <https://dragoscatalin.ro> · Version in `package.json` (shown in the foot
 Next.js 16.3 (App Router, RSC, `cacheComponents`, React Compiler, Turbopack) ·
 React 19.3 (`ViewTransition`) · TypeScript 7 (`tsc`) with typescript-eslint on TS 6 ·
 Tailwind CSS 4.3 (CSS-first `@theme inline`, OKLCH) · motion 13 · next-intl 4 ·
-nuqs · zod 4 · Resend · Cloudflare Turnstile · schema-dts · feed ·
+nuqs · zod 4 · Brivio mail API · Vercel BotID · schema-dts · feed ·
 Vitest 5 · Playwright + axe · ESLint 10 flat · Prettier · husky + lint-staged ·
 per-page first-load budget · Vercel Analytics / Speed Insights · Sentry (optional).
 
@@ -47,8 +47,8 @@ Node 24 LTS, pnpm ≥ 12. Always `pnpm`.
 | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `NEXT_PUBLIC_SITE_URL`                                                                      | Canonical origin for metadata, sitemap, OG (default `https://dragoscatalin.ro`)          |
 | `GITHUB_TOKEN`                                                                              | Fine-grained read-only PAT; without it live stats are skipped and registry data is shown |
-| `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`                                  | Contact form delivery; without a key the form falls back to `mailto:`                    |
-| `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`                                    | Bot protection; optional (honeypot always on)                                            |
+| `BRIVIO_API_KEY`, `BRIVIO_API_URL`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`                | Contact form delivery via Brivio; without a key the form falls back to `mailto:`         |
+| `CONTACT_HOOK_URL`, `CONTACT_HOOK_SECRET`                                                   | Optional signed phone notification (homepi hook) after a delivered message               |
 | `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT`, `SENTRY_AUTH_TOKEN` | Error tracking; fully disabled when unset                                                |
 
 Every integration no-ops cleanly when its variable is absent.
@@ -64,7 +64,7 @@ src/
 		api/                 # /api/projects, /api/projects/[slug], /api/manifest
 		feed.xml/  llms.txt/  llms-full.txt/   # route handlers
 		sitemap.ts  robots.ts  manifest.ts  globals.css
-		actions/contact.ts   # Server Action (Zod + honeypot + Turnstile + Resend)
+		 actions/contact.ts   # Server Action (Zod + honeypot + BotID + Brivio + homepi hook)
 	components/
 		hero/      # ConstellationCanvas (WebGL2 shader), StaticConstellation, HeroReveal
 		home/      # Featured, NowStrip, OpenSourceStrip, ProjectsGrid, Timeline, ActivityHeatmap

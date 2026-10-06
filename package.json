@@ -1,6 +1,6 @@
 {
   "name": "dragoscatalin",
-  "version": "2.10.1",
+  "version": "2.11.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -31,10 +31,10 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@marsidev/react-turnstile": "1.6.1",
     "@sentry/nextjs": "11.4.0",
     "@vercel/analytics": "2.0.1",
     "@vercel/speed-insights": "2.0.0",
+    "botid": "1.5.11",
     "clsx": "2.1.1",
     "feed": "6.0.0",
     "lucide-react": "1.52.0",
@@ -44,7 +44,6 @@
     "nuqs": "2.10.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "resend": "6.32.0",
     "schema-dts": "2.1.0",
     "tailwind-merge": "3.7.0",
     "zod": "4.6.5"

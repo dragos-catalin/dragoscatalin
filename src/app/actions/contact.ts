@@ -1,7 +1,9 @@
 "use server";
 
+import { createHmac, randomUUID } from "node:crypto";
+import { checkBotId } from "botid/server";
 import { headers } from "next/headers";
-import { Resend } from "resend";
+import { after } from "next/server";
 import { z } from "zod";
 import { locales } from "@/i18n/routing";
 import { serverEnv } from "@/lib/env";
@@ -19,7 +21,6 @@ const schema = z.object({
     message: z.string().trim().min(20).max(4000),
     /** honeypot — must stay empty */
     website: z.string().max(0),
-    turnstileToken: z.string().optional(),
     locale: z.enum(locales),
 });
 
@@ -37,23 +38,58 @@ function rateLimited(ip: string): boolean {
     return recent.length > RATE_LIMIT;
 }
 
-async function verifyTurnstile(token: string | undefined, ip: string): Promise<boolean> {
-    const secret = serverEnv.TURNSTILE_SECRET_KEY;
-    if (!secret) return true;
-    if (!token) return false;
+const BRIVIO_TIMEOUT_MS = 10_000;
+const HOOK_TIMEOUT_MS = 5_000;
+
+type Message = { name: string; email: string; message: string; locale: string };
+
+/** Sends through Brivio `POST /v1/email/send` (scope `emails:send`). */
+async function sendViaBrivio(key: string, m: Message, ip: string): Promise<boolean> {
+    const res = await fetch(`${serverEnv.BRIVIO_API_URL}/v1/email/send`, {
+        method: "POST",
+        headers: {
+            authorization: `Bearer ${key}`,
+            "content-type": "application/json",
+            "idempotency-key": randomUUID(),
+        },
+        body: JSON.stringify({
+            from: `dragoscatalin.ro <${serverEnv.CONTACT_FROM_EMAIL}>`,
+            to: [serverEnv.CONTACT_TO_EMAIL ?? site.email],
+            reply_to: `${m.name.replace(/[<>"\r\n]/g, "")} <${m.email}>`,
+            subject: `[dragoscatalin.ro] ${m.name.replace(/[\r\n]/g, " ")}`,
+            text: `From: ${m.name} <${m.email}>\nLocale: ${m.locale}\nIP: ${ip}\n\n${m.message}\n`,
+            category: "notification",
+            tags: { source: "contact-form", locale: m.locale },
+        }),
+        signal: AbortSignal.timeout(BRIVIO_TIMEOUT_MS),
+    });
+    if (!res.ok) console.error("[contact] brivio send failed", res.status);
+    return res.ok;
+}
+
+/** Phone notification through the homepi Funnel hook (vmui docs/home-assistant.md). */
+async function notifyHome(m: Message): Promise<void> {
+    const url = serverEnv.CONTACT_HOOK_URL;
+    const secret = serverEnv.CONTACT_HOOK_SECRET;
+    if (!url || !secret) return;
+    const body = JSON.stringify({ ...m, receivedAt: new Date().toISOString() });
+    const ts = Math.floor(Date.now() / 1000).toString();
+    const signature = createHmac("sha256", secret).update(`${ts}.${body}`).digest("hex");
     try {
-        const body = new URLSearchParams({ secret, response: token });
-        if (ip !== "unknown") body.set("remoteip", ip);
-        const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        const res = await fetch(url, {
             method: "POST",
-            headers: { "content-type": "application/x-www-form-urlencoded" },
+            headers: {
+                "content-type": "application/json",
+                "x-dc-timestamp": ts,
+                "x-dc-nonce": randomUUID(),
+                "x-dc-signature": signature,
+            },
             body,
+            signal: AbortSignal.timeout(HOOK_TIMEOUT_MS),
         });
-        if (!res.ok) return false;
-        const json = (await res.json()) as { success?: boolean };
-        return json.success === true;
-    } catch {
-        return false;
+        if (res.status !== 202) console.error("[contact] home hook", res.status);
+    } catch (err) {
+        console.error("[contact] home hook failed", err instanceof Error ? err.name : "unknown");
     }
 }
 
@@ -66,7 +102,6 @@ export async function contactAction(
         email: formData.get("email"),
         message: formData.get("message"),
         website: formData.get("website") ?? "",
-        turnstileToken: formData.get("cf-turnstile-response") ?? undefined,
         locale: formData.get("locale") ?? "en",
     });
 
@@ -86,29 +121,21 @@ export async function contactAction(
     const ip = h.get("x-forwarded-for")?.split(",")[0]?.trim() || h.get("x-real-ip") || "unknown";
     if (rateLimited(ip)) return { ok: false, code: "error" };
 
-    if (!(await verifyTurnstile(parsed.data.turnstileToken, ip)))
-        return { ok: false, code: "invalid" };
+    // Vercel BotID (invisible; outside Vercel it reports humans, so local dev keeps working).
+    const { isBot } = await checkBotId();
+    if (isBot) return { ok: false, code: "error" };
 
-    const key = serverEnv.RESEND_API_KEY;
-    if (!key) return { ok: false, code: "disabled" };
+    const key = serverEnv.BRIVIO_API_KEY;
+    if (!key || !serverEnv.CONTACT_FROM_EMAIL) return { ok: false, code: "disabled" };
 
     const { name, email, message, locale } = parsed.data;
+    const m: Message = { name, email, message, locale };
     try {
-        const resend = new Resend(key);
-        const { error } = await resend.emails.send({
-            from: serverEnv.CONTACT_FROM_EMAIL ?? "site@dragoscatalin.ro",
-            to: serverEnv.CONTACT_TO_EMAIL ?? site.email,
-            replyTo: email,
-            subject: `[dragoscatalin.ro] ${name}`,
-            text: `From: ${name} <${email}>\nLocale: ${locale}\nIP: ${ip}\n\n${message}\n`,
-        });
-        if (error) {
-            console.error("[contact] resend error", error.name);
-            return { ok: false, code: "error" };
-        }
+        if (!(await sendViaBrivio(key, m, ip))) return { ok: false, code: "error" };
+        after(() => notifyHome(m));
         return { ok: true };
     } catch (err) {
-        console.error("[contact] send failed", err instanceof Error ? err.message : err);
+        console.error("[contact] send failed", err instanceof Error ? err.name : "unknown");
         return { ok: false, code: "error" };
     }
 }

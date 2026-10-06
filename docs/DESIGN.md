@@ -113,7 +113,7 @@ and DTCG tokens in `brand/tokens.json`.
 | Projects    | Filterable grid, `<ViewTransition>` covers        | stagger reveal          |
 | Open source | Packages with live downloads/stars                | count-up                |
 | Timeline    | Year rail (2015→2026), static gradient rail       | items reveal once       |
-| Contact     | Minimal form, Turnstile                           | none                    |
+| Contact     | Minimal form, invisible BotID                     | none                    |
 
 ## Anti-patterns to reject
 

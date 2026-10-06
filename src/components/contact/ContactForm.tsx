@@ -3,11 +3,8 @@
 import { useActionState, useId, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { useLocale, useTranslations } from "next-intl";
-import { Turnstile } from "@marsidev/react-turnstile";
 import { contactAction, type ContactState } from "@/app/actions/contact";
 import { Button } from "@/components/ui";
-import { useTheme } from "@/components/theme/ThemeProvider";
-import { clientEnv } from "@/lib/env.client";
 import { site } from "@/lib/site";
 
 const initial: ContactState = { ok: false };
@@ -30,13 +27,9 @@ const inputClass =
 export function ContactForm() {
     const t = useTranslations("contact");
     const locale = useLocale();
-    const { resolvedMode } = useTheme();
     const [state, action] = useActionState(contactAction, initial);
     const [clientErrors, setClientErrors] = useState<Partial<Record<Field, string>>>({});
-    // Turnstile (third-party) loads only once the visitor starts using the form, never on page load.
-    const [engaged, setEngaged] = useState(false);
     const id = useId();
-    const turnstileKey = clientEnv.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
     const errorFor = (field: Field): string | undefined => {
         if (clientErrors[field]) return clientErrors[field];
@@ -78,9 +71,6 @@ export function ContactForm() {
         <form
             action={action}
             noValidate
-            onFocus={() => {
-                if (!engaged) setEngaged(true);
-            }}
             onSubmit={(e) => {
                 if (!validate(e.currentTarget)) e.preventDefault();
             }}
@@ -140,13 +130,6 @@ export function ContactForm() {
             </div>
             <input type="hidden" name="locale" value={locale} />
 
-            {turnstileKey && engaged ? (
-                <Turnstile
-                    siteKey={turnstileKey}
-                    options={{ theme: resolvedMode, language: locale, size: "flexible" }}
-                />
-            ) : null}
-
             {state.code === "disabled" ? (
                 <p role="status" className="text-sm text-fg-muted">
                     {t("disabled", { email: site.email })}{" "}
@@ -158,7 +141,8 @@ export function ContactForm() {
                     </a>
                 </p>
             ) : null}
-            {state.code === "error" ? (
+            {state.code === "error" ||
+            (state.code === "invalid" && !fields.some((f) => state.fieldErrors?.[f.name])) ? (
                 <p role="status" className="text-sm text-danger">
                     {t("error")}
                 </p>

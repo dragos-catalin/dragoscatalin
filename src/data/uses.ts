@@ -147,8 +147,8 @@ export const usesSections: UsesSection[] = [
             {
                 name: "Cloudflare",
                 note: {
-                    en: "DNS, Workers for release updaters, Turnstile.",
-                    ro: "DNS, Workers pentru updatere de release, Turnstile.",
+                    en: "Workers for release updaters.",
+                    ro: "Workers pentru updatere de release.",
                 },
                 url: "https://www.cloudflare.com",
             },

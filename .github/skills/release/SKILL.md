@@ -62,11 +62,11 @@ Say **VERIFIED** with the output, never "should be live".
 ```powershell
 npx vercel env add NEXT_PUBLIC_SITE_URL production          # https://dragoscatalin.ro
 npx vercel env add GITHUB_TOKEN production                   # fine-grained PAT, read-only Metadata
-npx vercel env add RESEND_API_KEY production
-npx vercel env add CONTACT_TO_EMAIL production               # contact@dragoscatalin.ro
-npx vercel env add CONTACT_FROM_EMAIL production             # site@dragoscatalin.ro
-npx vercel env add NEXT_PUBLIC_TURNSTILE_SITE_KEY production
-npx vercel env add TURNSTILE_SECRET_KEY production
+npx vercel env add BRIVIO_API_KEY production                 # Brivio key, scopes emails:send, emails:read, marketing_subscribers:write ONLY
+npx vercel env add CONTACT_TO_EMAIL production               # catalin@dragoscatalin.ro
+npx vercel env add CONTACT_FROM_EMAIL production             # contact@dragoscatalin.ro (verified Brivio sending domain)
+npx vercel env add CONTACT_HOOK_URL production               # https://homepi.taild1532d.ts.net/hooks/contact
+npx vercel env add CONTACT_HOOK_SECRET production            # = vmui .private/credentials.env CONTACT_HOOK_SECRET
 npx vercel env add SENTRY_DSN production
 npx vercel env add NEXT_PUBLIC_SENTRY_DSN production
 npx vercel env add SENTRY_ORG production
@@ -75,9 +75,10 @@ npx vercel env add SENTRY_AUTH_TOKEN production
 ```
 
 Type values into the prompt — never paste secrets into chat or a command line
-that gets logged. Every integration no-ops when its var is absent (Resend →
-mailto fallback, Turnstile → honeypot only, Sentry → disabled, GitHub → static
-registry data). `npx vercel env ls production` to audit.
+that gets logged. Every integration no-ops when its var is absent (Brivio →
+mailto fallback, hook → no phone notification, Sentry → disabled, GitHub → static
+registry data). `npx vercel env ls production` to audit. Brivio's "Create key"
+dialog pre-checks ALL scopes — uncheck them before picking the three above.
 
 ## 6. Cache tags
 

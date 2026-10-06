@@ -6,6 +6,17 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.11.0] - 2026-10-06
+
+### Changed
+
+- **Contact form via Brivio (V3-22).** Messages go through Brivio `POST /v1/email/send` (verified sending domain dragoscatalin.ro, Idempotency-Key, 10 s timeout) instead of Resend. After a delivered message, `after()` posts an HMAC-signed notification to the homepi Funnel hook (`x-dc-timestamp` / `x-dc-nonce` / `x-dc-signature`), which pushes it to the phone.
+- Bot protection is now invisible Vercel BotID (`instrumentation-client.ts` + `withBotId`) plus the honeypot and rate limit; Cloudflare Turnstile and its widget are removed. Privacy text EN + RO updated.
+
+### Removed
+
+- `resend` and `@marsidev/react-turnstile`; env `RESEND_API_KEY`, `TURNSTILE_SECRET_KEY`, `NEXT_PUBLIC_TURNSTILE_SITE_KEY`.
+
 ## [2.10.1] - 2026-10-06
 
 ### Changed
