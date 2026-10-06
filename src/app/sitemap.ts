@@ -7,6 +7,8 @@ import { localeUrl } from "@/lib/seo";
 const STATIC_PATHS = [
     "/",
     "/projects",
+    "/services",
+    "/lab",
     "/about",
     "/open-source",
     "/now",
@@ -17,7 +19,7 @@ const STATIC_PATHS = [
 
 function priorityFor(path: string): number {
     if (path === "/") return 1.0;
-    if (path.startsWith("/projects")) return 0.8;
+    if (path.startsWith("/projects") || path === "/services") return 0.8;
     return 0.6;
 }
 

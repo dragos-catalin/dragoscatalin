@@ -1,11 +1,15 @@
 import { cacheLife } from "next/cache";
 import en from "../../messages/en.json";
+import { labIdeas } from "@/data/lab";
 import { allPackages, projects } from "@/data/projects";
+import { audiences } from "@/data/services";
 import type { Project } from "@/data/types";
 import { site } from "@/lib/site";
 
 const PAGES: { label: string; path: string }[] = [
     { label: "Projects", path: "/projects" },
+    { label: "Services", path: "/services" },
+    { label: "Lab (public idea log)", path: "/lab" },
     { label: "Open source", path: "/open-source" },
     { label: "About", path: "/about" },
     { label: "Now", path: "/now" },
@@ -91,7 +95,16 @@ export async function buildLlmsFullTxt(): Promise<string> {
         lines.push("", p.summary.en, "");
         if (p.disclaimer) lines.push(`> Note: ${p.disclaimer.en}`, "");
     }
-    lines.push("## About", "", en.about.intro, "", `### ${en.about.values.title}`, "");
+    lines.push("## Services", "", en.services.intro, "");
+    for (const a of audiences) {
+        lines.push(`### ${a.title.en}`, "", a.lead.en, "");
+        for (const o of a.offers) lines.push(`- ${o.en}`);
+        lines.push("", `Engagement: ${a.engagement.en}`, "");
+    }
+    lines.push("## Lab", "", en.lab.intro, "");
+    for (const i of labIdeas)
+        lines.push(`- **${i.name}** (${i.stage}, ${i.updated}): ${i.problem.en} ${i.approach.en}`);
+    lines.push("", "## About", "", en.about.intro, "", `### ${en.about.values.title}`, "");
     for (const v of en.about.values.items) lines.push(`- **${v.title}** — ${v.body}`);
     lines.push("", ...linksSection());
     return lines.join("\n");

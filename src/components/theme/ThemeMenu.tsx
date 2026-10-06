@@ -8,6 +8,7 @@ import { ACCENTS, MODES, SURFACES, type Accent, type Mode, type Surface } from "
 import { cn } from "@/lib/utils";
 
 const ACCENT_HUE: Record<Accent, number> = {
+    ember: 42,
     orange: 50,
     violet: 300,
     indigo: 275,
@@ -184,7 +185,7 @@ export function ThemeMenu({ className }: { className?: string }) {
                             <div
                                 role="group"
                                 aria-label={t("accent")}
-                                className="grid grid-cols-6 gap-2"
+                                className="grid grid-cols-4 gap-2"
                             >
                                 {ACCENTS.map((a) => {
                                     const active = a === theme.accent;

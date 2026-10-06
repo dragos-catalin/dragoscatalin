@@ -1,18 +1,19 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { ThemeMenu } from "@/components/theme/ThemeMenu";
 import { LocaleSwitcher } from "@/components/theme/LocaleSwitcher";
-import { site } from "@/lib/site";
+import { BrandMark } from "@/components/brand/BrandMark";
+import { Wordmark } from "@/components/brand/Wordmark";
 import { cn } from "@/lib/utils";
 
 const NAV = [
     { key: "home", href: "/" },
     { key: "projects", href: "/projects" },
+    { key: "services", href: "/services" },
     { key: "openSource", href: "/open-source" },
     { key: "about", href: "/about" },
     { key: "now", href: "/now" },
@@ -71,21 +72,10 @@ export function Header() {
                     compact ? "h-[3.25rem] px-3 md:px-5" : "h-[4.5rem] px-4 md:px-8",
                 )}
             >
-                <Link
-                    href="/"
-                    className="flex items-center gap-2.5 rounded-pill"
-                    aria-label={site.name}
-                >
-                    <Image
-                        src="/logo-64.webp"
-                        alt=""
-                        width={32}
-                        height={32}
-                        className="size-8 rounded-lg"
-                    />
-                    <span className="text-lg font-bold tracking-tight text-fg">
-                        Dragos<span className="text-accent">.</span>
-                    </span>
+                <Link href="/" className="brand-link flex shrink-0 items-center gap-2.5 rounded-pill">
+                    <BrandMark className="size-8" />
+                    {/* md–lg: six nav items leave no room, so mark only (name stays for AT). */}
+                    <Wordmark className="text-lg text-fg md:max-lg:sr-only" />
                 </Link>
 
                 <nav aria-label={t("menu")} className="hidden md:block">

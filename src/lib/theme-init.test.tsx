@@ -10,6 +10,8 @@ function run() {
 describe("THEME_INIT_SCRIPT", () => {
     afterEach(() => {
         localStorage.clear();
+        sessionStorage.clear();
+        document.documentElement.removeAttribute("data-intro");
         document.cookie = `${THEME_STORAGE_KEY}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
         for (const a of ["data-mode", "data-accent", "data-surface"])
             document.documentElement.removeAttribute(a);
@@ -21,7 +23,7 @@ describe("THEME_INIT_SCRIPT", () => {
         expect(run).not.toThrow();
         const h = document.documentElement;
         expect(h.getAttribute("data-mode")).toBe("dark");
-        expect(h.getAttribute("data-accent")).toBe("orange");
+        expect(h.getAttribute("data-accent")).toBe("ember");
         expect(h.getAttribute("data-surface")).toBe("solid");
         expect(h.style.colorScheme).toBe("dark");
     });
@@ -48,5 +50,15 @@ describe("THEME_INIT_SCRIPT", () => {
         expect(h.getAttribute("data-mode")).toBe("dark");
         expect(h.getAttribute("data-accent")).toBe("cyan");
         expect(h.getAttribute("data-surface")).toBe("contrast");
+    });
+
+    it("stamps data-intro on the first load of a session only", () => {
+        vi.stubGlobal("matchMedia", () => ({ matches: false }));
+        run();
+        const h = document.documentElement;
+        expect(h.hasAttribute("data-intro")).toBe(true);
+        h.removeAttribute("data-intro");
+        run();
+        expect(h.hasAttribute("data-intro")).toBe(false);
     });
 });

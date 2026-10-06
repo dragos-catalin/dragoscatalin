@@ -6,6 +6,89 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [2.9.0] - 2026-10-05
+
+### Added
+
+- **Brand Keystone** (V3-02). The mark is a solid D with the C carved out of it. The wordmark is "Dragoș Cătălin" in Bricolage Grotesque, with the comma of ș drawn as a round accent drop. The brand pack lives in `brand/`:
+  - `BRAND.md` covers usage, clear space, minimum sizes, don'ts, palette, type and voice.
+  - `brand.json` holds the facts, and `tokens.json` holds the DTCG 2025.10 tokens.
+  - `logo/` has the SVG masters: mark, 16 px cut, mono, construction, wordmarks and lockups.
+  - `src/build.mjs` is the single generator for all of the above.
+- **Display font: Bricolage Grotesque.** It is subset to Latin, Latin Extended-A and ȘșȚț as a 43 KB variable WOFF2 (wght 700–800) and loaded with `next/font/local` and `display: swap`. It is used on the wordmark, h1 and section headings. The Romanian glyph gate passes on every shipped file. The OFL licence ships in `src/fonts/OFL.txt`.
+- **Logo motion, CSS only.** On the first page load of a session, the header mark plays its intro: the D lands, the C is carved in one stroke, and the comma drops into the wordmark (about 1 s). On hover or focus, the carved C turns 90°. With reduced motion, the final frame shows. Preview for the owner: `brand/motion/intro.webm` and `intro-frames.png`.
+- **Ember accent** (`data-accent="ember"`, #f46622) is the new default. Orange stays switchable, for 8 accents in total.
+- New icon set, generated from the masters by `pnpm assets:optimize`:
+  - `favicon.ico` (16/32/48, with a pixel-tuned 16 px cut) and `icon.svg`
+  - full-bleed `apple-icon.png`
+  - PWA icons at 192 and 512, plus a maskable 512
+  - a 1024 press-kit logo, down from 1.3 MB to 29 KB
+
+### Changed
+
+- **Palette values moved to Keystone.** Neutrals are now slate (hue 265). The semantic token names did not change. `brand/contrast-pairs.json` proves 101 pairs with 0 WCAG 2.2 AA failures.
+- Header and footer use the new mark and wordmark. Between 768 and 1024 px the header shows the mark only, so the six nav items fit.
+- OG images show the mark, the wordmark with its comma, and Bricolage titles. The glow is an SVG radial gradient, because satori clips `filter: blur`.
+- The public name is now **Dragoș Cătălin**, with diacritics and without the family name. This applies to titles, the manifest, the footer and the feed. The full name stays only where it is needed: the privacy controller line and JSON-LD `alternateName`.
+- `scan:contrast` now checks the Ember default.
+- **`pnpm size` now measures what a visitor downloads.** `scripts/check-first-load.mjs` sums the gzip of every JS chunk each prerendered page references; the heaviest page must stay within `first-load-budget.json` (300 kB; today `/projects` at 275.4 kB). It replaces size-limit, whose sum of all chunks grew to 305.8 kB only because Turbopack split the `next/image` runtime into per-route copies once the header stopped using it (per-page totals moved by ±1 kB). size-limit and `.size-limit.json` are removed.
+
+### Removed
+
+- `public/logo-64.webp`, `public/logo-128.webp`, `public/apple-icon.png` and `src/app/icon.png`. The inline SVG mark and the file-convention icons replace them.
+
+## [2.8.1] - 2026-10-05
+
+### Fixed
+
+- 24 px minimum tap targets (WCAG 2.5.8) for the GitHub repo links on `/now` and the latest-release links in the project repo panel. They render only when `GITHUB_TOKEN` is set, so the new CI `scan:layout` gate caught them on the first run and the local run did not. The local check now builds with a token too.
+
+### Added
+
+- `docs/portfolio/PROMPTS.md`: a ready-to-paste prompt for each kept product and infra row (phase 5), plus a progress table in `PORTFOLIO.md`.
+
+## [2.8.0] - 2026-10-05
+
+### Security
+
+- **Next.js 16.3.5 → 16.3.8.** This fixes a critical remote code execution bug in `next/og` `ImageResponse` (affects 16.2.0–16.3.5). Every OG image route here used it.
+- `pnpm audit --audit-level high` is now clean. Overrides in `pnpm-workspace.yaml` pin the fixed `brace-expansion` and `fast-uri`. One advisory is ignored, with the reason written down: GHSA-vfj7-8cjw-p6xm (`braces`). It has no fix, it is reachable only at lint time, and it only sees globs we write.
+
+### Changed
+
+- **Every dependency is on its latest version** (V3-01), checked with `npm view`. Highlights: `@sentry/nextjs` 11.4, `next-intl` 4.14.9, `lucide-react` 1.52, `eslint` 10.12, `vitest` 5.0.3, `vite` 8.3.2, `size-limit` 14.1, `prettier` 3.9.9 and `motion` 14.0. Motion 14 only removes internal APIs, so `motion/react` usage is unchanged. `typescript-eslint` stays at 8.70 because it comes in through `eslint-config-next`.
+- **Sentry 11, server-only, with an explicit `dataCollection`.** In v11 an unset `dataCollection` collects everything. `src/lib/sentry.ts` now turns off user info, cookies, headers, bodies, query strings, stack-frame variables, database, queue and AI payloads. `src/instrumentation.ts` initialises Sentry only when `SENTRY_DSN` is set and captures request errors. There is no client SDK, so first-load JS is unchanged and no consent category is needed. `withSentryConfig` now comes from `@sentry/nextjs/config`, and the removed `disableLogger` option is gone.
+- **Node 24 LTS everywhere** (S-03): `.nvmrc`, `engines` (`node >=24`, `pnpm >=12`), all workflows (now read from `.nvmrc`), the `ci:local` Docker image, the README and agent instructions.
+- `sharp` and `lighthouse` are declared as dev dependencies (S-03). `pnpm lh` runs the pinned Lighthouse instead of `npx lighthouse@latest`.
+
+### Added
+
+- **`/services`** (S-05), EN + RO:
+  - one section per audience from the owner profile: startups, Romanian SMEs, enterprise/EU and developers;
+  - each section lists what you get, proof links to registry projects and how we work;
+  - a four-step process, a selective-availability note and CTAs to the contact form;
+  - `ProfessionalService` + `OfferCatalog` JSON-LD;
+  - data lives in `src/data/services.ts`.
+- **`/lab`** (S-05), EN + RO: a public idea log of the OSS ideas the owner chose to build in the open (mcp-lock, agentcfg-audit, agentq, e-Factura SDK, wff-dsl, device-pairing).
+  - Each entry has a stage, the problem, the approach, tags and an "updated" date.
+  - The page has `ItemList` JSON-LD.
+  - Ids equal `docs/portfolio/portfolio.csv` rows, and a test enforces it.
+- Both pages are wired everywhere:
+  - Header: Services. Footer: Services and Lab.
+  - Sitemap, `llms.txt` and `llms-full.txt` (with the full services and lab text).
+  - The axe sweep, the contrast and layout scans, and `e2e/services.spec.ts`.
+- **`exactOptionalPropertyTypes`** is on in `tsconfig.json`. This needed 6 small fixes: optional `stats` props, the Sentry build options, and the Playwright config.
+
+### Fixed
+
+- The commit lock now works in a git worktree. `scripts/lib/commit-lock.mjs` joined the cwd with an absolute `--git-dir`, so pre-commit failed with ENOENT. It now uses the common git dir, so all worktrees share one lock. Because of this bug, 2.8.0 landed in two commits: the first carried only this changelog and the lock fix.
+- **CI gates** (S-01, S-02):
+  - `format:check` and `pnpm audit --audit-level high` run in CI.
+  - `scan:contrast` and `scan:layout` run against `next start` before E2E.
+  - A new `secrets` job runs gitleaks over the full history.
+  - `ci:local` mirrors the same steps.
+- `.github/workflows/links.yml` and `lychee.toml`: a weekly lychee check over the live sitemap and `llms.txt`. Broken links open or update one `links` issue.
+
 ## [2.6.0] - 2026-10-05
 
 ### Added

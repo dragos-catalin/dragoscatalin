@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Dragos Catalin — Developer full-stack & builder",
+    "title": "Dragoș Cătălin — Developer full-stack & builder",
     "description": "Proiectez și livrez produse AI-native cap-coadă: Next.js, Rust/Tauri, PostgreSQL, GCP. codai, Brivio, StudiAI, MixAI și 20+ repo-uri open source.",
-    "keywords": "Dragos Catalin,developer full-stack,Next.js,Rust,Tauri,gateway AI,codai,Brivio,România,open source"
+    "keywords": "Dragoș Cătălin,Dragos Catalin,developer full-stack,Next.js,Rust,Tauri,gateway AI,codai,Brivio,România,open source"
   },
   "nav": {
     "home": "Acasă",
@@ -16,7 +16,9 @@
     "menu": "Meniu",
     "closeMenu": "Închide meniul",
     "skipToContent": "Sari la conținut",
-    "privacy": "Confidențialitate"
+    "privacy": "Confidențialitate",
+    "services": "Servicii",
+    "lab": "Laborator"
   },
   "theme": {
     "label": "Aspect",
@@ -30,6 +32,7 @@
     "glass": "Sticlă",
     "contrast": "Contrast ridicat",
     "accents": {
+      "ember": "Jar",
       "orange": "Portocaliu",
       "violet": "Violet",
       "indigo": "Indigo",
@@ -204,7 +207,7 @@
   "about": {
     "title": "Despre",
     "eyebrow": "Cine",
-    "intro": "Sunt Dragos, developer full-stack din România. Construiesc produse cap-coadă — de la schema bazei de date și infrastructura cloud până la interfețe cu shadere — și construiesc fluxurile de agenți care mă ajută să livrez mai repede.",
+    "intro": "Sunt Dragoș, developer full-stack din România. Construiesc produse cap-coadă — de la schema bazei de date și infrastructura cloud până la interfețe cu shadere — și construiesc fluxurile de agenți care mă ajută să livrez mai repede.",
     "values": {
       "title": "Cum lucrez",
       "items": [
@@ -245,7 +248,7 @@
       "packages": "Pachete publicate",
       "years": "Ani pe GitHub"
     },
-    "avatarAlt": "Portretul lui Dragos Catalin",
+    "avatarAlt": "Portretul lui Dragoș Cătălin",
     "cta": "Salută"
   },
   "uses": {
@@ -277,7 +280,7 @@
     "avatar": "Portret"
   },
   "footer": {
-    "rights": "© {year} Dragos Catalin Vladulescu",
+    "rights": "© {year} Dragoș Cătălin",
     "built": "Construit cu Next.js {next}, React {react} și un shader WebGL.",
     "version": "v{version}",
     "source": "Sursă",
@@ -350,5 +353,34 @@
     "rights": "Poți cere acces, rectificare, ștergere, restricționare, portabilitate sau te poți opune prelucrării și îți poți retrage consimțământul oricând, fără a afecta prelucrarea anterioară. Poți depune și plângere la ANSPDCP (dataprotection.ro).",
     "changeTitle": "Schimbă-ți alegerea",
     "change": "Deschide setările cookie-urilor ca să schimbi sau să retragi consimțământul. La retragere pagina se reîncarcă, astfel încât analiza se oprește imediat."
+  },
+  "services": {
+    "eyebrow": "Lucrăm împreună",
+    "title": "Servicii",
+    "intro": "Construiesc produse cap-coadă — de la cloud și rețea până la aplicația din buzunarul tău. Alege rândul care ți se potrivește.",
+    "offersLabel": "Ce primești",
+    "proofLabel": "Dovezi",
+    "engagementLabel": "Cum lucrăm",
+    "processTitle": "De la primul apel la predare",
+    "availability": "Disponibilitate selectivă: iau puține proiecte odată, ca fiecare să primească atenție reală.",
+    "cta": "Spune-mi despre proiectul tău",
+    "ctaSecondary": "Vezi toate proiectele"
+  },
+  "lab": {
+    "eyebrow": "Construiesc la vedere",
+    "title": "Laborator",
+    "intro": "Idei pe care le explorez sau le construiesc public. Fiecare intrare spune ce problemă rezolvă și cum. Se actualizează când se schimbă ceva, nu după un program.",
+    "problemLabel": "Problema",
+    "approachLabel": "Abordarea",
+    "updated": "Actualizat {date}",
+    "repo": "Repository",
+    "stages": {
+      "exploring": "Explorare",
+      "building": "În lucru",
+      "shipped": "Livrat",
+      "paused": "În pauză"
+    },
+    "empty": "Nimic aici încă.",
+    "cta": "Vrei una dintre ele mai repede sau ai o idee mai bună? Scrie-mi."
   }
 }

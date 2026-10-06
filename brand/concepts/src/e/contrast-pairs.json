@@ -1,0 +1,383 @@
+{
+  "$description": "Concept E Keystone",
+  "pairs": [
+    {
+      "name": "light: fg on canvas",
+      "fg": "oklch(0.22 0.008 265)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "light: fg on surface",
+      "fg": "oklch(0.22 0.008 265)",
+      "bg": "oklch(0.975 0.008 265)",
+      "use": "body"
+    },
+    {
+      "name": "light: muted on canvas",
+      "fg": "oklch(0.54 0.008 265)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "light: muted on surface",
+      "fg": "oklch(0.54 0.008 265)",
+      "bg": "oklch(0.975 0.008 265)",
+      "use": "body"
+    },
+    {
+      "name": "light: accent text on canvas",
+      "fg": "oklch(0.555 0.171 42)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "light: accent text on surface",
+      "fg": "oklch(0.555 0.171 42)",
+      "bg": "oklch(0.975 0.008 265)",
+      "use": "body"
+    },
+    {
+      "name": "light: on-solid text on accent",
+      "fg": "oklch(0.18 0.03 42)",
+      "bg": "oklch(0.68 0.19 42)",
+      "use": "body"
+    },
+    {
+      "name": "light: focus ring on canvas",
+      "fg": "oklch(0.68 0.19 42)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "ui"
+    },
+    {
+      "name": "light: border.strong on canvas",
+      "fg": "oklch(0.65 0.008 265)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "ui"
+    },
+    {
+      "name": "light: danger text on surface",
+      "fg": "oklch(0.56 0.17 10)",
+      "bg": "oklch(0.975 0.008 265)",
+      "use": "body"
+    },
+    {
+      "name": "light: success text on surface",
+      "fg": "oklch(0.52 0.17 150)",
+      "bg": "oklch(0.975 0.008 265)",
+      "use": "body"
+    },
+    {
+      "name": "dark: fg on canvas",
+      "fg": "oklch(0.95 0.01 265)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "dark: fg on surface",
+      "fg": "oklch(0.95 0.01 265)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "dark: muted on canvas",
+      "fg": "oklch(0.7 0.016 265)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "dark: muted on surface",
+      "fg": "oklch(0.7 0.016 265)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "dark: accent text on canvas",
+      "fg": "oklch(0.72 0.162 42)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "dark: accent text on surface",
+      "fg": "oklch(0.72 0.162 42)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "dark: on-solid text on accent",
+      "fg": "oklch(0.18 0.03 42)",
+      "bg": "oklch(0.68 0.19 42)",
+      "use": "body"
+    },
+    {
+      "name": "dark: focus ring on canvas",
+      "fg": "oklch(0.68 0.19 42)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "ui"
+    },
+    {
+      "name": "dark: border.strong on canvas",
+      "fg": "oklch(0.49 0.016 265)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "ui"
+    },
+    {
+      "name": "dark: danger text on surface",
+      "fg": "oklch(0.7 0.15 10)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "dark: success text on surface",
+      "fg": "oklch(0.7 0.15 150)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "logo: ember D on slate tile",
+      "fg": "oklch(0.68 0.19 42)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "ui"
+    },
+    {
+      "name": "accent ember light: text on canvas",
+      "fg": "oklch(0.555 0.171 42)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent ember light: on-solid text",
+      "fg": "oklch(0.18 0.03 42)",
+      "bg": "oklch(0.68 0.19 42)",
+      "use": "body"
+    },
+    {
+      "name": "accent ember dark: text on canvas",
+      "fg": "oklch(0.72 0.162 42)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent ember dark: on-solid text",
+      "fg": "oklch(0.18 0.03 42)",
+      "bg": "oklch(0.68 0.19 42)",
+      "use": "body"
+    },
+    {
+      "name": "accent ember: mark on slate tile",
+      "fg": "oklch(0.68 0.19 42)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "ui"
+    },
+    {
+      "name": "accent orange light: text on canvas",
+      "fg": "oklch(0.55 0.162 50)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent orange light: on-solid text",
+      "fg": "oklch(0.18 0.03 50)",
+      "bg": "oklch(0.68 0.18 50)",
+      "use": "body"
+    },
+    {
+      "name": "accent orange dark: text on canvas",
+      "fg": "oklch(0.72 0.153 50)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent orange dark: on-solid text",
+      "fg": "oklch(0.18 0.03 50)",
+      "bg": "oklch(0.68 0.18 50)",
+      "use": "body"
+    },
+    {
+      "name": "accent orange: mark on slate tile",
+      "fg": "oklch(0.68 0.18 50)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "ui"
+    },
+    {
+      "name": "accent amber light: text on canvas",
+      "fg": "oklch(0.545 0.144 75)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent amber light: on-solid text",
+      "fg": "oklch(0.18 0.03 75)",
+      "bg": "oklch(0.68 0.16 75)",
+      "use": "body"
+    },
+    {
+      "name": "accent amber dark: text on canvas",
+      "fg": "oklch(0.72 0.136 75)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent amber dark: on-solid text",
+      "fg": "oklch(0.18 0.03 75)",
+      "bg": "oklch(0.68 0.16 75)",
+      "use": "body"
+    },
+    {
+      "name": "accent amber: mark on slate tile",
+      "fg": "oklch(0.68 0.16 75)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "ui"
+    },
+    {
+      "name": "accent rose light: text on canvas",
+      "fg": "oklch(0.56 0.171 15)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent rose light: on-solid text",
+      "fg": "oklch(0.18 0.03 15)",
+      "bg": "oklch(0.68 0.19 15)",
+      "use": "body"
+    },
+    {
+      "name": "accent rose dark: text on canvas",
+      "fg": "oklch(0.72 0.162 15)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent rose dark: on-solid text",
+      "fg": "oklch(0.18 0.03 15)",
+      "bg": "oklch(0.68 0.19 15)",
+      "use": "body"
+    },
+    {
+      "name": "accent rose: mark on slate tile",
+      "fg": "oklch(0.68 0.19 15)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "ui"
+    },
+    {
+      "name": "accent violet light: text on canvas",
+      "fg": "oklch(0.555 0.171 300)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent violet light: on-solid text",
+      "fg": "oklch(0.18 0.03 300)",
+      "bg": "oklch(0.68 0.19 300)",
+      "use": "body"
+    },
+    {
+      "name": "accent violet dark: text on canvas",
+      "fg": "oklch(0.72 0.162 300)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent violet dark: on-solid text",
+      "fg": "oklch(0.18 0.03 300)",
+      "bg": "oklch(0.68 0.19 300)",
+      "use": "body"
+    },
+    {
+      "name": "accent violet: mark on slate tile",
+      "fg": "oklch(0.68 0.19 300)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "ui"
+    },
+    {
+      "name": "accent indigo light: text on canvas",
+      "fg": "oklch(0.55 0.162 275)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent indigo light: on-solid text",
+      "fg": "oklch(0.18 0.03 275)",
+      "bg": "oklch(0.68 0.18 275)",
+      "use": "body"
+    },
+    {
+      "name": "accent indigo dark: text on canvas",
+      "fg": "oklch(0.72 0.153 275)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent indigo dark: on-solid text",
+      "fg": "oklch(0.18 0.03 275)",
+      "bg": "oklch(0.68 0.18 275)",
+      "use": "body"
+    },
+    {
+      "name": "accent indigo: mark on slate tile",
+      "fg": "oklch(0.68 0.18 275)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "ui"
+    },
+    {
+      "name": "accent cyan light: text on canvas",
+      "fg": "oklch(0.53 0.126 215)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent cyan light: on-solid text",
+      "fg": "oklch(0.18 0.03 215)",
+      "bg": "oklch(0.68 0.14 215)",
+      "use": "body"
+    },
+    {
+      "name": "accent cyan dark: text on canvas",
+      "fg": "oklch(0.72 0.119 215)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent cyan dark: on-solid text",
+      "fg": "oklch(0.18 0.03 215)",
+      "bg": "oklch(0.68 0.14 215)",
+      "use": "body"
+    },
+    {
+      "name": "accent cyan: mark on slate tile",
+      "fg": "oklch(0.68 0.14 215)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "ui"
+    },
+    {
+      "name": "accent emerald light: text on canvas",
+      "fg": "oklch(0.525 0.135 160)",
+      "bg": "oklch(0.99 0.004 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent emerald light: on-solid text",
+      "fg": "oklch(0.18 0.03 160)",
+      "bg": "oklch(0.68 0.15 160)",
+      "use": "body"
+    },
+    {
+      "name": "accent emerald dark: text on canvas",
+      "fg": "oklch(0.72 0.128 160)",
+      "bg": "oklch(0.155 0.016 265)",
+      "use": "body"
+    },
+    {
+      "name": "accent emerald dark: on-solid text",
+      "fg": "oklch(0.18 0.03 160)",
+      "bg": "oklch(0.68 0.15 160)",
+      "use": "body"
+    },
+    {
+      "name": "accent emerald: mark on slate tile",
+      "fg": "oklch(0.68 0.15 160)",
+      "bg": "oklch(0.182 0.016 265)",
+      "use": "ui"
+    }
+  ]
+}

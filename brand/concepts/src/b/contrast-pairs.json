@@ -1,0 +1,149 @@
+{
+  "$description": "Concept B Ink",
+  "pairs": [
+    {
+      "name": "light: fg on canvas",
+      "fg": "oklch(0.22 0.004 80)",
+      "bg": "oklch(0.99 0.002 80)",
+      "use": "body"
+    },
+    {
+      "name": "light: fg on surface",
+      "fg": "oklch(0.22 0.004 80)",
+      "bg": "oklch(0.975 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "light: muted on canvas",
+      "fg": "oklch(0.54 0.004 80)",
+      "bg": "oklch(0.99 0.002 80)",
+      "use": "body"
+    },
+    {
+      "name": "light: muted on surface",
+      "fg": "oklch(0.54 0.004 80)",
+      "bg": "oklch(0.975 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "light: accent text on canvas",
+      "fg": "oklch(0.52 0.194 28)",
+      "bg": "oklch(0.99 0.002 80)",
+      "use": "body"
+    },
+    {
+      "name": "light: accent text on surface",
+      "fg": "oklch(0.52 0.194 28)",
+      "bg": "oklch(0.975 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "light: on-solid text on accent",
+      "fg": "oklch(0.99 0.008 28)",
+      "bg": "oklch(0.58 0.215 28)",
+      "use": "body"
+    },
+    {
+      "name": "light: focus ring on canvas",
+      "fg": "oklch(0.58 0.215 28)",
+      "bg": "oklch(0.99 0.002 80)",
+      "use": "ui"
+    },
+    {
+      "name": "light: border.strong on canvas",
+      "fg": "oklch(0.65 0.004 80)",
+      "bg": "oklch(0.99 0.002 80)",
+      "use": "ui"
+    },
+    {
+      "name": "light: danger text on surface",
+      "fg": "oklch(0.56 0.17 355)",
+      "bg": "oklch(0.975 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "light: success text on surface",
+      "fg": "oklch(0.52 0.17 150)",
+      "bg": "oklch(0.975 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "dark: fg on canvas",
+      "fg": "oklch(0.95 0.002 80)",
+      "bg": "oklch(0.155 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "dark: fg on surface",
+      "fg": "oklch(0.95 0.002 80)",
+      "bg": "oklch(0.182 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "dark: muted on canvas",
+      "fg": "oklch(0.7 0.004 80)",
+      "bg": "oklch(0.155 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "dark: muted on surface",
+      "fg": "oklch(0.7 0.004 80)",
+      "bg": "oklch(0.182 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "dark: accent text on canvas",
+      "fg": "oklch(0.72 0.183 28)",
+      "bg": "oklch(0.155 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "dark: accent text on surface",
+      "fg": "oklch(0.72 0.183 28)",
+      "bg": "oklch(0.182 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "dark: on-solid text on accent",
+      "fg": "oklch(0.99 0.008 28)",
+      "bg": "oklch(0.58 0.215 28)",
+      "use": "body"
+    },
+    {
+      "name": "dark: focus ring on canvas",
+      "fg": "oklch(0.58 0.215 28)",
+      "bg": "oklch(0.155 0.004 80)",
+      "use": "ui"
+    },
+    {
+      "name": "dark: border.strong on canvas",
+      "fg": "oklch(0.49 0.004 80)",
+      "bg": "oklch(0.155 0.004 80)",
+      "use": "ui"
+    },
+    {
+      "name": "dark: danger text on surface",
+      "fg": "oklch(0.7 0.15 355)",
+      "bg": "oklch(0.182 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "dark: success text on surface",
+      "fg": "oklch(0.7 0.15 150)",
+      "bg": "oklch(0.182 0.004 80)",
+      "use": "body"
+    },
+    {
+      "name": "logo: ink D on paper tile",
+      "fg": "oklch(0.22 0.004 80)",
+      "bg": "oklch(0.99 0.002 80)",
+      "use": "ui"
+    },
+    {
+      "name": "logo: red C on paper tile",
+      "fg": "oklch(0.58 0.215 28)",
+      "bg": "oklch(0.99 0.002 80)",
+      "use": "ui"
+    }
+  ]
+}

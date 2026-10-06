@@ -18,18 +18,20 @@ Art direction contract. Every visual change is scored against this by the
   Behind: one static ambient glow (`bg-accent-soft` blurred 120px) and a
   60px grid pattern at 3–5 % masked to the centre. Ultra-wide (>21:9): content
   stays `--container-max` (88rem) centred, background fills.
-- **PALETTE (OKLCH)** — dark base `oklch(0.13 0.02 272)`, surface
-  `oklch(0.17 0.025 272)`, text ivory `oklch(0.95 0.015 80)`. Light base
-  `oklch(0.985 0.005 80)`, text `oklch(0.18 0.02 272)`. Accent = user-chosen
-  (default **orange** `oklch(0.72 0.18 50)`, owner decision 2026-09-15); cool
-  counter = accent hue +140° (→ teal for orange).
+- **PALETTE (OKLCH, brand Keystone)** — slate neutrals, hue 265: dark base
+  `oklch(0.155 0.016 265)`, surface `oklch(0.182 0.016 265)`, text
+  `oklch(0.95 0.01 265)`. Light base `oklch(0.99 0.004 265)`, text
+  `oklch(0.2 0.01 265)`. Accent = user-chosen, default **Ember**
+  `oklch(0.68 0.19 42)` #f46622 (owner, gate A 2026-10-05); cool counter =
+  accent hue +140°. Full table and proof: [`brand/BRAND.md`](../brand/BRAND.md).
 - **LIGHTING** — a single soft accent glow behind the headline; page-wide
   static mesh (`.page-mesh`: one diagonal accent→counter gradient + one radial
   glow at the top). Nothing moves.
 - **ATMOSPHERE** — film grain overlay at 2.5 % (`noise-overlay`), static.
-- **TYPOGRAPHY** — Display: Geist (700/800, tight tracking −0.03em, sizes via
-  `text-5xl → lg:text-8xl`). Body: Geist 400/500. Mono: Geist Mono for
-  stats, versions, code. Two families only.
+- **TYPOGRAPHY** — Display: **Bricolage Grotesque** (`font-display`, 700/800,
+  wdth 88, tight tracking −0.03em, sizes via `text-5xl → lg:text-8xl`) on the
+  wordmark, h1 and section headings only. Body: Geist 400/500. Mono: Geist
+  Mono for stats, versions, code. Two families plus mono, no more.
 - **CHOREOGRAPHY** — entrance only: badge → headline → subtitle → CTAs rise
   with a 120 ms stagger (`HeroReveal`); tech pills fade in via pure CSS
   `animation-delay: 0.6s + i·40ms` (`.hero-pill`); settle by ~1.6 s. The only
@@ -46,12 +48,28 @@ Art direction contract. Every visual change is scored against this by the
 ## Theme system
 
 - `data-mode="dark|light"` on `<html>` (system resolved client-side pre-paint).
-- `data-accent="orange|violet|indigo|cyan|emerald|amber|rose"` (default orange).
+- `data-accent="ember|orange|amber|rose|violet|indigo|cyan|emerald"` (default ember).
 - `data-surface="solid|glass|contrast"` — glass adds backdrop blur +
   translucency to surfaces; contrast raises borders/text to AAA.
 - Tokens live in `src/app/globals.css` under `@theme inline`; components use
   only semantic utilities (`bg-surface`, `text-fg`, `text-accent`,
   `border-line`). Raw palette classes (`bg-violet-500`) are banned.
+
+## Brand (Keystone, V3-02)
+
+The brand book is [`brand/BRAND.md`](../brand/BRAND.md), with facts in `brand/brand.json`
+and DTCG tokens in `brand/tokens.json`.
+
+- **Mark** — a solid D with the C carved out of it, on a slate tile. The D takes
+  `--accent-mark` (the live accent at L 0.68) and the tile is `--mark-tile`. Render it with
+  `BrandMark`, never as an `<img>`.
+- **Wordmark** — "Dragoș Cătălin" in Bricolage 720, with the comma of ș drawn as a round
+  accent drop (`Wordmark`). Use diacritics and no family name.
+- **Logo motion** — CSS only, header only, once per session (`<html data-intro>`):
+  the D lands, the C is carved, the comma drops (~1 s). Hover: the C turns −90°. Reduced
+  motion: final frame.
+- **Icons and OG** — generated from `brand/logo/` by `scripts/optimize-assets.mjs`.
+  `src/lib/og.tsx` uses hex values and the Bricolage TTF cuts.
 
 ## Section signatures (home)
 

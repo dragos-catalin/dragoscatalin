@@ -1,0 +1,27 @@
+PASS  light: fg on canvas                body  WCAG 16.82 (min 4.5)  APCA Lc  102.2 (adv 75)  #1c1a19 on #fcfcfa
+PASS  light: fg on surface               body  WCAG 16.11 (min 4.5)  APCA Lc   99.2 (adv 75)  #1c1a19 on #f8f6f4
+WARN  light: muted on canvas             body  WCAG  4.92 (min 4.5)  APCA Lc   73.0 (adv 75)  #706e6c on #fcfcfa
+WARN  light: muted on surface            body  WCAG  4.71 (min 4.5)  APCA Lc   70.0 (adv 75)  #706e6c on #f8f6f4
+PASS  light: accent text on canvas       body  WCAG  5.91 (min 4.5)  APCA Lc   76.5 (adv 75)  #bf201d on #fcfcfa
+WARN  light: accent text on surface      body  WCAG  5.66 (min 4.5)  APCA Lc   73.5 (adv 75)  #bf201d on #f8f6f4
+WARN  light: on-solid text on accent     body  WCAG  4.63 (min 4.5)  APCA Lc  -74.3 (adv 75)  #fffbfa on #dd2824  [clipped to sRGB]
+PASS  light: focus ring on canvas        ui    WCAG  4.63 (min 3)  APCA Lc   69.2 (adv 45)  #dd2824 on #fcfcfa
+PASS  light: border.strong on canvas     ui    WCAG  3.14 (min 3)  APCA Lc   57.6 (adv 45)  #908f8c on #fcfcfa
+WARN  light: danger text on surface      body  WCAG  4.76 (min 4.5)  APCA Lc   69.3 (adv 75)  #bc3e79 on #f8f6f4
+WARN  light: success text on surface     body  WCAG  4.80 (min 4.5)  APCA Lc   69.9 (adv 75)  #007f38 on #f8f6f4  [clipped to sRGB]
+PASS  dark: fg on canvas                 body  WCAG 16.89 (min 4.5)  APCA Lc  -96.7 (adv 75)  #efeeed on #0d0c0a
+PASS  dark: fg on surface                body  WCAG 16.20 (min 4.5)  APCA Lc  -96.4 (adv 75)  #efeeed on #131210
+WARN  dark: muted on canvas              body  WCAG  7.31 (min 4.5)  APCA Lc  -49.7 (adv 75)  #a09e9c on #0d0c0a
+WARN  dark: muted on surface             body  WCAG  7.01 (min 4.5)  APCA Lc  -49.3 (adv 75)  #a09e9c on #131210
+WARN  dark: accent text on canvas        body  WCAG  7.31 (min 4.5)  APCA Lc  -50.4 (adv 75)  #ff7264 on #0d0c0a  [clipped to sRGB]
+WARN  dark: accent text on surface       body  WCAG  7.01 (min 4.5)  APCA Lc  -50.1 (adv 75)  #ff7264 on #131210  [clipped to sRGB]
+WARN  dark: on-solid text on accent      body  WCAG  4.63 (min 4.5)  APCA Lc  -74.3 (adv 75)  #fffbfa on #dd2824  [clipped to sRGB]
+WARN  dark: focus ring on canvas         ui    WCAG  4.10 (min 3)  APCA Lc  -30.2 (adv 45)  #dd2824 on #0d0c0a
+WARN  dark: border.strong on canvas      ui    WCAG  3.12 (min 3)  APCA Lc  -20.4 (adv 45)  #62605e on #0d0c0a
+WARN  dark: danger text on surface       body  WCAG  6.52 (min 4.5)  APCA Lc  -46.7 (adv 75)  #e573a3 on #131210
+WARN  dark: success text on surface      body  WCAG  7.46 (min 4.5)  APCA Lc  -52.4 (adv 75)  #4cb86a on #131210
+PASS  logo: ink D on paper tile          ui    WCAG 16.82 (min 3)  APCA Lc  102.2 (adv 45)  #1c1a19 on #fcfcfa
+PASS  logo: red C on paper tile          ui    WCAG  4.63 (min 3)  APCA Lc   69.2 (adv 45)  #dd2824 on #fcfcfa
+
+24 pairs: 9 pass, 15 APCA advisory warnings, 0 WCAG failures
+exit 0

@@ -1,6 +1,9 @@
 export const site = {
-    name: "Dragos Catalin",
-    fullName: "Dragos Catalin Vladulescu",
+    // Public name (owner, 2026-10-05): diacritics, no family name. fullName only where the law or
+    // identity linking needs it (privacy controller, JSON-LD alternateName).
+    name: "Dragoș Cătălin",
+    asciiName: "Dragos Catalin",
+    fullName: "Dragoș Cătălin Vlădulescu",
     handle: "dragoscv",
     url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dragoscatalin.ro",
     email: "contact@dragoscatalin.ro",

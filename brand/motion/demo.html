@@ -1,0 +1,193 @@
+<!doctype html>
+<!-- Keystone logo motion demo (gate E). Same keyframes and timings as src/app/globals.css
+     § Keystone logo motion and brand/tokens.json motion.*. Open in a browser; click "Replay". -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Keystone — logo motion</title>
+    <style>
+        @font-face {
+            font-family: Bricolage;
+            src: url('../../src/fonts/bricolage-display.woff2') format('woff2');
+            font-weight: 700 800;
+        }
+
+        :root {
+            --bg: #090c13;
+            --tile: #0f1219;
+            --fg: #ebeef5;
+            --muted: #999ea9;
+            --mark: #f46622;
+            --accent: #ff824f;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--fg);
+            font: 15px/1.5 system-ui, sans-serif;
+            padding: 48px;
+        }
+
+        h1 {
+            font: 700 28px Bricolage, sans-serif;
+            margin: 0 0 6px;
+        }
+
+        p {
+            color: var(--muted);
+            margin: 0 0 28px;
+            max-width: 70ch;
+        }
+
+        .stage {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 40px;
+            border: 1px solid #2a2e36;
+            border-radius: 20px;
+            width: max-content;
+        }
+
+        .mark {
+            width: 96px;
+            height: 96px;
+        }
+
+        .wm {
+            font: 720 56px/1 Bricolage, sans-serif;
+            letter-spacing: -0.025em;
+            white-space: nowrap;
+        }
+
+        .s {
+            position: relative;
+            display: inline-block;
+        }
+
+        .comma {
+            position: absolute;
+            top: .876em;
+            left: calc(50% - .0815em);
+            width: .144em;
+            height: .273em;
+            overflow: visible;
+        }
+
+        .play .brand-d {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: land .38s var(--ease-out-expo) both;
+        }
+
+        .play .brand-c path {
+            animation: carve .48s var(--ease-out-expo) .26s both;
+        }
+
+        .play .comma {
+            animation: drop .32s var(--ease-spring) .7s both;
+        }
+
+        .brand-c {
+            transform-box: fill-box;
+            transform-origin: 56.6% 50%;
+            transition: transform .45s var(--ease-spring);
+        }
+
+        .stage:hover .brand-c {
+            transform: rotate(-90deg);
+        }
+
+        @keyframes land {
+            from {
+                opacity: 0;
+                transform: translateY(-12%) scale(.9);
+            }
+        }
+
+        @keyframes carve {
+            from {
+                stroke-dashoffset: 1;
+            }
+        }
+
+        @keyframes drop {
+            from {
+                opacity: 0;
+                transform: translateY(-.45em);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .play .brand-d,
+            .play .brand-c path,
+            .play .comma {
+                animation: none;
+            }
+
+            .brand-c {
+                transition: none;
+            }
+
+            .stage:hover .brand-c {
+                transform: none;
+            }
+        }
+
+        button {
+            margin-top: 20px;
+            font: 600 14px system-ui;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid #494d56;
+            background: #151920;
+            color: var(--fg);
+            cursor: pointer;
+        }
+
+        ol {
+            color: var(--muted);
+            max-width: 70ch;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Keystone · logo motion</h1>
+    <p>Intro (once per session, header only): the D lands as a block (380 ms), the C is carved in one stroke (480 ms,
+        +260 ms), the comma of “ș” drops into the wordmark (320 ms spring, +700 ms). Total ≈ 1.02 s. Hover/focus: the
+        carved C turns 90°. Reduced motion: the final frame, nothing moves.</p>
+    <div id="stage" class="stage play">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true">
+            <rect width="48" height="48" rx="11" fill="var(--tile)" />
+            <path class="brand-d" d="M10.5 9H24A15 15 0 0 1 24 39H10.5Q8.5 39 8.5 37V11Q8.5 9 10.5 9Z"
+                fill="var(--mark)" />
+            <g class="brand-c">
+                <path d="M27.479 19.822A6.5 6.5 0 1 0 27.479 28.178" fill="none" stroke="var(--tile)" stroke-width="5"
+                    pathLength="1" stroke-dasharray="1 2" />
+            </g>
+        </svg>
+        <span class="wm">Drago<span class="s">s<svg class="comma" viewBox="-12.35 7 21.85 41.325">
+                    <path
+                        d="M-9.5 16.5A9.5 9.5 0 1 1 9.5 16.5C9.5 34.55 -1.9 45 -10.925 48.325L-12.35 44.05C-4.275 39.3 0.475 32.65 0 25.525A9.5 9.5 0 0 1 -9.5 16.5Z"
+                        fill="var(--accent)" />
+                </svg></span> Cătălin</span>
+    </div>
+    <button id="replay" type="button">Replay</button>
+    <ol>
+        <li><b>0 ms</b> — D at 90 %, transparent, 12 % above.</li>
+        <li><b>380 ms</b> — D settled; carving starts at 260 ms from the open end of the C.</li>
+        <li><b>740 ms</b> — C fully carved; mark equals the static master.</li>
+        <li><b>700–1020 ms</b> — comma drops under the s with a small spring overshoot.</li>
+    </ol>
+    <script>
+        document.getElementById('replay').onclick = () => { const s = document.getElementById('stage'); s.classList.remove('play'); void s.offsetWidth; s.classList.add('play'); };
+    </script>
+</body>
+
+</html>

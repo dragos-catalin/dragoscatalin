@@ -187,7 +187,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
                             <Badge variant="warning">{pick(project.disclaimer, locale)}</Badge>
                         ) : null}
                     </div>
-                    <h1 className="text-[clamp(2.25rem,5vw,4rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-fg">
+                    <h1 className="font-display text-[clamp(2.25rem,5vw,4rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-fg">
                         {project.name}
                     </h1>
                     <p className="text-lg text-fg-muted md:text-xl">{tagline}</p>

@@ -43,3 +43,8 @@ next-env.d.ts
 
 # agent scratch
 .copilot-tmp/
+
+# brand: upstream fonts (fetch-fonts.ps1) and regenerable sheet HTML (> 300 KB)
+brand/concepts/src/fonts/
+brand/concepts/src/*.html
+

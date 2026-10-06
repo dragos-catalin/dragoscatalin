@@ -103,7 +103,7 @@ export async function RepoStatsPanel({ repos }: RepoStatsPanelProps) {
                                                     href={s.latestRelease.url}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center gap-1 hover:text-accent"
+                                                    className="flex min-h-6 items-center gap-1 hover:text-accent"
                                                 >
                                                     <Tag className="size-3" aria-hidden />
                                                     {s.latestRelease.tag}

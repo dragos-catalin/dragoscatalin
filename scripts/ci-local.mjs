@@ -3,7 +3,7 @@
  * Run the whole CI pipeline locally, on Linux, exactly like GitHub Actions.
  *
  *   node scripts/ci-local.mjs            # Windows → re-exec inside WSL; Linux → run inline
- *   node scripts/ci-local.mjs --docker   # run inside node:26-bookworm (needs docker)
+ *   node scripts/ci-local.mjs --docker   # run inside node:24-bookworm (needs docker)
  *   node scripts/ci-local.mjs --inner    # (internal) run the pipeline in the current shell
  *   --keep-going                         # don't stop at the first failing step
  *
@@ -46,7 +46,7 @@ if (!inner) {
             console.error("✖ --docker requested but docker is not on PATH");
             process.exit(1);
         }
-        log(`▶ docker run node:26-bookworm (repo mounted at /w)\n`);
+        log(`▶ docker run node:24-bookworm (repo mounted at /w)\n`);
         const r = spawnSync(
             "docker",
             [
@@ -58,7 +58,7 @@ if (!inner) {
                 "/w",
                 "-e",
                 "CI=1",
-                "node:26-bookworm",
+                "node:24-bookworm",
                 "bash",
                 "-lc",
                 INNER_CMD,
@@ -99,14 +99,23 @@ const env = {
     FORCE_COLOR: "1",
 };
 const steps = [
+    ["format", "pnpm format:check"],
     ["lint", "pnpm lint"],
     ["typecheck", "pnpm typecheck"],
     ["check-messages", "node scripts/check-messages.mjs"],
     ["check-tracker", "node scripts/check-tracker.mjs"],
+    ["audit", "pnpm audit --audit-level high"],
     ["test", "pnpm test -- --coverage"],
     ["build", "pnpm build"],
     ["size", "pnpm size"],
     ["playwright install", "pnpm exec playwright install --with-deps chromium"],
+    // S-01: scans need a running server; start it in the background like CI does.
+    [
+        "start",
+        "(pnpm start > .next/start.log 2>&1 &) && npx --yes wait-on@8 http://localhost:24789 --timeout 60000",
+    ],
+    ["contrast", "pnpm scan:contrast"],
+    ["layout", "pnpm scan:layout"],
     ["e2e", "pnpm test:e2e"],
 ];
 

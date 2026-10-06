@@ -1,9 +1,10 @@
 # dragoscatalin.ro
 
-Personal portfolio of **Dragos Catalin Vladulescu** — full-stack developer,
-Romania. A calm, typographic portfolio: a centred hero with tech pills and static glow,
-a curated project registry enriched with live GitHub data, RO/EN, six OKLCH
-accents, and machine-readable surfaces for search and answer engines.
+Personal portfolio of **Dragoș Cătălin**, a product engineer and full-stack developer
+in Romania. It is a calm, typographic portfolio with a centred hero, tech pills and a
+static glow. A curated project registry is enriched with live GitHub data. The site is
+RO/EN, has eight OKLCH accents (Ember by default) and machine-readable surfaces for
+search and answer engines. The brand is Keystone: see [`brand/BRAND.md`](brand/BRAND.md).
 
 Live: <https://dragoscatalin.ro> · Version in `package.json` (shown in the footer).
 
@@ -14,7 +15,7 @@ React 19.3 (`ViewTransition`) · TypeScript 7 (`tsc`) with typescript-eslint on 
 Tailwind CSS 4.3 (CSS-first `@theme inline`, OKLCH) · motion 13 · next-intl 4 ·
 nuqs · zod 4 · Resend · Cloudflare Turnstile · schema-dts · feed ·
 Vitest 5 · Playwright + axe · ESLint 10 flat · Prettier · husky + lint-staged ·
-size-limit · Vercel Analytics / Speed Insights · Sentry (optional).
+per-page first-load budget · Vercel Analytics / Speed Insights · Sentry (optional).
 
 ## Quick start
 
@@ -24,7 +25,7 @@ Copy-Item .env.example .env.local   # fill what you need; everything is optional
 pnpm dev                            # http://localhost:24789
 ```
 
-Node ≥ 22.22, pnpm ≥ 10. Always `pnpm`.
+Node 24 LTS, pnpm ≥ 12. Always `pnpm`.
 
 ## Scripts
 
@@ -36,7 +37,7 @@ Node ≥ 22.22, pnpm ≥ 10. Always `pnpm`.
 | `pnpm typecheck`                         | `tsc --noEmit`                            |
 | `pnpm test` / `pnpm test:watch`          | Vitest unit tests                         |
 | `pnpm test:e2e`                          | Playwright smoke + accessibility (axe)    |
-| `pnpm size`                              | first-load JS budget (size-limit)         |
+| `pnpm size`                              | heaviest page's first-load JS budget      |
 | `pnpm tracker:check`                     | validates `docs/tracker.csv`              |
 | `pnpm ci:local`                          | runs the CI pipeline locally (WSL/Docker) |
 
@@ -115,11 +116,27 @@ the `few` category.
 | `/opengraph-image`, `/projects/{slug}/opengraph-image`       | `src/lib/og.tsx`                          |
 | JSON-LD Person, WebSite, SoftwareApplication, BreadcrumbList | `src/components/seo/JsonLd.tsx`           |
 
+## Brand
+
+`brand/` is the brand pack: [`BRAND.md`](brand/BRAND.md) is the book, `brand.json` holds
+the facts, `tokens.json` the DTCG tokens, `logo/` the SVG masters, `motion/` the logo-motion
+preview and `concepts/` the five concept sheets. To regenerate:
+
+```powershell
+node brand/src/build.mjs                                     # masters, tokens, geometry.ts
+node brand/scripts/contrast-gate.mjs brand/contrast-pairs.json  # WCAG proof (exit 1 on a fail)
+pnpm assets:optimize                                          # favicon, icon.svg, apple, PWA, press logo
+node brand/src/render-motion.mjs                             # motion preview
+```
+
+The display font is Bricolage Grotesque (OFL), subset by `brand/scripts/subset-fonts.py`.
+Romanian glyphs are checked by `brand/scripts/check-glyphs.py`.
+
 ## Quality gates
 
 husky pre-commit (lint-staged: ESLint + Prettier; version bump + CHANGELOG
 required for `src/` changes) · `pnpm typecheck` · Vitest · Playwright smoke +
-axe across accents × modes × surfaces · size-limit · `pnpm tracker:check` ·
+axe across accents × modes × surfaces · first-load budget (`pnpm size`) · `pnpm tracker:check` ·
 `pnpm ci:local` mirrors GitHub Actions. Details in `docs/CI.md`.
 
 ## Deployment

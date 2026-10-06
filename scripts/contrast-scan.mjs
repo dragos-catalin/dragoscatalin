@@ -6,6 +6,8 @@ const base = process.argv[2] ?? "http://localhost:24789";
 const routes = [
     "/",
     "/projects",
+    "/services",
+    "/lab",
     "/projects/codai",
     "/projects/titi",
     "/about",
@@ -16,7 +18,7 @@ const routes = [
     "/ro",
 ];
 const modes = ["dark", "light"];
-const accents = ["orange", "violet"];
+const accents = ["ember", "violet"];
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });

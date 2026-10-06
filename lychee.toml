@@ -1,0 +1,15 @@
+# Link check config for .github/workflows/links.yml (S-02).
+max_concurrency = 8
+timeout = 20
+max_retries = 2
+# 402 = paused project site, 429 = rate limited. Both are reported, not failures
+# of this site; the issue body still lists them.
+accept = ["100..=103", "200..=299", "429"]
+exclude = [
+  # Login walls and bot-hostile hosts answer 999/403 to crawlers.
+  "^https://(www\\.)?linkedin\\.com",
+  "^https://(www\\.)?instagram\\.com",
+  "^https://x\\.com",
+  # Placeholder hosts from examples.
+  "^https?://localhost",
+]

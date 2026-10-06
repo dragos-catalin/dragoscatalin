@@ -19,8 +19,8 @@ React 19.3 · TypeScript 7 via alias (`typescript`→`@typescript/typescript6@6.
 · motion 13 (`motion/react`) · next-intl 4.14 (`as-needed`, EN default, `/ro`) ·
 nuqs 2 · zod 4 · lucide-react 1.x + `@/components/icons` · resend ·
 `@marsidev/react-turnstile` · schema-dts · feed · ESLint 10 flat + prettier 3 ·
-Vitest 5 · Playwright 1.63 + `@axe-core/playwright` · size-limit · husky + lint-staged.
-Node ≥ 22.22, pnpm ≥ 10 (`packageManager` pnpm@12). **Always pnpm.**
+Vitest 5 · Playwright 1.63 + `@axe-core/playwright` · per-page first-load budget · husky + lint-staged.
+Node 24 LTS (`.nvmrc`, `engines >=24`), pnpm ≥ 12 (`packageManager` pnpm@12). **Always pnpm.**
 
 ## Commands
 
@@ -31,14 +31,14 @@ Node ≥ 22.22, pnpm ≥ 10 (`packageManager` pnpm@12). **Always pnpm.**
 | `pnpm typecheck`              | `tsc --noEmit` (tsc = TS 7.0.2)                                        |
 | `pnpm test`                   | Vitest (registry, utils, i18n)                                         |
 | `pnpm test:e2e`               | Playwright smoke + axe                                                 |
-| `pnpm size`                   | size-limit budget on first-load JS                                     |
+| `pnpm size`                   | Heaviest page's first-load JS vs `first-load-budget.json` (after build) |
 | `pnpm tracker:check`          | `scripts/check-tracker.mjs` — CSV field count + evidence paths exist   |
 | `pnpm ci:local`               | `scripts/ci-local.mjs` — whole pipeline in WSL/Docker                  |
 | `pnpm lh`                     | Local Lighthouse sweep vs a running prod server (`-- --preset mobile`) |
 | `pnpm scan:contrast`          | Effective text contrast on every route × mode × accent (exit 1 on any) |
 | `pnpm scan:layout`            | Overflow / alignment / tap-target / clipped-text scan at 8 widths      |
 | `pnpm shots`                  | Playwright screenshots of live projects into `public/shots/`           |
-| `pnpm assets:optimize`        | Regenerate logo/icon variants from `public/logo.png` (sharp)           |
+| `pnpm assets:optimize`        | Regenerate favicon/icons/press logo from `brand/logo/*.svg` (sharp)    |
 
 ## Hard rules
 
@@ -102,7 +102,7 @@ data-accent data-surface>` (`src/lib/theme.ts`: MODES/ACCENTS/SURFACES).
 - Anything awaiting network (GitHub, npm) renders behind `<Suspense>` with the
   registry-driven markup as the fallback — never a skeleton for LCP content.
 - Staged assets > 300 KB fail pre-commit (`public/logo.png` allowlisted for
-  the press kit). First-load JS budget 300 kB gz (`.size-limit.json`).
+  the press kit). First-load JS budget 300 kB gz for the heaviest page (`first-load-budget.json`).
 - Only the true LCP image gets `priority`; the mono font is not preloaded.
 
 ## Verification (non-negotiable)

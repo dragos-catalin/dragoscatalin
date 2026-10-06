@@ -29,19 +29,31 @@ jobs:
       - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
-          node-version: 26
+          node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
       - run: pnpm lint
       - run: pnpm typecheck
       - run: node scripts/check-messages.mjs
       - run: node scripts/check-tracker.mjs
+      - run: pnpm audit --audit-level high
       - run: pnpm test -- --coverage
       - run: pnpm build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm size
       - run: pnpm exec playwright install --with-deps chromium
+      - name: Start production server
+        run: |
+          pnpm start > .next/start.log 2>&1 &
+          npx --yes wait-on@8 http://localhost:24789 --timeout 60000
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # S-01: the visual gates the repo calls non-negotiable, against `next start`.
+      - run: pnpm scan:contrast
+      - run: pnpm scan:layout
+      # Playwright reuses the running server (reuseExistingServer: true).
       - run: pnpm test:e2e
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,4 +64,17 @@ jobs:
           path: |
             playwright-report/
             test-results/
+            .next/start.log
           retention-days: 7
+
+  secrets:
+    # S-02: full-history secret scan on every push/PR.
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

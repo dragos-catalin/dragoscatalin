@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs/config";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
@@ -46,9 +46,8 @@ const config = withNextIntl(nextConfig);
 export default process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
     ? withSentryConfig(config, {
           silent: true,
-          org: process.env.SENTRY_ORG,
-          project: process.env.SENTRY_PROJECT,
+          ...(process.env.SENTRY_ORG ? { org: process.env.SENTRY_ORG } : {}),
+          ...(process.env.SENTRY_PROJECT ? { project: process.env.SENTRY_PROJECT } : {}),
           widenClientFileUpload: true,
-          disableLogger: true,
       })
     : config;

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -36,6 +37,18 @@ const geistMono = Geist_Mono({
     fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 });
 
+// Brand display face (Keystone): Bricolage Grotesque subset to Latin + Latin Ext-A + ȘșȚț,
+// variable wght 700-800, wdth 88 / opsz 96 pinned (brand/scripts/subset-fonts.py, 43 KB).
+// Used by the wordmark (header, every page) and h1/h2, so it is preloaded.
+const bricolage = localFont({
+    src: "../../fonts/bricolage-display.woff2",
+    variable: "--font-bricolage",
+    weight: "700 800",
+    display: "swap",
+    adjustFontFallback: "Arial",
+    fallback: ["Arial", "sans-serif"],
+});
+
 // The Vercel scripts 404 (and log console errors) off-Vercel; only mount them where they work.
 const ON_VERCEL = Boolean(process.env.VERCEL);
 
@@ -69,15 +82,14 @@ export async function generateMetadata({
         },
         twitter: { card: "summary_large_image", title: t("title"), description: t("description") },
         robots: { index: true, follow: true },
-        // src/app/icon.png is picked up automatically; apple icon from /public.
-        icons: { apple: "/apple-icon.png" },
+        // src/app/{icon.svg,icon.png,favicon.ico,apple-icon.png} are picked up by file convention.
     };
 }
 
 export const viewport: Viewport = {
     themeColor: [
-        { media: "(prefers-color-scheme: dark)", color: "oklch(0.13 0.02 272)" },
-        { media: "(prefers-color-scheme: light)", color: "oklch(0.985 0.005 80)" },
+        { media: "(prefers-color-scheme: dark)", color: "#090c13" },
+        { media: "(prefers-color-scheme: light)", color: "#fafcff" },
     ],
     width: "device-width",
     initialScale: 1,
@@ -105,7 +117,7 @@ export default async function LocaleLayout({
             data-accent={theme.accent}
             data-surface={theme.surface}
             suppressHydrationWarning
-            className={`${geistSans.variable} ${geistMono.variable}`}
+            className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable}`}
         >
             <head>
                 <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
