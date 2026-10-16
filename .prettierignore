@@ -10,3 +10,7 @@ test-results
 docs/tracker.csv
 # Generated brand previews (brand/src/build.mjs, render-motion.mjs input)
 brand/**/*.html
+
+# Markdown trackers: pre-commit `prettier --write` reflowed their tables; an aborted commit left the
+# reflow staged in the shared clone and git-autosync could not fast-forward (2026-10-17).
+docs/TRACKER.md
