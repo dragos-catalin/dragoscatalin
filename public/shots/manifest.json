@@ -1,1 +1,456 @@
-{ "generatedAt": null, "shots": {} }
+{
+  "generatedAt": "2026-10-19T10:37:30.710Z",
+  "shots": {
+    "horae": {
+      "url": "https://horae.dragoscatalin.ro",
+      "capturedAt": "2026-10-19T10:32:28.480Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/horae/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/horae/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/horae/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/horae/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/horae/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/horae/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/horae/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "codai": {
+      "url": "https://codai.ro",
+      "capturedAt": "2026-10-19T10:32:37.691Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/codai/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/codai/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/codai/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/codai/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/codai/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/codai/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/codai/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "brivio": {
+      "url": "https://brivio.ro",
+      "capturedAt": "2026-10-19T10:32:50.926Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/brivio/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/brivio/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/brivio/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/brivio/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/brivio/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/brivio/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/brivio/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "unscroll": {
+      "url": "https://dragoscatalin.ro/feedbrake",
+      "capturedAt": "2026-10-19T10:32:53.363Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/unscroll/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/unscroll/full-dark.jpg",
+          "width": 1440,
+          "height": 2626
+        },
+        "desktop-light": {
+          "path": "shots/unscroll/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/unscroll/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/unscroll/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/unscroll/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/unscroll/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "marcai": {
+      "url": "https://marcai.ro",
+      "capturedAt": "2026-10-19T10:33:10.811Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/marcai/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/marcai/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/marcai/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/marcai/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/marcai/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/marcai/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/marcai/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "notai": {
+      "url": "https://github.com/dragoscv/notai/releases",
+      "capturedAt": "2026-10-19T10:33:28.798Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/notai/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/notai/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/notai/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/notai/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/notai/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/notai/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/notai/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "titi": {
+      "url": "https://titi-xi.vercel.app",
+      "capturedAt": "2026-10-19T10:33:51.780Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/titi/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/titi/full-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "desktop-light": {
+          "path": "shots/titi/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/titi/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/titi/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/titi/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/titi/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "mixai": {
+      "url": "https://github.com/dragoscv/mmo/releases",
+      "capturedAt": "2026-10-19T10:33:55.105Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/mixai/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/mixai/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/mixai/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/mixai/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/mixai/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/mixai/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/mixai/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "vitals": {
+      "url": "https://vitals.dragoscatalin.ro",
+      "capturedAt": "2026-10-19T10:34:14.144Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/vitals/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/vitals/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/vitals/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/vitals/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/vitals/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/vitals/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/vitals/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "axiom": {
+      "url": "https://dragoscv.github.io/axiom/",
+      "capturedAt": "2026-10-19T10:34:18.932Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/axiom/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/axiom/full-dark.jpg",
+          "width": 1440,
+          "height": 2951
+        },
+        "desktop-light": {
+          "path": "shots/axiom/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/axiom/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/axiom/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/axiom/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/axiom/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    "studiai": {
+      "url": "https://studiai.ro",
+      "capturedAt": "2026-10-19T10:37:30.673Z",
+      "files": {
+        "desktop-dark": {
+          "path": "shots/studiai/desktop-dark.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "full-dark": {
+          "path": "shots/studiai/full-dark.jpg",
+          "width": 1440,
+          "height": 4000
+        },
+        "desktop-light": {
+          "path": "shots/studiai/desktop-light.jpg",
+          "width": 1440,
+          "height": 900
+        },
+        "tablet-dark": {
+          "path": "shots/studiai/tablet-dark.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "tablet-light": {
+          "path": "shots/studiai/tablet-light.jpg",
+          "width": 1024,
+          "height": 1366
+        },
+        "mobile-dark": {
+          "path": "shots/studiai/mobile-dark.jpg",
+          "width": 390,
+          "height": 844
+        },
+        "mobile-light": {
+          "path": "shots/studiai/mobile-light.jpg",
+          "width": 390,
+          "height": 844
+        }
+      }
+    }
+  }
+}
