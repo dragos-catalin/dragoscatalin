@@ -127,7 +127,29 @@ if (fast) {
 }
 
 // ---- code gates ------------------------------------------------------------
-phase("lint-staged", () => run("pnpm", ["exec", "lint-staged"], { env: NODE_ENV }).status === 0);
+// Only the files THIS commit actually changes are formatted (index blob vs merge base), so a file
+// something else staged without touching it here is never rewritten or re-staged. Replaces
+// lint-staged, which formatted whatever the index happened to hold.
+phase(
+    "format (prettier)",
+    () => run("node", ["scripts/ci/precommit-format-staged.mjs"], { env: NODE_ENV }).status === 0,
+);
+
+phase(
+    "format (eslint --fix)",
+    () =>
+        run(
+            "node",
+            [
+                "scripts/ci/precommit-format-staged.mjs",
+                "--ext",
+                ".ts,.tsx,.mjs,.js",
+                "--runner",
+                "eslint --fix",
+            ],
+            { env: NODE_ENV },
+        ).status === 0,
+);
 
 phase("typecheck", () =>
     tsChanged ? run("pnpm", ["exec", "tsc", "--noEmit"], { env: NODE_ENV }).status === 0 : true,
