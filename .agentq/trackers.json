@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "repo": "dragoscatalin",
+  "trackers": [
+    {
+      "id": "plan",
+      "file": "docs/tracker.csv",
+      "format": "csv",
+      "columns": {
+        "id": "id",
+        "title": "title",
+        "status": "status",
+        "group": "area",
+        "notes": "notes"
+      },
+      "idPattern": "^[A-Z]\\d+(-\\d{2})?$",
+      "status": {
+        "map": {
+          "done": "done",
+          "todo": "todo"
+        }
+      },
+      "index": {
+        "kind": "plan",
+        "order": 1
+      }
+    }
+  ]
+}
